@@ -24,9 +24,10 @@ cli-c/build/
 cli-*/workflow
 cli-*/bin/workflow
 
-# Results (raw data is generated; keep the folder)
-results/*
-!results/.gitkeep
+# Results: keep the derived artifacts, ignore raw session dumps
+results/**/*.jsonl
+results/**/raw/
+results/**/*.log
 
 # Editor / OS
 .vscode/
