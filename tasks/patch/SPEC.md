@@ -30,8 +30,8 @@ Request:
 { "status": "error", "code": "PATH_NOT_FOUND", "index": 0, "message": "..." }
 ```
 
-- `index`: 0-based index of the failing operation, or `null` for envelope
-  errors.
+- `index`: 0-based index of the failing operation — including an operation
+  with a bad shape — or `null` for envelope errors (bad top-level request).
 - `message`: free-form, never compared.
 - On error the original document is **not** returned; the patch is atomic.
 

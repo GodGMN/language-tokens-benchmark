@@ -1,8 +1,31 @@
 # Contributing
 
-This benchmark is meant to grow by pull request. There are three ways to contribute.
+This benchmark is meant to grow by pull request. There are four ways to contribute.
 
-## 1. Add tests
+## 1. Add a task
+
+A *task* is a self-contained programming problem under `tasks/<task>/`:
+
+```
+tasks/<task>/
+  SPEC.md              the contract (grammar/semantics/errors)
+  PROMPT.template.md   the per-language prompt
+  oracle/              reference implementation (Python)
+  adapters/<lang>.json build/run commands + requires
+  fixtures/<cat>/      public suite
+  holdout/<cat>/       scored edge-case suite
+```
+
+Then add `"task": "<task>"` to a round's `round.json`. The harness resolves
+SPEC, adapters, fixtures and oracle from `tasks/<task>/`. `workflow` is special:
+it lives at the repo root for back-compat.
+
+Rules: the spec must be complete enough that a careful implementer needs no
+outside knowledge; the oracle must pass 100% of its own suite; and every error
+must have a precisely defined code **and position/index**, because responses
+are compared exactly.
+
+## 2. Add tests
 
 Tests are the most valuable contribution. A test is one JSON file.
 
@@ -46,7 +69,7 @@ If your test depends on a rule that was only just added to the SPEC, tag it:
 
 A round with `"spec_version": 1` will report it as *future-spec* and won't score it. This keeps older rounds comparable.
 
-## 2. Add a language
+## 3. Add a language
 
 1. Add `benchmark/adapters/<lang>.json`:
 
@@ -66,7 +89,7 @@ A round with `"spec_version": 1` will report it as *future-spec* and won't score
 3. Add a `prompt-<lang>.md` (generated from `benchmark/rounds/<round>/REQUIREMENTS.template.md`).
 4. Implement, then run the suite.
 
-## 3. Add a model / round
+## 4. Add a model / round
 
 Create `benchmark/rounds/<round-id>/round.json`:
 

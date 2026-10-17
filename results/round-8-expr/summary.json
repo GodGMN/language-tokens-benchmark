@@ -18,21 +18,117 @@
     "holdout": 30,
     "future_spec": 0
   },
-  "leaderboard": [],
+  "leaderboard": [
+    {
+      "rank": 1,
+      "language": "rust",
+      "passed": 56,
+      "total": 56,
+      "pct": 100.0,
+      "output": 59463,
+      "total_tokens": 1067224,
+      "cost": 0.0802,
+      "tool_calls": 23,
+      "gen_eff_k": 0.94,
+      "tot_eff_k": 0.05,
+      "rel_cost": 1.0,
+      "code": {
+        "source_files": 1,
+        "source_lines": 1748,
+        "source_bytes": 53465
+      }
+    },
+    {
+      "rank": 2,
+      "language": "javascript",
+      "passed": 56,
+      "total": 56,
+      "pct": 100.0,
+      "output": 60022,
+      "total_tokens": 1241698,
+      "cost": 0.0835,
+      "tool_calls": 24,
+      "gen_eff_k": 0.93,
+      "tot_eff_k": 0.05,
+      "rel_cost": 1.16,
+      "code": {
+        "source_files": 3,
+        "source_lines": 1716,
+        "source_bytes": 51532
+      }
+    },
+    {
+      "rank": 3,
+      "language": "go",
+      "passed": 56,
+      "total": 56,
+      "pct": 100.0,
+      "output": 60130,
+      "total_tokens": 1408634,
+      "cost": 0.0861,
+      "tool_calls": 36,
+      "gen_eff_k": 0.93,
+      "tot_eff_k": 0.04,
+      "rel_cost": 1.32,
+      "code": {
+        "source_files": 6,
+        "source_lines": 1506,
+        "source_bytes": 33293
+      }
+    },
+    {
+      "rank": 4,
+      "language": "c",
+      "passed": 56,
+      "total": 56,
+      "pct": 100.0,
+      "output": 71378,
+      "total_tokens": 1887134,
+      "cost": 0.1026,
+      "tool_calls": 34,
+      "gen_eff_k": 0.78,
+      "tot_eff_k": 0.03,
+      "rel_cost": 1.77,
+      "code": {
+        "source_files": 2,
+        "source_lines": 2882,
+        "source_bytes": 79203
+      }
+    },
+    {
+      "rank": 5,
+      "language": "python",
+      "passed": 56,
+      "total": 56,
+      "pct": 100.0,
+      "output": 73983,
+      "total_tokens": 2524500,
+      "cost": 0.1122,
+      "tool_calls": 38,
+      "gen_eff_k": 0.76,
+      "tot_eff_k": 0.02,
+      "rel_cost": 2.37,
+      "code": {
+        "source_files": 2,
+        "source_lines": 1340,
+        "source_bytes": 39693
+      }
+    }
+  ],
   "all": [
     {
       "language": "python",
       "reference": false,
-      "passed": 55,
+      "passed": 56,
       "total": 56,
-      "pct": 98.2,
-      "conforming": false,
+      "pct": 100.0,
+      "conforming": true,
       "public": [
         26,
         26
       ],
       "holdout": [
-        29,
+        30,
         30
       ],
       "future": [
@@ -54,22 +150,24 @@
         "source_lines": 1340,
         "source_bytes": 39693
       },
-      "gen_eff_k": 0.74,
-      "tot_eff_k": 0.02
+      "gen_eff_k": 0.76,
+      "tot_eff_k": 0.02,
+      "rel_cost": 2.37,
+      "rank": 5
     },
     {
       "language": "javascript",
       "reference": false,
-      "passed": 55,
+      "passed": 56,
       "total": 56,
-      "pct": 98.2,
-      "conforming": false,
+      "pct": 100.0,
+      "conforming": true,
       "public": [
         26,
         26
       ],
       "holdout": [
-        29,
+        30,
         30
       ],
       "future": [
@@ -91,22 +189,24 @@
         "source_lines": 1716,
         "source_bytes": 51532
       },
-      "gen_eff_k": 0.92,
-      "tot_eff_k": 0.04
+      "gen_eff_k": 0.93,
+      "tot_eff_k": 0.05,
+      "rel_cost": 1.16,
+      "rank": 2
     },
     {
       "language": "go",
       "reference": false,
-      "passed": 54,
+      "passed": 56,
       "total": 56,
-      "pct": 96.4,
-      "conforming": false,
+      "pct": 100.0,
+      "conforming": true,
       "public": [
         26,
         26
       ],
       "holdout": [
-        28,
+        30,
         30
       ],
       "future": [
@@ -128,22 +228,24 @@
         "source_lines": 1506,
         "source_bytes": 33293
       },
-      "gen_eff_k": 0.9,
-      "tot_eff_k": 0.04
+      "gen_eff_k": 0.93,
+      "tot_eff_k": 0.04,
+      "rel_cost": 1.32,
+      "rank": 3
     },
     {
       "language": "rust",
       "reference": false,
-      "passed": 55,
+      "passed": 56,
       "total": 56,
-      "pct": 98.2,
-      "conforming": false,
+      "pct": 100.0,
+      "conforming": true,
       "public": [
         26,
         26
       ],
       "holdout": [
-        29,
+        30,
         30
       ],
       "future": [
@@ -165,22 +267,24 @@
         "source_lines": 1748,
         "source_bytes": 53465
       },
-      "gen_eff_k": 0.92,
-      "tot_eff_k": 0.05
+      "gen_eff_k": 0.94,
+      "tot_eff_k": 0.05,
+      "rel_cost": 1.0,
+      "rank": 1
     },
     {
       "language": "c",
       "reference": false,
-      "passed": 55,
+      "passed": 56,
       "total": 56,
-      "pct": 98.2,
-      "conforming": false,
+      "pct": 100.0,
+      "conforming": true,
       "public": [
         26,
         26
       ],
       "holdout": [
-        29,
+        30,
         30
       ],
       "future": [
@@ -202,8 +306,10 @@
         "source_lines": 2882,
         "source_bytes": 79203
       },
-      "gen_eff_k": 0.77,
-      "tot_eff_k": 0.03
+      "gen_eff_k": 0.78,
+      "tot_eff_k": 0.03,
+      "rel_cost": 1.77,
+      "rank": 4
     },
     {
       "language": "oracle",
@@ -237,10 +343,11 @@
       "code": {
         "source_files": 1,
         "source_lines": 527,
-        "source_bytes": 16657
+        "source_bytes": 16669
       },
       "gen_eff_k": null,
-      "tot_eff_k": null
+      "tot_eff_k": null,
+      "rel_cost": null
     }
   ]
 }

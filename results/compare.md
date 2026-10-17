@@ -37,16 +37,16 @@
 | round-7 | workflow | v2 | go | 112/112 | 78,537 | 4,149,141 | 0.1277 | yes |
 | round-7 | workflow | v2 | rust | 112/112 | 131,824 | 7,532,337 | 0.2146 | yes |
 | round-7 | workflow | v2 | c | 112/112 | 154,778 | 12,365,110 | 0.2866 | yes |
-| round-8-expr | workflow | v1 | python | 55/56 | 73,983 | 2,524,500 | 0.1122 | no |
-| round-8-expr | workflow | v1 | javascript | 55/56 | 60,022 | 1,241,698 | 0.0835 | no |
-| round-8-expr | workflow | v1 | go | 54/56 | 60,130 | 1,408,634 | 0.0861 | no |
-| round-8-expr | workflow | v1 | rust | 55/56 | 59,463 | 1,067,224 | 0.0802 | no |
-| round-8-expr | workflow | v1 | c | 55/56 | 71,378 | 1,887,134 | 0.1026 | no |
-| round-9-patch | workflow | v1 | python | 37/38 | 37,514 | 700,543 | 0.0539 | no |
-| round-9-patch | workflow | v1 | javascript | 37/38 | 66,718 | 1,562,150 | 0.0945 | no |
-| round-9-patch | workflow | v1 | go | 37/38 | 42,905 | 709,941 | 0.0590 | no |
-| round-9-patch | workflow | v1 | rust | 37/38 | 44,765 | 925,327 | 0.0654 | no |
-| round-9-patch | workflow | v1 | c | 37/38 | 77,186 | 2,355,515 | 0.1118 | no |
+| round-8-expr | workflow | v1 | python | 56/56 | 73,983 | 2,524,500 | 0.1122 | yes |
+| round-8-expr | workflow | v1 | javascript | 56/56 | 60,022 | 1,241,698 | 0.0835 | yes |
+| round-8-expr | workflow | v1 | go | 56/56 | 60,130 | 1,408,634 | 0.0861 | yes |
+| round-8-expr | workflow | v1 | rust | 56/56 | 59,463 | 1,067,224 | 0.0802 | yes |
+| round-8-expr | workflow | v1 | c | 56/56 | 71,378 | 1,887,134 | 0.1026 | yes |
+| round-9-patch | workflow | v1 | python | 38/38 | 37,514 | 700,543 | 0.0539 | yes |
+| round-9-patch | workflow | v1 | javascript | 38/38 | 66,718 | 1,562,150 | 0.0945 | yes |
+| round-9-patch | workflow | v1 | go | 38/38 | 42,905 | 709,941 | 0.0590 | yes |
+| round-9-patch | workflow | v1 | rust | 38/38 | 44,765 | 925,327 | 0.0654 | yes |
+| round-9-patch | workflow | v1 | c | 38/38 | 77,186 | 2,355,515 | 0.1118 | yes |
 
 ## Output-token stability across rounds
 
@@ -54,11 +54,11 @@ Output tokens are the cleaner measure: they are not inflated by cache reads.
 
 | language | rounds | output tokens | spread |
 |---|---|---|---|
-| python | 7 | round-1:125,031, round-2:82,123, round-3:106,168, round-4:78,385, round-5:154,250, round-6:86,096, round-7:123,874 | 97% |
-| javascript | 7 | round-1:90,736, round-2:119,392, round-3:67,714, round-4:157,602, round-5:93,405, round-6:96,639, round-7:87,820 | 133% |
-| go | 7 | round-1:113,306, round-2:110,406, round-3:69,835, round-4:170,119, round-5:101,824, round-6:102,388, round-7:78,537 | 144% |
-| rust | 7 | round-1:156,063, round-2:104,408, round-3:112,031, round-4:125,886, round-5:140,846, round-6:135,279, round-7:131,824 | 49% |
-| c | 7 | round-1:121,998, round-2:118,885, round-3:142,225, round-4:117,365, round-5:121,115, round-6:108,581, round-7:154,778 | 43% |
+| python | 9 | round-1:125,031, round-2:82,123, round-3:106,168, round-4:78,385, round-5:154,250, round-6:86,096, round-7:123,874, round-8-expr:73,983, round-9-patch:37,514 | 311% |
+| javascript | 9 | round-1:90,736, round-2:119,392, round-3:67,714, round-4:157,602, round-5:93,405, round-6:96,639, round-7:87,820, round-8-expr:60,022, round-9-patch:66,718 | 163% |
+| go | 9 | round-1:113,306, round-2:110,406, round-3:69,835, round-4:170,119, round-5:101,824, round-6:102,388, round-7:78,537, round-8-expr:60,130, round-9-patch:42,905 | 297% |
+| rust | 9 | round-1:156,063, round-2:104,408, round-3:112,031, round-4:125,886, round-5:140,846, round-6:135,279, round-7:131,824, round-8-expr:59,463, round-9-patch:44,765 | 249% |
+| c | 9 | round-1:121,998, round-2:118,885, round-3:142,225, round-4:117,365, round-5:121,115, round-6:108,581, round-7:154,778, round-8-expr:71,378, round-9-patch:77,186 | 117% |
 
 ## Reading this
 

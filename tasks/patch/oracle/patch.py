@@ -137,16 +137,16 @@ def validate_request(req):
         raise PatchError("INVALID_REQUEST", None, "bad request envelope")
     for i, op in enumerate(req["patch"]):
         if not isinstance(op, dict) or not isinstance(op.get("op"), str):
-            raise PatchError("INVALID_REQUEST", None, "op must be an object with a string op")
+            raise PatchError("INVALID_REQUEST", i, "op must be an object with a string op")
         name = op["op"]
         if name not in OP_FIELDS:
             raise PatchError("UNKNOWN_OP", i, f"unknown op {name!r}")
         if set(op) != OP_FIELDS[name]:
-            raise PatchError("INVALID_REQUEST", None, f"bad fields for {name}")
+            raise PatchError("INVALID_REQUEST", i, f"bad fields for {name}")
         if not isinstance(op.get("path"), str):
-            raise PatchError("INVALID_REQUEST", None, "path must be a string")
+            raise PatchError("INVALID_REQUEST", i, "path must be a string")
         if name in ("move", "copy") and not isinstance(op.get("from"), str):
-            raise PatchError("INVALID_REQUEST", None, "from must be a string")
+            raise PatchError("INVALID_REQUEST", i, "from must be a string")
     return req["patch"]
 
 

@@ -6,32 +6,82 @@ This repo asks one question: given an identical, fully-specified CLI program, ho
 
 It is a measure of **code-generation efficiency per language**, not a ranking of languages.
 
-## Leaderboard
+## Tasks
 
-**DeepSeek V4.1 Flash** (`deepseek/deepseek-flash`, DeepSeek-V4.1-Flash-1017) · one-shot · `thinking=high` · spec v2 · **6 samples per language**.
+Three self-contained programming tasks, each JSON-in/JSON-out and deterministic.
+A round targets one task; every language implements the same task from the same
+SPEC.
 
-All 30 samples pass every v2-scored test (112 of 114; the other two rely on a condition rule that was only made explicit in spec v3 and are excluded — see [`docs/spec-changelog.md`](docs/spec-changelog.md)). At this task size **correctness is saturated**, so the leaderboard ranks token efficiency.
+| task | what it is | surface |
+|---|---|---|
+| **workflow** | declarative workflow engine: DAG execution, `$ref`, conditions, retries, 40+ operations | [`SPEC.md`](SPEC.md) |
+| **expr** | expression evaluator: tokenizer, precedence parser, i64 arithmetic, short-circuiting, 18 builtins, exact error positions | [`tasks/expr/SPEC.md`](tasks/expr/SPEC.md) |
+| **patch** | JSON Patch engine: RFC 6901 pointers, add/remove/replace/move/copy/test, atomicity, precise error taxonomy | [`tasks/patch/SPEC.md`](tasks/patch/SPEC.md) |
 
-| rank | language | conforming | output tok median [range] | total tok median [range] | turns |
+## Results — DeepSeek V4.1 Flash (1017)
+
+One-shot, `thinking=high`. All implementations conform on every task, so these
+rank token efficiency. **The ranking changes by task.**
+
+### workflow — 6 samples (median)
+
+| rank | lang | conforming | output tok median | total tok median | turns |
 |---|---|---|---|---|---|
-| 1 | **JavaScript** | 6/6 | **95,022** [67,714–157,602] | **3,760,233** [1,351,236–9,721,332] | 47 |
-| 2 | **Python** | 6/6 | 96,132 [78,385–154,250] | 4,626,750 [3,121,625–11,614,289] | 56 |
-| 3 | **Go** | 6/6 | 102,106 [69,835–170,119] | 3,802,535 [1,891,864–6,404,923] | 47 |
-| 4 | **C** | 6/6 | 120,000 [108,581–154,778] | 6,165,159 [3,997,438–12,365,110] | 58 |
-| 5 | **Rust** | 6/6 | 128,855 [104,408–140,846] | 6,776,508 [4,194,694–8,987,971] | 71 |
+| 1 | JavaScript | 6/6 | 95,022 | 3.76M | 47 |
+| 2 | Python | 6/6 | 96,132 | 4.63M | 56 |
+| 3 | Go | 6/6 | 102,106 | 3.80M | 47 |
+| 4 | C | 6/6 | 120,000 | 6.17M | 58 |
+| 5 | Rust | 6/6 | 128,855 | 6.78M | 71 |
 
-### What the samples show
+### expr — 1 sample
 
-- **JavaScript, Python and Go are effectively tied** on output tokens (within ~7%); Rust is clearly the most expensive (≈35% more than JavaScript, and the most turns at 71 median). C sits mid-high.
-- **Variance is enormous.** JavaScript's total tokens ranged 1.35M–9.72M across six identical runs — a 7× spread. Single-run rankings are meaningless; the median and range are the result.
-- **Total tokens ≈ turns × context.** Cache reads are ~95% of total, so the metric mostly tracks how many iterations a run took. Output tokens are the cleaner "effort" signal; total tokens is "cost".
-- **Cheapest ≠ correct was a real effect** before the spec was clarified: JavaScript once finished in 23 turns and failed two tests. Once the ambiguity was removed, every sample conformed, and cheap runs stayed cheap.
+| rank | lang | conforming | output tok | total tok | turns |
+|---|---|---|---|---|---|
+| 1 | Rust | 56/56 | 59,463 | 1.07M | 23 |
+| 2 | JavaScript | 56/56 | 60,022 | 1.24M | 22 |
+| 3 | Go | 56/56 | 60,130 | 1.41M | 30 |
+| 4 | C | 56/56 | 71,378 | 1.89M | 29 |
+| 5 | Python | 56/56 | 73,983 | 2.52M | 38 |
 
-Per-round detail: [`results/aggregate.md`](results/aggregate.md), [`results/compare.md`](results/compare.md), [`results/round-2/report.md`](results/round-2/report.md).
+### patch — 1 sample
 
-### Why not more rounds
+| rank | lang | conforming | output tok | total tok | turns |
+|---|---|---|---|---|---|
+| 1 | Python | 38/38 | 37,514 | 0.70M | 20 |
+| 2 | Go | 38/38 | 42,905 | 0.71M | 21 |
+| 3 | Rust | 38/38 | 44,765 | 0.93M | 28 |
+| 4 | JavaScript | 38/38 | 66,718 | 1.56M | 29 |
+| 5 | C | 38/38 | 77,186 | 2.36M | 41 |
 
-Six samples already show a 7× spread, so the marginal value of more samples is in tightening the median, not in changing the ordering. The bigger lever is **task size**: to get a benchmark that discriminates on *correctness* rather than cost, the task needs more surface (see Roadmap).
+### Across tasks — mean output tokens
+
+| lang | workflow | expr | patch | mean |
+|---|---|---|---|---|
+| Go | 102,106 | 60,130 | 42,905 | **68,380** |
+| Python | 96,132 | 73,983 | 37,514 | **69,210** |
+| JavaScript | 95,022 | 60,022 | 66,718 | 73,921 |
+| Rust | 128,855 | 59,463 | 44,765 | 77,694 |
+| C | 120,000 | 71,378 | 77,186 | 89,521 |
+
+### What this shows
+
+- **Efficiency is task-dependent.** Python is cheapest on `patch` but last on
+  `expr`; JavaScript wins `workflow` but is 4th on `patch`; Rust is 1st on
+  `expr` and last on `workflow`. No language wins every task.
+- **Go and Python are the most consistent** across the three tasks; **C is
+  consistently the most expensive** (2× Python on `patch`).
+- **Correctness is saturated.** Across every round so far, no implementation
+  failed a test that wasn't a defect in my own suite. Frontier models implement
+  parsers, patch engines and workflow engines reliably; the discriminating
+  signal is cost.
+- **Variance dominates single samples.** On `workflow` one language's total
+  tokens ranged 1.35M–9.72M over six identical runs. Treat n=1 rows as
+  indicative; the `workflow` medians are the only multi-sample result so far.
+
+Full data: [`results/aggregate.md`](results/aggregate.md),
+[`results/compare.md`](results/compare.md),
+[`results/round-8-expr/report.md`](results/round-8-expr/report.md),
+[`results/round-9-patch/report.md`](results/round-9-patch/report.md).
 
 ## The task
 
