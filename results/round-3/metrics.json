@@ -1,0 +1,145 @@
+{
+  "round": "round-3",
+  "model": {
+    "name": "deepseek-flash",
+    "provider": "deepseek",
+    "display": "DeepSeek V4.1 Flash",
+    "params": "763B total, ~16B active (8B active during prefill)",
+    "thinking": "high",
+    "date": "2026-10-17",
+    "version": "DeepSeek-V4.1-Flash-1017",
+    "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+  },
+  "languages": {
+    "c": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--tmp-ltb-round-3-c-submissions-round-3-c--/2026-10-17T14-23-53-188Z_round3-c.jsonl",
+      "started": "2026-10-17T14:23:53.188Z",
+      "ended": "2026-10-17T14:34:15.516Z",
+      "input": 30669,
+      "output": 142225,
+      "cacheRead": 5895808,
+      "cacheWrite": 0,
+      "reasoning": 78326,
+      "totalTokens": 6068702,
+      "cost": {
+        "input": 0.009200699999999997,
+        "output": 0.17067000000000004,
+        "cacheRead": 0.035374848,
+        "cacheWrite": 0.0,
+        "total": 0.21524554799999995
+      },
+      "assistant_messages": 57,
+      "tool_results": 60,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "deepseek:deepseek-flash"
+      ],
+      "source": "round3-c"
+    },
+    "go": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--tmp-ltb-round-3-go-submissions-round-3-go--/2026-10-17T14-23-53-143Z_round3-go.jsonl",
+      "started": "2026-10-17T14:23:53.143Z",
+      "ended": "2026-10-17T14:28:59.901Z",
+      "input": 21837,
+      "output": 69835,
+      "cacheRead": 1800192,
+      "cacheWrite": 0,
+      "reasoning": 40837,
+      "totalTokens": 1891864,
+      "cost": {
+        "input": 0.0065511000000000015,
+        "output": 0.083802,
+        "cacheRead": 0.010801151999999998,
+        "cacheWrite": 0.0,
+        "total": 0.10115425200000003
+      },
+      "assistant_messages": 34,
+      "tool_results": 37,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "deepseek:deepseek-flash"
+      ],
+      "source": "round3-go"
+    },
+    "javascript": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--tmp-ltb-round-3-javascript-submissions-round-3-javascript--/2026-10-17T14-23-53-109Z_round3-javascript.jsonl",
+      "started": "2026-10-17T14:23:53.109Z",
+      "ended": "2026-10-17T14:28:45.200Z",
+      "input": 19010,
+      "output": 67714,
+      "cacheRead": 1264512,
+      "cacheWrite": 0,
+      "reasoning": 38524,
+      "totalTokens": 1351236,
+      "cost": {
+        "input": 0.005703,
+        "output": 0.08125679999999999,
+        "cacheRead": 0.007587072,
+        "cacheWrite": 0.0,
+        "total": 0.09454687200000002
+      },
+      "assistant_messages": 23,
+      "tool_results": 28,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "deepseek:deepseek-flash"
+      ],
+      "source": "round3-javascript"
+    },
+    "python": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--tmp-ltb-round-3-python-submissions-round-3-python--/2026-10-17T14-23-53-115Z_round3-python.jsonl",
+      "started": "2026-10-17T14:23:53.115Z",
+      "ended": "2026-10-17T14:32:24.485Z",
+      "input": 36187,
+      "output": 106168,
+      "cacheRead": 5443456,
+      "cacheWrite": 0,
+      "reasoning": 74469,
+      "totalTokens": 5585811,
+      "cost": {
+        "input": 0.010856100000000002,
+        "output": 0.12740159999999998,
+        "cacheRead": 0.032660735999999996,
+        "cacheWrite": 0.0,
+        "total": 0.17091843599999992
+      },
+      "assistant_messages": 64,
+      "tool_results": 66,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "deepseek:deepseek-flash"
+      ],
+      "source": "round3-python"
+    },
+    "rust": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--tmp-ltb-round-3-rust-submissions-round-3-rust--/2026-10-17T14-23-53-160Z_round3-rust.jsonl",
+      "started": "2026-10-17T14:23:53.160Z",
+      "ended": "2026-10-17T14:32:38.762Z",
+      "input": 34862,
+      "output": 112031,
+      "cacheRead": 4488192,
+      "cacheWrite": 0,
+      "reasoning": 74159,
+      "totalTokens": 4635085,
+      "cost": {
+        "input": 0.0104586,
+        "output": 0.1344372,
+        "cacheRead": 0.026929151999999998,
+        "cacheWrite": 0.0,
+        "total": 0.17182495199999992
+      },
+      "assistant_messages": 58,
+      "tool_results": 60,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "deepseek:deepseek-flash"
+      ],
+      "source": "round3-rust"
+    }
+  }
+}

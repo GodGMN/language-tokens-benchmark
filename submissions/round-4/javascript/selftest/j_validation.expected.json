@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "results": {},
+  "execution_order": [],
+  "skipped": [],
+  "error": { "code": "INVALID_WORKFLOW", "step": null }
+}

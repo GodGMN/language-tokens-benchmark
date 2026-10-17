@@ -1,0 +1,23 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "t_num": "number",
+      "t_float": "number",
+      "t_arr": "array",
+      "eq": true,
+      "neq": false,
+      "cmp": true,
+      "cmp2": true,
+      "and": false,
+      "and2": true,
+      "or": true,
+      "not": true,
+      "const": null
+    },
+    "execution_order": ["t_num","t_float","t_arr","eq","neq","cmp","cmp2","and","and2","or","not","const"],
+    "skipped": [],
+    "error": null
+  }
+}

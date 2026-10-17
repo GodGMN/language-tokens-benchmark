@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "x", "op": "constant", "args": { "value": 3 } },
+    { "id": "y", "op": "constant", "args": { "value": 99 },
+      "depends_on": ["x"],
+      "when": { "op": "gt", "left": { "$ref": "x" }, "right": 10 } },
+    { "id": "z", "op": "constant", "args": { "value": "after" },
+      "depends_on": ["y"] }
+  ]
+}

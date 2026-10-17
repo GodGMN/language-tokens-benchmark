@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "results": {
+    "eq1": true,
+    "eq2": false,
+    "cmp1": true,
+    "cmp2": true,
+    "and1": true,
+    "or1": false,
+    "not1": true,
+    "t1": "object",
+    "t2": "number"
+  },
+  "execution_order": [
+    "eq1",
+    "eq2",
+    "cmp1",
+    "cmp2",
+    "and1",
+    "or1",
+    "not1",
+    "t1",
+    "t2"
+  ],
+  "skipped": [],
+  "error": null
+}

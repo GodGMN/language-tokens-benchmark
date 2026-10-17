@@ -1,0 +1,11 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": { "n": [1,2,3,4,5], "evens": [2,4], "total": 6, "m": 42, "d": -14,
+                 "mod": -2, "neg": -9, "small": -1, "big": 8, "empty_range": [] },
+    "execution_order": ["n","evens","total","m","d","mod","neg","small","big","empty_range"],
+    "skipped": [],
+    "error": null
+  }
+}

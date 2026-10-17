@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "d1", "op": "divide", "args": { "a": -7, "b": 2 } },
+    { "id": "d2", "op": "divide", "args": { "a": -7, "b": -2 } },
+    { "id": "m1", "op": "mod", "args": { "a": -7, "b": 2 } },
+    { "id": "m2", "op": "mod", "args": { "a": 7, "b": -2 } },
+    { "id": "mn", "op": "min", "args": { "input": [3, -5, 9, 0] } },
+    { "id": "mx", "op": "max", "args": { "input": [3, -5, 9, 0] } },
+    { "id": "r", "op": "range", "args": { "start": 4, "end": 2 } }
+  ]
+}

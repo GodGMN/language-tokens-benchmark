@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "nums",
+      "op": "range",
+      "args": {
+        "start": 1,
+        "end": 6
+      }
+    },
+    {
+      "id": "plus10",
+      "op": "map",
+      "depends_on": [
+        "nums"
+      ],
+      "args": {
+        "input": {
+          "$ref": "nums"
+        },
+        "transform": {
+          "type": "add",
+          "value": 10
+        }
+      }
+    },
+    {
+      "id": "neg",
+      "op": "map",
+      "depends_on": [
+        "plus10"
+      ],
+      "args": {
+        "input": {
+          "$ref": "plus10"
+        },
+        "transform": {
+          "type": "negate"
+        }
+      }
+    },
+    {
+      "id": "abs",
+      "op": "map",
+      "depends_on": [
+        "neg"
+      ],
+      "args": {
+        "input": {
+          "$ref": "neg"
+        },
+        "transform": {
+          "type": "abs"
+        }
+      }
+    },
+    {
+      "id": "opmap",
+      "op": "map",
+      "depends_on": [
+        "nums"
+      ],
+      "args": {
+        "input": {
+          "$ref": "nums"
+        },
+        "transform": {
+          "type": "op",
+          "op": "multiply",
+          "args": {
+            "a": {
+              "$self": true
+            },
+            "b": 3
+          }
+        }
+      }
+    },
+    {
+      "id": "strings",
+      "op": "map",
+      "depends_on": [
+        "abs"
+      ],
+      "args": {
+        "input": {
+          "$ref": "abs"
+        },
+        "transform": {
+          "type": "stringify"
+        }
+      }
+    },
+    {
+      "id": "big",
+      "op": "filter",
+      "depends_on": [
+        "plus10"
+      ],
+      "args": {
+        "input": {
+          "$ref": "plus10"
+        },
+        "predicate": {
+          "type": "gt",
+          "value": 13
+        }
+      }
+    },
+    {
+      "id": "rev",
+      "op": "reverse",
+      "depends_on": [
+        "big"
+      ],
+      "args": {
+        "input": {
+          "$ref": "big"
+        }
+      }
+    },
+    {
+      "id": "sum",
+      "op": "reduce",
+      "depends_on": [
+        "rev"
+      ],
+      "args": {
+        "input": {
+          "$ref": "rev"
+        },
+        "op": "add",
+        "initial": 0
+      }
+    },
+    {
+      "id": "dups",
+      "op": "constant",
+      "args": {
+        "value": [
+          3,
+          3,
+          1,
+          2,
+          1
+        ]
+      }
+    },
+    {
+      "id": "uniq",
+      "op": "unique",
+      "depends_on": [
+        "dups"
+      ],
+      "args": {
+        "input": {
+          "$ref": "dups"
+        }
+      }
+    },
+    {
+      "id": "sorted",
+      "op": "sort",
+      "depends_on": [
+        "uniq"
+      ],
+      "args": {
+        "input": {
+          "$ref": "uniq"
+        }
+      }
+    },
+    {
+      "id": "sliced",
+      "op": "slice",
+      "depends_on": [
+        "sorted"
+      ],
+      "args": {
+        "input": {
+          "$ref": "sorted"
+        },
+        "start": -2
+      }
+    },
+    {
+      "id": "nested",
+      "op": "constant",
+      "args": {
+        "value": [
+          [
+            1,
+            2
+          ],
+          [
+            3
+          ],
+          4
+        ]
+      }
+    },
+    {
+      "id": "flat",
+      "op": "flatten",
+      "depends_on": [
+        "nested"
+      ],
+      "args": {
+        "input": {
+          "$ref": "nested"
+        }
+      }
+    },
+    {
+      "id": "minv",
+      "op": "min",
+      "depends_on": [
+        "sorted"
+      ],
+      "args": {
+        "input": {
+          "$ref": "sorted"
+        }
+      }
+    },
+    {
+      "id": "maxv",
+      "op": "max",
+      "depends_on": [
+        "sorted"
+      ],
+      "args": {
+        "input": {
+          "$ref": "sorted"
+        }
+      }
+    },
+    {
+      "id": "sumv",
+      "op": "sum",
+      "depends_on": [
+        "sorted"
+      ],
+      "args": {
+        "input": {
+          "$ref": "sorted"
+        }
+      }
+    },
+    {
+      "id": "mixed",
+      "op": "constant",
+      "args": {
+        "value": [
+          1,
+          "a",
+          true,
+          null,
+          [],
+          {}
+        ]
+      }
+    },
+    {
+      "id": "onlynum",
+      "op": "filter",
+      "depends_on": [
+        "mixed"
+      ],
+      "args": {
+        "input": {
+          "$ref": "mixed"
+        },
+        "predicate": {
+          "type": "type_is",
+          "value": "number"
+        }
+      }
+    },
+    {
+      "id": "truthy",
+      "op": "filter",
+      "depends_on": [
+        "mixed"
+      ],
+      "args": {
+        "input": {
+          "$ref": "mixed"
+        },
+        "predicate": {
+          "type": "truthy"
+        }
+      }
+    },
+    {
+      "id": "has_a",
+      "op": "filter",
+      "depends_on": [
+        "strings"
+      ],
+      "args": {
+        "input": {
+          "$ref": "strings"
+        },
+        "predicate": {
+          "type": "string_contains",
+          "value": "1"
+        }
+      }
+    },
+    {
+      "id": "math",
+      "op": "multiply",
+      "args": {
+        "a": 7,
+        "b": -3
+      }
+    },
+    {
+      "id": "sub",
+      "op": "subtract",
+      "args": {
+        "a": -7,
+        "b": -2
+      }
+    },
+    {
+      "id": "div",
+      "op": "divide",
+      "args": {
+        "a": -7,
+        "b": 2
+      }
+    },
+    {
+      "id": "rem",
+      "op": "mod",
+      "args": {
+        "a": -7,
+        "b": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "data", "op": "constant",
+      "args": { "value": { "user": { "name": "Ada", "scores": [10, 20, 30] }, "flag": true } } },
+    { "id": "name", "op": "get", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data.user" }, "key": "name" } },
+    { "id": "score_total", "op": "sum", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data.user.scores" } } },
+    { "id": "second_score", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.user.scores.1" } } },
+    { "id": "flag_copy", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.flag" } } }
+  ]
+}

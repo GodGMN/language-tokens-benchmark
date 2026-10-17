@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "results": { "done": 1 },
+  "execution_order": ["done"],
+  "skipped": [],
+  "error": { "code": "STEP_FAILED", "step": "flaky" }
+}

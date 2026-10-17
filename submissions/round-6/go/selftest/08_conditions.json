@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    {"id": "base", "op": "constant", "args": {"value": {"n": 10, "s": "Go"}}},
+    {"id": "trueStep", "op": "constant", "args": {"value": "ran"}, "depends_on": ["base"],
+     "when": {"op": "all", "conditions": [
+        {"op": "gte", "left": {"$ref": "base.n"}, "right": 10},
+        {"op": "lte", "left": {"$ref": "base.n"}, "right": 10},
+        {"op": "ne", "left": {"$ref": "base.s"}, "right": "Rust"},
+        {"op": "any", "conditions": [
+           {"op": "eq", "left": {"$ref": "base.s"}, "right": "Rust"},
+           {"op": "eq", "left": {"$ref": "base.s"}, "right": "Go"}
+        ]}
+     ]}},
+    {"id": "falseStep", "op": "constant", "args": {"value": "no"}, "depends_on": ["trueStep"],
+     "when": {"op": "not", "condition": {"op": "lt", "left": {"$ref": "base.n"}, "right": 100}}}
+  ]
+}

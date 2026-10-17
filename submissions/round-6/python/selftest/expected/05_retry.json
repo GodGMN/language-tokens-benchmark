@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": { "flaky": "ok", "sure": "done" },
+    "execution_order": ["flaky", "sure"],
+    "skipped": [],
+    "error": null
+  }
+}

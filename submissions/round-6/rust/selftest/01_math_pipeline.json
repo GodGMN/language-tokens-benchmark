@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "n", "op": "range", "args": { "start": 1, "end": 6 } },
+    { "id": "evens", "op": "filter", "depends_on": ["n"],
+      "args": { "input": { "$ref": "n" }, "predicate": { "type": "even" } } },
+    { "id": "scaled", "op": "map", "depends_on": ["evens"],
+      "args": { "input": { "$ref": "evens" }, "transform": { "type": "add", "value": 10 } } },
+    { "id": "total", "op": "sum", "depends_on": ["scaled"],
+      "args": { "input": { "$ref": "scaled" } } },
+    { "id": "smallest", "op": "min", "depends_on": ["scaled"],
+      "args": { "input": { "$ref": "scaled" } } },
+    { "id": "largest", "op": "max", "depends_on": ["scaled"],
+      "args": { "input": { "$ref": "scaled" } } }
+  ]
+}

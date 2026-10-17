@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "s0", "op": "constant", "args": { "value": "  Hello, World  " } },
+    { "id": "s1", "op": "trim", "depends_on": ["s0"],
+      "args": { "input": {"$ref": "s0"} } },
+    { "id": "s2", "op": "uppercase", "depends_on": ["s1"],
+      "args": { "input": {"$ref": "s1"} } },
+    { "id": "s3", "op": "split", "depends_on": ["s2"],
+      "args": { "input": {"$ref": "s2"}, "sep": "," } },
+    { "id": "s4", "op": "join", "depends_on": ["s3"],
+      "args": { "input": {"$ref": "s3"}, "sep": "|" } },
+    { "id": "s5", "op": "replace", "depends_on": ["s4"],
+      "args": { "input": {"$ref": "s4"}, "search": "WORLD", "replace": "PYTHON" } },
+    { "id": "s6", "op": "constant", "args": { "value": "aé😀" } },
+    { "id": "s7", "op": "split", "depends_on": ["s6"],
+      "args": { "input": {"$ref": "s6"}, "sep": "" } },
+    { "id": "s8", "op": "length", "depends_on": ["s6"],
+      "args": { "input": {"$ref": "s6"} } },
+    { "id": "s9", "op": "lowercase", "args": { "input": "ÀBC" } }
+  ]
+}

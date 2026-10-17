@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "doc", "op": "constant",
+      "args": { "value": { "user": { "name": "ann", "tags": ["x", "y"] }, "n": 5 } } },
+    { "id": "name", "op": "constant", "depends_on": ["doc"],
+      "args": { "value": { "$ref": "doc.user.name" } } },
+    { "id": "tag", "op": "constant", "depends_on": ["doc"],
+      "args": { "value": { "$ref": "doc.user.tags.1" } } },
+    { "id": "combo", "op": "concat", "depends_on": ["name", "tag"],
+      "args": { "a": { "$ref": "name" }, "b": { "$ref": "tag" } } },
+    { "id": "obj_ref", "op": "constant", "depends_on": ["doc"],
+      "args": { "value": { "wrapped": [ { "$ref": "doc.n" }, "literal" ] } } }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "status": "completed",
+  "results": {
+    "base": { "b": 2, "a": 1, "c": 3 },
+    "ks": ["a", "b", "c"],
+    "vs": [1, 2, 3],
+    "g": 1,
+    "gm": null,
+    "s": { "b": 2, "a": 1, "c": 3, "d": 4 },
+    "m": { "b": 20, "a": 1, "c": 3, "e": 5 },
+    "p": { "a": 1, "z": null },
+    "o": { "a": 1, "c": 3 }
+  },
+  "execution_order": ["base", "ks", "vs", "g", "gm", "s", "m", "p", "o"],
+  "skipped": [],
+  "error": null
+}

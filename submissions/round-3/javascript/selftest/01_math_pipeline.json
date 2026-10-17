@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "r", "op": "range", "args": { "start": 1, "end": 5 } },
+    { "id": "s", "op": "sum", "depends_on": ["r"], "args": { "input": { "$ref": "r" } } },
+    { "id": "d", "op": "divide", "depends_on": ["s"], "args": { "a": { "$ref": "s" }, "b": 4 } },
+    { "id": "m", "op": "mod", "depends_on": ["d"], "args": { "a": { "$ref": "s" }, "b": 4 } },
+    { "id": "p", "op": "multiply", "depends_on": ["d"], "args": { "a": { "$ref": "d" }, "b": { "$ref": "s" } } },
+    { "id": "mn", "op": "min", "depends_on": ["d"], "args": { "input": [3, { "$ref": "d" }] } },
+    { "id": "mx", "op": "max", "depends_on": ["d", "p"], "args": { "input": [{ "$ref": "d" }, { "$ref": "p" }] } },
+    { "id": "sub", "op": "subtract", "depends_on": ["mx", "mn"], "args": { "a": { "$ref": "mx" }, "b": { "$ref": "mn" } } }
+  ]
+}

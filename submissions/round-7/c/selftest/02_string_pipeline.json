@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "parts", "op": "split", "args": { "input": "Hello,World,Foo", "sep": "," } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"],
+      "args": { "input": { "$ref": "parts" }, "sep": "-" } },
+    { "id": "up", "op": "uppercase", "depends_on": ["joined"], "args": { "input": { "$ref": "joined" } } },
+    { "id": "replaced", "op": "replace", "depends_on": ["up"],
+      "args": { "input": { "$ref": "up" }, "search": "WORLD", "replace": "THERE" } },
+    { "id": "len", "op": "length", "depends_on": ["replaced"], "args": { "input": { "$ref": "replaced" } } },
+    { "id": "trimmed", "op": "trim", "args": { "input": "  padded\t\n" } },
+    { "id": "lower", "op": "lowercase", "args": { "input": "MiXeD-É" } },
+    { "id": "cat", "op": "concat", "args": { "a": "foo", "b": "bar" } },
+    { "id": "chars", "op": "split", "args": { "input": "aé😀", "sep": "" } }
+  ]
+}

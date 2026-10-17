@@ -1,0 +1,313 @@
+{
+  "round": "round-5",
+  "label": "DeepSeek V4.1 Flash \u2014 one-shot (spec v2, sample 4)",
+  "spec_version": 2,
+  "model": {
+    "name": "deepseek-flash",
+    "provider": "deepseek",
+    "display": "DeepSeek V4.1 Flash",
+    "params": "763B total, ~16B active (8B active during prefill)",
+    "thinking": "high",
+    "date": "2026-10-17",
+    "version": "DeepSeek-V4.1-Flash-1017",
+    "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+  },
+  "tests": {
+    "total": 114,
+    "public": 32,
+    "holdout": 82,
+    "future_spec": 0
+  },
+  "leaderboard": [
+    {
+      "rank": 1,
+      "language": "go",
+      "passed": 114,
+      "total": 114,
+      "pct": 100.0,
+      "output": 101824,
+      "total_tokens": 2538895,
+      "cost": 0.1432,
+      "tool_calls": 36,
+      "gen_eff_k": 1.12,
+      "tot_eff_k": 0.04,
+      "rel_cost": 1.0,
+      "code": {
+        "source_files": 4,
+        "source_lines": 2271,
+        "source_bytes": 52419
+      }
+    },
+    {
+      "rank": 2,
+      "language": "javascript",
+      "passed": 114,
+      "total": 114,
+      "pct": 100.0,
+      "output": 93405,
+      "total_tokens": 2785938,
+      "cost": 0.1373,
+      "tool_calls": 39,
+      "gen_eff_k": 1.22,
+      "tot_eff_k": 0.04,
+      "rel_cost": 1.1,
+      "code": {
+        "source_files": 1,
+        "source_lines": 1603,
+        "source_bytes": 50745
+      }
+    },
+    {
+      "rank": 3,
+      "language": "python",
+      "passed": 114,
+      "total": 114,
+      "pct": 100.0,
+      "output": 154250,
+      "total_tokens": 11614289,
+      "cost": 0.2661,
+      "tool_calls": 107,
+      "gen_eff_k": 0.74,
+      "tot_eff_k": 0.01,
+      "rel_cost": 4.57,
+      "code": {
+        "source_files": 2,
+        "source_lines": 1548,
+        "source_bytes": 49466
+      }
+    }
+  ],
+  "all": [
+    {
+      "language": "python",
+      "reference": false,
+      "passed": 114,
+      "total": 114,
+      "pct": 100.0,
+      "conforming": true,
+      "public": [
+        32,
+        32
+      ],
+      "holdout": [
+        82,
+        82
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 41543,
+      "output": 154250,
+      "reasoning": 116796,
+      "cache_read": 11418496,
+      "cache_write": 0,
+      "total_tokens": 11614289,
+      "cost": 0.2661,
+      "turns": 103,
+      "user_messages": 1,
+      "tool_calls": 107,
+      "code": {
+        "source_files": 2,
+        "source_lines": 1548,
+        "source_bytes": 49466
+      },
+      "gen_eff_k": 0.74,
+      "tot_eff_k": 0.01,
+      "rel_cost": 4.57,
+      "rank": 3
+    },
+    {
+      "language": "javascript",
+      "reference": false,
+      "passed": 114,
+      "total": 114,
+      "pct": 100.0,
+      "conforming": true,
+      "public": [
+        32,
+        32
+      ],
+      "holdout": [
+        82,
+        82
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 30773,
+      "output": 93405,
+      "reasoning": 65996,
+      "cache_read": 2661760,
+      "cache_write": 0,
+      "total_tokens": 2785938,
+      "cost": 0.1373,
+      "turns": 39,
+      "user_messages": 1,
+      "tool_calls": 39,
+      "code": {
+        "source_files": 1,
+        "source_lines": 1603,
+        "source_bytes": 50745
+      },
+      "gen_eff_k": 1.22,
+      "tot_eff_k": 0.04,
+      "rel_cost": 1.1,
+      "rank": 2
+    },
+    {
+      "language": "go",
+      "reference": false,
+      "passed": 114,
+      "total": 114,
+      "pct": 100.0,
+      "conforming": true,
+      "public": [
+        32,
+        32
+      ],
+      "holdout": [
+        82,
+        82
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 21711,
+      "output": 101824,
+      "reasoning": 58227,
+      "cache_read": 2415360,
+      "cache_write": 0,
+      "total_tokens": 2538895,
+      "cost": 0.1432,
+      "turns": 32,
+      "user_messages": 1,
+      "tool_calls": 36,
+      "code": {
+        "source_files": 4,
+        "source_lines": 2271,
+        "source_bytes": 52419
+      },
+      "gen_eff_k": 1.12,
+      "tot_eff_k": 0.04,
+      "rel_cost": 1.0,
+      "rank": 1
+    },
+    {
+      "language": "rust",
+      "reference": false,
+      "passed": 112,
+      "total": 114,
+      "pct": 98.2,
+      "conforming": false,
+      "public": [
+        32,
+        32
+      ],
+      "holdout": [
+        80,
+        82
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 48025,
+      "output": 140846,
+      "reasoning": 101665,
+      "cache_read": 5831808,
+      "cache_write": 0,
+      "total_tokens": 6020679,
+      "cost": 0.2184,
+      "turns": 56,
+      "user_messages": 1,
+      "tool_calls": 57,
+      "code": {
+        "source_files": 2,
+        "source_lines": 2933,
+        "source_bytes": 89236
+      },
+      "gen_eff_k": 0.8,
+      "tot_eff_k": 0.02,
+      "rel_cost": 2.37
+    },
+    {
+      "language": "c",
+      "reference": false,
+      "passed": 112,
+      "total": 114,
+      "pct": 98.2,
+      "conforming": false,
+      "public": [
+        32,
+        32
+      ],
+      "holdout": [
+        80,
+        82
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 77872,
+      "output": 121115,
+      "reasoning": 54234,
+      "cache_read": 6024064,
+      "cache_write": 0,
+      "total_tokens": 6223051,
+      "cost": 0.2048,
+      "turns": 57,
+      "user_messages": 1,
+      "tool_calls": 58,
+      "code": {
+        "source_files": 2,
+        "source_lines": 3289,
+        "source_bytes": 115601
+      },
+      "gen_eff_k": 0.92,
+      "tot_eff_k": 0.02,
+      "rel_cost": 2.45
+    },
+    {
+      "language": "oracle",
+      "reference": true,
+      "passed": 114,
+      "total": 114,
+      "pct": 100.0,
+      "conforming": true,
+      "public": [
+        32,
+        32
+      ],
+      "holdout": [
+        82,
+        82
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": null,
+      "output": null,
+      "reasoning": null,
+      "cache_read": null,
+      "cache_write": null,
+      "total_tokens": null,
+      "cost": null,
+      "turns": null,
+      "user_messages": null,
+      "tool_calls": null,
+      "code": {
+        "source_files": 1,
+        "source_lines": 904,
+        "source_bytes": 31368
+      },
+      "gen_eff_k": null,
+      "tot_eff_k": null,
+      "rel_cost": null
+    }
+  ]
+}

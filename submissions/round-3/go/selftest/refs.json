@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": {"user": {"name": "Ada", "tags": ["x", "y"]}, "items": [10, 20]} } },
+    { "id": "name", "op": "uppercase", "depends_on": ["base"], "args": { "input": {"$ref": "base.user.name"} } },
+    { "id": "tag", "op": "concat", "depends_on": ["base"],
+      "args": { "a": {"$ref": "base.user.tags.1"}, "b": {"$ref": "base.user.tags.0"} } },
+    { "id": "item", "op": "add", "depends_on": ["base"],
+      "args": { "a": {"$ref": "base.items.0"}, "b": {"$ref": "base.items.1"} } },
+    { "id": "check", "op": "equals", "depends_on": ["base", "item"],
+      "args": { "a": {"$ref": "item"}, "b": 30 } }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "n", "op": "constant", "args": { "value": 5 } },
+    { "id": "between", "op": "constant", "args": { "value": "yes" }, "depends_on": ["n"],
+      "when": { "op": "all", "conditions": [
+        { "op": "gt", "left": {"$ref": "n"}, "right": 0 },
+        { "op": "lt", "left": {"$ref": "n"}, "right": 10 }
+      ] } },
+    { "id": "either", "op": "constant", "args": { "value": "yes" }, "depends_on": ["n"],
+      "when": { "op": "any", "conditions": [
+        { "op": "eq", "left": {"$ref": "n"}, "right": 5 },
+        { "op": "gt", "left": {"$ref": "n"}, "right": 100 }
+      ] } },
+    { "id": "outside", "op": "constant", "args": { "value": "no" }, "depends_on": ["n"],
+      "when": { "op": "gt", "left": {"$ref": "n"}, "right": 100 } }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "nums",
+      "op": "range",
+      "args": {
+        "start": 1,
+        "end": 6
+      }
+    },
+    {
+      "id": "doubled",
+      "op": "map",
+      "depends_on": [
+        "nums"
+      ],
+      "args": {
+        "input": {
+          "$ref": "nums"
+        },
+        "transform": {
+          "type": "multiply",
+          "value": 2
+        }
+      }
+    },
+    {
+      "id": "odds",
+      "op": "filter",
+      "depends_on": [
+        "nums"
+      ],
+      "args": {
+        "input": {
+          "$ref": "nums"
+        },
+        "predicate": {
+          "type": "odd"
+        }
+      }
+    },
+    {
+      "id": "tripled",
+      "op": "map",
+      "depends_on": [
+        "odds"
+      ],
+      "args": {
+        "input": {
+          "$ref": "odds"
+        },
+        "transform": {
+          "type": "op",
+          "op": "add",
+          "args": {
+            "a": {
+              "$self": true
+            },
+            "b": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "total",
+      "op": "reduce",
+      "depends_on": [
+        "tripled"
+      ],
+      "args": {
+        "input": {
+          "$ref": "tripled"
+        },
+        "op": "add",
+        "initial": 10
+      }
+    },
+    {
+      "id": "reversed",
+      "op": "reverse",
+      "depends_on": [
+        "nums"
+      ],
+      "args": {
+        "input": {
+          "$ref": "nums"
+        }
+      }
+    },
+    {
+      "id": "sliced",
+      "op": "slice",
+      "depends_on": [
+        "nums"
+      ],
+      "args": {
+        "input": {
+          "$ref": "nums"
+        },
+        "start": -3,
+        "end": -1
+      }
+    },
+    {
+      "id": "mixed",
+      "op": "constant",
+      "args": {
+        "value": [
+          3,
+          "a",
+          false,
+          null,
+          [
+            1
+          ],
+          {
+            "k": 1
+          },
+          1,
+          "a",
+          3
+        ]
+      }
+    },
+    {
+      "id": "sorted",
+      "op": "sort",
+      "depends_on": [
+        "mixed"
+      ],
+      "args": {
+        "input": {
+          "$ref": "mixed"
+        }
+      }
+    },
+    {
+      "id": "uniq",
+      "op": "unique",
+      "depends_on": [
+        "mixed"
+      ],
+      "args": {
+        "input": {
+          "$ref": "mixed"
+        }
+      }
+    },
+    {
+      "id": "nested",
+      "op": "constant",
+      "args": {
+        "value": [
+          [
+            1,
+            2
+          ],
+          3,
+          [
+            4
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "id": "flat",
+      "op": "flatten",
+      "depends_on": [
+        "nested"
+      ],
+      "args": {
+        "input": {
+          "$ref": "nested"
+        }
+      }
+    }
+  ]
+}

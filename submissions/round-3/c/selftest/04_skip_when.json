@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": 4 } },
+    { "id": "too_small", "op": "constant", "depends_on": ["base"],
+      "args": { "value": "ran" },
+      "when": { "op": "gt", "left": {"$ref": "base"}, "right": 10 } },
+    { "id": "all_ok", "op": "constant", "depends_on": ["base"],
+      "args": { "value": "ran" },
+      "when": { "op": "all", "conditions": [
+        { "op": "gte", "left": {"$ref": "base"}, "right": 4 },
+        { "op": "not", "condition": { "op": "eq", "left": {"$ref": "base"}, "right": 5 } }
+      ] } },
+    { "id": "any_ok", "op": "constant", "depends_on": ["base"],
+      "args": { "value": "ran" },
+      "when": { "op": "any", "conditions": [
+        { "op": "lt", "left": {"$ref": "base"}, "right": 0 },
+        { "op": "ne", "left": {"$ref": "base"}, "right": 4 }
+      ] } },
+    { "id": "not_ok", "op": "constant", "depends_on": ["base"],
+      "args": { "value": "ran" },
+      "when": { "op": "not",
+                "condition": { "op": "eq", "left": {"$ref": "base"}, "right": 4 } } },
+    { "id": "empty_all", "op": "constant", "args": { "value": "ran" },
+      "when": { "op": "all", "conditions": [] } }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "config", "op": "constant",
+      "args": { "value": { "limits": { "min": 2, "max": 9 }, "items": [10, 20, 30] } } },
+    { "id": "lo", "op": "constant", "depends_on": ["config"],
+      "args": { "value": {"$ref": "config.limits.min"} } },
+    { "id": "item", "op": "constant", "depends_on": ["config"],
+      "args": { "value": {"$ref": "config.items.2"} } },
+    { "id": "spread", "op": "range", "depends_on": ["lo", "item"],
+      "args": { "start": {"$ref": "lo"}, "end": 6 } },
+    { "id": "picked", "op": "map", "depends_on": ["spread"],
+      "args": { "input": {"$ref": "spread"},
+                "transform": {"type": "multiply", "value": 5} } },
+    { "id": "sorted", "op": "sort", "depends_on": ["picked"],
+      "args": { "input": {"$ref": "picked"} } },
+    { "id": "sliced", "op": "slice", "depends_on": ["sorted"],
+      "args": { "input": {"$ref": "sorted"}, "start": -2 } },
+    { "id": "uniq", "op": "unique", "depends_on": ["sorted"],
+      "args": { "input": {"$ref": "sorted"} } }
+  ]
+}

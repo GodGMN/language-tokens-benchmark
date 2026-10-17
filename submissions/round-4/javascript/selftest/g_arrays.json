@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 5 } },
+    { "id": "doubled", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "multiply", "value": 2 } } },
+    { "id": "evens", "op": "filter", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "predicate": { "type": "even" } } },
+    { "id": "total", "op": "reduce", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "op": "add" } },
+    { "id": "sorted", "op": "sort", "args": { "input": [3, "a", true, null, 1] } },
+    { "id": "rev", "op": "reverse", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" } } },
+    { "id": "uniq", "op": "unique", "args": { "input": [1, 1.0, 2, "2"] } },
+    { "id": "sl", "op": "slice", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "start": 1, "end": -1 } },
+    { "id": "fl", "op": "flatten", "args": { "input": [[1, 2], 3, [], [[4]]] } }
+  ]
+}

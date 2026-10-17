@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "data",
+      "op": "constant",
+      "args": {
+        "value": {
+          "user": {
+            "name": "Ada",
+            "tags": [
+              "math",
+              "code"
+            ]
+          },
+          "items": [
+            {
+              "id": "a",
+              "n": 3
+            },
+            {
+              "id": "b",
+              "n": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "name",
+      "op": "get",
+      "depends_on": [
+        "data"
+      ],
+      "args": {
+        "input": {
+          "$ref": "data.user"
+        },
+        "key": "name"
+      }
+    },
+    {
+      "id": "first_tag",
+      "op": "constant",
+      "args": {
+        "value": {
+          "$ref": "data.user.tags.0"
+        }
+      },
+      "depends_on": [
+        "data"
+      ]
+    },
+    {
+      "id": "item_n",
+      "op": "constant",
+      "args": {
+        "value": {
+          "$ref": "data.items.1.n"
+        }
+      },
+      "depends_on": [
+        "data"
+      ]
+    },
+    {
+      "id": "sum_n",
+      "op": "add",
+      "depends_on": [
+        "item_n",
+        "name"
+      ],
+      "args": {
+        "a": {
+          "$ref": "item_n"
+        },
+        "b": 2
+      }
+    }
+  ]
+}

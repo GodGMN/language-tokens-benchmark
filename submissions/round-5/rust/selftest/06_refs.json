@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "root", "op": "constant", "args": { "value": { "items": [{"name": "a"}, {"name": "b"}], "n": {"k": 7} } } },
+    { "id": "by_index", "op": "constant", "args": { "value": {"$ref": "root.items.1.name"} }, "depends_on": ["root"] },
+    { "id": "by_key", "op": "constant", "args": { "value": {"$ref": "root.n.k"} }, "depends_on": ["root"] },
+    { "id": "transitive", "op": "add", "args": { "a": {"$ref": "root.n.k"}, "b": 1 }, "depends_on": ["by_key"] }
+  ]
+}

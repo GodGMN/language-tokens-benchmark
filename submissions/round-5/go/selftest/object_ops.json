@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "user", "op": "constant",
+      "args": { "value": { "name": "Ada", "age": 36, "tags": ["math", "code"] } } },
+    { "id": "with_email", "op": "set", "depends_on": ["user"],
+      "args": { "input": { "$ref": "user" }, "key": "email", "value": "ada@example.com" } },
+    { "id": "field_names", "op": "keys", "depends_on": ["user"],
+      "args": { "input": { "$ref": "user" } } },
+    { "id": "field_values", "op": "values", "depends_on": ["user"],
+      "args": { "input": { "$ref": "user" } } },
+    { "id": "picked", "op": "pick", "depends_on": ["with_email"],
+      "args": { "input": { "$ref": "with_email" }, "keys": ["name", "missing"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["user"],
+      "args": { "input": { "$ref": "user" }, "keys": ["tags"] } },
+    { "id": "merged", "op": "merge", "depends_on": ["picked"],
+      "args": { "a": { "$ref": "picked" }, "b": { "extra": true } } },
+    { "id": "email", "op": "get", "depends_on": ["with_email"],
+      "args": { "input": { "$ref": "with_email" }, "key": "email" } },
+    { "id": "absent", "op": "get", "depends_on": ["user"],
+      "args": { "input": { "$ref": "user" }, "key": "nope" } }
+  ]
+}

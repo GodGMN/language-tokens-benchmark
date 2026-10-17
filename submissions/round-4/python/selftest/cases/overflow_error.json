@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "ok", "op": "constant", "args": { "value": 1 } },
+    { "id": "bad", "op": "add", "depends_on": ["ok"],
+      "args": { "a": 9223372036854775807, "b": 1 } }
+  ]
+}

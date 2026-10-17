@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": -3, "end": 3 } },
+    { "id": "evens", "op": "filter", "args": { "input": {"$ref": "nums"}, "predicate": { "type": "even" } }, "depends_on": ["nums"] },
+    { "id": "doubled", "op": "map", "args": { "input": {"$ref": "evens"}, "transform": { "type": "multiply", "value": 2 } }, "depends_on": ["evens"] },
+    { "id": "total", "op": "reduce", "args": { "input": {"$ref": "doubled"}, "op": "add" }, "depends_on": ["doubled"] },
+    { "id": "sorted", "op": "sort", "args": { "input": [3, "b", true, null, "a", 1, [2], {"k": 1}] } },
+    { "id": "deduped", "op": "unique", "args": { "input": [1, 2, 1, 1.0, "1", {"a": 1}, {"a": 1}] } },
+    { "id": "sliced", "op": "slice", "args": { "input": {"$ref": "nums"}, "start": -2 }, "depends_on": ["nums"] },
+    { "id": "flat", "op": "flatten", "args": { "input": [1, [2, 3], [], [[4]]] } },
+    { "id": "rev", "op": "reverse", "args": { "input": {"$ref": "nums"} }, "depends_on": ["nums"] }
+  ]
+}

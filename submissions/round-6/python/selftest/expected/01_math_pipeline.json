@@ -1,0 +1,20 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "n": [1, 2, 3, 4, 5, 6],
+      "evens": [2, 4, 6],
+      "total": 12,
+      "half": 6,
+      "neg_mod": -1,
+      "neg_div": -3,
+      "mx": 9,
+      "empty_sum": 0,
+      "prod": 42
+    },
+    "execution_order": ["n", "evens", "total", "half", "neg_mod", "neg_div", "mx", "empty_sum", "prod"],
+    "skipped": [],
+    "error": null
+  }
+}

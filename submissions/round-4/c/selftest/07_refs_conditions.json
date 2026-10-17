@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "doc", "op": "constant",
+      "args": { "value": { "user": { "name": "ada", "tags": ["x", "y"] }, "n": 4 } } },
+    { "id": "name", "op": "get", "depends_on": ["doc"],
+      "args": { "input": { "$ref": "doc.user" }, "key": "name" } },
+    { "id": "tag", "op": "constant", "depends_on": ["doc"],
+      "args": { "value": { "$ref": "doc.user.tags.1" } } },
+    { "id": "n", "op": "get", "depends_on": ["doc"],
+      "args": { "input": { "$ref": "doc" }, "key": "n" } },
+    { "id": "kept", "op": "concat", "depends_on": ["name", "tag", "n"],
+      "args": { "a": { "$ref": "name" }, "b": { "$ref": "tag" } },
+      "when": { "op": "any", "conditions": [
+        { "op": "lt", "left": { "$ref": "n" }, "right": 0 },
+        { "op": "eq", "left": { "$ref": "tag" }, "right": "y" }
+      ] } },
+    { "id": "dropped", "op": "constant", "depends_on": ["n"],
+      "args": { "value": "nope" },
+      "when": { "op": "not", "condition": { "op": "gte", "left": { "$ref": "n" }, "right": 1 } } }
+  ]
+}

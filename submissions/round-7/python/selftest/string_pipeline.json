@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  Hello, World!  " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"],
+      "args": { "input": { "$ref": "raw" } } },
+    { "id": "lower", "op": "lowercase", "depends_on": ["trimmed"],
+      "args": { "input": { "$ref": "trimmed" } } },
+    { "id": "parts", "op": "split", "depends_on": ["lower"],
+      "args": { "input": { "$ref": "lower" }, "sep": ", " } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"],
+      "args": { "input": { "$ref": "parts" }, "sep": "_" } },
+    { "id": "loud", "op": "uppercase", "depends_on": ["joined"],
+      "args": { "input": { "$ref": "joined" } } },
+    { "id": "size", "op": "length", "depends_on": ["loud"],
+      "args": { "input": { "$ref": "loud" } } }
+  ]
+}

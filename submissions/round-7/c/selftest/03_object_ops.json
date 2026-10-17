@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "src", "op": "constant", "args": { "value": { "b": 2, "a": 1, "c": 3 } } },
+    { "id": "a", "op": "get", "depends_on": ["src"], "args": { "input": { "$ref": "src" }, "key": "a" } },
+    { "id": "missing", "op": "get", "depends_on": ["src"], "args": { "input": { "$ref": "src" }, "key": "zz" } },
+    { "id": "keys", "op": "keys", "depends_on": ["src"], "args": { "input": { "$ref": "src" } } },
+    { "id": "values", "op": "values", "depends_on": ["src"], "args": { "input": { "$ref": "src" } } },
+    { "id": "added", "op": "set", "depends_on": ["src"],
+      "args": { "input": { "$ref": "src" }, "key": "d", "value": 4 } },
+    { "id": "merged", "op": "merge", "args": { "a": { "x": 1, "y": 2 }, "b": { "y": 9, "z": 3 } } },
+    { "id": "picked", "op": "pick", "depends_on": ["src"],
+      "args": { "input": { "$ref": "src" }, "keys": ["c", "a", "nope"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["src"],
+      "args": { "input": { "$ref": "src" }, "keys": ["b"] } }
+  ]
+}

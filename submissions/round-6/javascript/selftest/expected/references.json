@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "results": {
+    "cfg": {
+      "user": {
+        "name": "Ada",
+        "roles": [
+          "admin",
+          "dev"
+        ]
+      }
+    },
+    "name": "Ada",
+    "first_role": "admin",
+    "bundle": {
+      "who": "Ada",
+      "role": "admin",
+      "tags": [
+        "dev"
+      ]
+    }
+  },
+  "execution_order": [
+    "cfg",
+    "name",
+    "first_role",
+    "bundle"
+  ],
+  "skipped": [],
+  "error": null
+}

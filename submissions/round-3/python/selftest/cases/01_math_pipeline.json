@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "r", "op": "range", "args": { "start": 1, "end": 5 } },
+    { "id": "add", "op": "add", "args": { "a": 7, "b": -2 } },
+    { "id": "sub", "op": "subtract", "args": { "a": 7, "b": -2 } },
+    { "id": "mul", "op": "multiply", "args": { "a": -3, "b": 4 } },
+    { "id": "div", "op": "divide", "args": { "a": -7, "b": 2 } },
+    { "id": "mod", "op": "mod", "args": { "a": -7, "b": 2 } },
+    { "id": "total", "op": "sum", "args": { "input": {"$ref": "r"} }, "depends_on": ["r"] },
+    { "id": "lo", "op": "min", "args": { "input": {"$ref": "r"} }, "depends_on": ["r"] },
+    { "id": "hi", "op": "max", "args": { "input": {"$ref": "r"} }, "depends_on": ["r"] },
+    { "id": "red", "op": "reduce", "args": { "input": {"$ref": "r"}, "op": "add" }, "depends_on": ["r"] },
+    { "id": "redsub", "op": "reduce", "args": { "input": [1, 2, 3], "op": "subtract", "initial": 10 } },
+    { "id": "redmul", "op": "reduce", "args": { "input": [2, 3], "op": "multiply" } },
+    { "id": "empty_sum", "op": "sum", "args": { "input": [] } },
+    { "id": "rev_range", "op": "range", "args": { "start": 5, "end": 1 } }
+  ]
+}

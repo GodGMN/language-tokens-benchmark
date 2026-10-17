@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "s", "op": "constant", "args": { "value": "  Hello, World!  " } },
+    { "id": "t", "op": "trim", "depends_on": ["s"], "args": { "input": { "$ref": "s" } } },
+    { "id": "u", "op": "uppercase", "depends_on": ["t"], "args": { "input": { "$ref": "t" } } },
+    { "id": "r", "op": "replace", "depends_on": ["t"],
+      "args": { "input": { "$ref": "t" }, "search": "World", "replace": "Rust" } },
+    { "id": "parts", "op": "split", "depends_on": ["r"],
+      "args": { "input": { "$ref": "r" }, "sep": ", " } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"],
+      "args": { "input": { "$ref": "parts" }, "sep": "-" } },
+    { "id": "len", "op": "length", "args": { "input": "héllo" } },
+    { "id": "cat", "op": "concat", "args": { "a": "foo", "b": "bar" } },
+    { "id": "low", "op": "lowercase", "args": { "input": "ÀBC" } },
+    { "id": "chars", "op": "split", "args": { "input": "aé", "sep": "" } }
+  ]
+}

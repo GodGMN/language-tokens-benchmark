@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "a", "op": "add", "args": { "a": 10, "b": 20 } },
+    { "id": "s", "op": "subtract", "args": { "a": {"$ref": "a"}, "b": 5 }, "depends_on": ["a"] },
+    { "id": "m", "op": "multiply", "args": { "a": {"$ref": "s"}, "b": 2 }, "depends_on": ["s"] },
+    { "id": "d", "op": "divide", "args": { "a": {"$ref": "m"}, "b": 7 }, "depends_on": ["m"] },
+    { "id": "r", "op": "mod", "args": { "a": {"$ref": "m"}, "b": 7 }, "depends_on": ["m"] },
+    { "id": "seq", "op": "range", "args": { "start": 1, "end": 5 } },
+    { "id": "total", "op": "sum", "args": { "input": {"$ref": "seq"} }, "depends_on": ["seq"] },
+    { "id": "lo", "op": "min", "args": { "input": {"$ref": "seq"} }, "depends_on": ["seq"] },
+    { "id": "hi", "op": "max", "args": { "input": {"$ref": "seq"} }, "depends_on": ["seq"] }
+  ]
+}

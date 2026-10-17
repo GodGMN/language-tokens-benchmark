@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "s", "op": "constant", "args": { "value": "  Hello, World!  " } },
+    { "id": "up", "op": "uppercase", "args": { "input": {"$ref": "s"} }, "depends_on": ["s"] },
+    { "id": "low", "op": "lowercase", "args": { "input": {"$ref": "up"} }, "depends_on": ["up"] },
+    { "id": "tr", "op": "trim", "args": { "input": {"$ref": "s"} }, "depends_on": ["s"] },
+    { "id": "sp", "op": "split", "args": { "input": "a,b,,c", "sep": "," } },
+    { "id": "sp0", "op": "split", "args": { "input": "héllo", "sep": "" } },
+    { "id": "jn", "op": "join", "args": { "input": ["a", "b", "c"], "sep": "-" } },
+    { "id": "jn0", "op": "join", "args": { "input": [], "sep": "," } },
+    { "id": "rp", "op": "replace", "args": { "input": "banana", "search": "na", "replace": "NA" } },
+    { "id": "ln", "op": "length", "args": { "input": "héllo" } },
+    { "id": "cc", "op": "concat", "args": { "a": "foo", "b": "bar" } }
+  ]
+}

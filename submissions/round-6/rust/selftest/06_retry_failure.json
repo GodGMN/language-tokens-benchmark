@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "pre", "op": "constant", "args": { "value": 7 } },
+    { "id": "flaky", "op": "fail_until",
+      "args": { "failures": 3, "value": "never" },
+      "depends_on": ["pre"],
+      "retry": { "max_attempts": 2 } },
+    { "id": "post", "op": "constant", "args": { "value": 9 },
+      "depends_on": ["flaky"] }
+  ]
+}

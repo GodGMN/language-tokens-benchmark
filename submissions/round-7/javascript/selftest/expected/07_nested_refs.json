@@ -1,0 +1,16 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "doc": { "user": { "name": "ann", "tags": ["x","y"] }, "n": 5 },
+      "name": "ann",
+      "tag": "y",
+      "combo": "anny",
+      "obj_ref": { "wrapped": [5, "literal"] }
+    },
+    "execution_order": ["doc","name","tag","combo","obj_ref"],
+    "skipped": [],
+    "error": null
+  }
+}

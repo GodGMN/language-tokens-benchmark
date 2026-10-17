@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "arr", "op": "constant", "args": { "value": [3, 1, 2, 3, 1] } },
+    { "id": "sorted", "op": "sort", "depends_on": ["arr"], "args": { "input": { "$ref": "arr" } } },
+    { "id": "rev", "op": "reverse", "depends_on": ["arr"], "args": { "input": { "$ref": "arr" } } },
+    { "id": "uniq", "op": "unique", "depends_on": ["arr"], "args": { "input": { "$ref": "arr" } } },
+    { "id": "sliced", "op": "slice", "depends_on": ["arr"],
+      "args": { "input": { "$ref": "arr" }, "start": 1, "end": -1 } },
+    { "id": "sliced2", "op": "slice", "depends_on": ["arr"],
+      "args": { "input": { "$ref": "arr" }, "start": -3, "end": 100 } },
+    { "id": "sliced3", "op": "slice", "depends_on": ["arr"],
+      "args": { "input": { "$ref": "arr" }, "start": 4, "end": 2 } },
+    { "id": "flat", "op": "flatten", "args": { "input": [[1, 2], [3], 4] } },
+    { "id": "prod", "op": "reduce", "depends_on": ["arr"],
+      "args": { "input": { "$ref": "arr" }, "op": "multiply" } },
+    { "id": "mixed", "op": "sort",
+      "args": { "input": ["b", "a", true, null, 3, [1], { "x": 1 }] } },
+    { "id": "uniq_mixed", "op": "unique", "args": { "input": [1, 1.0, "1", { "a": 1, "b": 2 }, { "b": 2, "a": 1 }] } }
+  ]
+}

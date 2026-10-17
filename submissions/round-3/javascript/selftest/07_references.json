@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "o", "op": "constant", "args": { "value": { "user": { "name": "ann", "tags": ["x", "y"] } } } },
+    { "id": "n", "op": "get", "depends_on": ["o"], "args": { "input": { "$ref": "o.user" }, "key": "name" } },
+    { "id": "t", "op": "constant", "depends_on": ["o"], "args": { "value": { "$ref": "o.user.tags.1" } } }
+  ]
+}

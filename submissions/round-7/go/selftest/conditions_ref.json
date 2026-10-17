@@ -1,0 +1,7 @@
+{ "version": 1, "steps": [
+  { "id": "flag", "op": "constant", "args": { "value": true } },
+  { "id": "runs", "op": "constant", "depends_on": ["flag"], "args": { "value": "yes" },
+    "when": { "$ref": "flag" } },
+  { "id": "never", "op": "constant", "depends_on": ["runs"], "args": { "value": "no" },
+    "when": { "op": "not", "condition": { "$ref": "flag" } } }
+] }

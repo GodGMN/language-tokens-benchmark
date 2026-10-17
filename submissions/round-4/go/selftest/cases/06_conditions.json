@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "a", "op": "constant", "args": { "value": 5 } },
+    { "id": "b", "op": "constant", "args": { "value": "big" }, "depends_on": ["a"],
+      "when": { "op": "all", "conditions": [
+        { "op": "gte", "left": { "$ref": "a" }, "right": 5 },
+        { "op": "lt", "left": { "$ref": "a" }, "right": 10 },
+        { "op": "not", "condition": { "op": "eq", "left": { "$ref": "a" }, "right": 6 } }
+      ] } },
+    { "id": "c", "op": "constant", "args": { "value": "neg" }, "depends_on": ["b"],
+      "when": { "op": "any", "conditions": [
+        { "op": "lt", "left": { "$ref": "a" }, "right": 0 },
+        { "op": "gt", "left": { "$ref": "a" }, "right": 4 }
+      ] } },
+    { "id": "d", "op": "constant", "args": { "value": "never" }, "depends_on": ["c"],
+      "when": { "op": "not", "condition": { "op": "any", "conditions": [
+        { "op": "gt", "left": { "$ref": "a" }, "right": 100 },
+        { "op": "eq", "left": { "$ref": "a" }, "right": 5 }
+      ] } } }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "x", "op": "constant", "args": { "value": 1 }, "when": { "op": "gt", "left": 1, "right": 2 } },
+    { "id": "y", "op": "constant", "depends_on": ["x"], "args": { "value": { "$ref": "x" } } }
+  ]
+}

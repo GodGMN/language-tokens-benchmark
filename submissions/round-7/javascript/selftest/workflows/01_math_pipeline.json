@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "n", "op": "range", "args": { "start": 1, "end": 5 } },
+    { "id": "evens", "op": "filter", "depends_on": ["n"],
+      "args": { "input": { "$ref": "n" }, "predicate": { "type": "even" } } },
+    { "id": "total", "op": "sum", "depends_on": ["evens"],
+      "args": { "input": { "$ref": "evens" } } },
+    { "id": "m", "op": "multiply", "depends_on": ["total"], "args": { "a": { "$ref": "total" }, "b": 7 } },
+    { "id": "d", "op": "divide", "depends_on": ["m"], "args": { "a": { "$ref": "m" }, "b": -3 } },
+    { "id": "mod", "op": "mod", "depends_on": ["d"], "args": { "a": { "$ref": "d" }, "b": 4 } },
+    { "id": "neg", "op": "subtract", "args": { "a": 0, "b": 9 } },
+    { "id": "small", "op": "min", "args": { "input": [3, -1, 8] } },
+    { "id": "big", "op": "max", "args": { "input": [3, -1, 8] } },
+    { "id": "empty_range", "op": "range", "args": { "start": 5, "end": 2 } }
+  ]
+}

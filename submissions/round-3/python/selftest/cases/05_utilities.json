@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "t1", "op": "type", "args": { "value": 1 } },
+    { "id": "t2", "op": "type", "args": { "value": true } },
+    { "id": "t3", "op": "type", "args": { "value": null } },
+    { "id": "eq1", "op": "equals", "args": { "a": 1, "b": 1.0 } },
+    { "id": "eq2", "op": "equals", "args": { "a": {"a": 1, "b": 2}, "b": {"b": 2, "a": 1} } },
+    { "id": "eq3", "op": "equals", "args": { "a": true, "b": 1 } },
+    { "id": "cmp1", "op": "compare", "args": { "a": 2, "b": 3, "op": "lt" } },
+    { "id": "cmp2", "op": "compare", "args": { "a": "a", "b": 1, "op": "gt" } },
+    { "id": "a", "op": "and", "args": { "a": true, "b": false } },
+    { "id": "o", "op": "or", "args": { "a": false, "b": 0 } },
+    { "id": "n", "op": "not", "args": { "a": 0 } },
+    { "id": "c", "op": "constant", "args": { "value": {"nested": [1, {"x": null}]} } }
+  ]
+}

@@ -1,0 +1,1 @@
+{"status":"failed","results":{"a":1,"b":null},"execution_order":["a","b"],"skipped":["b"],"error":{"code":"SKIPPED_REFERENCE","step":"c","message":"reference \"b\" targets skipped step \"b\""}}

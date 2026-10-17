@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": { "b": 2, "a": 1, "c": 3 } } },
+    { "id": "ks", "op": "keys", "depends_on": ["base"], "args": { "input": { "$ref": "base" } } },
+    { "id": "vs", "op": "values", "depends_on": ["base"], "args": { "input": { "$ref": "base" } } },
+    { "id": "g", "op": "get", "depends_on": ["base"], "args": { "input": { "$ref": "base" }, "key": "a" } },
+    { "id": "gm", "op": "get", "depends_on": ["base"], "args": { "input": { "$ref": "base" }, "key": "z" } },
+    { "id": "s", "op": "set", "depends_on": ["base"], "args": { "input": { "$ref": "base" }, "key": "d", "value": 4 } },
+    { "id": "m", "op": "merge", "depends_on": ["base"], "args": { "a": { "$ref": "base" }, "b": { "b": 20, "e": 5 } } },
+    { "id": "p", "op": "pick", "depends_on": ["base"], "args": { "input": { "$ref": "base" }, "keys": ["a", "z"] } },
+    { "id": "o", "op": "omit", "depends_on": ["base"], "args": { "input": { "$ref": "base" }, "keys": ["b"] } }
+  ]
+}

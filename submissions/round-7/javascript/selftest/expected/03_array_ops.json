@@ -1,0 +1,25 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "nums": [1,2,3,4,5,6],
+      "doubled": [2,4,6,8,10,12],
+      "odds": [1,3,5],
+      "product": 720,
+      "folded": 79,
+      "mixed": [true,3,"b",null,"a",false,1],
+      "sorted": [1,3,"a","b",false,true,null],
+      "rev": [6,5,4,3,2,1],
+      "dups": [1,1,"1",2,1],
+      "uniq": [1,"1",2],
+      "tail": [5,6],
+      "mid": [2,3],
+      "nested": [1,[2,[3]],4],
+      "flat": [1,2,[3],4]
+    },
+    "execution_order": ["nums","doubled","odds","product","folded","mixed","sorted","rev","dups","uniq","tail","mid","nested","flat"],
+    "skipped": [],
+    "error": null
+  }
+}

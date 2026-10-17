@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "user", "op": "constant",
+      "args": { "value": { "name": "Ada", "role": "admin", "age": 36 } } },
+    { "id": "updated", "op": "set", "depends_on": ["user"],
+      "args": { "input": {"$ref": "user"}, "key": "active", "value": true } },
+    { "id": "extra", "op": "constant", "args": { "value": { "role": "owner", "team": "core" } } },
+    { "id": "merged", "op": "merge", "depends_on": ["updated", "extra"],
+      "args": { "a": {"$ref": "updated"}, "b": {"$ref": "extra"} } },
+    { "id": "picked", "op": "pick", "depends_on": ["merged"],
+      "args": { "input": {"$ref": "merged"}, "keys": ["team", "name", "missing"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["merged"],
+      "args": { "input": {"$ref": "merged"}, "keys": ["age", "active"] } },
+    { "id": "names", "op": "keys", "depends_on": ["merged"],
+      "args": { "input": {"$ref": "merged"} } },
+    { "id": "vals", "op": "values", "depends_on": ["picked"],
+      "args": { "input": {"$ref": "picked"} } },
+    { "id": "role", "op": "get", "depends_on": ["merged"],
+      "args": { "input": {"$ref": "merged"}, "key": "role" } }
+  ]
+}

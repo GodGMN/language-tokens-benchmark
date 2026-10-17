@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "status": "completed",
+  "results": {
+    "n": [1, 2, 3, 4, 5, 6],
+    "evens": [2, 4, 6],
+    "scaled": [6, 12, 18],
+    "total": 36,
+    "minus": 35,
+    "quotient": -3,
+    "remainder": -1
+  },
+  "execution_order": ["n", "evens", "scaled", "total", "minus", "quotient", "remainder"],
+  "skipped": [],
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 10 } },
+    { "id": "total", "op": "sum", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" } } },
+    { "id": "added", "op": "add", "depends_on": ["total"], "args": { "a": { "$ref": "total" }, "b": 5 } },
+    { "id": "subbed", "op": "subtract", "depends_on": ["added"], "args": { "a": { "$ref": "added" }, "b": 10 } },
+    { "id": "mulled", "op": "multiply", "depends_on": ["subbed"], "args": { "a": { "$ref": "subbed" }, "b": 2 } },
+    { "id": "divved", "op": "divide", "depends_on": ["mulled"], "args": { "a": { "$ref": "mulled" }, "b": 7 } },
+    { "id": "rem", "op": "mod", "depends_on": ["divved"], "args": { "a": { "$ref": "divved" }, "b": 5 } },
+    { "id": "lo", "op": "min", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" } } },
+    { "id": "hi", "op": "max", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" } } }
+  ]
+}

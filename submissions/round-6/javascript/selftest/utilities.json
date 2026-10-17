@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "eq1", "op": "equals", "args": { "a": { "x": [1, 2] }, "b": { "x": [1, 2] } } },
+    { "id": "eq2", "op": "equals", "args": { "a": 1, "b": "1" } },
+    { "id": "cmp1", "op": "compare", "args": { "a": "apple", "b": "banana", "op": "lt" } },
+    { "id": "cmp2", "op": "compare", "args": { "a": 5, "b": 5, "op": "gte" } },
+    { "id": "and1", "op": "and", "args": { "a": 1, "b": "x" } },
+    { "id": "or1", "op": "or", "args": { "a": 0, "b": "" } },
+    { "id": "not1", "op": "not", "args": { "a": null } },
+    { "id": "t1", "op": "type", "args": { "value": { "a": 1 } } },
+    { "id": "t2", "op": "type", "args": { "value": 1.5 } }
+  ]
+}

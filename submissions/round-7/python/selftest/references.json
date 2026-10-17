@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "obj", "op": "constant",
+      "args": { "value": { "user": { "name": "Ada" }, "items": [10, 20, 30] } } },
+    { "id": "name", "op": "constant", "depends_on": ["obj"],
+      "args": { "value": { "$ref": "obj.user.name" } } },
+    { "id": "second", "op": "constant", "depends_on": ["obj"],
+      "args": { "value": { "$ref": "obj.items.1" } } },
+    { "id": "echoed", "op": "constant", "depends_on": ["obj", "name"],
+      "args": { "value": { "who": { "$ref": "name" }, "n": { "$ref": "obj.items.0" } } } }
+  ]
+}

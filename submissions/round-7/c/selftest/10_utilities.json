@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "eq_num", "op": "equals", "args": { "a": 1, "b": 1.0 } },
+    { "id": "eq_obj", "op": "equals", "args": { "a": { "x": [1, 2] }, "b": { "x": [1, 2] } } },
+    { "id": "cmp", "op": "compare", "args": { "a": 2, "b": "a", "op": "lt" } },
+    { "id": "andv", "op": "and", "args": { "a": 1, "b": "x" } },
+    { "id": "orv", "op": "or", "args": { "a": [], "b": {} } },
+    { "id": "notv", "op": "not", "args": { "a": "" } },
+    { "id": "ty", "op": "type", "args": { "value": 1.5 } }
+  ]
+}

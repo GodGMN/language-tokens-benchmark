@@ -1,0 +1,10 @@
+{ "version": 1, "steps": [
+  { "id": "o", "op": "constant", "args": { "value": { "b": 2, "a": 1, "c": null } } },
+  { "id": "k", "op": "keys", "depends_on": ["o"], "args": { "input": {"$ref": "o"} } },
+  { "id": "v", "op": "values", "depends_on": ["o"], "args": { "input": {"$ref": "o"} } },
+  { "id": "g", "op": "get", "depends_on": ["o"], "args": { "input": {"$ref": "o"}, "key": "zz" } },
+  { "id": "st", "op": "set", "depends_on": ["o"], "args": { "input": {"$ref": "o"}, "key": "d", "value": [1,2] } },
+  { "id": "mg", "op": "merge", "depends_on": ["o"], "args": { "a": {"$ref": "o"}, "b": {"a": 9, "z": 0} } },
+  { "id": "pk", "op": "pick", "depends_on": ["o"], "args": { "input": {"$ref": "o"}, "keys": ["c","a","nope"] } },
+  { "id": "om", "op": "omit", "depends_on": ["o"], "args": { "input": {"$ref": "o"}, "keys": ["b"] } }
+] }

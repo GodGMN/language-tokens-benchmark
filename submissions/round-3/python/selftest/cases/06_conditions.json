@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "x", "op": "constant", "args": { "value": 15 } },
+    { "id": "y", "op": "constant", "args": { "value": 1 }, "depends_on": ["x"],
+      "when": { "op": "gt", "left": {"$ref": "x"}, "right": 10 } },
+    { "id": "z", "op": "constant", "args": { "value": 2 }, "depends_on": ["x"],
+      "when": { "op": "all", "conditions": [
+        { "op": "gt", "left": {"$ref": "x"}, "right": 20 },
+        { "op": "lt", "left": {"$ref": "x"}, "right": 30 }
+      ] } },
+    { "id": "w", "op": "constant", "args": { "value": 3 }, "depends_on": ["x"],
+      "when": { "op": "any", "conditions": [
+        { "op": "lt", "left": {"$ref": "x"}, "right": 0 },
+        { "op": "eq", "left": {"$ref": "x"}, "right": 15 }
+      ] } },
+    { "id": "v", "op": "constant", "args": { "value": 4 }, "depends_on": ["x"],
+      "when": { "op": "not", "condition": { "op": "gt", "left": {"$ref": "x"}, "right": 10 } } },
+    { "id": "u", "op": "constant", "args": { "value": 5 }, "depends_on": ["x", "y"],
+      "when": { "op": "gte", "left": {"$ref": "x"}, "right": 15 } }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "c", "op": "type", "depends_on": ["b"], "args": { "value": {"$ref": "a"} } },
+    { "id": "a", "op": "constant", "args": { "value": [10, 20] } },
+    { "id": "b", "op": "sum", "depends_on": ["a"], "args": { "input": {"$ref": "a"} } },
+    { "id": "d", "op": "constant", "args": { "value": "last" } }
+  ]
+}

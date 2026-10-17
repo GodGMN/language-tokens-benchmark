@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "results": {
+    "x": 3,
+    "y": null,
+    "z": "ran",
+    "compound": "yes"
+  },
+  "execution_order": [
+    "x",
+    "y",
+    "z",
+    "compound"
+  ],
+  "skipped": [
+    "y"
+  ],
+  "error": null
+}

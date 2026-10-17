@@ -1,0 +1,21 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "s0": "  Hello, World  ",
+      "s1": "Hello, World",
+      "s2": "HELLO, WORLD",
+      "s3": ["HELLO", " WORLD"],
+      "s4": "HELLO| WORLD",
+      "s5": "HELLO| PYTHON",
+      "s6": "aé😀",
+      "s7": ["a", "é", "😀"],
+      "s8": 3,
+      "s9": "Àbc"
+    },
+    "execution_order": ["s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9"],
+    "skipped": [],
+    "error": null
+  }
+}

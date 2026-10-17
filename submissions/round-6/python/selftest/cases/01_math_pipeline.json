@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "n", "op": "range", "args": { "start": 1, "end": 6 } },
+    { "id": "evens", "op": "filter", "depends_on": ["n"],
+      "args": { "input": {"$ref": "n"}, "predicate": { "type": "even" } } },
+    { "id": "total", "op": "sum", "depends_on": ["evens"],
+      "args": { "input": {"$ref": "evens"} } },
+    { "id": "half", "op": "divide", "depends_on": ["total"],
+      "args": { "a": {"$ref": "total"}, "b": 2 } },
+    { "id": "neg_mod", "op": "mod", "args": { "a": -7, "b": 3 } },
+    { "id": "neg_div", "op": "divide", "args": { "a": -7, "b": 2 } },
+    { "id": "mx", "op": "max", "args": { "input": [-5, 3, 9] } },
+    { "id": "empty_sum", "op": "sum", "args": { "input": [] } },
+    { "id": "prod", "op": "multiply", "args": { "a": 6, "b": 7 } }
+  ]
+}

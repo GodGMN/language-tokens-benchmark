@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "a", "op": "constant", "args": { "value": { "x": [1, { "y": true }] } } },
+    { "id": "b", "op": "constant", "args": { "value": { "x": [1, { "y": true }] } } },
+    { "id": "eq", "op": "equals", "depends_on": ["a", "b"], "args": { "a": {"$ref": "a"}, "b": {"$ref": "b"} } },
+    { "id": "ne", "op": "not", "depends_on": ["eq"], "args": { "a": {"$ref": "eq"} } },
+    { "id": "cmp", "op": "compare", "args": { "a": "abc", "b": "abd", "op": "lt" } },
+    { "id": "mixed", "op": "compare", "args": { "a": "abc", "b": 5, "op": "gt" } },
+    { "id": "and1", "op": "and", "args": { "a": true, "b": 0 } },
+    { "id": "or1", "op": "or", "args": { "a": [], "b": "yes" } },
+    { "id": "ty", "op": "type", "depends_on": ["a"], "args": { "value": {"$ref": "a"} } },
+    { "id": "tynull", "op": "type", "args": { "value": null } }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 10 } },
+    { "id": "shifted", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "multiply", "value": 3 } } },
+    { "id": "total", "op": "sum", "depends_on": ["shifted"],
+      "args": { "input": { "$ref": "shifted" } } },
+    { "id": "avgish", "op": "divide", "depends_on": ["total"],
+      "args": { "a": { "$ref": "total" }, "b": 10 } }
+  ]
+}

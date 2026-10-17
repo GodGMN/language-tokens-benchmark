@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": {"a": 1} } },
+    { "id": "bad_path", "op": "get", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "key": {"$ref": "base.missing"} } }
+  ]
+}

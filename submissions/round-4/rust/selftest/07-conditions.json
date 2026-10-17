@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "a", "op": "constant", "args": { "value": 5 } },
+    { "id": "b", "op": "constant", "args": { "value": 10 } },
+    { "id": "flag", "op": "constant", "args": { "value": true } },
+    { "id": "c1", "op": "constant", "depends_on": ["a", "b"], "args": { "value": "ran" },
+      "when": { "op": "all", "conditions": [
+        { "op": "gt", "left": { "$ref": "a" }, "right": 1 },
+        { "op": "any", "conditions": [
+          { "op": "lt", "left": { "$ref": "b" }, "right": 5 },
+          { "op": "eq", "left": { "$ref": "b" }, "right": 10 }
+        ] },
+        { "op": "not", "condition": { "op": "eq", "left": { "$ref": "a" }, "right": 5 } }
+      ] } },
+    { "id": "c2", "op": "constant", "depends_on": ["a"], "args": { "value": "never" },
+      "when": { "op": "ne", "left": { "$ref": "a" }, "right": 5 } },
+    { "id": "c3", "op": "constant", "depends_on": ["flag"], "args": { "value": "bool-ref" },
+      "when": { "$ref": "flag" } },
+    { "id": "c4", "op": "constant", "depends_on": ["b"], "args": { "value": "never2" },
+      "when": { "op": "not", "condition": { "op": "gt", "left": { "$ref": "b" }, "right": 6 } } },
+    { "id": "c5", "op": "constant", "depends_on": ["a", "b"], "args": { "value": "gte-lte" },
+      "when": { "op": "all", "conditions": [
+        { "op": "gte", "left": { "$ref": "a" }, "right": 5 },
+        { "op": "lte", "left": { "$ref": "a" }, "right": 5 }
+      ] } }
+  ]
+}

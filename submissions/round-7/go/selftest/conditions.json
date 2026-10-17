@@ -1,0 +1,20 @@
+{ "version": 1, "steps": [
+  { "id": "a", "op": "constant", "args": { "value": 5 } },
+  { "id": "b", "op": "constant", "args": { "value": "hello" } },
+  { "id": "c1", "op": "constant", "depends_on": ["a","b"],
+    "args": { "value": "runs" },
+    "when": { "op": "all", "conditions": [
+      { "op": "gte", "left": {"$ref": "a"}, "right": 5 },
+      { "op": "ne", "left": {"$ref": "b"}, "right": "nope" },
+      { "op": "not", "condition": { "op": "lt", "left": {"$ref": "a"}, "right": 0 } }
+    ] } },
+  { "id": "c2", "op": "constant", "depends_on": ["c1"], "args": { "value": "skipped-any" },
+    "when": { "op": "any", "conditions": [ { "op": "eq", "left": 1, "right": 2 } ] } },
+  { "id": "c3", "op": "constant", "depends_on": ["c2"], "args": { "value": "runs-after-skip" },
+    "when": { "op": "eq", "left": {"$ref": "b"}, "right": "hello" } },
+  { "id": "cmp", "op": "compare", "depends_on": ["c3"], "args": { "a": "abc", "b": "abd", "op": "lt" } },
+  { "id": "eq1", "op": "equals", "depends_on": ["cmp"], "args": { "a": [1, {"x": [2,3.0]}], "b": [1.0, {"x": [2,3]}] } },
+  { "id": "ty", "op": "type", "depends_on": ["eq1"], "args": { "value": 1.5 } },
+  { "id": "logic", "op": "or", "args": { "a": false, "b": true } },
+  { "id": "logic2", "op": "not", "args": { "a": true } }
+] }

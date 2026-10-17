@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "data", "op": "constant",
+      "args": { "value": { "items": [ { "n": 2 }, { "n": 5 } ] } } },
+    { "id": "first", "op": "add", "depends_on": ["data"],
+      "args": { "a": {"$ref": "data.items.0.n"}, "b": 1 } },
+    { "id": "nested", "op": "constant",
+      "args": { "value": { "x": { "y": [10, 20] } } } },
+    { "id": "deep", "op": "add", "depends_on": ["nested"],
+      "args": { "a": {"$ref": "nested.x.y.1"}, "b": -5 } },
+    { "id": "combined", "op": "multiply", "depends_on": ["first", "deep"],
+      "args": { "a": {"$ref": "first"}, "b": {"$ref": "deep"} } }
+  ]
+}

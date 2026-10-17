@@ -1,0 +1,20 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "base": { "b": 2, "a": 1, "nested": { "x": 7 } },
+      "ks": ["a", "b", "nested"],
+      "vs": [1, 2, { "x": 7 }],
+      "merged": { "b": 9, "a": 1, "nested": { "x": 7 }, "c": 3 },
+      "picked": { "a": 1, "c": 3, "zz": null },
+      "omitted": { "b": 9, "a": 1, "c": 3 },
+      "setobj": { "b": 2, "a": 1, "nested": { "x": 7 }, "d": [1, 2] },
+      "got": { "x": 7 },
+      "missing": null
+    },
+    "execution_order": ["base", "ks", "vs", "merged", "picked", "omitted", "setobj", "got", "missing"],
+    "skipped": [],
+    "error": null
+  }
+}

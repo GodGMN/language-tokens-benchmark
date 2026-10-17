@@ -1,0 +1,17 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "a": 10, "b": 3,
+      "all_ok": "yes",
+      "not_ok": null,
+      "any_ok": "any",
+      "cmp_mixed": "m",
+      "skip_chain": 1
+    },
+    "execution_order": ["a", "b", "all_ok", "not_ok", "any_ok", "cmp_mixed", "skip_chain"],
+    "skipped": ["not_ok"],
+    "error": null
+  }
+}

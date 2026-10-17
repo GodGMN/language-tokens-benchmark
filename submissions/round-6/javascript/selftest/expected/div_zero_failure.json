@@ -1,0 +1,19 @@
+{
+  "status": "failed",
+  "results": {
+    "ok": 3,
+    "skipped": null
+  },
+  "execution_order": [
+    "ok",
+    "skipped"
+  ],
+  "skipped": [
+    "skipped"
+  ],
+  "error": {
+    "code": "DIVISION_BY_ZERO",
+    "step": "boom",
+    "message": "division by zero"
+  }
+}

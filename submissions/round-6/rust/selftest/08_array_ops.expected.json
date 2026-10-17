@@ -1,0 +1,19 @@
+{
+  "exit_code": 0,
+  "status": "completed",
+  "results": {
+    "src": [5, 3, 5, 1, 2, 1],
+    "sorted": [1, 1, 2, 3, 5, 5],
+    "uniq": [5, 3, 1, 2],
+    "rev": [2, 1, 3, 5],
+    "sliced": [1, 3],
+    "flat": [1, 2, 3, 4, [5]],
+    "mapped": [4, 2, 4, 0, 1, 0],
+    "filtered": [4, 2, 4, 1],
+    "reduced": 11,
+    "total_sliced": 4
+  },
+  "execution_order": ["src", "sorted", "uniq", "rev", "sliced", "flat", "mapped", "filtered", "reduced", "total_sliced"],
+  "skipped": [],
+  "error": null
+}

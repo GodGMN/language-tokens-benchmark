@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  Hello, Workflow World  " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"], "args": { "input": { "$ref": "raw" } } },
+    { "id": "lower", "op": "lowercase", "depends_on": ["trimmed"], "args": { "input": { "$ref": "trimmed" } } },
+    { "id": "fixed", "op": "replace", "depends_on": ["lower"],
+      "args": { "input": { "$ref": "lower" }, "search": "world", "replace": "engine" } },
+    { "id": "words", "op": "split", "depends_on": ["fixed"],
+      "args": { "input": { "$ref": "fixed" }, "sep": ", " } },
+    { "id": "joined", "op": "join", "depends_on": ["words"],
+      "args": { "input": { "$ref": "words" }, "sep": " | " } },
+    { "id": "shout", "op": "uppercase", "depends_on": ["fixed"],
+      "args": { "input": { "$ref": "fixed" } } },
+    { "id": "chars", "op": "length", "args": { "input": "héllo👍" } },
+    { "id": "cps", "op": "split", "args": { "input": "aé👍b", "sep": "" } }
+  ]
+}

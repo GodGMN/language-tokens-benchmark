@@ -1,0 +1,1 @@
+{"status":"failed","results":{"a":[1,2]},"execution_order":["a"],"skipped":[],"error":{"code":"INVALID_REFERENCE","step":"b","message":"reference \"a.-1\": invalid array index \"-1\""}}

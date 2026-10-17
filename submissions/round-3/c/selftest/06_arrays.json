@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": [5, 3, 5, 1, 2] } },
+    { "id": "mapped", "op": "map", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "transform": { "type": "add", "value": 10 } } },
+    { "id": "mapped_op", "op": "map", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"},
+                "transform": { "type": "op", "op": "multiply",
+                               "args": { "a": {"$self": true}, "b": 2 } } } },
+    { "id": "mapped_types", "op": "map",
+      "args": { "input": [null, true, 1, "s", [], {}],
+                "transform": { "type": "type" } } },
+    { "id": "filtered", "op": "filter", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "predicate": { "type": "gt", "value": 2 } } },
+    { "id": "product", "op": "reduce", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "op": "multiply" } },
+    { "id": "from100", "op": "reduce", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "op": "subtract", "initial": 100 } },
+    { "id": "sorted", "op": "sort",
+      "args": { "input": [3, "a", 1, true, null, [1], { "k": 2 }] } },
+    { "id": "reversed", "op": "reverse", "args": { "input": [1, 2, 3] } },
+    { "id": "uniq", "op": "unique",
+      "args": { "input": [1, 1.0, "1", null, null, [1], [1]] } },
+    { "id": "sliced", "op": "slice",
+      "args": { "input": [0, 1, 2, 3, 4], "start": -3, "end": -1 } },
+    { "id": "flat", "op": "flatten", "args": { "input": [1, [2, [3]], 4] } },
+    { "id": "negated", "op": "map",
+      "args": { "input": [1, -2], "transform": { "type": "negate" } } }
+  ]
+}

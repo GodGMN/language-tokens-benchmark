@@ -1,0 +1,1 @@
+{"status":"completed","results":{"chars":["a","b"],"greeting":"Hello World","joined":"a|b||c","len":6,"low":"abc-ÜÑ_123","parts":["a","b","","c"],"replaced":"bXna","trimmed":"hello","up":"ABC-Üñ_123"},"execution_order":["greeting","parts","joined","up","low","trimmed","replaced","len","chars"],"skipped":[],"error":null}

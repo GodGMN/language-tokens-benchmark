@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "a", "op": "constant", "args": { "value": 10 } },
+    { "id": "b", "op": "constant", "args": { "value": 3 } },
+    { "id": "all_ok", "op": "constant", "args": { "value": "yes" },
+      "depends_on": ["a", "b"],
+      "when": { "op": "all", "conditions": [
+        { "op": "eq", "left": {"$ref": "a"}, "right": 10 },
+        { "op": "gt", "left": {"$ref": "b"}, "right": 1 } ] } },
+    { "id": "not_ok", "op": "constant", "args": { "value": "no" },
+      "depends_on": ["a"],
+      "when": { "op": "not",
+                "condition": { "op": "eq", "left": {"$ref": "a"}, "right": 10 } } },
+    { "id": "any_ok", "op": "constant", "args": { "value": "any" },
+      "depends_on": ["a", "b"],
+      "when": { "op": "any", "conditions": [
+        { "op": "lt", "left": {"$ref": "a"}, "right": 0 },
+        { "op": "gte", "left": {"$ref": "b"}, "right": 3 } ] } },
+    { "id": "cmp_mixed", "op": "constant", "args": { "value": "m" },
+      "when": { "op": "gt", "left": "z", "right": 5 } },
+    { "id": "skip_chain", "op": "constant", "args": { "value": 1 },
+      "depends_on": ["not_ok", "b"],
+      "when": { "op": "gt", "left": {"$ref": "b"}, "right": 0 } }
+  ]
+}

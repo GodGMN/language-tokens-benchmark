@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "data", "op": "constant", "args": { "value": { "user": { "name": "Ada", "tags": ["x", "y"] }, "items": [10, 20] } } },
+    { "id": "name", "op": "constant", "depends_on": ["data"], "args": { "value": { "$ref": "data.user.name" } } },
+    { "id": "tag0", "op": "constant", "depends_on": ["data"], "args": { "value": { "$ref": "data.user.tags.0" } } },
+    { "id": "item1", "op": "constant", "depends_on": ["data"], "args": { "value": { "$ref": "data.items.1" } } },
+    { "id": "whole_user", "op": "get", "depends_on": ["data"], "args": { "input": { "$ref": "data" }, "key": "user" } }
+  ]
+}

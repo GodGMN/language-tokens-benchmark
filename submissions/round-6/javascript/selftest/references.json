@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "cfg", "op": "constant", "args": { "value": { "user": { "name": "Ada", "roles": ["admin", "dev"] } } } },
+    { "id": "name", "op": "constant", "depends_on": ["cfg"],
+      "args": { "value": { "$ref": "cfg.user.name" } } },
+    { "id": "first_role", "op": "constant", "depends_on": ["cfg"],
+      "args": { "value": { "$ref": "cfg.user.roles.0" } } },
+    { "id": "bundle", "op": "constant", "depends_on": ["name", "first_role"],
+      "args": { "value": { "who": { "$ref": "name" }, "role": { "$ref": "first_role" }, "tags": [{ "$ref": "cfg.user.roles.1" }] } } }
+  ]
+}

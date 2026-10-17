@@ -1,0 +1,18 @@
+{
+  "exit_code": 0,
+  "status": "completed",
+  "results": {
+    "base": { "name": "Ada", "age": 36, "tags": ["math", "code"], "meta": { "active": true } },
+    "keys": ["age", "meta", "name", "tags"],
+    "values": [36, { "active": true }, "Ada", ["math", "code"]],
+    "name": "Ada",
+    "missing": null,
+    "updated": { "name": "Grace", "age": 36, "tags": ["math", "code"], "meta": { "active": true } },
+    "picked": { "name": "Ada", "missing": null, "tags": ["math", "code"] },
+    "merged": { "name": "Grace", "age": 37, "tags": ["math", "code"], "meta": { "active": true }, "city": "London" },
+    "omitted": { "name": "Ada", "age": 36 }
+  },
+  "execution_order": ["base", "keys", "values", "name", "missing", "updated", "picked", "merged", "omitted"],
+  "skipped": [],
+  "error": null
+}

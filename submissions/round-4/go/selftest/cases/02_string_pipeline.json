@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  Abc,Def,Ghi  " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"],
+      "args": { "input": { "$ref": "raw" } } },
+    { "id": "parts", "op": "split", "depends_on": ["trimmed"],
+      "args": { "input": { "$ref": "trimmed" }, "sep": "," } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"],
+      "args": { "input": { "$ref": "parts" }, "sep": "-" } },
+    { "id": "upper", "op": "uppercase", "depends_on": ["joined"],
+      "args": { "input": { "$ref": "joined" } } },
+    { "id": "lowered", "op": "lowercase", "depends_on": ["upper"],
+      "args": { "input": { "$ref": "upper" } } },
+    { "id": "n", "op": "length", "depends_on": ["joined"],
+      "args": { "input": { "$ref": "joined" } } }
+  ]
+}

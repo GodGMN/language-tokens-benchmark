@@ -1,0 +1,23 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "nums": [5, 3, 5, 1, 3, 2],
+      "sorted": [1, 2, 3, 3, 5, 5],
+      "reversed": [2, 3, 1, 5, 3, 5],
+      "uniq": [5, 3, 1, 2],
+      "sliced": [3, 5, 1, 3],
+      "nested": [[1, 2], [3], [], 4],
+      "flat": [1, 2, 3, 4],
+      "mapped": [15, 13, 15, 11, 13, 12],
+      "kept": [5, 3, 5, 3],
+      "product": 450,
+      "sub_init": 81,
+      "mixed": [1, 2, "a", "b", true, null, [1], { "a": 1 }]
+    },
+    "execution_order": ["nums", "sorted", "reversed", "uniq", "sliced", "nested", "flat", "mapped", "kept", "product", "sub_init", "mixed"],
+    "skipped": [],
+    "error": null
+  }
+}

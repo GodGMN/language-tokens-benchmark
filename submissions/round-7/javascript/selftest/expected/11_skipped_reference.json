@@ -1,0 +1,10 @@
+{
+  "exit": 1,
+  "output": {
+    "status": "failed",
+    "results": { "flag": 0, "maybe": null },
+    "execution_order": ["flag","maybe"],
+    "skipped": ["maybe"],
+    "error": { "code": "SKIPPED_REFERENCE", "step": "use_maybe" }
+  }
+}

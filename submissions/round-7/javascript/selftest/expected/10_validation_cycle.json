@@ -1,0 +1,10 @@
+{
+  "exit": 2,
+  "output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": { "code": "CYCLIC_DEPENDENCY", "step": null }
+  }
+}

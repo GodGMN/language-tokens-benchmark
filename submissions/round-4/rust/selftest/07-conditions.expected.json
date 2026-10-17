@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "status": "completed",
+  "results": { "a": 5, "b": 10, "flag": true, "c1": null, "c2": null, "c3": "bool-ref", "c4": null, "c5": "gte-lte" },
+  "execution_order": ["a","b","flag","c1","c2","c3","c4","c5"],
+  "skipped": ["c1","c2","c4"],
+  "error": null
+}

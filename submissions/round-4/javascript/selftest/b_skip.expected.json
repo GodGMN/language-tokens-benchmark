@@ -1,0 +1,7 @@
+{
+  "status": "completed",
+  "results": { "x": 3, "y": null },
+  "execution_order": ["x", "y"],
+  "skipped": ["y"],
+  "error": null
+}

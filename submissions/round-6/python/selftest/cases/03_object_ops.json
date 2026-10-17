@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant",
+      "args": { "value": { "b": 2, "a": 1, "nested": { "x": 7 } } } },
+    { "id": "ks", "op": "keys", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"} } },
+    { "id": "vs", "op": "values", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"} } },
+    { "id": "merged", "op": "merge", "depends_on": ["base"],
+      "args": { "a": {"$ref": "base"}, "b": { "b": 9, "c": 3 } } },
+    { "id": "picked", "op": "pick", "depends_on": ["merged"],
+      "args": { "input": {"$ref": "merged"}, "keys": ["c", "a", "zz"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["merged"],
+      "args": { "input": {"$ref": "merged"}, "keys": ["nested"] } },
+    { "id": "setobj", "op": "set", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "key": "d", "value": [1, 2] } },
+    { "id": "got", "op": "get", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "key": "nested" } },
+    { "id": "missing", "op": "get", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "key": "zz" } }
+  ]
+}

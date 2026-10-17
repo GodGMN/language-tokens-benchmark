@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant",
+      "args": { "value": { "z": 1, "a": 2, "nested": { "x": true } } } },
+    { "id": "keys", "op": "keys", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" } } },
+    { "id": "vals", "op": "values", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" } } },
+    { "id": "merged", "op": "merge", "depends_on": ["base"],
+      "args": { "a": { "$ref": "base" }, "b": { "b": 3, "z": 9 } } },
+    { "id": "picked", "op": "pick", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" }, "keys": ["a", "missing"] } },
+    { "id": "extended", "op": "set", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "extra", "value": null } },
+    { "id": "omitted", "op": "omit", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "keys": ["z"] } }
+  ]
+}

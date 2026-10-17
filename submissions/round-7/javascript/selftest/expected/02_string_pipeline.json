@@ -1,0 +1,21 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "raw": "  Hello, World! ",
+      "trimmed": "Hello, World!",
+      "upper": "HELLO, WORLD!",
+      "lower": "hello, world!",
+      "replaced": "Hell0, W0rld!",
+      "parts": ["Hello", "World!"],
+      "joined": "Hello + World!",
+      "concat": "HELLO, WORLD!!",
+      "chars": ["a", "é", "😀"],
+      "len": 3
+    },
+    "execution_order": ["raw","trimmed","upper","lower","replaced","parts","joined","concat","chars","len"],
+    "skipped": [],
+    "error": null
+  }
+}

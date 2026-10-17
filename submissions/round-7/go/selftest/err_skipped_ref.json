@@ -1,0 +1,6 @@
+{ "version": 1, "steps": [
+  { "id": "a", "op": "constant", "args": { "value": 1 } },
+  { "id": "b", "op": "constant", "depends_on": ["a"], "args": { "value": 2 },
+    "when": { "op": "gt", "left": {"$ref": "a"}, "right": 5 } },
+  { "id": "c", "op": "sum", "depends_on": ["b"], "args": { "input": [{"$ref": "b"}] } }
+] }

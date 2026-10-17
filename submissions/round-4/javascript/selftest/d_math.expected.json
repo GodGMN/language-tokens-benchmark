@@ -1,0 +1,17 @@
+{
+  "status": "completed",
+  "results": {
+    "nums": [1, 2, 3, 4, 5, 6],
+    "total": 21,
+    "lo": 1,
+    "hi": 6,
+    "avgish": 5,
+    "rem": 1,
+    "diff": 5,
+    "prod": 30,
+    "plus": 20
+  },
+  "execution_order": ["nums", "total", "lo", "hi", "avgish", "rem", "diff", "prod", "plus"],
+  "skipped": [],
+  "error": null
+}

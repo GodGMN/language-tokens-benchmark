@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "src", "op": "constant", "args": { "value": { "user": { "name": "ann" }, "items": [10, 20, 30] } } },
+    { "id": "name", "op": "constant", "depends_on": ["src"], "args": { "value": { "$ref": "src.user.name" } } },
+    { "id": "item1", "op": "constant", "depends_on": ["src"], "args": { "value": { "$ref": "src.items.1" } } },
+    { "id": "mid", "op": "get", "depends_on": ["src"], "args": { "input": { "$ref": "src" }, "key": "user" } },
+    { "id": "transitive", "op": "constant", "depends_on": ["mid"],
+      "args": { "value": { "$ref": "src.user.name" } } }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "exit_code": 0,
+  "status": "completed",
+  "results": {
+    "raw": "  Hello, World!  ",
+    "trimmed": "Hello, World!",
+    "upper": "HELLO, WORLD!",
+    "lower": "hello, world!",
+    "replaced": "HELLO, there!",
+    "parts": ["HELLO", "there!"],
+    "joined": "HELLO|there!",
+    "length": 13,
+    "chars": ["a", "é", "😀"]
+  },
+  "execution_order": ["raw", "trimmed", "upper", "lower", "replaced", "parts", "joined", "length", "chars"],
+  "skipped": [],
+  "error": null
+}

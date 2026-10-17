@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": { "b": 2, "a": 1 } } },
+    { "id": "with_c", "op": "set", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "key": "c", "value": 3 } },
+    { "id": "keys", "op": "keys", "depends_on": ["with_c"],
+      "args": { "input": {"$ref": "with_c"} } },
+    { "id": "vals", "op": "values", "depends_on": ["with_c"],
+      "args": { "input": {"$ref": "with_c"} } },
+    { "id": "picked", "op": "pick", "depends_on": ["with_c"],
+      "args": { "input": {"$ref": "with_c"}, "keys": ["c", "a", "missing"] } },
+    { "id": "merged", "op": "merge", "depends_on": ["with_c"],
+      "args": { "a": {"$ref": "with_c"}, "b": { "a": 10, "d": 4 } } },
+    { "id": "omitted", "op": "omit", "depends_on": ["merged"],
+      "args": { "input": {"$ref": "merged"}, "keys": ["b"] } }
+  ]
+}

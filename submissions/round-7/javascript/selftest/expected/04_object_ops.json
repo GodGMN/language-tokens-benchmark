@@ -1,0 +1,20 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "obj": { "b": 2, "a": 1, "c": null },
+      "keys": ["a","b","c"],
+      "values": [1,2,null],
+      "missing": null,
+      "existing": 2,
+      "updated": { "b": 2, "a": 1, "c": null, "d": [4] },
+      "merged": { "b": 2, "a": 9, "c": null, "e": true },
+      "picked": { "a": 1, "c": null, "nope": null },
+      "omitted": { "a": 1, "c": null }
+    },
+    "execution_order": ["obj","keys","values","missing","existing","updated","merged","picked","omitted"],
+    "skipped": [],
+    "error": null
+  }
+}

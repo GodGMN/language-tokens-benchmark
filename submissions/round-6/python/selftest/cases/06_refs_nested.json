@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "data", "op": "constant",
+      "args": { "value": { "user": { "name": "Ada", "tags": ["eng", "math"] },
+                            "scores": [10, 20, 30] } } },
+    { "id": "first", "op": "constant", "depends_on": ["data"],
+      "args": { "value": {"$ref": "data.user.name"} } },
+    { "id": "tag", "op": "constant", "depends_on": ["data"],
+      "args": { "value": {"$ref": "data.user.tags.1"} } },
+    { "id": "score", "op": "add", "depends_on": ["data"],
+      "args": { "a": {"$ref": "data.scores.2"}, "b": {"$ref": "data.scores.0"} } },
+    { "id": "wrapped", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "name": {"$ref": "data.user.name"},
+                            "scores": {"$ref": "data.scores"} } } }
+  ]
+}

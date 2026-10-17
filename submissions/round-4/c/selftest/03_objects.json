@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant",
+      "args": { "value": { "b": 2, "a": 1 } } },
+    { "id": "extended", "op": "set", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "c", "value": 3 } },
+    { "id": "other", "op": "constant",
+      "args": { "value": { "b": 20, "d": 4 } } },
+    { "id": "merged", "op": "merge", "depends_on": ["extended", "other"],
+      "args": { "a": { "$ref": "extended" }, "b": { "$ref": "other" } } },
+    { "id": "picked", "op": "pick", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" }, "keys": ["d", "a", "zz"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" }, "keys": ["b"] } },
+    { "id": "keys", "op": "keys", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" } } },
+    { "id": "values", "op": "values", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" } } },
+    { "id": "got", "op": "get", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" }, "key": "d" } },
+    { "id": "missing", "op": "get", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" }, "key": "nope" } }
+  ]
+}

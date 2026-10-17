@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "results": {
+    "sum2": 42,
+    "diff": -9,
+    "prod": 42,
+    "quot": -3,
+    "rem": 1,
+    "total": 10,
+    "lo": -1,
+    "hi": 9,
+    "rng": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "empty": []
+  },
+  "execution_order": [
+    "sum2",
+    "diff",
+    "prod",
+    "quot",
+    "rem",
+    "total",
+    "lo",
+    "hi",
+    "rng",
+    "empty"
+  ],
+  "skipped": [],
+  "error": null
+}

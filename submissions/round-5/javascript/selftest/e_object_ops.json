@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": { "b": 2, "a": 1 } } },
+    { "id": "setc", "op": "set", "depends_on": ["base"],
+      "args": { "input": {"$ref": "base"}, "key": "c", "value": [3] } },
+    { "id": "geta", "op": "get", "depends_on": ["setc"], "args": { "input": {"$ref": "setc"}, "key": "a" } },
+    { "id": "missing", "op": "get", "depends_on": ["setc"], "args": { "input": {"$ref": "setc"}, "key": "zzz" } },
+    { "id": "ks", "op": "keys", "depends_on": ["setc"], "args": { "input": {"$ref": "setc"} } },
+    { "id": "vs", "op": "values", "depends_on": ["setc"], "args": { "input": {"$ref": "setc"} } },
+    { "id": "merged", "op": "merge", "depends_on": ["base"],
+      "args": { "a": {"$ref": "base"}, "b": { "a": 10, "d": 4 } } },
+    { "id": "picked", "op": "pick", "depends_on": ["merged"],
+      "args": { "input": {"$ref": "merged"}, "keys": ["d", "a", "nope"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["merged"],
+      "args": { "input": {"$ref": "merged"}, "keys": ["b"] } }
+  ]
+}

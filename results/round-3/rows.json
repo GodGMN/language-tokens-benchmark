@@ -1,0 +1,234 @@
+[
+  {
+    "language": "python",
+    "reference": false,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 36187,
+    "output": 106168,
+    "reasoning": 74469,
+    "cache_read": 5443456,
+    "cache_write": 0,
+    "total_tokens": 5585811,
+    "cost": 0.1709,
+    "turns": 64,
+    "user_messages": 1,
+    "tool_calls": 66,
+    "code": {
+      "source_files": 2,
+      "source_lines": 1620,
+      "source_bytes": 49536
+    },
+    "gen_eff_k": 1.07,
+    "tot_eff_k": 0.02,
+    "rel_cost": 2.95,
+    "rank": 3
+  },
+  {
+    "language": "javascript",
+    "reference": false,
+    "passed": 112,
+    "total": 114,
+    "pct": 98.2,
+    "conforming": false,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      80,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 19010,
+    "output": 67714,
+    "reasoning": 38524,
+    "cache_read": 1264512,
+    "cache_write": 0,
+    "total_tokens": 1351236,
+    "cost": 0.0945,
+    "turns": 23,
+    "user_messages": 1,
+    "tool_calls": 28,
+    "code": {
+      "source_files": 2,
+      "source_lines": 1772,
+      "source_bytes": 52848
+    },
+    "gen_eff_k": 1.65,
+    "tot_eff_k": 0.08,
+    "rel_cost": 0.71
+  },
+  {
+    "language": "go",
+    "reference": false,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 21837,
+    "output": 69835,
+    "reasoning": 40837,
+    "cache_read": 1800192,
+    "cache_write": 0,
+    "total_tokens": 1891864,
+    "cost": 0.1012,
+    "turns": 34,
+    "user_messages": 1,
+    "tool_calls": 37,
+    "code": {
+      "source_files": 6,
+      "source_lines": 2455,
+      "source_bytes": 55809
+    },
+    "gen_eff_k": 1.63,
+    "tot_eff_k": 0.06,
+    "rel_cost": 1.0,
+    "rank": 1
+  },
+  {
+    "language": "rust",
+    "reference": false,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 34862,
+    "output": 112031,
+    "reasoning": 74159,
+    "cache_read": 4488192,
+    "cache_write": 0,
+    "total_tokens": 4635085,
+    "cost": 0.1718,
+    "turns": 58,
+    "user_messages": 1,
+    "tool_calls": 60,
+    "code": {
+      "source_files": 8,
+      "source_lines": 2538,
+      "source_bytes": 93565
+    },
+    "gen_eff_k": 1.02,
+    "tot_eff_k": 0.02,
+    "rel_cost": 2.45,
+    "rank": 2
+  },
+  {
+    "language": "c",
+    "reference": false,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 30669,
+    "output": 142225,
+    "reasoning": 78326,
+    "cache_read": 5895808,
+    "cache_write": 0,
+    "total_tokens": 6068702,
+    "cost": 0.2152,
+    "turns": 57,
+    "user_messages": 1,
+    "tool_calls": 60,
+    "code": {
+      "source_files": 2,
+      "source_lines": 3574,
+      "source_bytes": 108159
+    },
+    "gen_eff_k": 0.8,
+    "tot_eff_k": 0.02,
+    "rel_cost": 3.21,
+    "rank": 4
+  },
+  {
+    "language": "oracle",
+    "reference": true,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": null,
+    "output": null,
+    "reasoning": null,
+    "cache_read": null,
+    "cache_write": null,
+    "total_tokens": null,
+    "cost": null,
+    "turns": null,
+    "user_messages": null,
+    "tool_calls": null,
+    "code": {
+      "source_files": 1,
+      "source_lines": 904,
+      "source_bytes": 31368
+    },
+    "gen_eff_k": null,
+    "tot_eff_k": null,
+    "rel_cost": null
+  }
+]

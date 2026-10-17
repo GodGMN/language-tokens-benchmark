@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "before", "op": "constant", "args": { "value": 1 } },
+    { "id": "never", "op": "fail_until", "depends_on": ["before"],
+      "args": { "failures": 5, "value": "unreachable" },
+      "retry": { "max_attempts": 2 } }
+  ]
+}

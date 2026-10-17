@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "status": "completed",
+  "results": { "obj": {"a":1,"b":2,"c":3}, "ks": ["a","b","c"], "vs": [1,2,3], "with_d": {"a":1,"b":2,"c":3,"d":4}, "missing": null, "merged": {"a":1,"b":20,"c":3,"e":5}, "picked": {"a":1,"c":3,"zz":null}, "omitted": {"a":1,"c":3}, "got": 1 },
+  "execution_order": ["obj","ks","vs","with_d","missing","merged","picked","omitted","got"],
+  "skipped": [],
+  "error": null
+}

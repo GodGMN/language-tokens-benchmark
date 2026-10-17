@@ -1,0 +1,1 @@
+{"status":"failed","results":{"a":5},"execution_order":["a"],"skipped":[],"error":{"code":"INVALID_CONDITION","step":"b","message":"condition reference did not evaluate to a boolean (got number)"}}

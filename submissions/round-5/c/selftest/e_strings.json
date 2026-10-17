@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  Hello, Workflow World  " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"],
+      "args": { "input": {"$ref": "raw"} } },
+    { "id": "words", "op": "split", "depends_on": ["trimmed"],
+      "args": { "input": {"$ref": "trimmed"}, "sep": " " } },
+    { "id": "with_or", "op": "filter", "depends_on": ["words"],
+      "args": { "input": {"$ref": "words"},
+                "predicate": {"type": "string_contains", "value": "or"} } },
+    { "id": "caps", "op": "uppercase", "depends_on": ["trimmed"],
+      "args": { "input": {"$ref": "trimmed"} } },
+    { "id": "replaced", "op": "replace", "depends_on": ["trimmed"],
+      "args": { "input": {"$ref": "trimmed"}, "search": "World", "replace": "Engine" } },
+    { "id": "joined", "op": "join", "depends_on": ["with_or"],
+      "args": { "input": {"$ref": "with_or"}, "sep": "_" } },
+    { "id": "len", "op": "length", "depends_on": ["joined"],
+      "args": { "input": {"$ref": "joined"} } }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "status": "completed",
+  "results": {
+    "s": "Hello World",
+    "up": "HELLO WORLD",
+    "low": "hello world",
+    "tr": "hi there",
+    "ln": 3,
+    "cp": ["a", "😀", "b"],
+    "sp": ["hi", "there"],
+    "jo": "hi-there",
+    "rp": "hi+there"
+  },
+  "execution_order": ["s", "up", "low", "tr", "ln", "cp", "sp", "jo", "rp"],
+  "skipped": [],
+  "error": null
+}

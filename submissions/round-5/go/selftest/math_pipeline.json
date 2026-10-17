@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 10 } },
+    { "id": "evens", "op": "filter", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "predicate": { "type": "even" } } },
+    { "id": "total", "op": "sum", "depends_on": ["evens"],
+      "args": { "input": { "$ref": "evens" } } },
+    { "id": "scaled", "op": "map", "depends_on": ["evens"],
+      "args": { "input": { "$ref": "evens" }, "transform": { "type": "multiply", "value": 10 } } },
+    { "id": "top", "op": "max", "depends_on": ["scaled"],
+      "args": { "input": { "$ref": "scaled" } } },
+    { "id": "bottom", "op": "min", "depends_on": ["scaled"],
+      "args": { "input": { "$ref": "scaled" } } },
+    { "id": "quotient", "op": "divide", "depends_on": ["total", "top"],
+      "args": { "a": { "$ref": "total" }, "b": { "$ref": "nums.0" } } },
+    { "id": "remainder", "op": "mod", "depends_on": ["total"],
+      "args": { "a": { "$ref": "total" }, "b": 7 } },
+    { "id": "reduced", "op": "reduce", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "op": "subtract" } }
+  ]
+}

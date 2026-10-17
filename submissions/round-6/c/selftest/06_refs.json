@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "payload", "op": "constant",
+      "args": { "value": { "items": [ { "name": "a", "scores": [10, 20] },
+                                      { "name": "b", "scores": [30] } ],
+                            "meta": { "count": 2 } } } },
+    { "id": "first_name", "op": "constant", "depends_on": ["payload"],
+      "args": { "value": {"$ref": "payload.items.0.name"} } },
+    { "id": "second_score", "op": "constant", "depends_on": ["payload"],
+      "args": { "value": {"$ref": "payload.items.1.scores.0"} } },
+    { "id": "total_scores", "op": "slice", "depends_on": ["payload"],
+      "args": { "input": {"$ref": "payload.items.0.scores"}, "start": 0, "end": 2 } },
+    { "id": "summary", "op": "constant", "depends_on": ["first_name", "second_score"],
+      "args": { "value": { "name": {"$ref": "first_name"}, "score": {"$ref": "second_score"} } } }
+  ]
+}

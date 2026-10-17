@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "status": "completed",
+  "results": { "n": [1,2,3,4,5], "total": 15, "mn": 1, "mx": 5, "prod": 120, "sub": 7, "div": -3, "rem": -1, "empty_range": [] },
+  "execution_order": ["n","total","mn","mx","prod","sub","div","rem","empty_range"],
+  "skipped": [],
+  "error": null
+}

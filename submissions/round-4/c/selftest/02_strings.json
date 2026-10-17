@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "concat", "op": "concat", "args": { "a": "Hello", "b": ", World" } },
+    { "id": "upper", "op": "uppercase", "depends_on": ["concat"],
+      "args": { "input": { "$ref": "concat" } } },
+    { "id": "padded", "op": "trim", "depends_on": ["upper"],
+      "args": { "input": "  \tHI THERE \n" } },
+    { "id": "replaced", "op": "replace", "depends_on": ["padded"],
+      "args": { "input": { "$ref": "padded" }, "search": "HI", "replace": "Bye" } },
+    { "id": "words", "op": "split", "depends_on": ["replaced"],
+      "args": { "input": { "$ref": "replaced" }, "sep": " " } },
+    { "id": "joined", "op": "join", "depends_on": ["words"],
+      "args": { "input": { "$ref": "words" }, "sep": "-" } },
+    { "id": "lower", "op": "lowercase", "depends_on": ["joined"],
+      "args": { "input": { "$ref": "joined" } } },
+    { "id": "chars", "op": "split", "depends_on": ["lower"],
+      "args": { "input": { "$ref": "lower" }, "sep": "" } },
+    { "id": "len", "op": "length", "depends_on": ["lower"],
+      "args": { "input": { "$ref": "lower" } } }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  Hello,World,Again  " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"], "args": { "input": {"$ref": "raw"} } },
+    { "id": "parts", "op": "split", "depends_on": ["trimmed"], "args": { "input": {"$ref": "trimmed"}, "sep": "," } },
+    { "id": "upper", "op": "map", "depends_on": ["parts"],
+      "args": { "input": {"$ref": "parts"}, "transform": { "type": "type" } } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"], "args": { "input": {"$ref": "parts"}, "sep": "-" } },
+    { "id": "replaced", "op": "replace", "depends_on": ["joined"],
+      "args": { "input": {"$ref": "joined"}, "search": "-", "replace": "/" } },
+    { "id": "len", "op": "length", "depends_on": ["replaced"], "args": { "input": {"$ref": "replaced"} } },
+    { "id": "shout", "op": "uppercase", "depends_on": ["joined"], "args": { "input": {"$ref": "joined"} } },
+    { "id": "whisper", "op": "lowercase", "depends_on": ["shout"], "args": { "input": {"$ref": "shout"} } },
+    { "id": "prefix", "op": "concat", "depends_on": ["whisper"], "args": { "a": "x:", "b": {"$ref": "whisper"} } }
+  ]
+}

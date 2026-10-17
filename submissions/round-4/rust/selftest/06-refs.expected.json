@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "status": "completed",
+  "results": { "data": {"flag":true,"user":{"name":"Ada","scores":[10,20,30]}}, "name": "Ada", "score_total": 60, "second_score": 20, "flag_copy": true },
+  "execution_order": ["data","name","score_total","second_score","flag_copy"],
+  "skipped": [],
+  "error": null
+}

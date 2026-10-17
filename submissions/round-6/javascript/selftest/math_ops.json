@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "sum2", "op": "add", "args": { "a": 40, "b": 2 } },
+    { "id": "diff", "op": "subtract", "args": { "a": -7, "b": 2 } },
+    { "id": "prod", "op": "multiply", "args": { "a": 6, "b": 7 } },
+    { "id": "quot", "op": "divide", "args": { "a": -7, "b": 2 } },
+    { "id": "rem", "op": "mod", "args": { "a": 7, "b": -2 } },
+    { "id": "total", "op": "sum", "args": { "input": [1, 2, 3, 4] } },
+    { "id": "lo", "op": "min", "args": { "input": [3, -1, 9] } },
+    { "id": "hi", "op": "max", "args": { "input": [3, -1, 9] } },
+    { "id": "rng", "op": "range", "args": { "start": 1, "end": 4 } },
+    { "id": "empty", "op": "range", "args": { "start": 5, "end": 1 } }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": {
+      "data": { "user": { "name": "Ada", "tags": ["eng", "math"] }, "scores": [10, 20, 30] },
+      "first": "Ada",
+      "tag": "math",
+      "score": 40,
+      "wrapped": { "name": "Ada", "scores": [10, 20, 30] }
+    },
+    "execution_order": ["data", "first", "tag", "score", "wrapped"],
+    "skipped": [],
+    "error": null
+  }
+}

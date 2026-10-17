@@ -1,0 +1,7 @@
+{ "version": 1, "steps": [
+  { "id": "A", "op": "constant", "depends_on": ["B"], "args": { "value": "A" } },
+  { "id": "B", "op": "constant", "args": { "value": "B" } },
+  { "id": "C", "op": "constant", "args": { "value": "C" } },
+  { "id": "D", "op": "concat", "depends_on": ["A","B","C"],
+    "args": { "a": {"$ref": "A"}, "b": {"$ref": "C"} } }
+] }

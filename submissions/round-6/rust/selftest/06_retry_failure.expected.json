@@ -1,0 +1,8 @@
+{
+  "exit_code": 1,
+  "status": "failed",
+  "results": { "pre": 7 },
+  "execution_order": ["pre"],
+  "skipped": [],
+  "error": { "code": "STEP_FAILED", "step": "flaky" }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "list", "op": "constant", "args": { "value": [3, 1, 2, 2, 4] } },
+    { "id": "sorted", "op": "sort", "args": { "input": { "$ref": "list" } }, "depends_on": ["list"] },
+    { "id": "uniq", "op": "unique", "args": { "input": { "$ref": "list" } }, "depends_on": ["list"] },
+    { "id": "rev", "op": "reverse", "args": { "input": { "$ref": "list" } }, "depends_on": ["list"] },
+    { "id": "sliced", "op": "slice", "args": { "input": { "$ref": "list" }, "start": 1, "end": -1 }, "depends_on": ["list"] },
+    { "id": "flat", "op": "flatten", "args": { "input": [1, [2, 3], [], 4] } },
+    { "id": "prod", "op": "reduce", "args": { "input": { "$ref": "list" }, "op": "multiply" }, "depends_on": ["list"] },
+    { "id": "negs", "op": "map", "args": { "input": { "$ref": "list" }, "transform": { "type": "negate" } }, "depends_on": ["list"] },
+    { "id": "odds", "op": "filter", "args": { "input": { "$ref": "list" }, "predicate": { "type": "odd" } }, "depends_on": ["list"] },
+    { "id": "strings", "op": "map", "args": { "input": { "$ref": "list" }, "transform": { "type": "stringify" } }, "depends_on": ["list"] }
+  ]
+}

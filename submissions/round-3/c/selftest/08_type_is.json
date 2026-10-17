@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "vals", "op": "constant",
+      "args": { "value": [1, "a", null, true, [], {}] } },
+    { "id": "nums", "op": "filter", "depends_on": ["vals"],
+      "args": { "input": {"$ref": "vals"},
+                "predicate": { "type": "type_is", "value": "number" } } },
+    { "id": "objects", "op": "filter", "depends_on": ["vals"],
+      "args": { "input": {"$ref": "vals"},
+                "predicate": { "type": "type_is", "type": "object" } } }
+  ]
+}

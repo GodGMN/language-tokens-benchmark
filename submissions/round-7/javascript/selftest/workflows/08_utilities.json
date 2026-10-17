@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "t_num", "op": "type", "args": { "value": 1 } },
+    { "id": "t_float", "op": "type", "args": { "value": 1.5 } },
+    { "id": "t_arr", "op": "type", "args": { "value": [] } },
+    { "id": "eq", "op": "equals", "args": { "a": { "x": [1, 2] }, "b": { "x": [1.0, 2] } } },
+    { "id": "neq", "op": "equals", "args": { "a": 1, "b": "1" } },
+    { "id": "cmp", "op": "compare", "args": { "a": "b", "b": "a", "op": "gt" } },
+    { "id": "cmp2", "op": "compare", "args": { "a": 1, "b": "a", "op": "lt" } },
+    { "id": "and", "op": "and", "args": { "a": [], "b": true } },
+    { "id": "and2", "op": "and", "args": { "a": "x", "b": true } },
+    { "id": "or", "op": "or", "args": { "a": {}, "b": "x" } },
+    { "id": "not", "op": "not", "args": { "a": 0 } },
+    { "id": "const", "op": "constant", "args": { "value": null } }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "seed", "op": "constant", "args": { "value": { "items": [1, 2, 3], "flag": true, "name": "x" } } },
+    { "id": "total", "op": "sum", "depends_on": ["seed"], "args": { "input": { "$ref": "seed.items" } } },
+    { "id": "keep", "op": "constant", "depends_on": ["seed", "total"],
+      "when": { "op": "all", "conditions": [
+        { "op": "gte", "left": { "$ref": "total" }, "right": 6 },
+        { "op": "ne", "left": { "$ref": "seed.flag" }, "right": false },
+        { "op": "any", "conditions": [
+          { "op": "eq", "left": { "$ref": "seed.name" }, "right": "x" },
+          { "op": "lt", "left": { "$ref": "total" }, "right": 0 }
+        ] }
+      ] },
+      "args": { "value": "yes" } },
+    { "id": "drop", "op": "constant", "depends_on": ["seed"],
+      "when": { "op": "not", "condition": { "op": "eq", "left": { "$ref": "seed.name" }, "right": "x" } },
+      "args": { "value": "no" } }
+  ]
+}

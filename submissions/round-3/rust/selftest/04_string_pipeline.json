@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  Hello, World  " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"],
+      "args": { "input": {"$ref": "raw"} } },
+    { "id": "upper", "op": "uppercase", "depends_on": ["trimmed"],
+      "args": { "input": {"$ref": "trimmed"} } },
+    { "id": "words", "op": "split", "depends_on": ["upper"],
+      "args": { "input": {"$ref": "upper"}, "sep": ", " } },
+    { "id": "joined", "op": "join", "depends_on": ["words"],
+      "args": { "input": {"$ref": "words"}, "sep": "|" } },
+    { "id": "replaced", "op": "replace", "depends_on": ["joined"],
+      "args": { "input": {"$ref": "joined"}, "search": "|", "replace": "-" } },
+    { "id": "len", "op": "length", "depends_on": ["replaced"],
+      "args": { "input": {"$ref": "replaced"} } }
+  ]
+}

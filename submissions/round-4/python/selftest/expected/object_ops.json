@@ -1,0 +1,18 @@
+{
+  "exit_code": 0,
+  "status": "completed",
+  "results": {
+    "obj": { "b": 2, "a": { "z": 1 }, "c": 3 },
+    "keys": ["a", "b", "c"],
+    "values": [{ "z": 1 }, 2, 3],
+    "got": 2,
+    "missing": null,
+    "added": { "b": 2, "a": { "z": 1 }, "c": 3, "d": [1, 2] },
+    "merged": { "x": 1, "y": 20, "z": 30 },
+    "picked": { "a": { "z": 1 }, "c": 3, "missing": null },
+    "omitted": { "a": { "z": 1 }, "c": 3 }
+  },
+  "execution_order": ["obj", "keys", "values", "got", "missing", "added", "merged", "picked", "omitted"],
+  "skipped": [],
+  "error": null
+}

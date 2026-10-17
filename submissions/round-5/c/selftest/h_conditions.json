@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "n", "op": "range", "args": { "start": 1, "end": 10 } },
+    { "id": "evens", "op": "filter", "depends_on": ["n"],
+      "args": { "input": {"$ref": "n"}, "predicate": {"type": "even"} } },
+    { "id": "total", "op": "sum", "depends_on": ["evens"],
+      "args": { "input": {"$ref": "evens"} } },
+    { "id": "big", "op": "constant", "depends_on": ["total"], "args": { "value": "big" },
+      "when": { "op": "all", "conditions": [
+        { "op": "gte", "left": {"$ref": "total"}, "right": 30 },
+        { "op": "lt", "left": {"$ref": "total"}, "right": 100 }
+      ] } },
+    { "id": "small", "op": "constant", "depends_on": ["total"], "args": { "value": "small" },
+      "when": { "op": "not",
+                "condition": { "op": "gt", "left": {"$ref": "total"}, "right": 10 } } },
+    { "id": "either", "op": "constant", "depends_on": ["big", "total"],
+      "args": { "value": "either" },
+      "when": { "op": "any", "conditions": [
+        { "op": "eq", "left": {"$ref": "big"}, "right": "big" },
+        { "op": "eq", "left": {"$ref": "total"}, "right": 999 }
+      ] } }
+  ]
+}

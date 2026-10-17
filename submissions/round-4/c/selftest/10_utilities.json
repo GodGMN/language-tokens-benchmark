@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "one_eq_one_float", "op": "equals", "args": { "a": 1, "b": 1.0 } },
+    { "id": "obj_eq", "op": "equals",
+      "args": { "a": { "x": [1, 2], "y": null }, "b": { "y": null, "x": [1, 2] } } },
+    { "id": "lt_mixed", "op": "compare", "args": { "a": 99, "b": "a", "op": "lt" } },
+    { "id": "gt_str", "op": "compare", "args": { "a": "b", "b": "a", "op": "gt" } },
+    { "id": "both", "op": "and", "args": { "a": true, "b": false } },
+    { "id": "either", "op": "or", "args": { "a": true, "b": false } },
+    { "id": "invert", "op": "not", "args": { "a": false } },
+    { "id": "kind", "op": "type", "args": { "value": [1] } }
+  ]
+}

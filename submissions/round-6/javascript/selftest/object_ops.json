@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "person", "op": "constant", "args": { "value": { "name": "Ada", "age": 36, "city": "London" } } },
+    { "id": "keys", "op": "keys", "depends_on": ["person"], "args": { "input": { "$ref": "person" } } },
+    { "id": "vals", "op": "values", "depends_on": ["person"], "args": { "input": { "$ref": "person" } } },
+    { "id": "name", "op": "get", "depends_on": ["person"],
+      "args": { "input": { "$ref": "person" }, "key": "name" } },
+    { "id": "missing", "op": "get", "depends_on": ["person"],
+      "args": { "input": { "$ref": "person" }, "key": "nope" } },
+    { "id": "aged", "op": "set", "depends_on": ["person"],
+      "args": { "input": { "$ref": "person" }, "key": "age", "value": 37 } },
+    { "id": "merged", "op": "merge", "depends_on": ["person", "aged"],
+      "args": { "a": { "$ref": "person" }, "b": { "$ref": "aged" } } },
+    { "id": "subset", "op": "pick", "depends_on": ["person"],
+      "args": { "input": { "$ref": "person" }, "keys": ["city", "name", "absent"] } },
+    { "id": "rest", "op": "omit", "depends_on": ["person"],
+      "args": { "input": { "$ref": "person" }, "keys": ["city"] } }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 6 } },
+    { "id": "mapped", "op": "map", "depends_on": ["nums"], "args": {
+      "input": { "$ref": "nums" }, "transform": { "type": "add", "value": 10 } } },
+    { "id": "filtered", "op": "filter", "depends_on": ["mapped"], "args": {
+      "input": { "$ref": "mapped" }, "predicate": { "type": "even" } } },
+    { "id": "reduced", "op": "reduce", "depends_on": ["filtered"], "args": {
+      "input": { "$ref": "filtered" }, "op": "add", "initial": 0 } },
+    { "id": "product", "op": "reduce", "depends_on": ["nums"], "args": {
+      "input": { "$ref": "nums" }, "op": "multiply" } },
+    { "id": "sorted_mixed", "op": "sort", "args": {
+      "input": [3, "a", true, null, 1, false, [1], { "k": 1 }] } },
+    { "id": "reversed", "op": "reverse", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" } } },
+    { "id": "uniq", "op": "unique", "args": { "input": [1, 1, "1", 1.0, true, null, null] } },
+    { "id": "negslice", "op": "slice", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "start": -3 } },
+    { "id": "midslice", "op": "slice", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "start": 1, "end": 4 } },
+    { "id": "flat", "op": "flatten", "args": { "input": [[1, 2], 3, [4], []] } },
+    { "id": "stringified", "op": "map", "args": { "input": [1, "x", true, null, [1,2], {"a": 1}],
+      "transform": { "type": "stringify" } } }
+  ]
+}

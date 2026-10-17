@@ -1,0 +1,10 @@
+{
+  "exit": 1,
+  "output": {
+    "status": "failed",
+    "results": { "a": 9223372036854775807 },
+    "execution_order": ["a"],
+    "skipped": [],
+    "error": { "code": "ARITHMETIC_OVERFLOW", "step": "b" }
+  }
+}

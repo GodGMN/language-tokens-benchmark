@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "data", "op": "constant", "args": {
+      "value": { "user": { "name": "Ada", "roles": ["admin", "dev"] }, "scores": [10, 20, 30] }
+    } },
+    { "id": "name", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.user.name" } } },
+    { "id": "role", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.user.roles.1" } } },
+    { "id": "score", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.scores.2" } } },
+    { "id": "score_sum", "op": "sum", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data.scores" } } }
+  ]
+}

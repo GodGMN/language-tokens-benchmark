@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "results": {
+    "seed": { "items": [1, 2, 3], "flag": true, "name": "x" },
+    "total": 6,
+    "keep": "yes",
+    "drop": null
+  },
+  "execution_order": ["seed", "total", "keep", "drop"],
+  "skipped": ["drop"],
+  "error": null
+}

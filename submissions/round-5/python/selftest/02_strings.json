@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  Hello, World  " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"], "args": { "input": { "$ref": "raw" } } },
+    { "id": "upper", "op": "uppercase", "depends_on": ["trimmed"], "args": { "input": { "$ref": "trimmed" } } },
+    { "id": "lower", "op": "lowercase", "depends_on": ["upper"], "args": { "input": { "$ref": "upper" } } },
+    { "id": "replaced", "op": "replace", "depends_on": ["lower"], "args": { "input": { "$ref": "lower" }, "search": "o", "replace": "0" } },
+    { "id": "parts", "op": "split", "depends_on": ["replaced"], "args": { "input": { "$ref": "replaced" }, "sep": "l" } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"], "args": { "input": { "$ref": "parts" }, "sep": "-" } },
+    { "id": "len", "op": "length", "depends_on": ["joined"], "args": { "input": { "$ref": "joined" } } },
+    { "id": "bang", "op": "concat", "depends_on": ["joined"], "args": { "a": { "$ref": "joined" }, "b": "!" } }
+  ]
+}

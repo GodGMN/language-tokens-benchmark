@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "obj", "op": "constant", "args": { "value": { "b": 2, "a": { "x": 1 } } } },
+    { "id": "nested", "op": "constant", "args": { "value": { "$ref": "obj.a.x" } }, "depends_on": ["obj"] },
+    { "id": "eq", "op": "equals", "depends_on": ["obj"],
+      "args": { "a": { "$ref": "obj" }, "b": { "a": { "x": 1.0 }, "b": 2 } } },
+    { "id": "cmp", "op": "compare", "args": { "a": 1, "b": "x", "op": "lt" } },
+    { "id": "both", "op": "and", "args": { "a": true, "b": false } },
+    { "id": "neither", "op": "or", "args": { "a": false, "b": false } },
+    { "id": "neg", "op": "not", "args": { "a": false } },
+    { "id": "tnull", "op": "type", "args": { "value": null } },
+    { "id": "tnum", "op": "type", "args": { "value": 1.0 } }
+  ]
+}

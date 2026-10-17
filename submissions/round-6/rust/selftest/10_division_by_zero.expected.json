@@ -1,0 +1,8 @@
+{
+  "exit_code": 1,
+  "status": "failed",
+  "results": { "ok": 1 },
+  "execution_order": ["ok"],
+  "skipped": [],
+  "error": { "code": "DIVISION_BY_ZERO", "step": "boom" }
+}

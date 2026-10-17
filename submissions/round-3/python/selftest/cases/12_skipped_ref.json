@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": 1 } },
+    { "id": "sk", "op": "constant", "args": { "value": 2 }, "depends_on": ["base"],
+      "when": { "op": "lt", "left": {"$ref": "base"}, "right": 0 } },
+    { "id": "user", "op": "add", "depends_on": ["sk"],
+      "args": { "a": {"$ref": "sk"}, "b": 1 } }
+  ]
+}

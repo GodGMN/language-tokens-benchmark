@@ -1,0 +1,1 @@
+{"status":"completed","results":{"doc":{"user":{"name":"ada","tags":["x","y"]},"n":4},"name":"ada","tag":"y","n":4,"kept":"aday","dropped":null},"execution_order":["doc","name","tag","n","kept","dropped"],"skipped":["dropped"],"error":null}

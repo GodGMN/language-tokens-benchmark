@@ -1,0 +1,35 @@
+{
+  "status": "completed",
+  "results": {
+    "raw": "  Hello, Workflow World  ",
+    "trimmed": "Hello, Workflow World",
+    "lower": "hello, workflow world",
+    "fixed": "hello, workflow engine",
+    "words": [
+      "hello",
+      "workflow engine"
+    ],
+    "joined": "hello | workflow engine",
+    "shout": "HELLO, WORKFLOW ENGINE",
+    "chars": 6,
+    "cps": [
+      "a",
+      "é",
+      "👍",
+      "b"
+    ]
+  },
+  "execution_order": [
+    "raw",
+    "trimmed",
+    "lower",
+    "fixed",
+    "words",
+    "joined",
+    "shout",
+    "chars",
+    "cps"
+  ],
+  "skipped": [],
+  "error": null
+}

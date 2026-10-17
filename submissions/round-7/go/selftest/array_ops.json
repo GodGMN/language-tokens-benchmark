@@ -1,0 +1,20 @@
+{ "version": 1, "steps": [
+  { "id": "mixed", "op": "constant", "args": { "value": [3, "b", true, null, [1], {"z":1}, 2.5, "a", false] } },
+  { "id": "sorted", "op": "sort", "depends_on": ["mixed"], "args": { "input": {"$ref": "mixed"} } },
+  { "id": "rev", "op": "reverse", "depends_on": ["mixed"], "args": { "input": {"$ref": "mixed"} } },
+  { "id": "uniq", "op": "unique", "args": { "input": [1, 1.0, "1", [1], [1], {"a":1}, {"a":1.0}, null, null] } },
+  { "id": "sl", "op": "slice", "args": { "input": [0,1,2,3,4,5], "start": -3, "end": -1 } },
+  { "id": "sl2", "op": "slice", "args": { "input": [0,1,2,3], "start": 2 } },
+  { "id": "sl3", "op": "slice", "args": { "input": [0,1,2,3], "start": -100, "end": 100 } },
+  { "id": "sl4", "op": "slice", "args": { "input": [0,1,2,3], "start": 3, "end": 1 } },
+  { "id": "fl", "op": "flatten", "args": { "input": [1, [2,3], [[4]], "x"] } },
+  { "id": "mp", "op": "map", "args": { "input": [1,2,3], "transform": {"type": "negate"} } },
+  { "id": "mp2", "op": "map", "args": { "input": [1,2,3], "transform": {"type": "op", "op": "multiply", "args": {"a": {"$self": true}, "b": 10}} } },
+  { "id": "mp3", "op": "map", "args": { "input": [1,"x",null], "transform": {"type": "stringify"} } },
+  { "id": "mp4", "op": "map", "args": { "input": [1,"x",null], "transform": {"type": "type"} } },
+  { "id": "mp5", "op": "map", "args": { "input": [1,2], "transform": {"type": "constant", "value": {"k": true}} } },
+  { "id": "f1", "op": "filter", "args": { "input": [1,2,3,4,5,6], "predicate": {"type": "odd"} } },
+  { "id": "f2", "op": "filter", "args": { "input": [1,2,3], "predicate": {"type": "gte", "value": 2} } },
+  { "id": "f3", "op": "filter", "args": { "input": [0,1,"", "x", null, [], [1], {}, {"a":1}, false, true], "predicate": {"type": "truthy"} } },
+  { "id": "f4", "op": "filter", "args": { "input": ["apple","pear","plum"], "predicate": {"type": "string_contains", "value": "p"} } }
+] }

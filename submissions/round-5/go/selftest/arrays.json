@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 5 } },
+    { "id": "mixed", "op": "constant", "args": { "value": [3, "b", 1, "a", 2] } },
+    { "id": "sorted", "op": "sort", "depends_on": ["mixed"],
+      "args": { "input": { "$ref": "mixed" } } },
+    { "id": "uniq", "op": "unique", "depends_on": ["mixed"],
+      "args": { "input": [1, 1, 2, "2", 2] } },
+    { "id": "rev", "op": "reverse", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" } } },
+    { "id": "tail", "op": "slice", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "start": -3 } },
+    { "id": "flat", "op": "flatten",
+      "args": { "input": [[1, 2], [3], 4] } },
+    { "id": "mapped", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" },
+                "transform": { "type": "op", "op": "add", "args": { "a": { "$self": true }, "b": 2 } } } },
+    { "id": "reduced", "op": "reduce", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "op": "multiply" } },
+    { "id": "filtered", "op": "filter", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "predicate": { "type": "gt", "value": 2 } } }
+  ]
+}

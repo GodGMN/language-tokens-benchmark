@@ -1,0 +1,8 @@
+{
+  "exit_code": 0,
+  "status": "completed",
+  "results": { "a": 5, "b": "gte", "c": null, "d": "not" },
+  "execution_order": ["a", "b", "c", "d"],
+  "skipped": ["c"],
+  "error": null
+}

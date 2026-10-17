@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "status": "completed",
+  "results": {
+    "a": 5,
+    "b": 10,
+    "c": "yes",
+    "d": null,
+    "numeric_equality": "equal",
+    "mixed_order": "number-before-string"
+  },
+  "execution_order": ["a", "b", "c", "d", "numeric_equality", "mixed_order"],
+  "skipped": ["d"],
+  "error": null
+}

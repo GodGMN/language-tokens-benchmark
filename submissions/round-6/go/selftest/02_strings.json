@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    {"id": "greeting", "op": "concat", "args": {"a": "Hello", "b": " World"}},
+    {"id": "parts", "op": "split", "args": {"input": "a,b,,c", "sep": ","}},
+    {"id": "joined", "op": "join", "depends_on": ["parts"],
+     "args": {"input": {"$ref": "parts"}, "sep": "|"}},
+    {"id": "up", "op": "uppercase", "args": {"input": "Abc-Üñ_123"}},
+    {"id": "low", "op": "lowercase", "args": {"input": "AbC-ÜÑ_123"}},
+    {"id": "trimmed", "op": "trim", "args": {"input": " \t hello \n\r\f\u000b"}},
+    {"id": "replaced", "op": "replace", "args": {"input": "banana", "search": "ana", "replace": "X"}},
+    {"id": "len", "op": "length", "args": {"input": "héllo🙂"}},
+    {"id": "chars", "op": "split", "args": {"input": "ab", "sep": ""}}
+  ]
+}

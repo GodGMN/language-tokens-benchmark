@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": { "x": 3, "y": null, "z": "ran", "w": "ran2" },
+    "execution_order": ["x","y","z","w"],
+    "skipped": ["y"],
+    "error": null
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  Hello, World! " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"], "args": { "input": { "$ref": "raw" } } },
+    { "id": "upper", "op": "uppercase", "depends_on": ["trimmed"], "args": { "input": { "$ref": "trimmed" } } },
+    { "id": "lower", "op": "lowercase", "depends_on": ["trimmed"], "args": { "input": { "$ref": "trimmed" } } },
+    { "id": "replaced", "op": "replace", "depends_on": ["trimmed"],
+      "args": { "input": { "$ref": "trimmed" }, "search": "o", "replace": "0" } },
+    { "id": "parts", "op": "split", "depends_on": ["trimmed"], "args": { "input": { "$ref": "trimmed" }, "sep": ", " } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"], "args": { "input": { "$ref": "parts" }, "sep": " + " } },
+    { "id": "concat", "op": "concat", "depends_on": ["upper"], "args": { "a": { "$ref": "upper" }, "b": "!" } },
+    { "id": "chars", "op": "split", "args": { "input": "aé😀", "sep": "" } },
+    { "id": "len", "op": "length", "args": { "input": "aé😀" } }
+  ]
+}

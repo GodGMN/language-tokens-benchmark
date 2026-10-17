@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "greeting", "op": "concat", "args": { "a": "Hello, ", "b": "world!" } },
+    { "id": "parts", "op": "split", "args": { "input": {"$ref": "greeting"}, "sep": ", " }, "depends_on": ["greeting"] },
+    { "id": "upper", "op": "uppercase", "args": { "input": {"$ref": "parts.0"} }, "depends_on": ["parts"] },
+    { "id": "lower", "op": "lowercase", "args": { "input": {"$ref": "upper"} }, "depends_on": ["upper"] },
+    { "id": "trimmed", "op": "trim", "args": { "input": "  padded  " } },
+    { "id": "replaced", "op": "replace", "args": { "input": {"$ref": "greeting"}, "search": "world", "replace": "there" }, "depends_on": ["greeting"] },
+    { "id": "size", "op": "length", "args": { "input": "aé🙂" } },
+    { "id": "joined", "op": "join", "args": { "input": {"$ref": "parts"}, "sep": "-" }, "depends_on": ["parts"] }
+  ]
+}

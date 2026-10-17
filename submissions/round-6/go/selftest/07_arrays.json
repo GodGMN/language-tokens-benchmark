@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    {"id": "mixed", "op": "constant",
+     "args": {"value": [3, "b", false, null, [1], {"k": 1}, 1, "a", true, [0], {}]}},
+    {"id": "sorted", "op": "sort", "depends_on": ["mixed"], "args": {"input": {"$ref": "mixed"}}},
+    {"id": "rev", "op": "reverse", "depends_on": ["mixed"], "args": {"input": {"$ref": "mixed"}}},
+    {"id": "uniq", "op": "unique", "args": {"input": [1, 1.0, "1", 1, null, null]}},
+    {"id": "slice1", "op": "slice", "args": {"input": [0, 1, 2, 3, 4], "start": -3, "end": -1}},
+    {"id": "slice2", "op": "slice", "args": {"input": [0, 1, 2, 3, 4], "start": 3, "end": 99}},
+    {"id": "flat", "op": "flatten", "args": {"input": [[1, 2], 3, [], [[4]]]}},
+    {"id": "cmp", "op": "compare", "args": {"a": 2, "b": "a", "op": "lt"}},
+    {"id": "eq", "op": "equals", "args": {"a": {"a": 1, "b": [true]}, "b": {"b": [true], "a": 1}}}
+  ]
+}

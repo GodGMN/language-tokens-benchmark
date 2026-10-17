@@ -1,0 +1,54 @@
+{
+  "status": "completed",
+  "results": {
+    "person": {
+      "name": "Ada",
+      "age": 36,
+      "city": "London"
+    },
+    "keys": [
+      "age",
+      "city",
+      "name"
+    ],
+    "vals": [
+      36,
+      "London",
+      "Ada"
+    ],
+    "name": "Ada",
+    "missing": null,
+    "aged": {
+      "name": "Ada",
+      "age": 37,
+      "city": "London"
+    },
+    "merged": {
+      "name": "Ada",
+      "age": 37,
+      "city": "London"
+    },
+    "subset": {
+      "absent": null,
+      "city": "London",
+      "name": "Ada"
+    },
+    "rest": {
+      "name": "Ada",
+      "age": 36
+    }
+  },
+  "execution_order": [
+    "person",
+    "keys",
+    "vals",
+    "name",
+    "missing",
+    "aged",
+    "merged",
+    "subset",
+    "rest"
+  ],
+  "skipped": [],
+  "error": null
+}

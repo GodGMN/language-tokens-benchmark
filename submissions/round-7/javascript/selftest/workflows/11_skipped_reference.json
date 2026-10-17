@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "flag", "op": "constant", "args": { "value": 0 } },
+    { "id": "maybe", "op": "constant", "args": { "value": "here" }, "depends_on": ["flag"],
+      "when": { "op": "gt", "left": { "$ref": "flag" }, "right": 0 } },
+    { "id": "use_maybe", "op": "constant", "depends_on": ["maybe"],
+      "args": { "value": { "$ref": "maybe" } } }
+  ]
+}

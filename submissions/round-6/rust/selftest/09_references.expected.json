@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "status": "completed",
+  "results": {
+    "data": { "user": { "name": "Ada", "roles": ["admin", "dev"] }, "scores": [10, 20, 30] },
+    "name": "Ada",
+    "role": "dev",
+    "score": 30,
+    "score_sum": 60
+  },
+  "execution_order": ["data", "name", "role", "score", "score_sum"],
+  "skipped": [],
+  "error": null
+}

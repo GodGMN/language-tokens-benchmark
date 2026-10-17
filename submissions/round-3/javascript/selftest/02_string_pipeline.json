@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "s", "op": "constant", "args": { "value": "  Hello, World  " } },
+    { "id": "t", "op": "trim", "depends_on": ["s"], "args": { "input": { "$ref": "s" } } },
+    { "id": "l", "op": "lowercase", "depends_on": ["t"], "args": { "input": { "$ref": "t" } } },
+    { "id": "r", "op": "replace", "depends_on": ["l"], "args": { "input": { "$ref": "l" }, "search": ",", "replace": "!" } },
+    { "id": "sp", "op": "split", "depends_on": ["r"], "args": { "input": { "$ref": "r" }, "sep": " " } },
+    { "id": "j", "op": "join", "depends_on": ["sp"], "args": { "input": { "$ref": "sp" }, "sep": "-" } },
+    { "id": "u", "op": "uppercase", "depends_on": ["j"], "args": { "input": { "$ref": "j" } } },
+    { "id": "len", "op": "length", "depends_on": ["u"], "args": { "input": { "$ref": "u" } } },
+    { "id": "cc", "op": "concat", "depends_on": ["u"], "args": { "a": { "$ref": "u" }, "b": "!" } }
+  ]
+}

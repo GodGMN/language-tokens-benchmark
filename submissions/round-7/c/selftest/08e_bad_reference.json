@@ -1,0 +1,4 @@
+{ "version": 1, "steps": [
+  { "id": "src", "op": "constant", "args": { "value": { "items": [1] } } },
+  { "id": "boom", "op": "constant", "depends_on": ["src"], "args": { "value": { "$ref": "src.items.x" } } }
+] }

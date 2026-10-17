@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "mapped", "op": "map", "args": { "input": [1, 2, 3], "transform": { "type": "add", "value": 10 } } },
+    { "id": "mapped_op", "op": "map", "args": { "input": [10, 20],
+      "transform": { "type": "op", "op": "divide", "args": { "a": { "$self": true }, "b": 2 } } } },
+    { "id": "stringified", "op": "map", "args": { "input": [1, "a", null],
+      "transform": { "type": "stringify" } } },
+    { "id": "typed", "op": "map", "args": { "input": [1, "a", true, null, [], {}],
+      "transform": { "type": "type" } } },
+    { "id": "evens", "op": "filter", "args": { "input": [1, 2, 3, 4, 5, 6], "predicate": { "type": "even" } } },
+    { "id": "truthy", "op": "filter", "args": { "input": [0, 1, "", "x", [], [1], {}, { "a": 1 }, false, true, null],
+      "predicate": { "type": "truthy" } } },
+    { "id": "reduced", "op": "reduce", "args": { "input": [1, 2, 3, 4], "op": "add" } },
+    { "id": "reduced_mul", "op": "reduce", "args": { "input": [2, 3, 4], "op": "multiply", "initial": 2 } },
+    { "id": "sorted", "op": "sort", "args": { "input": [3, "b", true, null, [1], { "a": 1 }, 1, "a", false] } },
+    { "id": "rev", "op": "reverse", "args": { "input": [1, 2, 3] } },
+    { "id": "uniq", "op": "unique", "args": { "input": [1, 1.0, "1", { "a": 1, "b": 2 }, { "b": 2, "a": 1 }] } },
+    { "id": "sliced", "op": "slice", "args": { "input": [0, 1, 2, 3, 4], "start": -3, "end": -1 } },
+    { "id": "flat", "op": "flatten", "args": { "input": [1, [2, 3], [], 4] } }
+  ]
+}

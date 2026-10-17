@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "x", "op": "constant", "args": { "value": 3 } },
+    { "id": "too_small", "op": "constant", "depends_on": ["x"],
+      "args": { "value": "never" },
+      "when": { "op": "gt", "left": { "$ref": "x" }, "right": 10 } },
+    { "id": "big_enough", "op": "constant", "depends_on": ["x"],
+      "args": { "value": "ran" },
+      "when": { "op": "all", "conditions": [
+        { "op": "gte", "left": { "$ref": "x" }, "right": 3 },
+        { "op": "not", "condition": { "op": "eq", "left": { "$ref": "x" }, "right": 4 } }
+      ] } },
+    { "id": "either", "op": "constant", "depends_on": ["x"],
+      "args": { "value": "one-branch" },
+      "when": { "op": "any", "conditions": [
+        { "op": "lt", "left": { "$ref": "x" }, "right": 0 },
+        { "op": "eq", "left": { "$ref": "x" }, "right": 3 }
+      ] } }
+  ]
+}

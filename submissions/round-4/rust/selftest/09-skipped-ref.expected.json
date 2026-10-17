@@ -1,0 +1,8 @@
+{
+  "exit": 1,
+  "status": "failed",
+  "results": { "x": null },
+  "execution_order": ["x"],
+  "skipped": ["x"],
+  "error": { "code": "SKIPPED_REFERENCE", "step": "y" }
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    {"id": "nums", "op": "range", "args": {"start": 1, "end": 10}},
+    {"id": "scaled", "op": "map", "depends_on": ["nums"],
+     "args": {"input": {"$ref": "nums"}, "transform": {"type": "multiply", "value": 3}}},
+    {"id": "kept", "op": "filter", "depends_on": ["scaled"],
+     "args": {"input": {"$ref": "scaled"}, "predicate": {"type": "gt", "value": 15}}},
+    {"id": "total", "op": "sum", "depends_on": ["kept"], "args": {"input": {"$ref": "kept"}}},
+    {"id": "low", "op": "min", "depends_on": ["kept"], "args": {"input": {"$ref": "kept"}}},
+    {"id": "high", "op": "max", "depends_on": ["kept"], "args": {"input": {"$ref": "kept"}}},
+    {"id": "folded", "op": "reduce", "depends_on": ["nums"],
+     "args": {"input": {"$ref": "nums"}, "op": "multiply", "initial": 1}},
+    {"id": "quotient", "op": "divide", "args": {"a": -7, "b": 2}},
+    {"id": "remainder", "op": "mod", "args": {"a": -7, "b": 2}}
+  ]
+}

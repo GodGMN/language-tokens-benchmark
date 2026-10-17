@@ -1,0 +1,40 @@
+{
+  "id": "round-6",
+  "label": "DeepSeek V4.1 Flash \u2014 one-shot (spec v2, sample 5)",
+  "spec_version": 2,
+  "model": {
+    "name": "deepseek-flash",
+    "provider": "deepseek",
+    "display": "DeepSeek V4.1 Flash",
+    "params": "763B total, ~16B active (8B active during prefill)",
+    "thinking": "high",
+    "date": "2026-10-17",
+    "version": "DeepSeek-V4.1-Flash-1017",
+    "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+  },
+  "submissions": "submissions/round-6",
+  "languages": {
+    "python": {
+      "path": "python",
+      "session": "round6-python"
+    },
+    "javascript": {
+      "path": "javascript",
+      "session": "round6-javascript"
+    },
+    "go": {
+      "path": "go",
+      "session": "round6-go"
+    },
+    "rust": {
+      "path": "rust",
+      "session": "round6-rust"
+    },
+    "c": {
+      "path": "c",
+      "session": "round6-c"
+    }
+  },
+  "group": "deepseek-v4.1-flash-1017",
+  "sample": 5
+}

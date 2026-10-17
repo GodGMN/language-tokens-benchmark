@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 10 } },
+    { "id": "plus2", "op": "map", "depends_on": ["nums"],
+      "args": { "input": {"$ref": "nums"},
+                "transform": { "type": "add", "value": 2 } } },
+    { "id": "evens", "op": "filter", "depends_on": ["plus2"],
+      "args": { "input": {"$ref": "plus2"},
+                "predicate": { "type": "even" } } },
+    { "id": "product", "op": "reduce", "depends_on": ["evens"],
+      "args": { "input": {"$ref": "evens"}, "op": "multiply", "initial": 1 } }
+  ]
+}

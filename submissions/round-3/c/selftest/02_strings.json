@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "greeting", "op": "concat", "args": { "a": "Hello", "b": " world" } },
+    { "id": "letters", "op": "split",
+      "depends_on": ["greeting"],
+      "args": { "input": "h\u00e9llo", "sep": "" } },
+    { "id": "joined", "op": "join",
+      "args": { "input": ["a", "b", "c"], "sep": ", " } },
+    { "id": "upper", "op": "uppercase", "args": { "input": "MixedCase-\u00e9" } },
+    { "id": "lower", "op": "lowercase", "args": { "input": "MixedCASE-\u00c9" } },
+    { "id": "trimmed", "op": "trim", "args": { "input": " \t padded \n" } },
+    { "id": "replaced", "op": "replace",
+      "args": { "input": "one two one", "search": "one", "replace": "1" } },
+    { "id": "size", "op": "length", "args": { "input": "h\u00e9llo" } }
+  ]
+}

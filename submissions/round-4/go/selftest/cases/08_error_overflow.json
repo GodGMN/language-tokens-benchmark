@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "max", "op": "constant", "args": { "value": 9223372036854775807 } },
+    { "id": "inc", "op": "add", "depends_on": ["max"],
+      "args": { "a": { "$ref": "max" }, "b": 1 } }
+  ]
+}

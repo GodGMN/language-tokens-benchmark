@@ -1,0 +1,18 @@
+{
+  "name": "declarative-workflow-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Declarative workflow engine CLI (SPEC.md implementation in JavaScript)",
+  "main": "workflow.js",
+  "bin": {
+    "workflow": "workflow.js"
+  },
+  "scripts": {
+    "start": "node workflow.js",
+    "test": "python3 selftest/run.py"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {}
+}

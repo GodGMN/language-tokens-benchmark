@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "status": "completed",
+  "results": {
+    "n": [1, 2, 3, 4, 5, 6],
+    "evens": [2, 4, 6],
+    "scaled": [12, 14, 16],
+    "total": 42,
+    "smallest": 12,
+    "largest": 16
+  },
+  "execution_order": ["n", "evens", "scaled", "total", "smallest", "largest"],
+  "skipped": [],
+  "error": null
+}

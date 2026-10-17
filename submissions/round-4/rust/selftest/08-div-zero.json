@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "x", "op": "constant", "args": { "value": 1 } },
+    { "id": "y", "op": "divide", "depends_on": ["x"], "args": { "a": 1, "b": 0 } }
+  ]
+}

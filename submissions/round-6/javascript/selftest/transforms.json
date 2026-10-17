@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "constant", "args": { "value": [1, -2, 3] } },
+    { "id": "neg", "op": "map", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "transform": { "type": "negate" } } },
+    { "id": "abs", "op": "map", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "transform": { "type": "abs" } } },
+    { "id": "str", "op": "map", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "transform": { "type": "stringify" } } },
+    { "id": "kind", "op": "map", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "transform": { "type": "type" } } },
+    { "id": "viaop", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "op", "op": "add", "args": { "a": { "$self": true }, "b": 10 } } } },
+    { "id": "same", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "constant", "value": "k" } } },
+    { "id": "odds", "op": "filter", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "predicate": { "type": "odd" } } },
+    { "id": "strings", "op": "filter", "args": { "input": [0, "a", null], "predicate": { "type": "type_is", "value": "string" } } },
+    { "id": "contains", "op": "filter", "args": { "input": ["foo", "bar", "baz"], "predicate": { "type": "string_contains", "value": "a" } } },
+    { "id": "truthy", "op": "filter", "args": { "input": [0, 1, "", "x", [], {}, null, false], "predicate": { "type": "truthy" } } }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "status": "completed",
+  "results": {
+    "nums": [
+      1,
+      -2,
+      3
+    ],
+    "neg": [
+      -1,
+      2,
+      -3
+    ],
+    "abs": [
+      1,
+      2,
+      3
+    ],
+    "str": [
+      "1",
+      "-2",
+      "3"
+    ],
+    "kind": [
+      "number",
+      "number",
+      "number"
+    ],
+    "viaop": [
+      11,
+      8,
+      13
+    ],
+    "same": [
+      "k",
+      "k",
+      "k"
+    ],
+    "odds": [
+      1,
+      3
+    ],
+    "strings": [
+      "a"
+    ],
+    "contains": [
+      "bar",
+      "baz"
+    ],
+    "truthy": [
+      1,
+      "x"
+    ]
+  },
+  "execution_order": [
+    "nums",
+    "neg",
+    "abs",
+    "str",
+    "kind",
+    "viaop",
+    "same",
+    "odds",
+    "strings",
+    "contains",
+    "truthy"
+  ],
+  "skipped": [],
+  "error": null
+}

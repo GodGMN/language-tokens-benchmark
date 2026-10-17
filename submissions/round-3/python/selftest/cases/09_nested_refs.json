@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "n",
+      "op": "constant",
+      "args": {
+        "value": {
+          "user": {
+            "name": "Ada",
+            "tags": [
+              "x",
+              "y"
+            ]
+          },
+          "items": [
+            5,
+            6
+          ]
+        }
+      }
+    },
+    {
+      "id": "nm",
+      "op": "get",
+      "depends_on": [
+        "n"
+      ],
+      "args": {
+        "input": {
+          "$ref": "n.user"
+        },
+        "key": "name"
+      }
+    },
+    {
+      "id": "it",
+      "op": "add",
+      "depends_on": [
+        "n"
+      ],
+      "args": {
+        "a": {
+          "$ref": "n.items.0"
+        },
+        "b": {
+          "$ref": "n.items.1"
+        }
+      }
+    },
+    {
+      "id": "eq",
+      "op": "equals",
+      "depends_on": [
+        "n"
+      ],
+      "args": {
+        "a": {
+          "$ref": "n.user.tags.1"
+        },
+        "b": "y"
+      }
+    },
+    {
+      "id": "lit",
+      "op": "constant",
+      "depends_on": [
+        "n"
+      ],
+      "args": {
+        "value": {
+          "$ref": "n",
+          "other": {
+            "$ref": "n.user.name"
+          }
+        }
+      }
+    },
+    {
+      "id": "mid",
+      "op": "constant",
+      "depends_on": [
+        "it"
+      ],
+      "args": {
+        "value": 1
+      }
+    },
+    {
+      "id": "trans",
+      "op": "add",
+      "depends_on": [
+        "mid"
+      ],
+      "args": {
+        "a": {
+          "$ref": "it"
+        },
+        "b": 10
+      }
+    }
+  ]
+}

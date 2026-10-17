@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "output": {
+    "status": "completed",
+    "results": { "flaky": "ok", "instant": { "nested": [1,2] }, "after": "ok!" },
+    "execution_order": ["flaky","instant","after"],
+    "skipped": [],
+    "error": null
+  }
+}

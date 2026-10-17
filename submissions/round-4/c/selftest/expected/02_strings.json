@@ -1,0 +1,1 @@
+{"status":"completed","results":{"concat":"Hello, World","upper":"HELLO, WORLD","padded":"HI THERE","replaced":"Bye THERE","words":["Bye","THERE"],"joined":"Bye-THERE","lower":"bye-there","chars":["b","y","e","-","t","h","e","r","e"],"len":9},"execution_order":["concat","upper","padded","replaced","words","joined","lower","chars","len"],"skipped":[],"error":null}

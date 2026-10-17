@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "a", "op": "constant", "args": { "value": [5, 3, 1, 4, 2] } },
+    { "id": "srt", "op": "sort", "depends_on": ["a"], "args": { "input": { "$ref": "a" } } },
+    { "id": "rev", "op": "reverse", "depends_on": ["srt"], "args": { "input": { "$ref": "srt" } } },
+    { "id": "u", "op": "unique", "depends_on": ["a"], "args": { "input": [1, 1, 2, 2, 3] } },
+    { "id": "fl", "op": "flatten", "depends_on": ["u"], "args": { "input": [[1, 2], [3], 4] } },
+    { "id": "sl", "op": "slice", "depends_on": ["srt"], "args": { "input": { "$ref": "srt" }, "start": 1, "end": -1 } },
+    { "id": "mp", "op": "map", "depends_on": ["srt"], "args": { "input": { "$ref": "srt" }, "transform": { "type": "add", "value": 10 } } },
+    { "id": "flt", "op": "filter", "depends_on": ["srt"], "args": { "input": { "$ref": "srt" }, "predicate": { "type": "odd" } } },
+    { "id": "rd", "op": "reduce", "depends_on": ["srt"], "args": { "input": { "$ref": "srt" }, "op": "add" } }
+  ]
+}

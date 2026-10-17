@@ -1,0 +1,1 @@
+{"status":"completed","results":{"one_eq_one_float":true,"obj_eq":true,"lt_mixed":true,"gt_str":true,"both":false,"either":true,"invert":true,"kind":"array"},"execution_order":["one_eq_one_float","obj_eq","lt_mixed","gt_str","both","either","invert","kind"],"skipped":[],"error":null}

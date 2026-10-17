@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "total", "op": "sum", "args": { "input": [1, 2, 3, 4, 5] } },
+    { "id": "maybe", "op": "constant", "args": { "value": "ran" },
+      "depends_on": ["total"],
+      "when": {
+        "op": "all",
+        "conditions": [
+          { "op": "gte", "left": {"$ref": "total"}, "right": 15 },
+          { "op": "lt", "left": {"$ref": "total"}, "right": 100 },
+          { "op": "not", "condition": { "op": "eq", "left": {"$ref": "total"}, "right": 0 } }
+        ]
+      } },
+    { "id": "never", "op": "constant", "args": { "value": "nope" },
+      "depends_on": ["total"],
+      "when": { "op": "any", "conditions": [
+        { "op": "gt", "left": {"$ref": "total"}, "right": 1000 },
+        { "op": "eq", "left": {"$ref": "total"}, "right": 0 }
+      ] } }
+  ]
+}

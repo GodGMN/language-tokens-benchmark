@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "status": "completed",
+  "results": { "s": "  Hello, World!  ", "t": "Hello, World!", "u": "HELLO, WORLD!", "r": "Hello, Rust!", "parts": ["Hello","Rust!"], "joined": "Hello-Rust!", "len": 5, "cat": "foobar", "low": "Àbc", "chars": ["a","é"] },
+  "execution_order": ["s","t","u","r","parts","joined","len","cat","low","chars"],
+  "skipped": [],
+  "error": null
+}

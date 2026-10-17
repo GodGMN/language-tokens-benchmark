@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 6 } },
+    { "id": "doubled", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "multiply", "value": 2 } } },
+    { "id": "odds", "op": "filter", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "predicate": { "type": "odd" } } },
+    { "id": "product", "op": "reduce", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "op": "multiply" } },
+    { "id": "folded", "op": "reduce", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "op": "subtract", "initial": 100 } },
+    { "id": "mixed", "op": "constant", "args": { "value": [true, 3, "b", null, "a", false, 1] } },
+    { "id": "sorted", "op": "sort", "depends_on": ["mixed"], "args": { "input": { "$ref": "mixed" } } },
+    { "id": "rev", "op": "reverse", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" } } },
+    { "id": "dups", "op": "constant", "args": { "value": [1, 1, "1", 2, 1] } },
+    { "id": "uniq", "op": "unique", "depends_on": ["dups"], "args": { "input": { "$ref": "dups" } } },
+    { "id": "tail", "op": "slice", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "start": -2 } },
+    { "id": "mid", "op": "slice", "depends_on": ["nums"], "args": { "input": { "$ref": "nums" }, "start": 1, "end": 3 } },
+    { "id": "nested", "op": "constant", "args": { "value": [1, [2, [3]], 4] } },
+    { "id": "flat", "op": "flatten", "depends_on": ["nested"], "args": { "input": { "$ref": "nested" } } }
+  ]
+}

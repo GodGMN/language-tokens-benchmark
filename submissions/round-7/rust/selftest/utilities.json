@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "one_int", "op": "constant", "args": { "value": 1 } },
+    { "id": "one_float", "op": "constant", "args": { "value": 1.0 } },
+    { "id": "same", "op": "equals", "depends_on": ["one_int", "one_float"],
+      "args": { "a": {"$ref": "one_int"}, "b": {"$ref": "one_float"} } },
+    { "id": "cmp", "op": "compare", "depends_on": ["one_int", "one_float"],
+      "args": { "a": {"$ref": "one_float"}, "b": {"$ref": "one_int"}, "op": "gte" } },
+    { "id": "logic", "op": "and", "args": { "a": true, "b": false } },
+    { "id": "logic2", "op": "or", "args": { "a": true, "b": false } },
+    { "id": "logic3", "op": "not", "depends_on": ["logic"], "args": { "a": {"$ref": "logic"} } },
+    { "id": "ty", "op": "type", "args": { "value": [1, 2] } },
+    { "id": "add", "op": "add", "args": { "a": 2, "b": 3 } },
+    { "id": "sub", "op": "subtract", "args": { "a": 2, "b": 3 } },
+    { "id": "mul", "op": "multiply", "args": { "a": 4, "b": -3 } },
+    { "id": "div", "op": "divide", "args": { "a": -7, "b": -2 } },
+    { "id": "mod", "op": "mod", "args": { "a": -7, "b": 2 } },
+    { "id": "minimum", "op": "min", "args": { "input": [3, -1, 2] } },
+    { "id": "maximum", "op": "max", "args": { "input": [3, -1, 2] } },
+    { "id": "sum", "op": "sum", "args": { "input": [] } }
+  ]
+}

@@ -1,0 +1,3 @@
+{ "version": 1, "steps": [
+  { "id": "boom", "op": "mod", "args": { "a": 1, "b": 0 } }
+] }

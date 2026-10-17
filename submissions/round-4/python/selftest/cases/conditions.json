@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "a", "op": "constant", "args": { "value": 5 } },
+    { "id": "b", "op": "constant", "args": { "value": 10 } },
+    { "id": "c", "op": "constant",
+      "depends_on": ["a", "b"],
+      "when": {
+        "op": "all",
+        "conditions": [
+          { "op": "gt", "left": { "$ref": "a" }, "right": 3 },
+          { "op": "lte", "left": { "$ref": "b" }, "right": 10 },
+          { "op": "not", "condition": { "op": "eq", "left": { "$ref": "a" }, "right": { "$ref": "b" } } }
+        ]
+      },
+      "args": { "value": "yes" } },
+    { "id": "d", "op": "constant", "depends_on": ["c"],
+      "when": {
+        "op": "any",
+        "conditions": [
+          { "op": "lt", "left": { "$ref": "a" }, "right": 3 },
+          { "op": "gt", "left": { "$ref": "b" }, "right": 20 }
+        ]
+      },
+      "args": { "value": "no" } },
+    { "id": "numeric_equality", "op": "constant", "depends_on": ["a"],
+      "when": { "op": "eq", "left": 5.0, "right": { "$ref": "a" } },
+      "args": { "value": "equal" } },
+    { "id": "mixed_order", "op": "constant",
+      "when": { "op": "lt", "left": 2, "right": "a" },
+      "args": { "value": "number-before-string" } }
+  ]
+}

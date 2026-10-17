@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": 5 } },
+    { "id": "skipped", "op": "constant", "depends_on": ["base"], "args": { "value": 99 },
+      "when": { "op": "gt", "left": { "$ref": "base" }, "right": 10 } },
+    { "id": "ran", "op": "constant", "depends_on": ["base"], "args": { "value": 1 },
+      "when": { "op": "all", "conditions": [
+        { "op": "lte", "left": { "$ref": "base" }, "right": 5 },
+        { "op": "not", "condition": { "op": "eq", "left": { "$ref": "base" }, "right": 99 } }
+      ] } }
+  ]
+}
