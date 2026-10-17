@@ -196,6 +196,7 @@ def main():
     summary = {
         "round": round_id,
         "label": round_cfg.get("label", round_id),
+        "spec_version": round_cfg.get("spec_version", 1),
         "model": model,
         "tests": {
             "total": (next((r for r in rows if not r["reference"] and r["total"]), {}) or {}).get("total"),

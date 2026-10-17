@@ -1,0 +1,30 @@
+{
+    "error": null,
+    "execution_order": [
+        "data",
+        "name",
+        "role1",
+        "first"
+    ],
+    "results": {
+        "data": {
+            "nums": [
+                10,
+                20,
+                30
+            ],
+            "user": {
+                "name": "Ada",
+                "roles": [
+                    "admin",
+                    "dev"
+                ]
+            }
+        },
+        "first": 10,
+        "name": "Ada",
+        "role1": "dev"
+    },
+    "skipped": [],
+    "status": "completed"
+}

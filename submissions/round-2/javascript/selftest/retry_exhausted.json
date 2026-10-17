@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "flaky", "op": "fail_until",
+      "args": { "failures": 4, "value": 1 },
+      "retry": { "max_attempts": 3 } },
+    { "id": "later", "op": "constant", "depends_on": ["flaky"], "args": { "value": 2 } }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    {"id": "raw", "op": "constant", "args": {"value": "  Hello, wörld  "}},
+    {"id": "clean", "op": "trim", "args": {"input": {"$ref": "raw"}}, "depends_on": ["raw"]},
+    {"id": "upper", "op": "uppercase", "args": {"input": {"$ref": "clean"}}, "depends_on": ["clean"]},
+    {"id": "lower", "op": "lowercase", "args": {"input": {"$ref": "upper"}}, "depends_on": ["upper"]},
+    {"id": "chars", "op": "split", "args": {"input": {"$ref": "lower"}, "sep": ""}, "depends_on": ["lower"]},
+    {"id": "len", "op": "length", "args": {"input": {"$ref": "lower"}}, "depends_on": ["lower"]},
+    {"id": "words", "op": "split", "args": {"input": {"$ref": "lower"}, "sep": ", "}, "depends_on": ["lower"]},
+    {"id": "joined", "op": "join", "args": {"input": {"$ref": "words"}, "sep": " | "}, "depends_on": ["words"]},
+    {"id": "replaced", "op": "replace", "args": {"input": {"$ref": "joined"}, "search": "|", "replace": "/"}, "depends_on": ["joined"]},
+    {"id": "greeting", "op": "concat", "args": {"a": ">> ", "b": {"$ref": "replaced"}}, "depends_on": ["replaced"]}
+  ]
+}

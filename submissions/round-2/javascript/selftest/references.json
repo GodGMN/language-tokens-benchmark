@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "data", "op": "constant",
+      "args": { "value": { "user": { "name": "Ada", "scores": [10, 20, 30] },
+                           "items": [{ "id": "a" }, { "id": "b" }] } } },
+    { "id": "name", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.user.name" } } },
+    { "id": "score", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.user.scores.1" } } },
+    { "id": "item", "op": "constant", "depends_on": ["name"],
+      "args": { "value": { "$ref": "data.items.1.id" } } },
+    { "id": "nameLen", "op": "length", "depends_on": ["name"], "args": { "input": { "$ref": "name" } } }
+  ]
+}

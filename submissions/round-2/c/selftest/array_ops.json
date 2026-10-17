@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "mixed", "op": "constant", "args": { "value": [3, "b", true, null, [2], "a", false, 1, [1], {}] } },
+    { "id": "sorted", "op": "sort", "depends_on": ["mixed"], "args": { "input": { "$ref": "mixed" } } },
+    { "id": "rev", "op": "reverse", "depends_on": ["sorted"], "args": { "input": { "$ref": "sorted" } } },
+    { "id": "uniq", "op": "unique", "depends_on": ["mixed"],
+      "args": { "input": [1, 1, "1", 1.0, [1], [1], { "k": 1 }, { "k": 1 }] } },
+    { "id": "sliced", "op": "slice", "depends_on": ["sorted"],
+      "args": { "input": { "$ref": "sorted" }, "start": 1, "end": -1 } },
+    { "id": "flat", "op": "flatten", "depends_on": ["mixed"],
+      "args": { "input": [[1, 2], [], [3], 4, "a"] } }
+  ]
+}

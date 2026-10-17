@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 6 } },
+    { "id": "mapped", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" },
+                "transform": { "type": "multiply", "value": 3 } } },
+    { "id": "total", "op": "sum", "depends_on": ["mapped"],
+      "args": { "input": { "$ref": "mapped" } } },
+    { "id": "avg_floor", "op": "divide", "depends_on": ["total", "nums"],
+      "args": { "a": { "$ref": "total" }, "b": { "$ref": "nums.5" } } },
+    { "id": "rem", "op": "mod", "depends_on": ["avg_floor"],
+      "args": { "a": { "$ref": "avg_floor" }, "b": 7 } }
+  ]
+}

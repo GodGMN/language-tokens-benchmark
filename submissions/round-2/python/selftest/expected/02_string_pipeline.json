@@ -1,0 +1,1 @@
+{"status":"completed","results":{"raw":"  Hello, WorkFlow World  ","trimmed":"Hello, WorkFlow World","lower":"hello, workflow world","words":["hello","workflow world"],"joined":"hello_workflow world","fixed":"hello_engine world","shout":"HELLO_ENGINE WORLD","len":18},"execution_order":["raw","trimmed","lower","words","joined","fixed","shout","len"],"skipped":[],"error":null}

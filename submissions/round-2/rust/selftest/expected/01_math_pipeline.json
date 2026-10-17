@@ -1,0 +1,44 @@
+{
+    "error": null,
+    "execution_order": [
+        "nums",
+        "evens",
+        "total",
+        "scaled",
+        "mn",
+        "mx"
+    ],
+    "results": {
+        "evens": [
+            2,
+            4,
+            6,
+            8,
+            10
+        ],
+        "mn": 20,
+        "mx": 100,
+        "nums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "scaled": [
+            20,
+            40,
+            60,
+            80,
+            100
+        ],
+        "total": 30
+    },
+    "skipped": [],
+    "status": "completed"
+}

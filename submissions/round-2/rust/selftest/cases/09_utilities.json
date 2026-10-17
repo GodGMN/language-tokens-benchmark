@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "a",
+      "op": "constant",
+      "args": {
+        "value": 1
+      }
+    },
+    {
+      "id": "b",
+      "op": "constant",
+      "args": {
+        "value": 1.0
+      }
+    },
+    {
+      "id": "eq",
+      "op": "equals",
+      "depends_on": [
+        "a",
+        "b"
+      ],
+      "args": {
+        "a": {
+          "$ref": "a"
+        },
+        "b": {
+          "$ref": "b"
+        }
+      }
+    },
+    {
+      "id": "cmp1",
+      "op": "compare",
+      "depends_on": [
+        "a",
+        "b"
+      ],
+      "args": {
+        "a": {
+          "$ref": "a"
+        },
+        "b": {
+          "$ref": "b"
+        },
+        "op": "gte"
+      }
+    },
+    {
+      "id": "cmp2",
+      "op": "compare",
+      "args": {
+        "a": "b",
+        "b": "a",
+        "op": "gt"
+      }
+    },
+    {
+      "id": "mixed",
+      "op": "compare",
+      "args": {
+        "a": 5,
+        "b": "x",
+        "op": "lt"
+      }
+    },
+    {
+      "id": "andv",
+      "op": "and",
+      "args": {
+        "a": true,
+        "b": false
+      }
+    },
+    {
+      "id": "orv",
+      "op": "or",
+      "args": {
+        "a": false,
+        "b": true
+      }
+    },
+    {
+      "id": "notv",
+      "op": "not",
+      "args": {
+        "a": false
+      }
+    },
+    {
+      "id": "t1",
+      "op": "type",
+      "args": {
+        "value": {
+          "$ref": "a"
+        }
+      },
+      "depends_on": [
+        "a"
+      ]
+    },
+    {
+      "id": "t2",
+      "op": "type",
+      "args": {
+        "value": null
+      }
+    },
+    {
+      "id": "t3",
+      "op": "type",
+      "args": {
+        "value": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "cond",
+      "op": "constant",
+      "args": {
+        "value": "yes"
+      },
+      "when": {
+        "op": "all",
+        "conditions": [
+          {
+            "op": "gte",
+            "left": {
+              "$ref": "a"
+            },
+            "right": {
+              "$ref": "b"
+            }
+          },
+          {
+            "op": "ne",
+            "left": {
+              "$ref": "a"
+            },
+            "right": 2
+          }
+        ]
+      },
+      "depends_on": [
+        "a",
+        "b"
+      ]
+    }
+  ]
+}

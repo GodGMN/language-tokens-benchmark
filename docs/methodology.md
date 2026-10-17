@@ -60,7 +60,12 @@ not counted against it.
 
 ## Known limitations
 
-- One sample per (model, language). Variance across runs is not yet quantified.
+- **One sample per (model, language) per round.** Two rounds of the same model
+  and task already show large movement: total tokens for a language changed by
+  up to ~4x, and the ranking order changed substantially (see
+  `results/compare.md`). Output tokens are much more stable than total tokens,
+  but a single round is still one sample. Report ranges across rounds, not a
+  single point estimate.
 - `totalTokens` is dominated by cache reads for long sessions; that is why
   output tokens are reported alongside.
 - A language that is easy to write may still be hard to make *correct*; the

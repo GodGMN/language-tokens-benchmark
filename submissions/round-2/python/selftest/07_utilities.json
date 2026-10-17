@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "eq_num", "op": "equals", "args": { "a": 1, "b": 1.0 } },
+    { "id": "eq_type", "op": "equals", "args": { "a": true, "b": 1 } },
+    { "id": "cmp", "op": "compare", "args": { "a": 1, "b": "a", "op": "lt" } },
+    { "id": "t", "op": "type", "args": { "value": { "a": 1 } } },
+    { "id": "logic", "op": "and", "args": { "a": [], "b": { "k": 1 } } },
+    { "id": "logic2", "op": "not", "args": { "a": "" } }
+  ]
+}

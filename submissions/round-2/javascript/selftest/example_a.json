@@ -1,0 +1,1 @@
+{"version":1,"steps":[{"id":"n","op":"range","args":{"start":1,"end":5}},{"id":"evens","op":"filter","depends_on":["n"],"args":{"input":{"$ref":"n"},"predicate":{"type":"even"}}},{"id":"total","op":"sum","depends_on":["evens"],"args":{"input":{"$ref":"evens"}}}]}

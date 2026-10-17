@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "input", "op": "constant", "args": { "value": [3, 1, 2, 2, 1] } },
+    { "id": "sorted", "op": "sort", "depends_on": ["input"], "args": { "input": { "$ref": "input" } } },
+    { "id": "uniq", "op": "unique", "depends_on": ["input"], "args": { "input": { "$ref": "input" } } },
+    { "id": "rev", "op": "reverse", "depends_on": ["input"], "args": { "input": { "$ref": "input" } } },
+    { "id": "fl", "op": "flatten", "args": { "input": [[1, 2], [3], 4] } },
+    { "id": "sl", "op": "slice", "args": { "input": [0, 1, 2, 3, 4, 5], "start": -3, "end": -1 } },
+    { "id": "red", "op": "reduce", "args": { "input": [1, 2, 3], "op": "multiply", "initial": 2 } }
+  ]
+}

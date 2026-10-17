@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "ok", "op": "constant", "args": { "value": 1 } },
+    { "id": "skipped", "op": "constant", "args": { "value": 2 }, "depends_on": ["ok"],
+      "when": { "op": "eq", "left": { "$ref": "ok" }, "right": 99 } },
+    { "id": "boom", "op": "divide", "args": { "a": 1, "b": 0 }, "depends_on": ["skipped"] },
+    { "id": "never", "op": "constant", "args": { "value": 3 }, "depends_on": ["boom"] }
+  ]
+}

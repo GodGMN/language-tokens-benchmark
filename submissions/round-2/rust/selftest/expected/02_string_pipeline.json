@@ -1,0 +1,35 @@
+{
+    "error": null,
+    "execution_order": [
+        "raw",
+        "trimmed",
+        "upper",
+        "parts",
+        "joined",
+        "replaced",
+        "len",
+        "chars"
+    ],
+    "results": {
+        "chars": [
+            "h",
+            "\u00e9",
+            "l",
+            "l",
+            "o"
+        ],
+        "joined": "hello-WORLD-rust",
+        "len": 15,
+        "parts": [
+            "hello",
+            "WORLD",
+            "rust"
+        ],
+        "raw": "  hello,WORLD,rust  ",
+        "replaced": "hello-Rust-rust",
+        "trimmed": "hello,WORLD,rust",
+        "upper": "HELLO,WORLD,RUST"
+    },
+    "skipped": [],
+    "status": "completed"
+}

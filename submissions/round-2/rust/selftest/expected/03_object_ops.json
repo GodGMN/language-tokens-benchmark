@@ -1,0 +1,56 @@
+{
+    "error": null,
+    "execution_order": [
+        "obj",
+        "keys",
+        "values",
+        "got",
+        "missing",
+        "withD",
+        "merged",
+        "picked",
+        "omitted"
+    ],
+    "results": {
+        "got": 2,
+        "keys": [
+            "a",
+            "b",
+            "c"
+        ],
+        "merged": {
+            "a": 9,
+            "b": 2,
+            "c": 3,
+            "e": 5
+        },
+        "missing": null,
+        "obj": {
+            "a": 1,
+            "b": 2,
+            "c": 3
+        },
+        "omitted": {
+            "a": 1,
+            "c": 3
+        },
+        "picked": {
+            "a": 1,
+            "c": 3,
+            "z": null
+        },
+        "values": [
+            1,
+            2,
+            3
+        ],
+        "withD": {
+            "a": 1,
+            "b": 2,
+            "c": 3,
+            "d": 4
+        }
+    },
+    "skipped": [],
+    "status": "completed"
+}

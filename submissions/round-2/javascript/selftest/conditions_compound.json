@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": 7 } },
+    { "id": "result", "op": "constant", "depends_on": ["base"],
+      "when": { "op": "all", "conditions": [
+        { "op": "gt", "left": { "$ref": "base" }, "right": 5 },
+        { "op": "not", "condition": { "op": "eq", "left": { "$ref": "base" }, "right": 8 } }
+      ] },
+      "args": { "value": "seven" } },
+    { "id": "other", "op": "constant", "depends_on": ["base"],
+      "when": { "op": "any", "conditions": [
+        { "op": "lt", "left": { "$ref": "base" }, "right": 0 },
+        { "op": "eq", "left": { "$ref": "base" }, "right": 8 }
+      ] },
+      "args": { "value": "no" } }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "data", "op": "constant",
+      "args": { "value": { "user": { "name": "Ada", "roles": ["admin", "dev"] }, "nums": [10, 20, 30] } } },
+    { "id": "name", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.user.name" } } },
+    { "id": "role1", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.user.roles.1" } } },
+    { "id": "first", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.nums.0" } } }
+  ]
+}

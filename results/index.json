@@ -115,6 +115,102 @@
           }
         }
       ]
+    },
+    {
+      "round": "round-2",
+      "label": "DeepSeek V4.1 Flash \u2014 one-shot (spec v2)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17"
+      },
+      "tests": {
+        "total": 114,
+        "public": 32,
+        "holdout": 82,
+        "future_spec": 0
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "go",
+          "passed": 114,
+          "total": 114,
+          "pct": 100.0,
+          "output": 110406,
+          "total_tokens": 3455929,
+          "cost": 0.163,
+          "tool_calls": 38,
+          "gen_eff_k": 1.03,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 6,
+            "source_lines": 2416,
+            "source_bytes": 52222
+          }
+        },
+        {
+          "rank": 2,
+          "language": "rust",
+          "passed": 114,
+          "total": 114,
+          "pct": 100.0,
+          "output": 104408,
+          "total_tokens": 4194694,
+          "cost": 0.1579,
+          "tool_calls": 56,
+          "gen_eff_k": 1.09,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.21,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1792,
+            "source_bytes": 59901
+          }
+        },
+        {
+          "rank": 3,
+          "language": "javascript",
+          "passed": 114,
+          "total": 114,
+          "pct": 100.0,
+          "output": 119392,
+          "total_tokens": 4913756,
+          "cost": 0.1804,
+          "tool_calls": 62,
+          "gen_eff_k": 0.95,
+          "tot_eff_k": 0.02,
+          "rel_cost": 1.42,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1694,
+            "source_bytes": 53082
+          }
+        },
+        {
+          "rank": 4,
+          "language": "c",
+          "passed": 114,
+          "total": 114,
+          "pct": 100.0,
+          "output": 118885,
+          "total_tokens": 6107267,
+          "cost": 0.1916,
+          "tool_calls": 61,
+          "gen_eff_k": 0.96,
+          "tot_eff_k": 0.02,
+          "rel_cost": 1.77,
+          "code": {
+            "source_files": 3,
+            "source_lines": 3286,
+            "source_bytes": 99087
+          }
+        }
+      ]
     }
   ]
 }

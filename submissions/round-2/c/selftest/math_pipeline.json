@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "n", "op": "range", "args": { "start": 1, "end": 10 } },
+    { "id": "evens", "op": "filter", "depends_on": ["n"],
+      "args": { "input": { "$ref": "n" }, "predicate": { "type": "even" } } },
+    { "id": "times3", "op": "map", "depends_on": ["evens"],
+      "args": { "input": { "$ref": "evens" }, "transform": { "type": "multiply", "value": 3 } } },
+    { "id": "total", "op": "sum", "depends_on": ["times3"],
+      "args": { "input": { "$ref": "times3" } } },
+    { "id": "big", "op": "max", "depends_on": ["n"], "args": { "input": { "$ref": "n" } } }
+  ]
+}

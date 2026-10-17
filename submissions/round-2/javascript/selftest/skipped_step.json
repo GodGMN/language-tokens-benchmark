@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "threshold",
+      "op": "constant",
+      "args": {
+        "value": 10
+      }
+    },
+    {
+      "id": "value",
+      "op": "constant",
+      "args": {
+        "value": 3
+      }
+    },
+    {
+      "id": "high",
+      "op": "constant",
+      "depends_on": [
+        "value",
+        "threshold"
+      ],
+      "when": {
+        "op": "gt",
+        "left": {
+          "$ref": "value"
+        },
+        "right": {
+          "$ref": "threshold"
+        }
+      },
+      "args": {
+        "value": "unreachable"
+      }
+    },
+    {
+      "id": "low",
+      "op": "constant",
+      "depends_on": [
+        "value",
+        "threshold"
+      ],
+      "when": {
+        "op": "lt",
+        "left": {
+          "$ref": "value"
+        },
+        "right": {
+          "$ref": "threshold"
+        }
+      },
+      "args": {
+        "value": "kept"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "steps": [
+    {"id": "eq", "op": "equals", "args": {"a": {"x": [1, 2]}, "b": {"x": [1.0, 2]}}},
+    {"id": "ne", "op": "equals", "args": {"a": 1, "b": "1"}},
+    {"id": "cmp_mixed", "op": "compare", "args": {"a": 5, "b": "5", "op": "lt"}},
+    {"id": "cmp_obj", "op": "compare", "args": {"a": {"a": 2}, "b": {"a": 1}, "op": "gt"}},
+    {"id": "andv", "op": "and", "args": {"a": true, "b": false}},
+    {"id": "orv", "op": "or", "args": {"a": false, "b": true}},
+    {"id": "notv", "op": "not", "args": {"a": true}},
+    {"id": "kind", "op": "type", "args": {"value": [1]}},
+    {"id": "truthy", "op": "filter",
+     "args": {"input": [0, 1, "", "x", null, [], [0], {}, {"a": 0}, false, true],
+              "predicate": {"type": "truthy"}}},
+    {"id": "falsy", "op": "filter",
+     "args": {"input": [0, 1, "", "x", null, [], [0], {}, {"a": 0}, false, true],
+              "predicate": {"type": "falsy"}}}
+  ]
+}

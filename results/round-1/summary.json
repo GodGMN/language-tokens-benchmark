@@ -1,6 +1,7 @@
 {
   "round": "round-1",
   "label": "DeepSeek V4.1 Flash \u2014 one-shot",
+  "spec_version": 1,
   "model": {
     "name": "deepseek-flash",
     "provider": "deepseek",

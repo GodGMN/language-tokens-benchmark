@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "obj", "op": "constant", "args": { "value": { "b": 2, "a": 1, "c": 3 } } },
+    { "id": "keys", "op": "keys", "depends_on": ["obj"], "args": { "input": { "$ref": "obj" } } },
+    { "id": "values", "op": "values", "depends_on": ["obj"], "args": { "input": { "$ref": "obj" } } },
+    { "id": "got", "op": "get", "depends_on": ["obj"], "args": { "input": { "$ref": "obj" }, "key": "b" } },
+    { "id": "missing", "op": "get", "depends_on": ["obj"], "args": { "input": { "$ref": "obj" }, "key": "z" } },
+    { "id": "withD", "op": "set", "depends_on": ["obj"], "args": { "input": { "$ref": "obj" }, "key": "d", "value": 4 } },
+    { "id": "merged", "op": "merge", "depends_on": ["obj"], "args": { "a": { "$ref": "obj" }, "b": { "a": 9, "e": 5 } } },
+    { "id": "picked", "op": "pick", "depends_on": ["obj"], "args": { "input": { "$ref": "obj" }, "keys": ["c", "z", "a"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["obj"], "args": { "input": { "$ref": "obj" }, "keys": ["b"] } }
+  ]
+}

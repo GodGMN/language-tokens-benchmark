@@ -1,0 +1,35 @@
+{
+    "error": null,
+    "execution_order": [
+        "a",
+        "b",
+        "eq",
+        "cmp1",
+        "cmp2",
+        "mixed",
+        "andv",
+        "orv",
+        "notv",
+        "t1",
+        "t2",
+        "t3",
+        "cond"
+    ],
+    "results": {
+        "a": 1,
+        "andv": false,
+        "b": 1.0,
+        "cmp1": true,
+        "cmp2": true,
+        "cond": "yes",
+        "eq": true,
+        "mixed": true,
+        "notv": true,
+        "orv": true,
+        "t1": "number",
+        "t2": "null",
+        "t3": "array"
+    },
+    "skipped": [],
+    "status": "completed"
+}

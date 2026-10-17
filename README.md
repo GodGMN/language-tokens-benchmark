@@ -8,17 +8,36 @@ It is a measure of **code-generation efficiency per language**, not a ranking of
 
 ## Leaderboard
 
-Round 1 — DeepSeek V4.1 Flash, one-shot, `thinking=high`. All five implementations pass **107/107** scored tests (32 public + 75 holdout).
+DeepSeek V4.1 Flash, one-shot, `thinking=high`. Two rounds: spec v1 (107 scored tests) and spec v2 (114, adding the clarified edge rules). Only **conforming** implementations are ranked.
 
-| rank | language | scored | output tokens | total tokens | cost | tool calls | src lines |
-|---|---|---|---|---|---|---|---|
-| 1 | **JavaScript** | 107/107 | 90,736 | 2,959,548 | $0.134 | 57 | 1,987 |
-| 2 | **Go** | 107/107 | 113,306 | 3,365,415 | $0.162 | 46 | 2,437 |
-| 3 | **C** | 107/107 | 121,998 | 5,224,057 | $0.191 | 68 | 3,477 |
-| 4 | **Python** | 107/107 | 125,031 | 6,222,745 | $0.200 | 76 | 1,688 |
-| 5 | **Rust** | 107/107 | 156,063 | 9,405,161 | $0.255 | 85 | 2,281 |
+**Round 2 — spec v2 (current)**
 
-Ranking is by total tokens among conforming implementations; the order is identical by output tokens, so it is not a cache artifact. Full breakdown: [`results/round-1/report.md`](results/round-1/report.md).
+| rank | language | scored | output tok | total tok | cost | tool calls |
+|---|---|---|---|---|---|---|
+| 1 | **Go** | 114/114 | 110,406 | 3,455,929 | $0.163 | 38 |
+| 2 | **Rust** | 114/114 | 104,408 | 4,194,694 | $0.158 | 56 |
+| 3 | **JavaScript** | 114/114 | 119,392 | 4,913,756 | $0.180 | 62 |
+| 4 | **C** | 114/114 | 118,885 | 6,107,267 | $0.192 | 61 |
+| — | Python | 112/114 | 82,123 | 3,323,523 | $0.128 | 50 |
+
+**Round 1 — spec v1**
+
+| rank | language | scored | output tok | total tok | cost | tool calls |
+|---|---|---|---|---|---|---|
+| 1 | **JavaScript** | 107/107 | 90,736 | 2,959,548 | $0.134 | 57 |
+| 2 | **Go** | 107/107 | 113,306 | 3,365,415 | $0.162 | 46 |
+| 3 | **C** | 107/107 | 121,998 | 5,224,057 | $0.191 | 68 |
+| 4 | **Python** | 107/107 | 125,031 | 6,222,745 | $0.200 | 76 |
+| 5 | **Rust** | 107/107 | 156,063 | 9,405,161 | $0.255 | 85 |
+
+### What the two rounds show
+
+- **Correctness is high and mostly language-independent.** On spec v1, all five are 107/107 across 75 edge cases. On spec v2, only Python fails — it does not reject malformed `when` conditions (112/114).
+- **Single-run rankings are noisy.** JavaScript was cheapest in round 1 and third in round 2; Rust went from most expensive to second. **Total tokens** swing with session length (cache reads dominate), so treat one round as one sample.
+- **Output tokens are the more stable signal** (Go and C vary ~3% across rounds; JS ~32%, Rust ~49%). The leaderboard uses total tokens because that is the true cost, but output tokens tell the same story with less noise.
+- **Cheapest ≠ correct.** Python is the cheapest in round 2 but is the only non-conforming implementation.
+
+Full data: [`results/round-2/report.md`](results/round-2/report.md), [`results/compare.md`](results/compare.md).
 
 ## The task
 

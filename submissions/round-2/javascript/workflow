@@ -1,0 +1,4 @@
+#!/bin/sh
+# Convenience wrapper; the canonical invocation is: node workflow.js run <file>
+DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+exec node "$DIR/workflow.js" "$@"

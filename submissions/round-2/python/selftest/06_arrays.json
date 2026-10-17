@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant",
+      "args": { "value": [3, 1, 2, 1, [4, 5], null, "b", "a", true, false] } },
+    { "id": "sorted", "op": "sort", "depends_on": ["raw"],
+      "args": { "input": { "$ref": "raw" } } },
+    { "id": "flat", "op": "flatten", "depends_on": ["raw"],
+      "args": { "input": { "$ref": "raw" } } },
+    { "id": "uniq", "op": "unique", "depends_on": ["flat"],
+      "args": { "input": { "$ref": "flat" } } },
+    { "id": "picked", "op": "filter", "depends_on": ["raw"],
+      "args": { "input": { "$ref": "raw" }, "predicate": { "type": "type_is", "value": "number" } } },
+    { "id": "sliced", "op": "slice", "depends_on": ["raw"],
+      "args": { "input": { "$ref": "raw" }, "start": -4, "end": -1 } },
+    { "id": "reduced", "op": "reduce", "depends_on": ["picked"],
+      "args": { "input": { "$ref": "picked" }, "op": "add", "initial": 100 } },
+    { "id": "reversed", "op": "reverse", "depends_on": ["picked"],
+      "args": { "input": { "$ref": "picked" } } }
+  ]
+}

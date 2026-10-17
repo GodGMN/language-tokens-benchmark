@@ -1,0 +1,61 @@
+{
+    "error": null,
+    "execution_order": [
+        "nums",
+        "abs",
+        "neg",
+        "add10",
+        "times2",
+        "cy",
+        "strs",
+        "types",
+        "evens"
+    ],
+    "results": {
+        "abs": [
+            1,
+            2,
+            3
+        ],
+        "add10": [
+            11,
+            8,
+            13
+        ],
+        "cy": [
+            "x",
+            "x",
+            "x"
+        ],
+        "evens": [
+            -2
+        ],
+        "neg": [
+            -1,
+            2,
+            -3
+        ],
+        "nums": [
+            1,
+            -2,
+            3
+        ],
+        "strs": [
+            "1",
+            "-2",
+            "3"
+        ],
+        "times2": [
+            2,
+            -4,
+            6
+        ],
+        "types": [
+            "number",
+            "number",
+            "number"
+        ]
+    },
+    "skipped": [],
+    "status": "completed"
+}

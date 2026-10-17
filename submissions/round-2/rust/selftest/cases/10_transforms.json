@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "constant", "args": { "value": [1, -2, 3] } },
+    { "id": "abs", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "abs" } } },
+    { "id": "neg", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "negate" } } },
+    { "id": "add10", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "add", "value": 10 } } },
+    { "id": "times2", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "op", "op": "multiply", "args": { "a": { "$self": true }, "b": 2 } } } },
+    { "id": "cy", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "constant", "value": "x" } } },
+    { "id": "strs", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "stringify" } } },
+    { "id": "types", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "type" } } },
+    { "id": "evens", "op": "filter", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "predicate": { "type": "even" } } }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    {"id": "obj", "op": "constant", "args": {"value": {"user": {"name": "ada"}, "items": [10, 20, 30]}}},
+    {"id": "name", "op": "get", "depends_on": ["obj"],
+     "args": {"input": {"$ref": "obj.user"}, "key": "name"}},
+    {"id": "second", "op": "add", "depends_on": ["obj"],
+     "args": {"a": {"$ref": "obj.items.1"}, "b": 1}},
+    {"id": "gate", "op": "constant", "depends_on": ["name", "second"],
+     "args": {"value": true},
+     "when": {"op": "all", "conditions": [
+        {"op": "eq", "left": {"$ref": "name"}, "right": "ada"},
+        {"op": "not", "condition": {"op": "lt", "left": {"$ref": "second"}, "right": 21}}
+     ]}},
+    {"id": "final", "op": "concat", "depends_on": ["name", "gate"],
+     "args": {"a": {"$ref": "name"}, "b": "#"}}
+  ]
+}

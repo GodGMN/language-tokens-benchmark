@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  hello,WORLD,rust  " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"],
+      "args": { "input": { "$ref": "raw" } } },
+    { "id": "upper", "op": "uppercase", "depends_on": ["trimmed"],
+      "args": { "input": { "$ref": "trimmed" } } },
+    { "id": "parts", "op": "split", "depends_on": ["trimmed"],
+      "args": { "input": { "$ref": "trimmed" }, "sep": "," } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"],
+      "args": { "input": { "$ref": "parts" }, "sep": "-" } },
+    { "id": "replaced", "op": "replace", "depends_on": ["joined"],
+      "args": { "input": { "$ref": "joined" }, "search": "WORLD", "replace": "Rust" } },
+    { "id": "len", "op": "length", "depends_on": ["replaced"],
+      "args": { "input": { "$ref": "replaced" } } },
+    { "id": "chars", "op": "split", "depends_on": ["raw"],
+      "args": { "input": "héllo", "sep": "" } }
+  ]
+}

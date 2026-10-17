@@ -1,0 +1,1 @@
+{"status":"completed","results":{"eq_num":true,"eq_type":false,"cmp":true,"t":"object","logic":false,"logic2":true},"execution_order":["eq_num","eq_type","cmp","t","logic","logic2"],"skipped":[],"error":null}

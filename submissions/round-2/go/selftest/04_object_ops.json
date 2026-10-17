@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "steps": [
+    {"id": "base", "op": "constant", "args": {"value": {"b": 2, "a": 1}}},
+    {"id": "set", "op": "set", "depends_on": ["base"],
+     "args": {"input": {"$ref": "base"}, "key": "c", "value": [1, 2]}},
+    {"id": "get", "op": "get", "depends_on": ["set"],
+     "args": {"input": {"$ref": "set"}, "key": "c"}},
+    {"id": "missing", "op": "get", "depends_on": ["set"],
+     "args": {"input": {"$ref": "set"}, "key": "zzz"}},
+    {"id": "keys", "op": "keys", "depends_on": ["set"], "args": {"input": {"$ref": "set"}}},
+    {"id": "values", "op": "values", "depends_on": ["set"], "args": {"input": {"$ref": "set"}}},
+    {"id": "merged", "op": "merge", "depends_on": ["set"],
+     "args": {"a": {"$ref": "set"}, "b": {"b": 99, "d": 4}}},
+    {"id": "picked", "op": "pick", "depends_on": ["set"],
+     "args": {"input": {"$ref": "set"}, "keys": ["c", "nope", "a"]}},
+    {"id": "omitted", "op": "omit", "depends_on": ["set"],
+     "args": {"input": {"$ref": "set"}, "keys": ["b"]}}
+  ]
+}

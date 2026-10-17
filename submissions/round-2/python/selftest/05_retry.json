@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "early", "op": "constant", "args": { "value": 1 } },
+    { "id": "flaky", "op": "fail_until", "depends_on": ["early"],
+      "args": { "failures": 2, "value": "ok" },
+      "retry": { "max_attempts": 3 } },
+    { "id": "after", "op": "concat", "depends_on": ["flaky"],
+      "args": { "a": { "$ref": "flaky" }, "b": "!" } }
+  ]
+}

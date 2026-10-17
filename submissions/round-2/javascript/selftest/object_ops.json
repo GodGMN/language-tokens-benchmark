@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant",
+      "args": { "value": { "name": "Ada", "age": 36, "tags": ["math"] } } },
+    { "id": "withCity", "op": "set", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "city", "value": "London" } },
+    { "id": "ks", "op": "keys", "depends_on": ["withCity"], "args": { "input": { "$ref": "withCity" } } },
+    { "id": "vs", "op": "values", "depends_on": ["withCity"], "args": { "input": { "$ref": "withCity" } } },
+    { "id": "age", "op": "get", "depends_on": ["withCity"],
+      "args": { "input": { "$ref": "withCity" }, "key": "age" } },
+    { "id": "missing", "op": "get", "depends_on": ["withCity"],
+      "args": { "input": { "$ref": "withCity" }, "key": "nope" } },
+    { "id": "merged", "op": "merge", "depends_on": ["base"],
+      "args": { "a": { "$ref": "base" }, "b": { "age": 37, "country": "UK" } } },
+    { "id": "picked", "op": "pick", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" }, "keys": ["name", "country", "nope"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" }, "keys": ["tags"] } }
+  ]
+}

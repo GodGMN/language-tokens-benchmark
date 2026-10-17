@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant", "args": { "value": "  Hello World  " } },
+    { "id": "clean", "op": "trim", "depends_on": ["raw"], "args": { "input": { "$ref": "raw" } } },
+    { "id": "up", "op": "uppercase", "depends_on": ["clean"], "args": { "input": { "$ref": "clean" } } },
+    { "id": "parts", "op": "split", "depends_on": ["up"], "args": { "input": { "$ref": "up" }, "sep": " " } },
+    { "id": "dashed", "op": "join", "depends_on": ["parts"], "args": { "input": { "$ref": "parts" }, "sep": "-" } },
+    { "id": "colon", "op": "replace", "depends_on": ["dashed"],
+      "args": { "input": { "$ref": "dashed" }, "search": "-", "replace": ":" } },
+    { "id": "down", "op": "lowercase", "depends_on": ["colon"], "args": { "input": { "$ref": "colon" } } },
+    { "id": "size", "op": "length", "depends_on": ["down"], "args": { "input": { "$ref": "down" } } },
+    { "id": "shout", "op": "concat", "depends_on": ["down"], "args": { "a": { "$ref": "down" }, "b": "!" } }
+  ]
+}

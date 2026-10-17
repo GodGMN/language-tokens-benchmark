@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "x", "op": "constant", "args": { "value": 3 } },
+    { "id": "runs", "op": "constant", "depends_on": ["x"],
+      "args": { "value": "ran" },
+      "when": { "op": "gt", "left": { "$ref": "x" }, "right": 1 } },
+    { "id": "y", "op": "constant", "depends_on": ["x"],
+      "args": { "value": 99 },
+      "when": { "op": "gt", "left": { "$ref": "x" }, "right": 10 } },
+    { "id": "compound", "op": "constant", "depends_on": ["x"],
+      "args": { "value": "yes" },
+      "when": { "op": "all", "conditions": [
+        { "op": "gte", "left": { "$ref": "x" }, "right": 3 },
+        { "op": "not", "condition": { "op": "eq", "left": { "$ref": "x" }, "right": 4 } }
+      ] } }
+  ]
+}

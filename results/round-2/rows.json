@@ -1,0 +1,228 @@
+[
+  {
+    "language": "python",
+    "reference": false,
+    "passed": 112,
+    "total": 114,
+    "pct": 98.2,
+    "conforming": false,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      80,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 33464,
+    "output": 82123,
+    "reasoning": 47504,
+    "cache_read": 3207936,
+    "cache_write": 0,
+    "total_tokens": 3323523,
+    "cost": 0.1278,
+    "turns": 1,
+    "tool_calls": 50,
+    "code": {
+      "source_files": 2,
+      "source_lines": 1297,
+      "source_bytes": 42204
+    },
+    "gen_eff_k": 1.36,
+    "tot_eff_k": 0.03,
+    "rel_cost": 0.96
+  },
+  {
+    "language": "javascript",
+    "reference": false,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 28540,
+    "output": 119392,
+    "reasoning": 84655,
+    "cache_read": 4765824,
+    "cache_write": 0,
+    "total_tokens": 4913756,
+    "cost": 0.1804,
+    "turns": 1,
+    "tool_calls": 62,
+    "code": {
+      "source_files": 2,
+      "source_lines": 1694,
+      "source_bytes": 53082
+    },
+    "gen_eff_k": 0.95,
+    "tot_eff_k": 0.02,
+    "rel_cost": 1.42,
+    "rank": 3
+  },
+  {
+    "language": "go",
+    "reference": false,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 35571,
+    "output": 110406,
+    "reasoning": 77663,
+    "cache_read": 3309952,
+    "cache_write": 0,
+    "total_tokens": 3455929,
+    "cost": 0.163,
+    "turns": 1,
+    "tool_calls": 38,
+    "code": {
+      "source_files": 6,
+      "source_lines": 2416,
+      "source_bytes": 52222
+    },
+    "gen_eff_k": 1.03,
+    "tot_eff_k": 0.03,
+    "rel_cost": 1.0,
+    "rank": 1
+  },
+  {
+    "language": "rust",
+    "reference": false,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 27438,
+    "output": 104408,
+    "reasoning": 71366,
+    "cache_read": 4062848,
+    "cache_write": 0,
+    "total_tokens": 4194694,
+    "cost": 0.1579,
+    "turns": 1,
+    "tool_calls": 56,
+    "code": {
+      "source_files": 2,
+      "source_lines": 1792,
+      "source_bytes": 59901
+    },
+    "gen_eff_k": 1.09,
+    "tot_eff_k": 0.03,
+    "rel_cost": 1.21,
+    "rank": 2
+  },
+  {
+    "language": "c",
+    "reference": false,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 44190,
+    "output": 118885,
+    "reasoning": 61897,
+    "cache_read": 5944192,
+    "cache_write": 0,
+    "total_tokens": 6107267,
+    "cost": 0.1916,
+    "turns": 1,
+    "tool_calls": 61,
+    "code": {
+      "source_files": 3,
+      "source_lines": 3286,
+      "source_bytes": 99087
+    },
+    "gen_eff_k": 0.96,
+    "tot_eff_k": 0.02,
+    "rel_cost": 1.77,
+    "rank": 4
+  },
+  {
+    "language": "oracle",
+    "reference": true,
+    "passed": 114,
+    "total": 114,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      82,
+      82
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": null,
+    "output": null,
+    "reasoning": null,
+    "cache_read": null,
+    "cache_write": null,
+    "total_tokens": null,
+    "cost": null,
+    "turns": null,
+    "tool_calls": null,
+    "code": {
+      "source_files": 1,
+      "source_lines": 904,
+      "source_bytes": 31368
+    },
+    "gen_eff_k": null,
+    "tot_eff_k": null,
+    "rel_cost": null
+  }
+]
