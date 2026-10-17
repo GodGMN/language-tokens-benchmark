@@ -1,5 +1,32 @@
 {
   "round": "round-1",
   "model": null,
-  "languages": {}
+  "languages": {
+    "smoke": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--tmp-pismoke--/2026-10-17T01-50-47-649Z_smoke-test.jsonl",
+      "started": "2026-10-17T01:50:47.649Z",
+      "ended": "2026-10-17T01:50:50.549Z",
+      "input": 523,
+      "output": 27,
+      "cacheRead": 1252,
+      "cacheWrite": 0,
+      "reasoning": 0,
+      "totalTokens": 1802,
+      "cost": {
+        "input": 0.0,
+        "output": 0.0,
+        "cacheRead": 0.0,
+        "cacheWrite": 0.0,
+        "total": 0.0
+      },
+      "assistant_messages": 1,
+      "tool_results": 0,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "prometheus:qwen3.8-27b-abliterated"
+      ],
+      "source": "smoke-test"
+    }
+  }
 }
