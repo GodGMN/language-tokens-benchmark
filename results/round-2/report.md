@@ -2,7 +2,7 @@
 
 **DeepSeek V4.1 Flash — one-shot (spec v2)**
 
-Model: **DeepSeek V4.1 Flash** (`deepseek/deepseek-flash`) · 763B total, ~16B active (8B active during prefill) · thinking=high
+Model: **DeepSeek V4.1 Flash** (`deepseek/deepseek-flash`, DeepSeek-V4.1-Flash-1017) · 763B total, ~16B active (8B active during prefill) · thinking=high
 
 Tests per implementation: 32 public + 82 holdout = 114 scored
 

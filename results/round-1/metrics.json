@@ -6,7 +6,9 @@
     "display": "DeepSeek V4.1 Flash",
     "params": "763B total, ~16B active (8B active during prefill)",
     "thinking": "high",
-    "date": "2026-10-17"
+    "date": "2026-10-17",
+    "version": "DeepSeek-V4.1-Flash-1017",
+    "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
   },
   "languages": {
     "c": {
