@@ -99,7 +99,8 @@ def main():
             "reasoning": m["reasoning"] if m else None,
             "cache_read": m["cacheRead"] if m else None, "cache_write": m["cacheWrite"] if m else None,
             "total_tokens": tot_tok, "cost": round(m["cost"]["total"], 4) if m else None,
-            "turns": m["user_messages"] if m else None,
+            "turns": m["assistant_messages"] if m else None,
+            "user_messages": m["user_messages"] if m else None,
             "tool_calls": m["tool_results"] if m else None,
             "code": code,
             "gen_eff_k": round(passed / out_tok * 1000, 2) if passed and out_tok else None,
@@ -128,7 +129,8 @@ def main():
         f"**{round_cfg.get('label', round_id)}**",
         "",
         f"Model: **{model.get('display') or model.get('name') or 'unknown'}** "
-        f"(`{model.get('provider','?')}/{model.get('name','?')}`)"
+        f"(`{model.get('provider','?')}/{model.get('name','?')}`"
+        + (f", {model['version']}" if model.get("version") else "") + ")"
         + (f" · {model['params']}" if model.get("params") else "")
         + (f" · thinking={model['thinking']}" if model.get("thinking") else ""),
         "",

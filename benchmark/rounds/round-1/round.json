@@ -7,7 +7,9 @@
     "display": "DeepSeek V4.1 Flash",
     "params": "763B total, ~16B active (8B active during prefill)",
     "thinking": "high",
-    "date": "2026-10-17"
+    "date": "2026-10-17",
+    "version": "DeepSeek-V4.1-Flash-1017",
+    "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
   },
   "submissions": "submissions/round-1",
   "languages": {
@@ -33,5 +35,6 @@
     }
   },
   "_comment": "languages maps language -> {submission subdir, pi session id}. session may be a session id, a .jsonl path, or a cwd.",
-  "spec_version": 1
+  "spec_version": 1,
+  "group": "deepseek-v4.1-flash-1017"
 }

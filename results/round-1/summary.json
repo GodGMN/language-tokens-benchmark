@@ -140,7 +140,8 @@
       "cache_write": 0,
       "total_tokens": 6222745,
       "cost": 0.1999,
-      "turns": 1,
+      "turns": 65,
+      "user_messages": 1,
       "tool_calls": 76,
       "code": {
         "source_files": 2,
@@ -178,7 +179,8 @@
       "cache_write": 0,
       "total_tokens": 2959548,
       "cost": 0.1338,
-      "turns": 1,
+      "turns": 40,
+      "user_messages": 1,
       "tool_calls": 57,
       "code": {
         "source_files": 2,
@@ -216,7 +218,8 @@
       "cache_write": 0,
       "total_tokens": 3365415,
       "cost": 0.1624,
-      "turns": 1,
+      "turns": 40,
+      "user_messages": 1,
       "tool_calls": 46,
       "code": {
         "source_files": 6,
@@ -254,7 +257,8 @@
       "cache_write": 0,
       "total_tokens": 9405161,
       "cost": 0.2549,
-      "turns": 1,
+      "turns": 85,
+      "user_messages": 1,
       "tool_calls": 85,
       "code": {
         "source_files": 7,
@@ -292,7 +296,8 @@
       "cache_write": 0,
       "total_tokens": 5224057,
       "cost": 0.1907,
-      "turns": 1,
+      "turns": 55,
+      "user_messages": 1,
       "tool_calls": 68,
       "code": {
         "source_files": 3,
@@ -331,6 +336,7 @@
       "total_tokens": null,
       "cost": null,
       "turns": null,
+      "user_messages": null,
       "tool_calls": null,
       "code": {
         "source_files": 1,
