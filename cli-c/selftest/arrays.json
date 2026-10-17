@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 6 } },
+    { "id": "tripled", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" },
+                "transform": { "type": "multiply", "value": 3 } } },
+    { "id": "odds", "op": "filter", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" },
+                "predicate": { "type": "odd" } } },
+    { "id": "total", "op": "reduce", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "op": "add" } },
+    { "id": "product", "op": "reduce", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "op": "multiply",
+                "initial": 2 } },
+    { "id": "mixed_sorted", "op": "sort",
+      "args": { "input": [3, "a", true, null, false, "b", [1], 2] } },
+    { "id": "deduped", "op": "unique",
+      "args": { "input": [1, 1, 2, "a", "a", [1], [1]] } },
+    { "id": "tail", "op": "slice", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "start": -3, "end": 5 } },
+    { "id": "flattened", "op": "flatten",
+      "args": { "input": [[1, 2], [], 3, [[4]]] } },
+    { "id": "reversed", "op": "reverse", "depends_on": ["odds"],
+      "args": { "input": { "$ref": "odds" } } },
+    { "id": "stringified", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" },
+                "transform": { "type": "stringify" } } },
+    { "id": "types", "op": "map",
+      "args": { "input": [1, "x", null, true, [], {}],
+                "transform": { "type": "type" } } }
+  ]
+}

@@ -9,7 +9,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.093,
+      "seconds": 0.032,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -25,7 +25,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.093,
+        "seconds": 0.032,
         "timeout": false
       }
     },
@@ -35,7 +35,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.119,
+      "seconds": 0.031,
       "detail": {
         "exit_code": 2,
         "stdout_json": {
@@ -51,7 +51,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.119,
+        "seconds": 0.031,
         "timeout": false
       }
     },
@@ -61,7 +61,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.107,
+      "seconds": 0.034,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -73,7 +73,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.107,
+        "seconds": 0.034,
         "timeout": false
       }
     },
@@ -83,7 +83,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.142,
+      "seconds": 0.029,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -112,7 +112,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.142,
+        "seconds": 0.029,
         "timeout": false
       }
     },
@@ -122,7 +122,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.083,
+      "seconds": 0.029,
       "detail": {
         "exit_code": 2,
         "stdout_json": {
@@ -138,7 +138,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.083,
+        "seconds": 0.029,
         "timeout": false
       }
     },
@@ -148,7 +148,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.092,
+      "seconds": 0.029,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -166,7 +166,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.092,
+        "seconds": 0.029,
         "timeout": false
       }
     },
@@ -176,7 +176,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.097,
+      "seconds": 0.031,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -198,7 +198,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.097,
+        "seconds": 0.031,
         "timeout": false
       }
     },
@@ -208,7 +208,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.099,
+      "seconds": 0.029,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -228,7 +228,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.099,
+        "seconds": 0.029,
         "timeout": false
       }
     },
@@ -238,7 +238,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.1,
+      "seconds": 0.034,
       "detail": {
         "exit_code": 2,
         "stdout_json": {
@@ -254,7 +254,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.1,
+        "seconds": 0.034,
         "timeout": false
       }
     },
@@ -264,7 +264,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.101,
+      "seconds": 0.04,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -286,7 +286,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.101,
+        "seconds": 0.04,
         "timeout": false
       }
     },
@@ -296,7 +296,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.078,
+      "seconds": 0.032,
       "detail": {
         "exit_code": 2,
         "stdout_json": {
@@ -312,7 +312,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.078,
+        "seconds": 0.032,
         "timeout": false
       }
     },
@@ -322,7 +322,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.1,
+      "seconds": 0.03,
       "detail": {
         "exit_code": 1,
         "stdout_json": {
@@ -338,7 +338,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.1,
+        "seconds": 0.03,
         "timeout": false
       }
     },
@@ -348,7 +348,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.1,
+      "seconds": 0.028,
       "detail": {
         "exit_code": 1,
         "stdout_json": {
@@ -364,7 +364,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.1,
+        "seconds": 0.028,
         "timeout": false
       }
     },
@@ -374,7 +374,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.09,
+      "seconds": 0.029,
       "detail": {
         "exit_code": 1,
         "stdout_json": {
@@ -390,7 +390,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.09,
+        "seconds": 0.029,
         "timeout": false
       }
     },
@@ -400,7 +400,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.098,
+      "seconds": 0.031,
       "detail": {
         "exit_code": 1,
         "stdout_json": {
@@ -416,7 +416,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.098,
+        "seconds": 0.031,
         "timeout": false
       }
     },
@@ -426,7 +426,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.11,
+      "seconds": 0.032,
       "detail": {
         "exit_code": 1,
         "stdout_json": {
@@ -446,7 +446,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.11,
+        "seconds": 0.032,
         "timeout": false
       }
     },
@@ -456,7 +456,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.098,
+      "seconds": 0.031,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -472,7 +472,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.098,
+        "seconds": 0.031,
         "timeout": false
       }
     },
@@ -482,7 +482,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.122,
+      "seconds": 0.031,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -545,7 +545,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.122,
+        "seconds": 0.031,
         "timeout": false
       }
     },
@@ -555,7 +555,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.081,
+      "seconds": 0.031,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -614,7 +614,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.081,
+        "seconds": 0.031,
         "timeout": false
       }
     },
@@ -624,7 +624,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.098,
+      "seconds": 0.031,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -648,7 +648,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.098,
+        "seconds": 0.031,
         "timeout": false
       }
     },
@@ -658,7 +658,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.125,
+      "seconds": 0.034,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -690,7 +690,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.125,
+        "seconds": 0.034,
         "timeout": false
       }
     },
@@ -700,7 +700,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.093,
+      "seconds": 0.034,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -734,7 +734,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.093,
+        "seconds": 0.034,
         "timeout": false
       }
     },
@@ -744,7 +744,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.1,
+      "seconds": 0.031,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -801,7 +801,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.1,
+        "seconds": 0.031,
         "timeout": false
       }
     },
@@ -811,7 +811,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.117,
+      "seconds": 0.031,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -835,7 +835,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.117,
+        "seconds": 0.031,
         "timeout": false
       }
     },
@@ -845,7 +845,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.087,
+      "seconds": 0.033,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -872,7 +872,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.087,
+        "seconds": 0.033,
         "timeout": false
       }
     },
@@ -882,7 +882,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.094,
+      "seconds": 0.041,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -906,7 +906,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.094,
+        "seconds": 0.041,
         "timeout": false
       }
     },
@@ -916,7 +916,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.1,
+      "seconds": 0.049,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -950,7 +950,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.1,
+        "seconds": 0.049,
         "timeout": false
       }
     },
@@ -960,7 +960,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.076,
+      "seconds": 0.036,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -980,7 +980,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.076,
+        "seconds": 0.036,
         "timeout": false
       }
     },
@@ -990,7 +990,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.109,
+      "seconds": 0.036,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -1018,7 +1018,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.109,
+        "seconds": 0.036,
         "timeout": false
       }
     },
@@ -1028,7 +1028,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.112,
+      "seconds": 0.035,
       "detail": {
         "exit_code": 1,
         "stdout_json": {
@@ -1052,7 +1052,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.112,
+        "seconds": 0.035,
         "timeout": false
       }
     },
@@ -1062,7 +1062,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.079,
+      "seconds": 0.038,
       "detail": {
         "exit_code": 0,
         "stdout_json": {
@@ -1092,7 +1092,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.079,
+        "seconds": 0.038,
         "timeout": false
       }
     },
@@ -1102,7 +1102,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.096,
+      "seconds": 0.038,
       "detail": {
         "exit_code": 1,
         "stdout_json": {
@@ -1126,7 +1126,7 @@
         },
         "stdout_valid_json": true,
         "stderr_tail": "",
-        "seconds": 0.096,
+        "seconds": 0.038,
         "timeout": false
       }
     }

@@ -1,0 +1,52 @@
+{
+  "exit_code": 0,
+  "response": {
+    "error": null,
+    "execution_order": [
+      "nums",
+      "shifted",
+      "evens",
+      "total",
+      "scaled"
+    ],
+    "results": {
+      "evens": [
+        6,
+        8,
+        10,
+        12,
+        14
+      ],
+      "nums": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "scaled": 80640,
+      "shifted": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "total": 50
+    },
+    "skipped": [],
+    "status": "completed"
+  }
+}

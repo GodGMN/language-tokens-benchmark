@@ -1,0 +1,20 @@
+{
+  "exit_code": 0,
+  "response": {
+    "error": null,
+    "execution_order": [
+      "x",
+      "y",
+      "z"
+    ],
+    "results": {
+      "x": 3,
+      "y": null,
+      "z": 7
+    },
+    "skipped": [
+      "y"
+    ],
+    "status": "completed"
+  }
+}

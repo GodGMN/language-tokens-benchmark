@@ -1,0 +1,3 @@
+#!/bin/sh
+# Thin launcher so the CLI can also be invoked as ./workflow ...
+exec node "$(dirname "$0")/workflow.js" "$@"

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "x", "op": "constant", "args": { "value": 1 } },
+    { "id": "y", "op": "constant", "depends_on": ["x"],
+      "when": false, "args": { "value": 2 } },
+    { "id": "z", "op": "constant", "depends_on": ["y"],
+      "args": { "value": { "$ref": "y" } } }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 0, "end": 10 } },
+    { "id": "shifted", "op": "map", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "transform": { "type": "add", "value": 5 } } },
+    { "id": "evens", "op": "filter", "depends_on": ["shifted"],
+      "args": { "input": { "$ref": "shifted" }, "predicate": { "type": "even" } } },
+    { "id": "total", "op": "sum", "depends_on": ["evens"],
+      "args": { "input": { "$ref": "evens" } } },
+    { "id": "scaled", "op": "reduce", "depends_on": ["evens"],
+      "args": { "input": { "$ref": "evens" }, "op": "multiply" } }
+  ]
+}

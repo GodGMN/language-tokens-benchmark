@@ -1,0 +1,1 @@
+{"status":"completed","results":{"active":true,"confirmed":true,"data":{"meta":{"active":true},"user":{"name":"Ana","roles":["admin","dev"]}},"flag":true,"role":"dev","uname":"Ana"},"execution_order":["data","uname","role","active","flag","confirmed"],"skipped":[],"error":null}

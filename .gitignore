@@ -20,9 +20,11 @@ cli-c/build/
 *.o
 *.out
 
-# Binaries
-cli-*/workflow
-cli-*/bin/workflow
+# Compiled binaries from implementations
+cli-go/workflow
+cli-c/workflow
+cli-rust/workflow
+cli-*/bin/
 
 # Results: keep the derived artifacts, ignore raw session dumps
 results/**/*.jsonl

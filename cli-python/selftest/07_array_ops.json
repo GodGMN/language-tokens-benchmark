@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "nums",
+      "op": "constant",
+      "args": { "value": [5, 3, 3, 1, 2] }
+    },
+    {
+      "id": "sorted",
+      "op": "sort",
+      "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" } }
+    },
+    {
+      "id": "uniq",
+      "op": "unique",
+      "depends_on": ["sorted"],
+      "args": { "input": { "$ref": "sorted" } }
+    },
+    {
+      "id": "reversed",
+      "op": "reverse",
+      "depends_on": ["uniq"],
+      "args": { "input": { "$ref": "uniq" } }
+    },
+    {
+      "id": "sliced",
+      "op": "slice",
+      "depends_on": ["reversed"],
+      "args": { "input": { "$ref": "reversed" }, "start": 1, "end": 3 }
+    },
+    {
+      "id": "mapped",
+      "op": "map",
+      "depends_on": ["sliced"],
+      "args": {
+        "input": { "$ref": "sliced" },
+        "transform": { "type": "subtract", "value": 1 }
+      }
+    },
+    {
+      "id": "mapped2",
+      "op": "map",
+      "depends_on": ["mapped"],
+      "args": {
+        "input": { "$ref": "mapped" },
+        "transform": { "type": "negate" }
+      }
+    },
+    {
+      "id": "filtered",
+      "op": "filter",
+      "depends_on": ["nums"],
+      "args": {
+        "input": { "$ref": "nums" },
+        "predicate": { "type": "odd" }
+      }
+    },
+    {
+      "id": "reduced",
+      "op": "reduce",
+      "depends_on": ["filtered"],
+      "args": { "input": { "$ref": "filtered" }, "op": "add", "initial": 10 }
+    },
+    {
+      "id": "flattened",
+      "op": "flatten",
+      "depends_on": ["nums"],
+      "args": { "input": [{ "$ref": "nums" }, [9, [10]]] }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "base",
+      "op": "constant",
+      "args": {
+        "value": { "name": "Ada", "age": 36, "tags": ["math", "code"] }
+      }
+    },
+    {
+      "id": "withCity",
+      "op": "set",
+      "depends_on": ["base"],
+      "args": {
+        "input": { "$ref": "base" },
+        "key": "city",
+        "value": "London"
+      }
+    },
+    {
+      "id": "merged",
+      "op": "merge",
+      "depends_on": ["withCity"],
+      "args": {
+        "a": { "$ref": "withCity" },
+        "b": { "age": 37, "lang": "py" }
+      }
+    },
+    {
+      "id": "keys",
+      "op": "keys",
+      "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" } }
+    },
+    {
+      "id": "values",
+      "op": "values",
+      "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" } }
+    },
+    {
+      "id": "picked",
+      "op": "pick",
+      "depends_on": ["merged"],
+      "args": {
+        "input": { "$ref": "merged" },
+        "keys": ["name", "missing"]
+      }
+    },
+    {
+      "id": "omitted",
+      "op": "omit",
+      "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" }, "keys": ["tags"] }
+    },
+    {
+      "id": "got",
+      "op": "get",
+      "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" }, "key": "age" }
+    }
+  ]
+}

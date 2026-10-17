@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant", "args": { "value": { "name": "Ana", "age": 30, "tags": ["a", "b"] } } },
+    { "id": "updated", "op": "set", "depends_on": ["base"], "args": { "input": { "$ref": "base" }, "key": "city", "value": "Lisbon" } },
+    { "id": "keylist", "op": "keys", "depends_on": ["updated"], "args": { "input": { "$ref": "updated" } } },
+    { "id": "vallist", "op": "values", "depends_on": ["updated"], "args": { "input": { "$ref": "updated" } } },
+    { "id": "picked", "op": "pick", "depends_on": ["base"], "args": { "input": { "$ref": "base" }, "keys": ["tags", "name", "missing"] } },
+    { "id": "reduced", "op": "omit", "depends_on": ["updated"], "args": { "input": { "$ref": "updated" }, "keys": ["age"] } },
+    { "id": "merged", "op": "merge", "depends_on": ["base"], "args": { "a": { "$ref": "base" }, "b": { "age": 31, "active": true } } },
+    { "id": "who", "op": "get", "depends_on": ["base"], "args": { "input": { "$ref": "base" }, "key": "name" } },
+    { "id": "absent", "op": "get", "depends_on": ["base"], "args": { "input": { "$ref": "base" }, "key": "nope" } }
+  ]
+}

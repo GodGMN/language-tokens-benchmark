@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "a", "op": "constant", "depends_on": ["nope"] }
+  ]
+}

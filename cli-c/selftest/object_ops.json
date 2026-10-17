@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant",
+      "args": { "value": { "user": { "name": "Ada", "age": 36 },
+                           "tags": ["x", "y"] } } },
+    { "id": "sorted_keys", "op": "keys", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" } } },
+    { "id": "sorted_values", "op": "values", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" } } },
+    { "id": "with_email", "op": "set", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "email",
+                "value": "ada@example.com" } },
+    { "id": "merged", "op": "merge", "depends_on": ["with_email"],
+      "args": { "a": { "$ref": "with_email" },
+                "b": { "user": { "name": "Ada Lovelace", "age": 37 } } } },
+    { "id": "user_name", "op": "get", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged.user" }, "key": "name" } },
+    { "id": "missing", "op": "get", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "nope" } },
+    { "id": "picked", "op": "pick", "depends_on": ["merged"],
+      "args": { "input": { "$ref": "merged" },
+                "keys": ["email", "user", "nope"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "keys": ["user"] } }
+  ]
+}

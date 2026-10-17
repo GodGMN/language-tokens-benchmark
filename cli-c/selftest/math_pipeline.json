@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "n", "op": "range", "args": { "start": 1, "end": 6 } },
+    { "id": "shifted", "op": "map", "depends_on": ["n"],
+      "args": { "input": { "$ref": "n" },
+                "transform": { "type": "add", "value": 4 } } },
+    { "id": "evens", "op": "filter", "depends_on": ["shifted"],
+      "args": { "input": { "$ref": "shifted" },
+                "predicate": { "type": "even" } } },
+    { "id": "total", "op": "sum", "depends_on": ["evens"],
+      "args": { "input": { "$ref": "evens" } } },
+    { "id": "spread", "op": "subtract", "depends_on": ["total"],
+      "args": { "a": { "$ref": "total" }, "b": { "$ref": "n.0" } } },
+    { "id": "truncated", "op": "divide", "depends_on": ["spread"],
+      "args": { "a": { "$ref": "spread" }, "b": 2 } },
+    { "id": "remainder", "op": "mod", "depends_on": ["spread"],
+      "args": { "a": { "$ref": "spread" }, "b": 5 } }
+  ]
+}

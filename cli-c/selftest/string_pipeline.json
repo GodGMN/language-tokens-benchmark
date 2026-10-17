@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "raw", "op": "constant",
+      "args": { "value": "  Hello, World  " } },
+    { "id": "trimmed", "op": "trim", "depends_on": ["raw"],
+      "args": { "input": { "$ref": "raw" } } },
+    { "id": "upper", "op": "uppercase", "depends_on": ["trimmed"],
+      "args": { "input": { "$ref": "trimmed" } } },
+    { "id": "parts", "op": "split", "depends_on": ["upper"],
+      "args": { "input": { "$ref": "upper" }, "sep": ", " } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"],
+      "args": { "input": { "$ref": "parts" }, "sep": "-" } },
+    { "id": "size", "op": "length", "depends_on": ["upper"],
+      "args": { "input": { "$ref": "upper" } } },
+    { "id": "swapped", "op": "replace", "depends_on": ["trimmed"],
+      "args": { "input": { "$ref": "trimmed" },
+                "search": "World", "replace": "C" } },
+    { "id": "lowered", "op": "lowercase", "depends_on": ["swapped"],
+      "args": { "input": { "$ref": "swapped" } } },
+    { "id": "chars", "op": "split", "depends_on": ["trimmed"],
+      "args": { "input": { "$ref": "trimmed" }, "sep": "" } }
+  ]
+}

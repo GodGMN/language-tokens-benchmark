@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "constant", "args": { "value": [3, 1, 2, 1, 5, 4] } },
+    { "id": "sorted", "op": "sort", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" } } },
+    { "id": "uniq", "op": "unique", "depends_on": ["sorted"],
+      "args": { "input": { "$ref": "sorted" } } },
+    { "id": "rev", "op": "reverse", "depends_on": ["uniq"],
+      "args": { "input": { "$ref": "uniq" } } },
+    { "id": "sliced", "op": "slice", "depends_on": ["rev"],
+      "args": { "input": { "$ref": "rev" }, "start": 1, "end": 4 } },
+    { "id": "nested", "op": "constant", "args": { "value": [[1, 2], [3, [4]], 5] } },
+    { "id": "flat", "op": "flatten", "depends_on": ["nested"],
+      "args": { "input": { "$ref": "nested" } } },
+    { "id": "total", "op": "reduce", "depends_on": ["uniq"],
+      "args": { "input": { "$ref": "uniq" }, "op": "add" } },
+    { "id": "product", "op": "reduce", "depends_on": ["uniq"],
+      "args": { "input": { "$ref": "uniq" }, "op": "multiply" } }
+  ]
+}

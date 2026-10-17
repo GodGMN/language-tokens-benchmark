@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "x", "op": "constant", "args": { "value": 5 } },
+    { "id": "between", "op": "constant", "args": { "value": "ran" },
+      "depends_on": ["x"],
+      "when": { "op": "all", "conditions": [
+        { "op": "gt", "left": { "$ref": "x" }, "right": 1 },
+        { "op": "lte", "left": { "$ref": "x" }, "right": 5 }
+      ] } },
+    { "id": "unlikely", "op": "constant", "args": { "value": "no" },
+      "depends_on": ["x"],
+      "when": { "op": "any", "conditions": [
+        { "op": "lt", "left": { "$ref": "x" }, "right": 1 },
+        { "op": "ne", "left": { "$ref": "x" }, "right": 5 }
+      ] } },
+    { "id": "negated", "op": "constant", "args": { "value": "ran" },
+      "depends_on": ["x"],
+      "when": { "op": "not", "condition": {
+        "op": "eq", "left": { "$ref": "x" }, "right": 4 } } }
+  ]
+}

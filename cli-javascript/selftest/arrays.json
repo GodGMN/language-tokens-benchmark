@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "data", "op": "constant", "args": { "value": [3, 1, 2, 1] } },
+    { "id": "sorted", "op": "sort", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data" } } },
+    { "id": "uniq", "op": "unique", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data" } } },
+    { "id": "rev", "op": "reverse", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data" } } },
+    { "id": "part", "op": "slice", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data" }, "start": 1, "end": -1 } },
+    { "id": "flat", "op": "flatten",
+      "args": { "input": [[1, 2], 3, [4, [5]]] } },
+    { "id": "mapped", "op": "map", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data" }, "transform": { "type": "add", "value": 10 } } },
+    { "id": "filtered", "op": "filter", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data" }, "predicate": { "type": "even" } } },
+    { "id": "typed", "op": "filter",
+      "args": { "input": [1, "a", null, true, [], {}], "predicate": { "type": "type_is", "value": "object" } } },
+    { "id": "sorted_mixed", "op": "sort",
+      "args": { "input": [null, true, false, "b", "a", 5, 1, [2], [1], { "z": 1 }, { "a": 2 }] } }
+  ]
+}

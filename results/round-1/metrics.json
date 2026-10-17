@@ -1,32 +1,136 @@
 {
   "round": "round-1",
-  "model": null,
+  "model": "deepseek-flash",
   "languages": {
-    "smoke": {
-      "session_file": "/home/sergio/.pi/agent/sessions/--tmp-pismoke--/2026-10-17T01-50-47-649Z_smoke-test.jsonl",
-      "started": "2026-10-17T01:50:47.649Z",
-      "ended": "2026-10-17T01:50:50.549Z",
-      "input": 523,
-      "output": 27,
-      "cacheRead": 1252,
+    "c": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--home-sergio-code-experiments-language-tokens-benchmark--/2026-10-17T01-56-11-331Z_round1-c.jsonl",
+      "started": "2026-10-17T01:56:11.331Z",
+      "ended": "2026-10-17T02:08:36.872Z",
+      "input": 46699,
+      "output": 121998,
+      "cacheRead": 5055360,
       "cacheWrite": 0,
-      "reasoning": 0,
-      "totalTokens": 1802,
+      "reasoning": 63902,
+      "totalTokens": 5224057,
       "cost": {
-        "input": 0.0,
-        "output": 0.0,
-        "cacheRead": 0.0,
+        "input": 0.014009699999999998,
+        "output": 0.1463976,
+        "cacheRead": 0.030332160000000004,
         "cacheWrite": 0.0,
-        "total": 0.0
+        "total": 0.19073945999999994
       },
-      "assistant_messages": 1,
-      "tool_results": 0,
+      "assistant_messages": 55,
+      "tool_results": 68,
       "user_messages": 1,
       "compactions": 0,
       "models": [
-        "prometheus:qwen3.8-27b-abliterated"
+        "deepseek:deepseek-flash"
       ],
-      "source": "smoke-test"
+      "source": "round1-c"
+    },
+    "go": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--home-sergio-code-experiments-language-tokens-benchmark--/2026-10-17T01-56-11-334Z_round1-go.jsonl",
+      "started": "2026-10-17T01:56:11.334Z",
+      "ended": "2026-10-17T02:04:47.630Z",
+      "input": 23565,
+      "output": 113306,
+      "cacheRead": 3228544,
+      "cacheWrite": 0,
+      "reasoning": 78740,
+      "totalTokens": 3365415,
+      "cost": {
+        "input": 0.0070695,
+        "output": 0.13596719999999998,
+        "cacheRead": 0.019371264,
+        "cacheWrite": 0.0,
+        "total": 0.162407964
+      },
+      "assistant_messages": 40,
+      "tool_results": 46,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "deepseek:deepseek-flash"
+      ],
+      "source": "round1-go"
+    },
+    "javascript": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--home-sergio-code-experiments-language-tokens-benchmark--/2026-10-17T01-56-11-308Z_round1-javascript.jsonl",
+      "started": "2026-10-17T01:56:11.308Z",
+      "ended": "2026-10-17T02:03:08.107Z",
+      "input": 26188,
+      "output": 90736,
+      "cacheRead": 2842624,
+      "cacheWrite": 0,
+      "reasoning": 59475,
+      "totalTokens": 2959548,
+      "cost": {
+        "input": 0.007856399999999998,
+        "output": 0.10888319999999999,
+        "cacheRead": 0.017055743999999998,
+        "cacheWrite": 0.0,
+        "total": 0.133795344
+      },
+      "assistant_messages": 40,
+      "tool_results": 57,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "deepseek:deepseek-flash"
+      ],
+      "source": "round1-javascript"
+    },
+    "python": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--home-sergio-code-experiments-language-tokens-benchmark--/2026-10-17T01-56-11-288Z_round1-python.jsonl",
+      "started": "2026-10-17T01:56:11.288Z",
+      "ended": "2026-10-17T02:06:07.218Z",
+      "input": 45106,
+      "output": 125031,
+      "cacheRead": 6052608,
+      "cacheWrite": 0,
+      "reasoning": 91213,
+      "totalTokens": 6222745,
+      "cost": {
+        "input": 0.013531800000000005,
+        "output": 0.15003719999999993,
+        "cacheRead": 0.036315648000000006,
+        "cacheWrite": 0.0,
+        "total": 0.199884648
+      },
+      "assistant_messages": 65,
+      "tool_results": 76,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "deepseek:deepseek-flash"
+      ],
+      "source": "round1-python"
+    },
+    "rust": {
+      "session_file": "/home/sergio/.pi/agent/sessions/--home-sergio-code-experiments-language-tokens-benchmark--/2026-10-17T01-56-11-351Z_round1-rust.jsonl",
+      "started": "2026-10-17T01:56:11.351Z",
+      "ended": "2026-10-17T02:09:29.824Z",
+      "input": 41418,
+      "output": 156063,
+      "cacheRead": 9207680,
+      "cacheWrite": 0,
+      "reasoning": 114295,
+      "totalTokens": 9405161,
+      "cost": {
+        "input": 0.012425399999999998,
+        "output": 0.18727560000000007,
+        "cacheRead": 0.05524608000000001,
+        "cacheWrite": 0.0,
+        "total": 0.25494707999999994
+      },
+      "assistant_messages": 85,
+      "tool_results": 85,
+      "user_messages": 1,
+      "compactions": 0,
+      "models": [
+        "deepseek:deepseek-flash"
+      ],
+      "source": "round1-rust"
     }
   }
 }

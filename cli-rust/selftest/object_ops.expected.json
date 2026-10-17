@@ -1,0 +1,75 @@
+{
+  "exit_code": 0,
+  "response": {
+    "error": null,
+    "execution_order": [
+      "base",
+      "with_city",
+      "field_names",
+      "field_values",
+      "extra",
+      "merged",
+      "picked",
+      "omitted",
+      "name",
+      "absent"
+    ],
+    "results": {
+      "absent": null,
+      "base": {
+        "age": 30,
+        "name": "ana",
+        "tags": [
+          "a",
+          "b"
+        ]
+      },
+      "extra": {
+        "active": true,
+        "age": 31
+      },
+      "field_names": [
+        "age",
+        "name",
+        "tags"
+      ],
+      "field_values": [
+        30,
+        "ana",
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "merged": {
+        "active": true,
+        "age": 31,
+        "name": "ana",
+        "tags": [
+          "a",
+          "b"
+        ]
+      },
+      "name": "ana",
+      "omitted": {
+        "age": 30,
+        "name": "ana"
+      },
+      "picked": {
+        "missing": null,
+        "name": "ana"
+      },
+      "with_city": {
+        "age": 30,
+        "city": "Paris",
+        "name": "ana",
+        "tags": [
+          "a",
+          "b"
+        ]
+      }
+    },
+    "skipped": [],
+    "status": "completed"
+  }
+}

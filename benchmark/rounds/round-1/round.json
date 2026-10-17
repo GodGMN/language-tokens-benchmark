@@ -1,7 +1,7 @@
 {
-  "model": null,
-  "provider": null,
-  "pi_thinking_level": null,
+  "model": "deepseek-flash",
+  "provider": "deepseek",
+  "pi_thinking_level": "high",
   "languages": {
     "python": "round1-python",
     "javascript": "round1-javascript",

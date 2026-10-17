@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "x", "op": "constant", "args": { "value": 3 } },
+    { "id": "y", "op": "constant", "depends_on": ["x"],
+      "when": { "op": "gt", "left": { "$ref": "x" }, "right": 10 },
+      "args": { "value": 99 } },
+    { "id": "z", "op": "constant", "depends_on": ["x"],
+      "when": { "op": "all", "conditions": [
+        { "op": "gt", "left": { "$ref": "x" }, "right": 1 },
+        { "op": "lt", "left": { "$ref": "x" }, "right": 10 }
+      ] },
+      "args": { "value": 7 } },
+    { "id": "w", "op": "constant", "depends_on": ["x"],
+      "when": { "op": "not", "condition": { "op": "eq", "left": { "$ref": "x" }, "right": 3 } },
+      "args": { "value": 8 } },
+    { "id": "v", "op": "constant", "depends_on": ["z"],
+      "when": { "op": "any", "conditions": [
+        { "op": "eq", "left": { "$ref": "z" }, "right": 7 },
+        { "op": "eq", "left": { "$ref": "z" }, "right": 0 }
+      ] },
+      "args": { "value": 9 } }
+  ]
+}

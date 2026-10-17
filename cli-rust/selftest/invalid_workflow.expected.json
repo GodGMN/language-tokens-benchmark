@@ -1,0 +1,14 @@
+{
+  "exit_code": 2,
+  "response": {
+    "error": {
+      "code": "INVALID_WORKFLOW",
+      "message": "unknown operation: explode",
+      "step": "bad"
+    },
+    "execution_order": [],
+    "results": {},
+    "skipped": [],
+    "status": "failed"
+  }
+}

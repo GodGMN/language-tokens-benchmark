@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "big", "op": "constant",
+      "args": { "value": 9223372036854775807 } },
+    { "id": "over", "op": "add", "depends_on": ["big"],
+      "args": { "a": { "$ref": "big" }, "b": 1 } },
+    { "id": "never", "op": "constant", "depends_on": ["over"],
+      "args": { "value": "unreachable" } }
+  ]
+}

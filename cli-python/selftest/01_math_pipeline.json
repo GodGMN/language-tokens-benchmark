@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 10 } },
+    {
+      "id": "evens",
+      "op": "filter",
+      "depends_on": ["nums"],
+      "args": {
+        "input": { "$ref": "nums" },
+        "predicate": { "type": "even" }
+      }
+    },
+    {
+      "id": "total",
+      "op": "sum",
+      "depends_on": ["evens"],
+      "args": { "input": { "$ref": "evens" } }
+    },
+    {
+      "id": "doubled",
+      "op": "multiply",
+      "depends_on": ["total"],
+      "args": { "a": { "$ref": "total" }, "b": 2 }
+    },
+    {
+      "id": "final",
+      "op": "subtract",
+      "depends_on": ["doubled"],
+      "args": { "a": { "$ref": "doubled" }, "b": 1 }
+    }
+  ]
+}

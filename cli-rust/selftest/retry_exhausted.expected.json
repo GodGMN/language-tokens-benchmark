@@ -1,0 +1,18 @@
+{
+  "exit_code": 1,
+  "response": {
+    "error": {
+      "code": "STEP_FAILED",
+      "message": "retries exhausted",
+      "step": "flaky"
+    },
+    "execution_order": [
+      "first"
+    ],
+    "results": {
+      "first": 1
+    },
+    "skipped": [],
+    "status": "failed"
+  }
+}

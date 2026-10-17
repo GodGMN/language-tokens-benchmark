@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "prep", "op": "constant", "args": { "value": "ready" } },
+    { "id": "doomed", "op": "fail_until", "depends_on": ["prep"],
+      "args": { "failures": 4, "value": "never" },
+      "retry": { "max_attempts": 3 } },
+    { "id": "unreachable", "op": "constant", "depends_on": ["doomed"], "args": { "value": 1 } }
+  ]
+}

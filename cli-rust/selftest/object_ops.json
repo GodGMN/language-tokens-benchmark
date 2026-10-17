@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant",
+      "args": { "value": { "name": "ana", "age": 30, "tags": ["a", "b"] } } },
+    { "id": "with_city", "op": "set", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "city", "value": "Paris" } },
+    { "id": "field_names", "op": "keys", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" } } },
+    { "id": "field_values", "op": "values", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" } } },
+    { "id": "extra", "op": "constant", "args": { "value": { "age": 31, "active": true } } },
+    { "id": "merged", "op": "merge", "depends_on": ["base", "extra"],
+      "args": { "a": { "$ref": "base" }, "b": { "$ref": "extra" } } },
+    { "id": "picked", "op": "pick", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "keys": ["name", "missing"] } },
+    { "id": "omitted", "op": "omit", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "keys": ["tags"] } },
+    { "id": "name", "op": "get", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "name" } },
+    { "id": "absent", "op": "get", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "absent" } }
+  ]
+}

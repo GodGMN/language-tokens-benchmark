@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "text", "op": "constant", "args": { "value": "héllo wörld" } },
+    { "id": "size", "op": "length", "depends_on": ["text"],
+      "args": { "input": { "$ref": "text" } } },
+    { "id": "upper", "op": "uppercase", "depends_on": ["text"],
+      "args": { "input": { "$ref": "text" } } },
+    { "id": "words", "op": "split", "depends_on": ["text"],
+      "args": { "input": { "$ref": "text" }, "sep": " " } },
+    { "id": "chars", "op": "split", "depends_on": ["text"],
+      "args": { "input": { "$ref": "text" }, "sep": "" } },
+    { "id": "ascii", "op": "replace", "depends_on": ["text"],
+      "args": { "input": { "$ref": "text" }, "search": "ö",
+                "replace": "o" } },
+    { "id": "soundex", "op": "replace", "depends_on": ["text"],
+      "args": { "input": { "$ref": "text" }, "search": "é",
+                "replace": "e" } },
+    { "id": "tagged", "op": "concat", "depends_on": ["soundex"],
+      "args": { "a": "", "b": { "$ref": "soundex" } } }
+  ]
+}

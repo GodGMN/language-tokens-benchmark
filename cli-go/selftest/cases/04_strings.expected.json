@@ -1,0 +1,1 @@
+{"status":"completed","results":{"clean":"pad me","count":11,"hello":"Hello, World","joined":"HELLO-WORLD","padded":"  pad me  ","parts":["HELLO","WORLD"],"shout":"HELLO, WORLD","swapped":"HELLO_WORLD"},"execution_order":["hello","shout","parts","joined","count","swapped","padded","clean"],"skipped":[],"error":null}

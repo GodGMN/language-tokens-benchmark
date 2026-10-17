@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "obj",
+      "op": "constant",
+      "args": {
+        "value": {
+          "user": { "name": "Ada", "roles": ["admin", "dev"] },
+          "items": [10, 20, 30]
+        }
+      }
+    },
+    {
+      "id": "user",
+      "op": "get",
+      "depends_on": ["obj"],
+      "args": { "input": { "$ref": "obj" }, "key": "user" }
+    },
+    {
+      "id": "name",
+      "op": "get",
+      "depends_on": ["user"],
+      "args": { "input": { "$ref": "user" }, "key": "name" }
+    },
+    {
+      "id": "same",
+      "op": "constant",
+      "depends_on": ["name"],
+      "args": { "value": { "$ref": "obj.user.name" } }
+    },
+    {
+      "id": "role",
+      "op": "constant",
+      "depends_on": ["name"],
+      "args": { "value": { "$ref": "obj.user.roles.1" } }
+    },
+    {
+      "id": "final",
+      "op": "concat",
+      "depends_on": ["name", "same"],
+      "args": { "a": { "$ref": "name" }, "b": { "$ref": "same" } }
+    },
+    {
+      "id": "sumItems",
+      "op": "sum",
+      "depends_on": ["final"],
+      "args": { "input": { "$ref": "obj.items" } }
+    }
+  ]
+}

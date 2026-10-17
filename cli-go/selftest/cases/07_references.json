@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "data", "op": "constant",
+      "args": { "value": { "user": { "name": "Ana", "roles": ["admin", "dev"] }, "meta": { "active": true } } } },
+    { "id": "uname", "op": "get", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data.user" }, "key": "name" } },
+    { "id": "role", "op": "constant", "depends_on": ["data"],
+      "args": { "value": { "$ref": "data.user.roles.1" } } },
+    { "id": "active", "op": "get", "depends_on": ["data"],
+      "args": { "input": { "$ref": "data.meta" }, "key": "active" } },
+    { "id": "flag", "op": "constant", "depends_on": ["active"], "args": { "value": { "$ref": "active" } } },
+    { "id": "confirmed", "op": "constant", "depends_on": ["flag"], "args": { "value": { "$ref": "flag" } } }
+  ]
+}

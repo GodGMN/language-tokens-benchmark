@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "base", "op": "constant",
+      "args": { "value": { "b": 2, "a": { "x": [10, 20, 30] } } } },
+    { "id": "got", "op": "get", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "a" } },
+    { "id": "missing", "op": "get", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "zzz" } },
+    { "id": "keys", "op": "keys", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" } } },
+    { "id": "vals", "op": "values", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" } } },
+    { "id": "updated", "op": "set", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "key": "c", "value": true } },
+    { "id": "merged", "op": "merge", "depends_on": ["base"],
+      "args": { "a": { "$ref": "base" }, "b": { "a": 1, "d": 4 } } },
+    { "id": "subset", "op": "pick", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "keys": ["a", "missing"] } },
+    { "id": "without", "op": "omit", "depends_on": ["base"],
+      "args": { "input": { "$ref": "base" }, "keys": ["b"] } }
+  ]
+}

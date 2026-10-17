@@ -1,0 +1,32 @@
+{
+  "exit_code": 0,
+  "response": {
+    "error": null,
+    "execution_order": [
+      "raw",
+      "clean",
+      "parts",
+      "joined",
+      "upper",
+      "len",
+      "banner",
+      "replaced"
+    ],
+    "results": {
+      "banner": "HELLO-WORLD-HELLO!",
+      "clean": "hello,world,HELLO",
+      "joined": "hello-world-HELLO",
+      "len": 17,
+      "parts": [
+        "hello",
+        "world",
+        "HELLO"
+      ],
+      "raw": "  hello,world,HELLO  ",
+      "replaced": "hello,there,HELLO",
+      "upper": "HELLO-WORLD-HELLO"
+    },
+    "skipped": [],
+    "status": "completed"
+  }
+}

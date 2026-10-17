@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "hello", "op": "concat", "args": { "a": "Hello, ", "b": "World" } },
+    { "id": "shout", "op": "uppercase", "depends_on": ["hello"], "args": { "input": { "$ref": "hello" } } },
+    { "id": "parts", "op": "split", "depends_on": ["shout"], "args": { "input": { "$ref": "shout" }, "sep": ", " } },
+    { "id": "joined", "op": "join", "depends_on": ["parts"], "args": { "input": { "$ref": "parts" }, "sep": "-" } },
+    { "id": "count", "op": "length", "depends_on": ["joined"], "args": { "input": { "$ref": "joined" } } },
+    { "id": "swapped", "op": "replace", "depends_on": ["joined"], "args": { "input": { "$ref": "joined" }, "search": "-", "replace": "_" } },
+    { "id": "padded", "op": "constant", "args": { "value": "  pad me  " } },
+    { "id": "clean", "op": "trim", "depends_on": ["padded"], "args": { "input": { "$ref": "padded" } } }
+  ]
+}

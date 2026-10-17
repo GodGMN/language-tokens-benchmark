@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "nums", "op": "range", "args": { "start": 1, "end": 6 } },
+    { "id": "sum_all", "op": "sum", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" } } },
+    { "id": "total", "op": "add", "depends_on": ["nums", "sum_all"],
+      "args": { "a": { "$ref": "sum_all" }, "b": 1 } },
+    { "id": "diff", "op": "subtract", "args": { "a": 10, "b": 3 } },
+    { "id": "prod", "op": "multiply", "args": { "a": -4, "b": 5 } },
+    { "id": "quot", "op": "divide", "args": { "a": -7, "b": 2 } },
+    { "id": "rem", "op": "mod", "args": { "a": -7, "b": 2 } },
+    { "id": "lo", "op": "min", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" } } },
+    { "id": "hi", "op": "max", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" } } },
+    { "id": "fold", "op": "reduce", "depends_on": ["nums"],
+      "args": { "input": { "$ref": "nums" }, "op": "multiply" } }
+  ]
+}

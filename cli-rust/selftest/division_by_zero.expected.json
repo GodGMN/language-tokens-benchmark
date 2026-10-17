@@ -1,0 +1,18 @@
+{
+  "exit_code": 1,
+  "response": {
+    "error": {
+      "code": "DIVISION_BY_ZERO",
+      "message": "division by zero",
+      "step": "boom"
+    },
+    "execution_order": [
+      "ok"
+    ],
+    "results": {
+      "ok": 10
+    },
+    "skipped": [],
+    "status": "failed"
+  }
+}

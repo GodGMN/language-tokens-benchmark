@@ -1,0 +1,40 @@
+{
+  "exit_code": 0,
+  "response": {
+    "error": null,
+    "execution_order": [
+      "data",
+      "name",
+      "age",
+      "first_item",
+      "adult",
+      "child",
+      "greeting",
+      "is_ana"
+    ],
+    "results": {
+      "adult": "adult",
+      "age": 30,
+      "child": null,
+      "data": {
+        "items": [
+          10,
+          20,
+          30
+        ],
+        "user": {
+          "age": 30,
+          "name": "Ana"
+        }
+      },
+      "first_item": 10,
+      "greeting": "Hello, Ana",
+      "is_ana": true,
+      "name": "Ana"
+    },
+    "skipped": [
+      "child"
+    ],
+    "status": "completed"
+  }
+}

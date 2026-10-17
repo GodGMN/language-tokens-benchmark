@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "config", "op": "constant",
+      "args": { "value": { "user": { "name": "bob", "roles": ["dev", "ops"] },
+                           "items": [10, 20, 30] } } },
+    { "id": "name", "op": "constant", "depends_on": ["config"],
+      "args": { "value": { "$ref": "config.user.name" } } },
+    { "id": "second_item", "op": "constant", "depends_on": ["config"],
+      "args": { "value": { "$ref": "config.items.1" } } },
+    { "id": "first_role", "op": "constant", "depends_on": ["config"],
+      "args": { "value": { "$ref": "config.user.roles.0" } } },
+    { "id": "items_sum", "op": "sum", "depends_on": ["config"],
+      "args": { "input": { "$ref": "config.items" } } },
+    { "id": "role_count", "op": "length", "depends_on": ["first_role"],
+      "args": { "input": { "$ref": "first_role" } } }
+  ]
+}

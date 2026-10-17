@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "a", "op": "constant", "args": { "value": 1 } },
+    { "id": "b", "op": "mod", "depends_on": ["a"],
+      "args": { "a": { "$ref": "a" }, "b": 0 } }
+  ]
+}

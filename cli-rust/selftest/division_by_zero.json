@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "steps": [
+    { "id": "ok", "op": "constant", "args": { "value": 10 } },
+    { "id": "boom", "op": "divide", "depends_on": ["ok"],
+      "args": { "a": { "$ref": "ok" }, "b": 0 } },
+    { "id": "unreachable", "op": "constant", "args": { "value": 1 }, "depends_on": ["boom"] }
+  ]
+}
