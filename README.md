@@ -8,36 +8,30 @@ It is a measure of **code-generation efficiency per language**, not a ranking of
 
 ## Leaderboard
 
-DeepSeek V4.1 Flash, one-shot, `thinking=high`. Two rounds: spec v1 (107 scored tests) and spec v2 (114, adding the clarified edge rules). Only **conforming** implementations are ranked.
+**DeepSeek V4.1 Flash** (`deepseek/deepseek-flash`, DeepSeek-V4.1-Flash-1017) · one-shot · `thinking=high` · spec v2 · **6 samples per language**.
 
-**Round 2 — spec v2 (current)**
+All 30 samples pass every v2-scored test (112 of 114; the other two rely on a condition rule that was only made explicit in spec v3 and are excluded — see [`docs/spec-changelog.md`](docs/spec-changelog.md)). At this task size **correctness is saturated**, so the leaderboard ranks token efficiency.
 
-| rank | language | scored | output tok | total tok | cost | tool calls |
-|---|---|---|---|---|---|---|
-| 1 | **Go** | 114/114 | 110,406 | 3,455,929 | $0.163 | 38 |
-| 2 | **Rust** | 114/114 | 104,408 | 4,194,694 | $0.158 | 56 |
-| 3 | **JavaScript** | 114/114 | 119,392 | 4,913,756 | $0.180 | 62 |
-| 4 | **C** | 114/114 | 118,885 | 6,107,267 | $0.192 | 61 |
-| — | Python | 112/114 | 82,123 | 3,323,523 | $0.128 | 50 |
+| rank | language | conforming | output tok median [range] | total tok median [range] | turns |
+|---|---|---|---|---|---|
+| 1 | **JavaScript** | 6/6 | **95,022** [67,714–157,602] | **3,760,233** [1,351,236–9,721,332] | 47 |
+| 2 | **Python** | 6/6 | 96,132 [78,385–154,250] | 4,626,750 [3,121,625–11,614,289] | 56 |
+| 3 | **Go** | 6/6 | 102,106 [69,835–170,119] | 3,802,535 [1,891,864–6,404,923] | 47 |
+| 4 | **C** | 6/6 | 120,000 [108,581–154,778] | 6,165,159 [3,997,438–12,365,110] | 58 |
+| 5 | **Rust** | 6/6 | 128,855 [104,408–140,846] | 6,776,508 [4,194,694–8,987,971] | 71 |
 
-**Round 1 — spec v1**
+### What the samples show
 
-| rank | language | scored | output tok | total tok | cost | tool calls |
-|---|---|---|---|---|---|---|
-| 1 | **JavaScript** | 107/107 | 90,736 | 2,959,548 | $0.134 | 57 |
-| 2 | **Go** | 107/107 | 113,306 | 3,365,415 | $0.162 | 46 |
-| 3 | **C** | 107/107 | 121,998 | 5,224,057 | $0.191 | 68 |
-| 4 | **Python** | 107/107 | 125,031 | 6,222,745 | $0.200 | 76 |
-| 5 | **Rust** | 107/107 | 156,063 | 9,405,161 | $0.255 | 85 |
+- **JavaScript, Python and Go are effectively tied** on output tokens (within ~7%); Rust is clearly the most expensive (≈35% more than JavaScript, and the most turns at 71 median). C sits mid-high.
+- **Variance is enormous.** JavaScript's total tokens ranged 1.35M–9.72M across six identical runs — a 7× spread. Single-run rankings are meaningless; the median and range are the result.
+- **Total tokens ≈ turns × context.** Cache reads are ~95% of total, so the metric mostly tracks how many iterations a run took. Output tokens are the cleaner "effort" signal; total tokens is "cost".
+- **Cheapest ≠ correct was a real effect** before the spec was clarified: JavaScript once finished in 23 turns and failed two tests. Once the ambiguity was removed, every sample conformed, and cheap runs stayed cheap.
 
-### What the two rounds show
+Per-round detail: [`results/aggregate.md`](results/aggregate.md), [`results/compare.md`](results/compare.md), [`results/round-2/report.md`](results/round-2/report.md).
 
-- **Correctness is high and mostly language-independent.** On spec v1, all five are 107/107 across 75 edge cases. On spec v2, only Python fails — it does not reject malformed `when` conditions (112/114).
-- **Single-run rankings are noisy.** JavaScript was cheapest in round 1 and third in round 2; Rust went from most expensive to second. **Total tokens** swing with session length (cache reads dominate), so treat one round as one sample.
-- **Output tokens are the more stable signal** (Go and C vary ~3% across rounds; JS ~32%, Rust ~49%). The leaderboard uses total tokens because that is the true cost, but output tokens tell the same story with less noise.
-- **Cheapest ≠ correct.** Python is the cheapest in round 2 but is the only non-conforming implementation.
+### Why not more rounds
 
-Full data: [`results/round-2/report.md`](results/round-2/report.md), [`results/compare.md`](results/compare.md).
+Six samples already show a 7× spread, so the marginal value of more samples is in tightening the median, not in changing the ordering. The bigger lever is **task size**: to get a benchmark that discriminates on *correctness* rather than cost, the task needs more surface (see Roadmap).
 
 ## The task
 
@@ -98,6 +92,9 @@ This is meant to grow by PR. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Roadmap
 
+- **Enlarge the task.** Correctness is saturated at 40+ operations; a harder
+  benchmark would add surface (nested workflows, richer expressions, streaming
+  output) so conformance itself becomes a discriminator again.
 - More languages (Java, Kotlin, Swift, TypeScript…).
-- More models per round (the round config already records model + params).
-- A published site generated from `results/*/summary.json`.
+- More models per round (the round config already records model + version).
+- A published site generated from `results/index.json`.

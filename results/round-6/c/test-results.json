@@ -1,7 +1,7 @@
 {
   "language": "c",
-  "passed": 114,
-  "total": 114,
+  "passed": 112,
+  "total": 112,
   "spec_version": 2,
   "buckets": {
     "public": [
@@ -9,12 +9,12 @@
       32
     ],
     "holdout": [
-      82,
-      82
+      80,
+      80
     ],
     "future": [
-      0,
-      0
+      2,
+      2
     ]
   },
   "results": [
@@ -27,7 +27,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "unsupported_version",
@@ -594,8 +594,8 @@
       "name": "cond_extra_field",
       "file": "holdout/conditions/cond_extra_field.json",
       "private": true,
-      "since": 2,
-      "bucket": "holdout",
+      "since": 3,
+      "bucket": "future",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
@@ -638,8 +638,8 @@
       "name": "cond_unknown_op",
       "file": "holdout/conditions/cond_unknown_op.json",
       "private": true,
-      "since": 1,
-      "bucket": "holdout",
+      "since": 3,
+      "bucket": "future",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
@@ -676,7 +676,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "self_dep",
@@ -841,7 +841,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "i64_bounds",
@@ -852,7 +852,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "mod_min_neg1",
@@ -863,7 +863,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "mod_signs",
@@ -874,7 +874,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.005
     },
     {
       "name": "mul_neg_overflow",
@@ -885,7 +885,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "mul_overflow",
@@ -896,7 +896,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "range_bounds",

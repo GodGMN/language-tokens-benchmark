@@ -1,7 +1,7 @@
 {
   "language": "rust",
-  "passed": 114,
-  "total": 114,
+  "passed": 112,
+  "total": 112,
   "spec_version": 2,
   "buckets": {
     "public": [
@@ -9,12 +9,12 @@
       32
     ],
     "holdout": [
-      82,
-      82
+      80,
+      80
     ],
     "future": [
-      0,
-      0
+      2,
+      2
     ]
   },
   "results": [
@@ -27,7 +27,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.007
     },
     {
       "name": "unsupported_version",
@@ -49,7 +49,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "range_filter_sum",
@@ -93,7 +93,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "skipped_step",
@@ -115,7 +115,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "topological_not_array_order",
@@ -126,7 +126,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "unknown_dependency",
@@ -137,7 +137,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "division_by_zero",
@@ -148,7 +148,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "min_of_empty_array",
@@ -159,7 +159,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.004
+      "seconds": 0.001
     },
     {
       "name": "invalid_arg_is_runtime_exit_1",
@@ -170,7 +170,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "arithmetic_overflow",
@@ -181,7 +181,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "retry_exhausted",
@@ -192,7 +192,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "retry_succeeds",
@@ -269,7 +269,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.006
+      "seconds": 0.001
     },
     {
       "name": "reduce_identity_defaults",
@@ -280,7 +280,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "slice_negative_and_clamp",
@@ -291,7 +291,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "sort_mixed_types_total_order",
@@ -302,7 +302,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "string_ops",
@@ -313,7 +313,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "unicode_code_points_and_ascii_case",
@@ -324,7 +324,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "utility_ops",
@@ -335,7 +335,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.004
+      "seconds": 0.001
     },
     {
       "name": "invalid_reference_path",
@@ -346,7 +346,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "nested_reference",
@@ -357,7 +357,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "reference_to_skipped_step",
@@ -368,7 +368,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "filter_even",
@@ -379,7 +379,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "flatten_one_level",
@@ -390,7 +390,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.012
+      "seconds": 0.001
     },
     {
       "name": "map_abs",
@@ -401,7 +401,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "map_negate",
@@ -412,7 +412,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "reduce_mul_initial",
@@ -423,7 +423,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "reduce_subtract",
@@ -434,7 +434,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.016
+      "seconds": 0.001
     },
     {
       "name": "reverse_empty",
@@ -445,7 +445,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "slice_clamp",
@@ -456,7 +456,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "slice_start_gt_end",
@@ -467,7 +467,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "sort_arrays",
@@ -478,7 +478,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.008
+      "seconds": 0.001
     },
     {
       "name": "sort_bools",
@@ -489,7 +489,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "sort_mixed",
@@ -533,7 +533,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "join_non_string",
@@ -544,7 +544,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "missing_version",
@@ -555,7 +555,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "stdin_run",
@@ -566,7 +566,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "steps_not_array",
@@ -577,7 +577,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "top_level_unknown",
@@ -588,18 +588,18 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "cond_extra_field",
       "file": "holdout/conditions/cond_extra_field.json",
       "private": true,
-      "since": 2,
-      "bucket": "holdout",
+      "since": 3,
+      "bucket": "future",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "cond_missing_ref",
@@ -610,7 +610,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "cond_mixed_type_false",
@@ -621,7 +621,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.009
+      "seconds": 0.001
     },
     {
       "name": "cond_not_all_true",
@@ -632,18 +632,18 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.015
+      "seconds": 0.001
     },
     {
       "name": "cond_unknown_op",
       "file": "holdout/conditions/cond_unknown_op.json",
       "private": true,
-      "since": 1,
-      "bucket": "holdout",
+      "since": 3,
+      "bucket": "future",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "diamond_tiebreak",
@@ -654,7 +654,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.005
+      "seconds": 0.001
     },
     {
       "name": "duplicate_id",
@@ -665,7 +665,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.003
+      "seconds": 0.001
     },
     {
       "name": "order_interleaved",
@@ -709,7 +709,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "large_chain",
@@ -720,7 +720,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "pipeline_even_times_ten",
@@ -731,7 +731,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "skip_all_cascade",
@@ -742,7 +742,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "skip_cascade",
@@ -819,7 +819,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "div_min_neg1",
@@ -830,7 +830,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "division_signs",
@@ -1226,7 +1226,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "replace_overlap",

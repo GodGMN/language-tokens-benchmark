@@ -1,7 +1,7 @@
 {
   "language": "rust",
-  "passed": 114,
-  "total": 114,
+  "passed": 112,
+  "total": 112,
   "spec_version": 2,
   "buckets": {
     "public": [
@@ -9,12 +9,12 @@
       32
     ],
     "holdout": [
-      82,
-      82
+      80,
+      80
     ],
     "future": [
-      0,
-      0
+      2,
+      2
     ]
   },
   "results": [
@@ -27,7 +27,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.004
     },
     {
       "name": "unsupported_version",
@@ -60,7 +60,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "unknown_step_field_rejected",
@@ -93,7 +93,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "skipped_step",
@@ -181,7 +181,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "retry_exhausted",
@@ -346,7 +346,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "nested_reference",
@@ -390,7 +390,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "map_abs",
@@ -423,7 +423,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "reduce_subtract",
@@ -594,8 +594,8 @@
       "name": "cond_extra_field",
       "file": "holdout/conditions/cond_extra_field.json",
       "private": true,
-      "since": 2,
-      "bucket": "holdout",
+      "since": 3,
+      "bucket": "future",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
@@ -638,8 +638,8 @@
       "name": "cond_unknown_op",
       "file": "holdout/conditions/cond_unknown_op.json",
       "private": true,
-      "since": 1,
-      "bucket": "holdout",
+      "since": 3,
+      "bucket": "future",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
@@ -709,7 +709,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "large_chain",
@@ -775,7 +775,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "float_arg",
@@ -797,7 +797,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "version_float",
@@ -951,7 +951,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "merge_precedence",
@@ -1028,7 +1028,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.002
     },
     {
       "name": "ref_index_oob",
@@ -1193,7 +1193,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "join_empty",

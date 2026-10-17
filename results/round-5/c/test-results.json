@@ -1,7 +1,7 @@
 {
   "language": "c",
   "passed": 112,
-  "total": 114,
+  "total": 112,
   "spec_version": 2,
   "buckets": {
     "public": [
@@ -10,11 +10,11 @@
     ],
     "holdout": [
       80,
-      82
+      80
     ],
     "future": [
       0,
-      0
+      2
     ]
   },
   "results": [
@@ -594,8 +594,8 @@
       "name": "cond_extra_field",
       "file": "holdout/conditions/cond_extra_field.json",
       "private": true,
-      "since": 2,
-      "bucket": "holdout",
+      "since": 3,
+      "bucket": "future",
       "passed": false,
       "reasons": [
         "exit 0 != expected 2",
@@ -646,8 +646,8 @@
       "name": "cond_unknown_op",
       "file": "holdout/conditions/cond_unknown_op.json",
       "private": true,
-      "since": 1,
-      "bucket": "holdout",
+      "since": 3,
+      "bucket": "future",
       "passed": false,
       "reasons": [
         "exit 1 != expected 2",
@@ -856,7 +856,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001
+      "seconds": 0.008
     },
     {
       "name": "i64_bounds",
@@ -1285,7 +1285,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.002
+      "seconds": 0.001
     }
   ]
 }

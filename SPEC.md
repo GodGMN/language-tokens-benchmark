@@ -2,6 +2,8 @@
 
 Functional contract for the `workflow` CLI. Every implementation must behave exactly as described here. This document is the single source of truth.
 
+**Spec version: 3.** A round is scored against the version it was run with (see `round.json`); holdout cases tagged `"since": N` only count for `spec_version >= N`. History: [`docs/spec-changelog.md`](docs/spec-changelog.md).
+
 ## 1. CLI
 
 Command:
@@ -252,6 +254,7 @@ Every op takes its `args` after `$ref` resolution.
   - `{ "op": "not", "condition": { ... } }` — negation.
 - `left`/`right` may be `$ref`s or literals.
 - Result must be a strict boolean; non-boolean final value -> `INVALID_CONDITION`.
+- A condition object must contain exactly `op` plus the fields documented above for that operator. An **unknown `op`**, a missing required field, or any extra field is `INVALID_WORKFLOW`, detected during structural validation before any step runs.
 
 ## 6. `$ref` references
 
