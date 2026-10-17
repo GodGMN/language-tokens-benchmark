@@ -1,0 +1,21 @@
+{
+  "language": "javascript",
+  "project_dir": "cli-javascript",
+  "build": null,
+  "run": [
+    "node",
+    "workflow.js",
+    "run",
+    "{input}"
+  ],
+  "run_stdin": [
+    "node",
+    "workflow.js",
+    "run",
+    "-"
+  ],
+  "notes": "Entry point must be cli-javascript/workflow.js. Node >= 20. Prefer no dependencies (built-in JSON); package.json only if needed.",
+  "requires": [
+    "workflow.js"
+  ]
+}

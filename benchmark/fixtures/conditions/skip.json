@@ -1,0 +1,12 @@
+{
+  "name": "skipped_step",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "x", "op": "constant", "args": { "value": 3 } },
+      { "id": "y", "op": "constant", "args": { "value": 99 }, "depends_on": ["x"], "when": { "op": "gt", "left": {"$ref": "x"}, "right": 10 } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "x": 3, "y": null }, "execution_order": ["x","y"], "skipped": ["y"], "error": null }
+}

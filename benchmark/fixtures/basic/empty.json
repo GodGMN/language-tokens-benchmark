@@ -1,0 +1,6 @@
+{
+  "name": "empty_workflow",
+  "input": { "version": 1, "steps": [] },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": {}, "execution_order": [], "skipped": [], "error": null }
+}

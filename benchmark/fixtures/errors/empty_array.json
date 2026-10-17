@@ -1,0 +1,7 @@
+{
+  "name": "min_of_empty_array",
+  "input": { "version": 1, "steps": [ { "id": "a", "op": "min", "args": { "input": [] } } ] },
+  "expected_exit_code": 1,
+  "expected_error_code": "EMPTY_ARRAY",
+  "expected_output": { "status": "failed", "results": {}, "execution_order": [], "skipped": [], "error": { "code": "EMPTY_ARRAY", "step": "a", "message": "empty" } }
+}

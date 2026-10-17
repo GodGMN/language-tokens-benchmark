@@ -1,0 +1,8 @@
+{
+  "default_round": "round-1",
+  "default_timeout_seconds": 5,
+  "large_workflow_timeout_seconds": 15,
+  "max_input_bytes": 1048576,
+  "max_steps": 1000,
+  "max_output_bytes": 1048576
+}

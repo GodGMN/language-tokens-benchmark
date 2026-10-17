@@ -1,0 +1,13 @@
+{
+  "name": "range_filter_sum",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "n", "op": "range", "args": { "start": 1, "end": 5 } },
+      { "id": "evens", "op": "filter", "depends_on": ["n"], "args": { "input": {"$ref": "n"}, "predicate": {"type": "even"} } },
+      { "id": "total", "op": "sum", "depends_on": ["evens"], "args": { "input": {"$ref": "evens"} } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "n": [1,2,3,4,5], "evens": [2,4], "total": 6 }, "execution_order": ["n","evens","total"], "skipped": [], "error": null }
+}

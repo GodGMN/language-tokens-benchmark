@@ -1,0 +1,21 @@
+{
+  "language": "python",
+  "project_dir": "cli-python",
+  "build": null,
+  "run": [
+    "python3",
+    "workflow.py",
+    "run",
+    "{input}"
+  ],
+  "run_stdin": [
+    "python3",
+    "workflow.py",
+    "run",
+    "-"
+  ],
+  "notes": "Entry point must be cli-python/workflow.py, importable without installation. Python >= 3.10.",
+  "requires": [
+    "workflow.py"
+  ]
+}

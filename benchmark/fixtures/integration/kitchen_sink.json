@@ -1,0 +1,35 @@
+{
+  "name": "kitchen_sink",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "nums", "op": "range", "args": { "start": 1, "end": 10 } },
+      { "id": "doubled", "op": "map", "depends_on": ["nums"], "args": { "input": {"$ref": "nums"}, "transform": {"type": "multiply", "value": 2} } },
+      { "id": "bigs", "op": "filter", "depends_on": ["doubled"], "args": { "input": {"$ref": "doubled"}, "predicate": {"type": "gt", "value": 10} } },
+      { "id": "total", "op": "sum", "depends_on": ["bigs"], "args": { "input": {"$ref": "bigs"} } },
+      { "id": "label", "op": "constant", "args": { "value": { "msg": "done", "count": 99 } } },
+      { "id": "big_msg", "op": "get", "depends_on": ["label"], "args": { "input": {"$ref": "label"}, "key": "msg" } },
+      { "id": "maybe", "op": "concat", "depends_on": ["total", "big_msg"],
+        "args": { "a": {"$ref": "big_msg"}, "b": "!" },
+        "when": { "op": "gte", "left": {"$ref": "total"}, "right": 100 } },
+      { "id": "flaky", "op": "fail_until", "args": { "failures": 1, "value": "here" }, "depends_on": ["total"], "retry": { "max_attempts": 2 } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "nums": [1,2,3,4,5,6,7,8,9,10],
+      "doubled": [2,4,6,8,10,12,14,16,18,20],
+      "bigs": [12,14,16,18,20],
+      "total": 80,
+      "label": {"msg":"done","count":99},
+      "big_msg": "done",
+      "maybe": null,
+      "flaky": "here"
+    },
+    "execution_order": ["nums","doubled","bigs","total","label","big_msg","maybe","flaky"],
+    "skipped": ["maybe"],
+    "error": null
+  }
+}

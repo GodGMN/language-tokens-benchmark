@@ -1,0 +1,8 @@
+{
+  "language": "oracle",
+  "project_dir": "benchmark/oracle",
+  "build": null,
+  "run": ["python3", "workflow.py", "run", "{input}"],
+  "run_stdin": ["python3", "workflow.py", "run", "-"],
+  "notes": "Reference oracle used to validate fixtures. Not counted in the report's ranking."
+}

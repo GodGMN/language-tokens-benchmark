@@ -1,0 +1,18 @@
+{
+  "name": "object_ops",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "o", "op": "constant", "args": { "value": { "a": 1, "b": 2, "c": 3 } } },
+      { "id": "g", "op": "get", "depends_on": ["o"], "args": { "input": {"$ref": "o"}, "key": "b" } },
+      { "id": "s", "op": "set", "depends_on": ["o"], "args": { "input": {"$ref": "o"}, "key": "d", "value": 4 } },
+      { "id": "k", "op": "keys", "depends_on": ["o"], "args": { "input": {"$ref": "o"} } },
+      { "id": "v", "op": "values", "depends_on": ["o"], "args": { "input": {"$ref": "o"} } },
+      { "id": "mg", "op": "merge", "args": { "a": { "a": 1, "b": 2 }, "b": { "b": 3, "c": 4 } } },
+      { "id": "pk", "op": "pick", "depends_on": ["o"], "args": { "input": {"$ref": "o"}, "keys": ["c", "a"] } },
+      { "id": "om", "op": "omit", "depends_on": ["o"], "args": { "input": {"$ref": "o"}, "keys": ["a"] } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "o": {"a":1,"b":2,"c":3}, "g": 2, "s": {"a":1,"b":2,"c":3,"d":4}, "k": ["a","b","c"], "v": [1,2,3], "mg": {"a":1,"b":3,"c":4}, "pk": {"a":1,"c":3}, "om": {"b":2,"c":3} }, "execution_order": ["o","g","s","k","v","mg","pk","om"], "skipped": [], "error": null }
+}

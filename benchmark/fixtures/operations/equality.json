@@ -1,0 +1,15 @@
+{
+  "name": "structural_equality",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "a", "op": "equals", "args": { "a": 1, "b": "1" } },
+      { "id": "b", "op": "equals", "args": { "a": {"x":1,"y":2}, "b": {"y":2,"x":1} } },
+      { "id": "c", "op": "equals", "args": { "a": [1,2], "b": [1,2] } },
+      { "id": "d", "op": "equals", "args": { "a": null, "b": null } },
+      { "id": "e", "op": "equals", "args": { "a": null, "b": 0 } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "a": false, "b": true, "c": true, "d": true, "e": false }, "execution_order": ["a","b","c","d","e"], "skipped": [], "error": null }
+}

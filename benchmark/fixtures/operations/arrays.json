@@ -1,0 +1,18 @@
+{
+  "name": "array_ops",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "m", "op": "map", "args": { "input": [1,2,3], "transform": {"type": "add", "value": 1} } },
+      { "id": "f", "op": "filter", "args": { "input": [1,2,3,4,5,6], "predicate": {"type": "gt", "value": 3} } },
+      { "id": "rd", "op": "reduce", "args": { "input": [1,2,3,4], "op": "add" } },
+      { "id": "s", "op": "sort", "args": { "input": [3,1,2] } },
+      { "id": "rv", "op": "reverse", "args": { "input": [1,2,3] } },
+      { "id": "u", "op": "unique", "args": { "input": [1,2,1,3,2] } },
+      { "id": "sl", "op": "slice", "args": { "input": [1,2,3,4,5], "start": -2 } },
+      { "id": "fl", "op": "flatten", "args": { "input": [1,[2,3],[4],5] } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "m": [2,3,4], "f": [4,5,6], "rd": 10, "s": [1,2,3], "rv": [3,2,1], "u": [1,2,3], "sl": [4,5], "fl": [1,2,3,4,5] }, "execution_order": ["m","f","rd","s","rv","u","sl","fl"], "skipped": [], "error": null }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Workflow document",
+  "type": "object",
+  "required": ["version", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "const": 1 },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "op"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$" },
+          "op": { "type": "string" },
+          "args": { "type": "object" },
+          "depends_on": { "type": "array", "items": { "type": "string" } },
+          "when": { "type": "object" },
+          "retry": {
+            "type": "object",
+            "required": ["max_attempts"],
+            "additionalProperties": false,
+            "properties": { "max_attempts": { "type": "integer", "minimum": 1, "maximum": 5 } }
+          }
+        }
+      }
+    }
+  }
+}

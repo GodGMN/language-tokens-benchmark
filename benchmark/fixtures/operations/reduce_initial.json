@@ -1,0 +1,15 @@
+{
+  "name": "reduce_identity_defaults",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "a", "op": "reduce", "args": { "input": [1,2,3], "op": "add", "initial": 10 } },
+      { "id": "b", "op": "reduce", "args": { "input": [2,3], "op": "multiply" } },
+      { "id": "c", "op": "reduce", "args": { "input": [1,2,3], "op": "add" } },
+      { "id": "d", "op": "reduce", "args": { "input": [], "op": "multiply" } },
+      { "id": "e", "op": "reduce", "args": { "input": [], "op": "add" } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "a": 16, "b": 6, "c": 6, "d": 1, "e": 0 }, "execution_order": ["a","b","c","d","e"], "skipped": [], "error": null }
+}

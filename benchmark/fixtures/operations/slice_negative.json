@@ -1,0 +1,13 @@
+{
+  "name": "slice_negative_and_clamp",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "a", "op": "slice", "args": { "input": [1,2,3,4,5], "start": 1, "end": -1 } },
+      { "id": "b", "op": "slice", "args": { "input": [1,2,3,4,5], "start": -2, "end": 5 } },
+      { "id": "c", "op": "slice", "args": { "input": [1,2,3], "start": 10 } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "a": [2,3,4], "b": [4,5], "c": [] }, "execution_order": ["a","b","c"], "skipped": [], "error": null }
+}

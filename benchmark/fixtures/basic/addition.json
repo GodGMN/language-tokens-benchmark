@@ -1,0 +1,6 @@
+{
+  "name": "basic_addition",
+  "input": { "version": 1, "steps": [ { "id": "result", "op": "add", "args": { "a": 10, "b": 20 } } ] },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "result": 30 }, "execution_order": ["result"], "skipped": [], "error": null }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Workflow response",
+  "type": "object",
+  "required": ["status", "results", "execution_order", "skipped", "error"],
+  "additionalProperties": false,
+  "properties": {
+    "status": { "enum": ["completed", "failed"] },
+    "results": { "type": "object" },
+    "execution_order": { "type": "array", "items": { "type": "string" } },
+    "skipped": { "type": "array", "items": { "type": "string" } },
+    "error": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["code", "step", "message"],
+          "additionalProperties": false,
+          "properties": {
+            "code": { "type": "string" },
+            "step": { "type": ["string", "null"] },
+            "message": { "type": "string" }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "language": "c",
+  "project_dir": "cli-c",
+  "build": [
+    "make"
+  ],
+  "run": [
+    "./workflow",
+    "run",
+    "{input}"
+  ],
+  "run_stdin": [
+    "./workflow",
+    "run",
+    "-"
+  ],
+  "notes": "Makefile in cli-c builds ./workflow. C11. One small JSON library allowed (e.g. single-header json). No C++ unless justified.",
+  "requires": [
+    "Makefile"
+  ]
+}

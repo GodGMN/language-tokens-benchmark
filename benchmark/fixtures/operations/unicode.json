@@ -1,0 +1,13 @@
+{
+  "name": "unicode_code_points_and_ascii_case",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "len", "op": "length", "args": { "input": "a\u00e9\ud83d\ude00b" } },
+      { "id": "up", "op": "uppercase", "args": { "input": "h\u00e9llo" } },
+      { "id": "lo", "op": "lowercase", "args": { "input": "\u00c9\u00c0bc" } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "len": 4, "up": "H\u00e9LLO", "lo": "\u00c9\u00c0bc" }, "execution_order": ["len","up","lo"], "skipped": [], "error": null }
+}

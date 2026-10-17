@@ -1,0 +1,17 @@
+{
+  "name": "utility_ops",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "c1", "op": "constant", "args": { "value": null } },
+      { "id": "c2", "op": "equals", "args": { "a": "x", "b": "x" } },
+      { "id": "c3", "op": "compare", "args": { "a": 3, "b": 2, "op": "gt" } },
+      { "id": "c4", "op": "and", "args": { "a": true, "b": false } },
+      { "id": "c5", "op": "or", "args": { "a": true, "b": false } },
+      { "id": "c6", "op": "not", "args": { "a": true } },
+      { "id": "c7", "op": "type", "args": { "value": [] } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "c1": null, "c2": true, "c3": true, "c4": false, "c5": true, "c6": false, "c7": "array" }, "execution_order": ["c1","c2","c3","c4","c5","c6","c7"], "skipped": [], "error": null }
+}

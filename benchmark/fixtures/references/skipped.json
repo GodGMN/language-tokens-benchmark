@@ -1,0 +1,14 @@
+{
+  "name": "reference_to_skipped_step",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "x", "op": "constant", "args": { "value": 1 } },
+      { "id": "y", "op": "constant", "args": { "value": 2 }, "depends_on": ["x"], "when": { "op": "gt", "left": {"$ref": "x"}, "right": 5 } },
+      { "id": "z", "op": "constant", "args": { "value": {"$ref": "y"} }, "depends_on": ["y"] }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_error_code": "SKIPPED_REFERENCE",
+  "expected_output": { "status": "failed", "results": { "x": 1, "y": null }, "execution_order": ["x", "y"], "skipped": ["y"], "error": { "code": "SKIPPED_REFERENCE", "step": "z", "message": "skipped" } }
+}

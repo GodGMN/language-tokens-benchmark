@@ -1,0 +1,15 @@
+{
+  "name": "any_condition",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "x", "op": "constant", "args": { "value": 5 } },
+      { "id": "y", "op": "constant", "args": { "value": "ok" }, "depends_on": ["x"],
+        "when": { "op": "any", "conditions": [
+          { "op": "lt", "left": {"$ref": "x"}, "right": 1 },
+          { "op": "eq", "left": {"$ref": "x"}, "right": 5 } ] } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "x": 5, "y": "ok" }, "execution_order": ["x","y"], "skipped": [], "error": null }
+}

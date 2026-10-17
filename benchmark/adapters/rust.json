@@ -1,0 +1,23 @@
+{
+  "language": "rust",
+  "project_dir": "cli-rust",
+  "build": [
+    "cargo",
+    "build",
+    "--release"
+  ],
+  "run": [
+    "target/release/workflow",
+    "run",
+    "{input}"
+  ],
+  "run_stdin": [
+    "target/release/workflow",
+    "run",
+    "-"
+  ],
+  "notes": "Crate named 'workflow' in cli-rust. serde/serde_json allowed; keep deps minimal and pinned in Cargo.lock.",
+  "requires": [
+    "Cargo.toml"
+  ]
+}

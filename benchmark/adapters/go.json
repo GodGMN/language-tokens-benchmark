@@ -1,0 +1,25 @@
+{
+  "language": "go",
+  "project_dir": "cli-go",
+  "build": [
+    "go",
+    "build",
+    "-o",
+    "workflow",
+    "."
+  ],
+  "run": [
+    "./workflow",
+    "run",
+    "{input}"
+  ],
+  "run_stdin": [
+    "./workflow",
+    "run",
+    "-"
+  ],
+  "notes": "Single module in cli-go (go.mod). Prefer stdlib encoding/json; at most one extra dep.",
+  "requires": [
+    "go.mod"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "sort_mixed_types_total_order",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "s", "op": "sort", "args": { "input": ["b", 2, null, "a", 1, true, false] } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "s": [1, 2, "a", "b", false, true, null] }, "execution_order": ["s"], "skipped": [], "error": null }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "invalid_arg_is_runtime_exit_1",
+  "input": { "version": 1, "steps": [ { "id": "a", "op": "add", "args": { "a": "x", "b": 1 } } ] },
+  "expected_exit_code": 1,
+  "expected_error_code": "INVALID_ARG",
+  "expected_output": { "status": "failed", "results": {}, "execution_order": [], "skipped": [], "error": { "code": "INVALID_ARG", "step": "a", "message": "bad args" } }
+}

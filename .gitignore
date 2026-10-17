@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# JavaScript / Node
+node_modules/
+npm-debug.log*
+
+# Go
+cli-go/bin/
+*.test
+
+# Rust
+cli-rust/target/
+
+# C
+cli-c/build/
+*.o
+*.out
+
+# Binaries
+cli-*/workflow
+cli-*/bin/workflow
+
+# Results (raw data is generated; keep the folder)
+results/*
+!results/.gitkeep
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Pi sessions (if kept in-repo)
+.pi-sessions/
+
+# Private evaluation fixtures — must never be visible to implementing agents
+benchmark/fixtures-private/

@@ -1,0 +1,18 @@
+{
+  "name": "string_ops",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "cat", "op": "concat", "args": { "a": "foo", "b": "bar" } },
+      { "id": "sp", "op": "split", "args": { "input": "a,b,c", "sep": "," } },
+      { "id": "j", "op": "join", "args": { "input": ["a","b","c"], "sep": "-" } },
+      { "id": "up", "op": "uppercase", "args": { "input": "hELLO wORLD" } },
+      { "id": "lo", "op": "lowercase", "args": { "input": "AbC" } },
+      { "id": "t", "op": "trim", "args": { "input": "   \t x y \n " } },
+      { "id": "r", "op": "replace", "args": { "input": "banana", "search": "na", "replace": "NA" } },
+      { "id": "len", "op": "length", "args": { "input": "h\u00e9llo" } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "cat": "foobar", "sp": ["a","b","c"], "j": "a-b-c", "up": "HELLO WORLD", "lo": "abc", "t": "x y", "r": "baNANA", "len": 5 }, "execution_order": ["cat","sp","j","up","lo","t","r","len"], "skipped": [], "error": null }
+}

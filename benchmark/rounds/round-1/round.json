@@ -1,0 +1,13 @@
+{
+  "model": null,
+  "provider": null,
+  "pi_thinking_level": null,
+  "languages": {
+    "python": "round1-python",
+    "javascript": "round1-javascript",
+    "go": "round1-go",
+    "rust": "round1-rust",
+    "c": "round1-c"
+  },
+  "_comment": "languages maps language -> pi session id (start pi with --session-id round1-<lang>) or a path to a .jsonl"
+}

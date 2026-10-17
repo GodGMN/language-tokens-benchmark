@@ -1,0 +1,14 @@
+{
+  "name": "nested_reference",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "obj", "op": "constant", "args": { "value": { "user": { "name": "Ana", "items": [10, 20] } } } },
+      { "id": "name", "op": "constant", "depends_on": ["obj"], "args": { "value": {"$ref": "obj.user.name"} } },
+      { "id": "item", "op": "constant", "depends_on": ["obj"], "args": { "value": {"$ref": "obj.user.items.1"} } },
+      { "id": "greeting", "op": "concat", "depends_on": ["name"], "args": { "a": "hi ", "b": {"$ref": "name"} } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "obj": {"user":{"name":"Ana","items":[10,20]}}, "name": "Ana", "item": 20, "greeting": "hi Ana" }, "execution_order": ["obj","name","item","greeting"], "skipped": [], "error": null }
+}

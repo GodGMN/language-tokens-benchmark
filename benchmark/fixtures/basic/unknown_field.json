@@ -1,0 +1,7 @@
+{
+  "name": "unknown_step_field_rejected",
+  "input": { "version": 1, "steps": [ { "id": "a", "op": "constant", "args": { "value": 1 }, "bogus": true } ] },
+  "expected_exit_code": 2,
+  "expected_error_code": "INVALID_WORKFLOW",
+  "expected_output": { "status": "failed", "results": {}, "execution_order": [], "skipped": [], "error": { "code": "INVALID_WORKFLOW", "step": "a", "message": "unknown field" } }
+}

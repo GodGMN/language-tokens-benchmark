@@ -1,0 +1,11 @@
+{
+  "name": "retry_succeeds",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "flaky", "op": "fail_until", "args": { "failures": 2, "value": "ok" }, "retry": { "max_attempts": 3 } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "flaky": "ok" }, "execution_order": ["flaky"], "skipped": [], "error": null }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "compound_condition",
+  "input": {
+    "version": 1,
+    "steps": [
+      { "id": "x", "op": "constant", "args": { "value": 5 } },
+      { "id": "in_range", "op": "constant", "args": { "value": "yes" }, "depends_on": ["x"],
+        "when": { "op": "all", "conditions": [
+          { "op": "gt", "left": {"$ref": "x"}, "right": 1 },
+          { "op": "lt", "left": {"$ref": "x"}, "right": 10 } ] } },
+      { "id": "negated", "op": "constant", "args": { "value": "no" }, "depends_on": ["x"],
+        "when": { "op": "not", "condition": { "op": "eq", "left": {"$ref": "x"}, "right": 5 } } }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": { "status": "completed", "results": { "x": 5, "in_range": "yes", "negated": null }, "execution_order": ["x","in_range","negated"], "skipped": ["negated"], "error": null }
+}
