@@ -1,1134 +1,1316 @@
 {
   "language": "rust",
-  "passed": 32,
-  "total": 32,
+  "passed": 107,
+  "total": 107,
+  "spec_version": 1,
+  "buckets": {
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      75,
+      75
+    ],
+    "future": [
+      2,
+      7
+    ]
+  },
   "results": [
     {
       "name": "basic_addition",
       "file": "fixtures/basic/addition.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "result"
-          ],
-          "results": {
-            "result": 30
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.006
     },
     {
       "name": "unsupported_version",
       "file": "fixtures/basic/bad_version.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 2,
-        "stdout_json": {
-          "error": {
-            "code": "INVALID_WORKFLOW",
-            "message": "version must be the integer 1",
-            "step": null
-          },
-          "execution_order": [],
-          "results": {},
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "empty_workflow",
       "file": "fixtures/basic/empty.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [],
-          "results": {},
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "range_filter_sum",
       "file": "fixtures/basic/pipeline.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "n",
-            "evens",
-            "total"
-          ],
-          "results": {
-            "evens": [
-              2,
-              4
-            ],
-            "n": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "total": 6
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "unknown_step_field_rejected",
       "file": "fixtures/basic/unknown_field.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 2,
-        "stdout_json": {
-          "error": {
-            "code": "INVALID_WORKFLOW",
-            "message": "unknown step field: bogus",
-            "step": "a"
-          },
-          "execution_order": [],
-          "results": {},
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "any_condition",
       "file": "fixtures/conditions/any.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "x",
-            "y"
-          ],
-          "results": {
-            "x": 5,
-            "y": "ok"
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "compound_condition",
       "file": "fixtures/conditions/compound.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "x",
-            "in_range",
-            "negated"
-          ],
-          "results": {
-            "in_range": "yes",
-            "negated": null,
-            "x": 5
-          },
-          "skipped": [
-            "negated"
-          ],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "skipped_step",
       "file": "fixtures/conditions/skip.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "x",
-            "y"
-          ],
-          "results": {
-            "x": 3,
-            "y": null
-          },
-          "skipped": [
-            "y"
-          ],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "cyclic_dependency",
       "file": "fixtures/dependencies/cycle.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 2,
-        "stdout_json": {
-          "error": {
-            "code": "CYCLIC_DEPENDENCY",
-            "message": "dependency cycle detected",
-            "step": null
-          },
-          "execution_order": [],
-          "results": {},
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "topological_not_array_order",
       "file": "fixtures/dependencies/diamond_order.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "a",
-            "b",
-            "c",
-            "d"
-          ],
-          "results": {
-            "a": 1,
-            "b": 2,
-            "c": 3,
-            "d": 4
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "unknown_dependency",
       "file": "fixtures/dependencies/unknown_dep.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 2,
-        "stdout_json": {
-          "error": {
-            "code": "UNKNOWN_DEPENDENCY",
-            "message": "unknown dependency: ghost",
-            "step": "a"
-          },
-          "execution_order": [],
-          "results": {},
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "division_by_zero",
       "file": "fixtures/errors/division_by_zero.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 1,
-        "stdout_json": {
-          "error": {
-            "code": "DIVISION_BY_ZERO",
-            "message": "division by zero",
-            "step": "d"
-          },
-          "execution_order": [],
-          "results": {},
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "min_of_empty_array",
       "file": "fixtures/errors/empty_array.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 1,
-        "stdout_json": {
-          "error": {
-            "code": "EMPTY_ARRAY",
-            "message": "operation requires a non-empty array",
-            "step": "a"
-          },
-          "execution_order": [],
-          "results": {},
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "invalid_arg_is_runtime_exit_1",
       "file": "fixtures/errors/invalid_arg.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 1,
-        "stdout_json": {
-          "error": {
-            "code": "INVALID_ARG",
-            "message": "argument must be an integer fitting in i64",
-            "step": "a"
-          },
-          "execution_order": [],
-          "results": {},
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "arithmetic_overflow",
       "file": "fixtures/errors/overflow.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 1,
-        "stdout_json": {
-          "error": {
-            "code": "ARITHMETIC_OVERFLOW",
-            "message": "integer addition overflow",
-            "step": "a"
-          },
-          "execution_order": [],
-          "results": {},
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "retry_exhausted",
       "file": "fixtures/errors/retry_exhausted.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 1,
-        "stdout_json": {
-          "error": {
-            "code": "STEP_FAILED",
-            "message": "retries exhausted",
-            "step": "flaky"
-          },
-          "execution_order": [
-            "setup"
-          ],
-          "results": {
-            "setup": 1
-          },
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "retry_succeeds",
       "file": "fixtures/errors/retry_ok.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "flaky"
-          ],
-          "results": {
-            "flaky": "ok"
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "kitchen_sink",
       "file": "fixtures/integration/kitchen_sink.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "nums",
-            "doubled",
-            "bigs",
-            "total",
-            "label",
-            "big_msg",
-            "maybe",
-            "flaky"
-          ],
-          "results": {
-            "big_msg": "done",
-            "bigs": [
-              12,
-              14,
-              16,
-              18,
-              20
-            ],
-            "doubled": [
-              2,
-              4,
-              6,
-              8,
-              10,
-              12,
-              14,
-              16,
-              18,
-              20
-            ],
-            "flaky": "here",
-            "label": {
-              "count": 99,
-              "msg": "done"
-            },
-            "maybe": null,
-            "nums": [
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10
-            ],
-            "total": 80
-          },
-          "skipped": [
-            "maybe"
-          ],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "array_ops",
       "file": "fixtures/operations/arrays.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "m",
-            "f",
-            "rd",
-            "s",
-            "rv",
-            "u",
-            "sl",
-            "fl"
-          ],
-          "results": {
-            "f": [
-              4,
-              5,
-              6
-            ],
-            "fl": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "m": [
-              2,
-              3,
-              4
-            ],
-            "rd": 10,
-            "rv": [
-              3,
-              2,
-              1
-            ],
-            "s": [
-              1,
-              2,
-              3
-            ],
-            "sl": [
-              4,
-              5
-            ],
-            "u": [
-              1,
-              2,
-              3
-            ]
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "structural_equality",
       "file": "fixtures/operations/equality.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "a",
-            "b",
-            "c",
-            "d",
-            "e"
-          ],
-          "results": {
-            "a": false,
-            "b": true,
-            "c": true,
-            "d": true,
-            "e": false
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "keys_and_values_sorted_by_key",
       "file": "fixtures/operations/keys_order.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "o",
-            "k",
-            "v"
-          ],
-          "results": {
-            "k": [
-              "a",
-              "b",
-              "c"
-            ],
-            "o": {
-              "a": 2,
-              "b": 1,
-              "c": 3
-            },
-            "v": [
-              2,
-              1,
-              3
-            ]
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "math_ops",
       "file": "fixtures/operations/math.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "a",
-            "b",
-            "c",
-            "d",
-            "dneg",
-            "e",
-            "f",
-            "g",
-            "h",
-            "i"
-          ],
-          "results": {
-            "a": 5,
-            "b": 6,
-            "c": 42,
-            "d": 3,
-            "dneg": -3,
-            "e": -1,
-            "f": 10,
-            "g": 2,
-            "h": 9,
-            "i": []
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "object_ops",
       "file": "fixtures/operations/objects.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "o",
-            "g",
-            "s",
-            "k",
-            "v",
-            "mg",
-            "pk",
-            "om"
-          ],
-          "results": {
-            "g": 2,
-            "k": [
-              "a",
-              "b",
-              "c"
-            ],
-            "mg": {
-              "a": 1,
-              "b": 3,
-              "c": 4
-            },
-            "o": {
-              "a": 1,
-              "b": 2,
-              "c": 3
-            },
-            "om": {
-              "b": 2,
-              "c": 3
-            },
-            "pk": {
-              "a": 1,
-              "c": 3
-            },
-            "s": {
-              "a": 1,
-              "b": 2,
-              "c": 3,
-              "d": 4
-            },
-            "v": [
-              1,
-              2,
-              3
-            ]
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "reduce_identity_defaults",
       "file": "fixtures/operations/reduce_initial.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "a",
-            "b",
-            "c",
-            "d",
-            "e"
-          ],
-          "results": {
-            "a": 16,
-            "b": 6,
-            "c": 6,
-            "d": 1,
-            "e": 0
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "slice_negative_and_clamp",
       "file": "fixtures/operations/slice_negative.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "a",
-            "b",
-            "c"
-          ],
-          "results": {
-            "a": [
-              2,
-              3,
-              4
-            ],
-            "b": [
-              4,
-              5
-            ],
-            "c": []
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.002
     },
     {
       "name": "sort_mixed_types_total_order",
       "file": "fixtures/operations/sort_mixed.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "s"
-          ],
-          "results": {
-            "s": [
-              1,
-              2,
-              "a",
-              "b",
-              false,
-              true,
-              null
-            ]
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "string_ops",
       "file": "fixtures/operations/strings.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "cat",
-            "sp",
-            "j",
-            "up",
-            "lo",
-            "t",
-            "r",
-            "len"
-          ],
-          "results": {
-            "cat": "foobar",
-            "j": "a-b-c",
-            "len": 5,
-            "lo": "abc",
-            "r": "baNANA",
-            "sp": [
-              "a",
-              "b",
-              "c"
-            ],
-            "t": "x y",
-            "up": "HELLO WORLD"
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "unicode_code_points_and_ascii_case",
       "file": "fixtures/operations/unicode.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "len",
-            "up",
-            "lo"
-          ],
-          "results": {
-            "len": 4,
-            "lo": "\u00c9\u00c0bc",
-            "up": "H\u00e9LLO"
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "utility_ops",
       "file": "fixtures/operations/utilities.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "c1",
-            "c2",
-            "c3",
-            "c4",
-            "c5",
-            "c6",
-            "c7"
-          ],
-          "results": {
-            "c1": null,
-            "c2": true,
-            "c3": true,
-            "c4": false,
-            "c5": true,
-            "c6": false,
-            "c7": "array"
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.002
     },
     {
       "name": "invalid_reference_path",
       "file": "fixtures/references/bad_path.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 1,
-        "stdout_json": {
-          "error": {
-            "code": "INVALID_REFERENCE",
-            "message": "missing object key in reference: age",
-            "step": "age"
-          },
-          "execution_order": [
-            "obj"
-          ],
-          "results": {
-            "obj": {
-              "user": {
-                "name": "Ana"
-              }
-            }
-          },
-          "skipped": [],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "nested_reference",
       "file": "fixtures/references/nested.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 0,
-        "stdout_json": {
-          "error": null,
-          "execution_order": [
-            "obj",
-            "name",
-            "item",
-            "greeting"
-          ],
-          "results": {
-            "greeting": "hi Ana",
-            "item": 20,
-            "name": "Ana",
-            "obj": {
-              "user": {
-                "items": [
-                  10,
-                  20
-                ],
-                "name": "Ana"
-              }
-            }
-          },
-          "skipped": [],
-          "status": "completed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
     },
     {
       "name": "reference_to_skipped_step",
       "file": "fixtures/references/skipped.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.001,
-      "detail": {
-        "exit_code": 1,
-        "stdout_json": {
-          "error": {
-            "code": "SKIPPED_REFERENCE",
-            "message": "reference to skipped step: y",
-            "step": "z"
-          },
-          "execution_order": [
-            "x",
-            "y"
-          ],
-          "results": {
-            "x": 1,
-            "y": null
-          },
-          "skipped": [
-            "y"
-          ],
-          "status": "failed"
-        },
-        "stdout_valid_json": true,
-        "stderr_tail": "",
-        "seconds": 0.001,
-        "timeout": false
-      }
+      "seconds": 0.001
+    },
+    {
+      "name": "filter_even",
+      "file": "holdout/arrays/filter_even.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "flatten_one_level",
+      "file": "holdout/arrays/flatten_one_level.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "map_abs",
+      "file": "holdout/arrays/map_abs.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "map_negate",
+      "file": "holdout/arrays/map_negate.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "reduce_mul_initial",
+      "file": "holdout/arrays/reduce_mul_initial.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "reduce_subtract",
+      "file": "holdout/arrays/reduce_subtract.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "reverse_empty",
+      "file": "holdout/arrays/reverse_empty.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "slice_clamp",
+      "file": "holdout/arrays/slice_clamp.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "slice_start_gt_end",
+      "file": "holdout/arrays/slice_start_gt_end.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "sort_arrays",
+      "file": "holdout/arrays/sort_arrays.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "sort_bools",
+      "file": "holdout/arrays/sort_bools.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "sort_mixed",
+      "file": "holdout/arrays/sort_mixed.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "unique_structural",
+      "file": "holdout/arrays/unique_structural.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "get_non_object",
+      "file": "holdout/cli/get_non_object.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.001
+    },
+    {
+      "name": "id_invalid",
+      "file": "holdout/cli/id_invalid.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.001
+    },
+    {
+      "name": "join_non_string",
+      "file": "holdout/cli/join_non_string.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "missing_version",
+      "file": "holdout/cli/missing_version.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.001
+    },
+    {
+      "name": "stdin_run",
+      "file": "holdout/cli/stdin_run.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "steps_not_array",
+      "file": "holdout/cli/steps_not_array.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.001
+    },
+    {
+      "name": "top_level_unknown",
+      "file": "holdout/cli/top_level_unknown.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.002
+    },
+    {
+      "name": "cond_extra_field",
+      "file": "holdout/conditions/cond_extra_field.json",
+      "private": true,
+      "since": 2,
+      "bucket": "future",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.002
+    },
+    {
+      "name": "cond_missing_ref",
+      "file": "holdout/conditions/cond_missing_ref.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "cond_mixed_type_false",
+      "file": "holdout/conditions/cond_mixed_type_false.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.005
+    },
+    {
+      "name": "cond_not_all_true",
+      "file": "holdout/conditions/cond_not_all_true.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "cond_unknown_op",
+      "file": "holdout/conditions/cond_unknown_op.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.008
+    },
+    {
+      "name": "diamond_tiebreak",
+      "file": "holdout/dag/diamond_tiebreak.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "duplicate_id",
+      "file": "holdout/dag/duplicate_id.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.001
+    },
+    {
+      "name": "order_interleaved",
+      "file": "holdout/dag/order_interleaved.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "self_dep",
+      "file": "holdout/dag/self_dep.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.002
+    },
+    {
+      "name": "two_cycle",
+      "file": "holdout/dag/two_cycle.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.002
+    },
+    {
+      "name": "unknown_dep_second",
+      "file": "holdout/dag/unknown_dep_second.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.001
+    },
+    {
+      "name": "large_chain",
+      "file": "holdout/integration/large_chain.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "pipeline_even_times_ten",
+      "file": "holdout/integration/pipeline_even_times_ten.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "skip_all_cascade",
+      "file": "holdout/integration/skip_all_cascade.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "skip_cascade",
+      "file": "holdout/integration/skip_cascade.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.004
+    },
+    {
+      "name": "bool_arg",
+      "file": "holdout/literals/bool_arg.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.001
+    },
+    {
+      "name": "exponent_arg",
+      "file": "holdout/literals/exponent_arg.json",
+      "private": true,
+      "since": 2,
+      "bucket": "future",
+      "passed": false,
+      "reasons": [
+        "exit 0 != expected 1",
+        "output mismatch",
+        "  field `status`: got \"completed\" want \"failed\"",
+        "  field `results`: got {\"r\": 1000} want {}",
+        "  field `execution_order`: got [\"r\"] want []",
+        "  field `error`: got null want {\"code\": \"INVALID_ARG\", \"step\": \"r\"}",
+        "error.code None != expected 'INVALID_ARG'"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "float_arg",
+      "file": "holdout/literals/float_arg.json",
+      "private": true,
+      "since": 2,
+      "bucket": "future",
+      "passed": false,
+      "reasons": [
+        "exit 0 != expected 1",
+        "output mismatch",
+        "  field `status`: got \"completed\" want \"failed\"",
+        "  field `results`: got {\"r\": 3} want {}",
+        "  field `execution_order`: got [\"r\"] want []",
+        "  field `error`: got null want {\"code\": \"INVALID_ARG\", \"step\": \"r\"}",
+        "error.code None != expected 'INVALID_ARG'"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "range_float",
+      "file": "holdout/literals/range_float.json",
+      "private": true,
+      "since": 2,
+      "bucket": "future",
+      "passed": false,
+      "reasons": [
+        "exit 0 != expected 1",
+        "output mismatch",
+        "  field `status`: got \"completed\" want \"failed\"",
+        "  field `results`: got {\"r\": [1, 2, 3]} want {}",
+        "  field `execution_order`: got [\"r\"] want []",
+        "  field `error`: got null want {\"code\": \"INVALID_ARG\", \"step\": \"r\"}",
+        "error.code None != expected 'INVALID_ARG'"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "version_float",
+      "file": "holdout/literals/version_float.json",
+      "private": true,
+      "since": 2,
+      "bucket": "future",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 2,
+      "seconds": 0.001
+    },
+    {
+      "name": "add_overflow",
+      "file": "holdout/numeric/add_overflow.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "div_min_neg1",
+      "file": "holdout/numeric/div_min_neg1.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "division_signs",
+      "file": "holdout/numeric/division_signs.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "i64_bounds",
+      "file": "holdout/numeric/i64_bounds.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "mod_min_neg1",
+      "file": "holdout/numeric/mod_min_neg1.json",
+      "private": true,
+      "since": 2,
+      "bucket": "future",
+      "passed": false,
+      "reasons": [
+        "exit 0 != expected 1",
+        "output mismatch",
+        "  field `status`: got \"completed\" want \"failed\"",
+        "  field `results`: got {\"r\": 0} want {}",
+        "  field `execution_order`: got [\"r\"] want []",
+        "  field `error`: got null want {\"code\": \"ARITHMETIC_OVERFLOW\", \"step\": \"r\"}",
+        "error.code None != expected 'ARITHMETIC_OVERFLOW'"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "mod_signs",
+      "file": "holdout/numeric/mod_signs.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "mul_neg_overflow",
+      "file": "holdout/numeric/mul_neg_overflow.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.001
+    },
+    {
+      "name": "mul_overflow",
+      "file": "holdout/numeric/mul_overflow.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "range_bounds",
+      "file": "holdout/numeric/range_bounds.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "sub_overflow",
+      "file": "holdout/numeric/sub_overflow.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.009
+    },
+    {
+      "name": "sum_overflow",
+      "file": "holdout/numeric/sum_overflow.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.003
+    },
+    {
+      "name": "get_missing",
+      "file": "holdout/objects/get_missing.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "keys_utf8",
+      "file": "holdout/objects/keys_utf8.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "merge_precedence",
+      "file": "holdout/objects/merge_precedence.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "omit_all",
+      "file": "holdout/objects/omit_all.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "pick_missing",
+      "file": "holdout/objects/pick_missing.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "set_immutability",
+      "file": "holdout/objects/set_immutability.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "set_overwrite",
+      "file": "holdout/objects/set_overwrite.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.004
+    },
+    {
+      "name": "values_utf8",
+      "file": "holdout/objects/values_utf8.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.006
+    },
+    {
+      "name": "ref_in_array",
+      "file": "holdout/refs/ref_in_array.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "ref_index_oob",
+      "file": "holdout/refs/ref_index_oob.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.001
+    },
+    {
+      "name": "ref_missing_prop",
+      "file": "holdout/refs/ref_missing_prop.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "ref_neg_index",
+      "file": "holdout/refs/ref_neg_index.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "ref_non_dependency",
+      "file": "holdout/refs/ref_non_dependency.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "ref_object_extra_key",
+      "file": "holdout/refs/ref_object_extra_key.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "ref_skipped_nested",
+      "file": "holdout/refs/ref_skipped_nested.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "ref_transitive",
+      "file": "holdout/refs/ref_transitive.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.006
+    },
+    {
+      "name": "fail_until_bad_range",
+      "file": "holdout/retries/fail_until_bad_range.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.006
+    },
+    {
+      "name": "fail_until_exhaust",
+      "file": "holdout/retries/fail_until_exhaust.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.003
+    },
+    {
+      "name": "fail_until_partial",
+      "file": "holdout/retries/fail_until_partial.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "fail_until_zero",
+      "file": "holdout/retries/fail_until_zero.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "retry_non_transient",
+      "file": "holdout/retries/retry_non_transient.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "two_flaky",
+      "file": "holdout/retries/two_flaky.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "case_ascii",
+      "file": "holdout/strings/case_ascii.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "concat_unicode",
+      "file": "holdout/strings/concat_unicode.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.005
+    },
+    {
+      "name": "join_empty",
+      "file": "holdout/strings/join_empty.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "length_combining",
+      "file": "holdout/strings/length_combining.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "replace_empty_search",
+      "file": "holdout/strings/replace_empty_search.json",
+      "private": true,
+      "since": 2,
+      "bucket": "future",
+      "passed": false,
+      "reasons": [
+        "exit 0 != expected 1",
+        "output mismatch",
+        "  field `status`: got \"completed\" want \"failed\"",
+        "  field `results`: got {\"r\": \"xaxbxcx\"} want {}",
+        "  field `execution_order`: got [\"r\"] want []",
+        "  field `error`: got null want {\"code\": \"INVALID_ARG\", \"step\": \"r\"}",
+        "error.code None != expected 'INVALID_ARG'"
+      ],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "replace_overlap",
+      "file": "holdout/strings/replace_overlap.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "split_empty_sep",
+      "file": "holdout/strings/split_empty_sep.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "trim_ascii",
+      "file": "holdout/strings/trim_ascii.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.001
+    },
+    {
+      "name": "trim_nbsp",
+      "file": "holdout/strings/trim_nbsp.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
     }
   ]
 }

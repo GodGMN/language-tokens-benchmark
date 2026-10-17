@@ -1,0 +1,27 @@
+{
+  "name": "trim_ascii",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "trim",
+        "args": {
+          "input": " \t\n\r\f\u000bx \t"
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": "x"
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "division_signs",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "divide",
+        "args": {
+          "a": -7,
+          "b": 2
+        }
+      },
+      {
+        "id": "b",
+        "op": "divide",
+        "args": {
+          "a": 7,
+          "b": -2
+        }
+      },
+      {
+        "id": "c",
+        "op": "divide",
+        "args": {
+          "a": -7,
+          "b": -2
+        }
+      },
+      {
+        "id": "d",
+        "op": "divide",
+        "args": {
+          "a": 7,
+          "b": 2
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "a": -3,
+      "b": -3,
+      "c": 3,
+      "d": 3
+    },
+    "execution_order": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

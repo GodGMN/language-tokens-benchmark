@@ -1,0 +1,27 @@
+{
+  "name": "reverse_empty",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "reverse",
+        "args": {
+          "input": []
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": []
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

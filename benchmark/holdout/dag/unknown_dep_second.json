@@ -1,0 +1,38 @@
+{
+  "name": "unknown_dep_second",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "args": {
+          "value": 2
+        },
+        "depends_on": [
+          "ghost"
+        ]
+      }
+    ]
+  },
+  "expected_exit_code": 2,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "UNKNOWN_DEPENDENCY",
+      "step": "b",
+      "message": ""
+    }
+  },
+  "expected_error_code": "UNKNOWN_DEPENDENCY"
+}

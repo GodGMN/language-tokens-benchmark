@@ -5,47 +5,35 @@ Usage:
   python3 benchmark/runner.py --language go
   python3 benchmark/runner.py --all
   python3 benchmark/runner.py --language go --category references
-  python3 benchmark/runner.py --all --timeout 10
+  python3 benchmark/runner.py --all --public          # skip benchmark/holdout/
+  python3 benchmark/runner.py --all --round round-1
 
-Fixtures: benchmark/fixtures/<category>/*.json
-Each fixture: {name, input, expected_exit_code, expected_output?, expected_error_code?}
+Fixtures: benchmark/fixtures/<category>/*.json  (+ benchmark/holdout/ when present)
+Each fixture: {name, input, expected_exit_code, expected_output?, expected_error_code?, stdin?}
 Results: results/<round>/<language>/test-results.json
 """
 import argparse
 import json
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
-ADAPTERS = HERE / "adapters"
+from common import (HERE, RESULTS, default_round, load_adapters, load_round,
+                    project_ready, resolve_project)
+
 FIXTURES = HERE / "fixtures"
-RESULTS = ROOT / "results"
-ROUND = "round-1"
+PRIVATE = HERE / "holdout"
 
 
-def load_adapters():
-    return {p.stem: json.loads(p.read_text()) for p in sorted(ADAPTERS.glob("*.json"))}
-
-
-def project_ready(adapter):
-    proj = ROOT / adapter["project_dir"]
-    return all((proj / r).exists() for r in adapter.get("requires", []))
+def project_ready_any(adapter, round_cfg):
+    return project_ready(adapter, resolve_project(adapter, round_cfg))
 
 
 def load_fixtures(category=None, include_private=True):
-    """Load fixtures from fixtures/ (public) and, if present, fixtures-private/.
-
-    The private set is gitignored and is meant to hold the evaluation suite
-    that implementing agents must not see during their session.
-    """
-    roots = [FIXTURES]
-    private = HERE / "fixtures-private"
-    if include_private and private.is_dir():
-        roots.append(private)
-
+    """Public fixtures always; holdout ones only if present and requested."""
+    roots = [FIXTURES] + ([PRIVATE] if include_private and PRIVATE.is_dir() else [])
     out = []
     for root in roots:
         for f in sorted(root.glob("*/*.json")):
@@ -53,39 +41,36 @@ def load_fixtures(category=None, include_private=True):
                 continue
             d = json.loads(f.read_text())
             d["_file"] = str(f.relative_to(HERE))
+            d["_private"] = root is PRIVATE
             out.append(d)
     return out
 
 
-def run_fixture(adapter, fixture, timeout):
-    import tempfile
-
+def run_fixture(adapter, fixture, project, timeout):
     lang = adapter["language"]
-    proj = ROOT / adapter["project_dir"]
     with tempfile.TemporaryDirectory(prefix=f"wf-{lang}-") as td:
-        inp = Path(td) / "workflow.json"
-        inp.write_text(json.dumps(fixture["input"]))
-        cmd = [c.replace("{input}", str(inp)) for c in adapter["run"]]
         t0 = time.monotonic()
+        if fixture.get("stdin"):
+            cmd = [c.replace("{input}", "-") for c in adapter.get("run_stdin", adapter["run"])]
+            payload = json.dumps(fixture["input"])
+        else:
+            inp = Path(td) / "workflow.json"
+            inp.write_text(json.dumps(fixture["input"]))
+            cmd = [c.replace("{input}", str(inp)) for c in adapter["run"]]
+            payload = None
         try:
-            p = subprocess.run(
-                cmd, cwd=proj, input=None,
-                capture_output=True, text=True, timeout=timeout,
-            )
+            p = subprocess.run(cmd, cwd=project, input=payload,
+                               capture_output=True, text=True, timeout=timeout)
             elapsed = time.monotonic() - t0
-            stdout = p.stdout.strip()
             try:
-                parsed = json.loads(stdout)
+                parsed = json.loads(p.stdout.strip())
                 valid_json = True
             except Exception:
                 parsed, valid_json = None, False
             return {
-                "exit_code": p.returncode,
-                "stdout_json": parsed,
-                "stdout_valid_json": valid_json,
-                "stderr_tail": p.stderr[-2000:],
-                "seconds": round(elapsed, 3),
-                "timeout": False,
+                "exit_code": p.returncode, "stdout_json": parsed,
+                "stdout_valid_json": valid_json, "stderr_tail": p.stderr[-2000:],
+                "seconds": round(elapsed, 3), "timeout": False,
             }
         except subprocess.TimeoutExpired:
             return {"exit_code": None, "stdout_json": None, "stdout_valid_json": False,
@@ -99,7 +84,6 @@ RESPONSE_FIELDS = ("status", "results", "execution_order", "skipped", "error")
 
 
 def shape_errors(resp):
-    """Validate the response envelope required by SPEC §5.3/5.4."""
     if not isinstance(resp, dict):
         return ["response is not a JSON object"]
     problems = [f"missing field `{k}`" for k in RESPONSE_FIELDS if k not in resp]
@@ -138,11 +122,9 @@ def check(fixture, result):
     exp_exit = fixture.get("expected_exit_code")
     if result["exit_code"] != exp_exit:
         reasons.append(f"exit {result['exit_code']} != expected {exp_exit}")
-
     if not result["stdout_valid_json"]:
         reasons.append("stdout is not valid JSON")
         return reasons
-
     actual = result["stdout_json"]
     reasons.extend(shape_errors(actual))
 
@@ -162,24 +144,38 @@ def check(fixture, result):
     return reasons
 
 
-def run_language(adapter, fixtures, timeout, verbose=True):
+def run_language(adapter, fixtures, project, timeout, spec_version, verbose=True):
+    """Run fixtures, bucketing into public / scored-holdout / future-spec.
+
+    A holdout fixture tagged `"since": N` only counts for rounds whose
+    round.json has `spec_version >= N`; otherwise it is reported separately so
+    an implementation is never penalised for a rule that did not exist yet.
+    """
     results = []
-    passed = 0
+    buckets = {"public": [0, 0], "holdout": [0, 0], "future": [0, 0]}
     for fx in fixtures:
-        r = run_fixture(adapter, fx, timeout)
+        r = run_fixture(adapter, fx, project, timeout)
         reasons = check(fx, r)
         ok = not reasons
-        passed += ok
+        since = fx.get("since", 1)
+        if not fx["_private"]:
+            bucket = "public"
+        elif since <= spec_version:
+            bucket = "holdout"
+        else:
+            bucket = "future"
+        buckets[bucket][0] += int(ok)
+        buckets[bucket][1] += 1
         if verbose:
-            mark = "PASS" if ok else "FAIL"
-            print(f"  [{mark}] {fx['_file']}  (exit={r['exit_code']}, {r['seconds']}s)")
-            for why in reasons[:6]:
-                if verbose and not ok:
-                    print(f"         {why}")
-        results.append({"name": fx["name"], "file": fx["_file"], "passed": ok,
-                        "reasons": reasons, "exit_code": r["exit_code"],
-                        "seconds": r["seconds"], "detail": r})
-    return passed, len(fixtures), results
+            print(f"  [{'PASS' if ok else 'FAIL'}] ({bucket}) {fx['_file']}  (exit={r['exit_code']}, {r['seconds']}s)")
+            for why in (reasons[:8] if not ok else []):
+                print(f"         {why}")
+        results.append({"name": fx["name"], "file": fx["_file"], "private": fx["_private"],
+                        "since": since, "bucket": bucket, "passed": ok, "reasons": reasons,
+                        "exit_code": r["exit_code"], "seconds": r["seconds"]})
+    scored = (buckets["public"][0] + buckets["holdout"][0],
+              buckets["public"][1] + buckets["holdout"][1])
+    return scored[0], scored[1], buckets, results
 
 
 def main():
@@ -188,45 +184,55 @@ def main():
     g.add_argument("--language")
     g.add_argument("--all", action="store_true")
     ap.add_argument("--category")
-    ap.add_argument("--public", action="store_true",
-                    help="ignore fixtures-private/ (public suite only)")
+    ap.add_argument("--public", action="store_true", help="ignore the holdout suite")
     ap.add_argument("--timeout", type=float, default=5.0)
-    ap.add_argument("--round", default=ROUND)
+    ap.add_argument("--round", default=None)
     args = ap.parse_args()
 
+    round_cfg = load_round(args.round or default_round())
+    round_id = round_cfg["id"]
     adapters = load_adapters()
     fixtures = load_fixtures(args.category, include_private=not args.public)
     if not fixtures:
-        print(f"no fixtures found{f' for category {args.category}' if args.category else ''}", file=sys.stderr)
+        print("no fixtures found", file=sys.stderr)
         sys.exit(1)
 
+    spec_version = round_cfg.get("spec_version", 1)
     names = list(adapters) if args.all else [args.language]
-    summary = {}
-    all_ok = True
+    summary, ok_all = {}, True
     for n in names:
         adapter = adapters[n]
-        if not project_ready(adapter):
+        project = resolve_project(adapter, round_cfg)
+        if not project_ready(adapter, project):
             print(f"\n== {n}: SKIP (not implemented yet) ==")
-            summary[n] = {"passed": 0, "total": 0, "pct": 0.0, "skipped": True}
+            summary[n] = {"skipped": True}
             continue
-        print(f"\n== {n} ({adapter['project_dir']}) — {len(fixtures)} fixtures ==")
-        passed, total, results = run_language(adapter, fixtures, args.timeout)
-        summary[n] = {"passed": passed, "total": total, "pct": round(100 * passed / total, 2)}
-        all_ok &= passed == total
-        outdir = RESULTS / args.round / n
+        print(f"\n== {n} ({project.relative_to(HERE.parent)}) — {len(fixtures)} fixtures ==")
+        passed, total, buckets, results = run_language(
+            adapter, fixtures, project, args.timeout, spec_version)
+        summary[n] = {"passed": passed, "total": total, "buckets": buckets}
+        ok_all &= passed == total
+        outdir = RESULTS / round_id / n
         outdir.mkdir(parents=True, exist_ok=True)
-        (outdir / "test-results.json").write_text(json.dumps(
-            {"language": n, "passed": passed, "total": total, "results": results}, indent=2))
-        print(f"  -> {passed}/{total} passed  [{outdir / 'test-results.json'}]")
+        (outdir / "test-results.json").write_text(json.dumps({
+            "language": n, "passed": passed, "total": total, "spec_version": spec_version,
+            "buckets": buckets, "results": results}, indent=2))
+        fut = buckets["future"]
+        fut_note = f"; future-spec {fut[0]}/{fut[1]} not scored" if fut[1] else ""
+        print(f"  -> {passed}/{total} scored (public {buckets['public'][0]}/{buckets['public'][1]}, "
+              f"holdout {buckets['holdout'][0]}/{buckets['holdout'][1]}{fut_note})")
 
-    print("\n== summary ==")
+    print("\n== summary (scored against spec v%s) ==" % spec_version)
     for n, s in summary.items():
         if s.get("skipped"):
             print(f"  {n:12s} not implemented")
         else:
-            print(f"  {n:12s} {s['passed']:3d}/{s['total']:<3d}  {s['pct']}%")
+            pct = round(100 * s["passed"] / s["total"], 1) if s["total"] else 0
+            fut = s["buckets"]["future"]
+            fut_note = f"   (future-spec {fut[0]}/{fut[1]})" if fut[1] else ""
+            print(f"  {n:12s} {s['passed']:3d}/{s['total']:<3d}  {pct}%{fut_note}")
     ran = [s for s in summary.values() if not s.get("skipped")]
-    sys.exit(0 if all_ok and ran else 1)
+    sys.exit(0 if ok_all and ran else 1)
 
 
 if __name__ == "__main__":

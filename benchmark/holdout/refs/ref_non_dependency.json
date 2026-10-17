@@ -1,0 +1,53 @@
+{
+  "name": "ref_non_dependency",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "args": {
+          "value": 2
+        }
+      },
+      {
+        "id": "c",
+        "op": "constant",
+        "depends_on": [
+          "a"
+        ],
+        "args": {
+          "value": {
+            "$ref": "b"
+          }
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "failed",
+    "results": {
+      "a": 1,
+      "b": 2
+    },
+    "execution_order": [
+      "a",
+      "b"
+    ],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_REFERENCE",
+      "step": "c",
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_REFERENCE"
+}

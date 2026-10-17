@@ -1,0 +1,60 @@
+{
+  "name": "skip_cascade",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "depends_on": [
+          "a"
+        ],
+        "args": {
+          "value": 2
+        },
+        "when": {
+          "op": "gt",
+          "left": {
+            "$ref": "a"
+          },
+          "right": 5
+        }
+      },
+      {
+        "id": "c",
+        "op": "constant",
+        "depends_on": [
+          "b"
+        ],
+        "args": {
+          "value": 3
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "a": 1,
+      "b": null,
+      "c": 3
+    },
+    "execution_order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "skipped": [
+      "b"
+    ],
+    "error": null
+  }
+}

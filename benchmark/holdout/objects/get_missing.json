@@ -1,0 +1,30 @@
+{
+  "name": "get_missing",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "get",
+        "args": {
+          "input": {
+            "a": 1
+          },
+          "key": "b"
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": null
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

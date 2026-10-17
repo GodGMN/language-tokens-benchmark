@@ -1,0 +1,32 @@
+{
+  "name": "fail_until_exhaust",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "f",
+        "op": "fail_until",
+        "args": {
+          "failures": 1,
+          "value": "ok"
+        },
+        "retry": {
+          "max_attempts": 1
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "STEP_FAILED",
+      "step": "f",
+      "message": ""
+    }
+  },
+  "expected_error_code": "STEP_FAILED"
+}

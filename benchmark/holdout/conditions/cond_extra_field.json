@@ -1,0 +1,45 @@
+{
+  "name": "cond_extra_field",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "depends_on": [
+          "a"
+        ],
+        "args": {
+          "value": 2
+        },
+        "when": {
+          "op": "eq",
+          "left": 1,
+          "right": 1,
+          "extra": 2
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 2,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_WORKFLOW",
+      "step": "b",
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_WORKFLOW",
+  "since": 2
+}

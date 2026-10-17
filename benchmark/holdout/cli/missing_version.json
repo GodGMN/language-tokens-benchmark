@@ -1,0 +1,19 @@
+{
+  "name": "missing_version",
+  "input": {
+    "steps": []
+  },
+  "expected_exit_code": 2,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_WORKFLOW",
+      "step": null,
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_WORKFLOW"
+}

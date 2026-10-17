@@ -1,0 +1,33 @@
+{
+  "name": "slice_start_gt_end",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "slice",
+        "args": {
+          "input": [
+            1,
+            2,
+            3
+          ],
+          "start": 3,
+          "end": 1
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": []
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

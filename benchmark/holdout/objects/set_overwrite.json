@@ -1,0 +1,49 @@
+{
+  "name": "set_overwrite",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "o",
+        "op": "constant",
+        "args": {
+          "value": {
+            "a": 1
+          }
+        }
+      },
+      {
+        "id": "s",
+        "op": "set",
+        "depends_on": [
+          "o"
+        ],
+        "args": {
+          "input": {
+            "$ref": "o"
+          },
+          "key": "a",
+          "value": 5
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "o": {
+        "a": 1
+      },
+      "s": {
+        "a": 5
+      }
+    },
+    "execution_order": [
+      "o",
+      "s"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

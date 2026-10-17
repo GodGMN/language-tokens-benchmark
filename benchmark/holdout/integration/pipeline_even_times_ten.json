@@ -1,0 +1,92 @@
+{
+  "name": "pipeline_even_times_ten",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "n",
+        "op": "range",
+        "args": {
+          "start": 1,
+          "end": 6
+        }
+      },
+      {
+        "id": "e",
+        "op": "filter",
+        "depends_on": [
+          "n"
+        ],
+        "args": {
+          "input": {
+            "$ref": "n"
+          },
+          "predicate": {
+            "type": "even"
+          }
+        }
+      },
+      {
+        "id": "m",
+        "op": "map",
+        "depends_on": [
+          "e"
+        ],
+        "args": {
+          "input": {
+            "$ref": "e"
+          },
+          "transform": {
+            "type": "multiply",
+            "value": 10
+          }
+        }
+      },
+      {
+        "id": "s",
+        "op": "sum",
+        "depends_on": [
+          "m"
+        ],
+        "args": {
+          "input": {
+            "$ref": "m"
+          }
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "n": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "e": [
+        2,
+        4,
+        6
+      ],
+      "m": [
+        20,
+        40,
+        60
+      ],
+      "s": 120
+    },
+    "execution_order": [
+      "n",
+      "e",
+      "m",
+      "s"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

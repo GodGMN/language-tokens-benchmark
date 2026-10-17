@@ -1,6 +1,13 @@
 {
   "round": "round-1",
-  "model": "deepseek-flash",
+  "model": {
+    "name": "deepseek-flash",
+    "provider": "deepseek",
+    "display": "DeepSeek V4.1 Flash",
+    "params": "763B total, ~16B active (8B active during prefill)",
+    "thinking": "high",
+    "date": "2026-10-17"
+  },
   "languages": {
     "c": {
       "session_file": "/home/sergio/.pi/agent/sessions/--home-sergio-code-experiments-language-tokens-benchmark--/2026-10-17T01-56-11-331Z_round1-c.jsonl",

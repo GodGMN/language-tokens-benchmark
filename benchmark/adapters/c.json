@@ -1,6 +1,5 @@
 {
   "language": "c",
-  "project_dir": "cli-c",
   "build": [
     "make"
   ],

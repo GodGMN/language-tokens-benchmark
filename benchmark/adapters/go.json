@@ -1,6 +1,5 @@
 {
   "language": "go",
-  "project_dir": "cli-go",
   "build": [
     "go",
     "build",

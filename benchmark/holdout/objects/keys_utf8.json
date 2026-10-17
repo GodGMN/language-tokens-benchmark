@@ -1,0 +1,35 @@
+{
+  "name": "keys_utf8",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "keys",
+        "args": {
+          "input": {
+            "z": 1,
+            "a": 2,
+            "é": 3
+          }
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": [
+        "a",
+        "z",
+        "é"
+      ]
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

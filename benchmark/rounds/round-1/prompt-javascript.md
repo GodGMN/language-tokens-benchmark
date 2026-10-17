@@ -4,9 +4,9 @@ You are implementing one language of a token-usage benchmark. Your goal: impleme
 
 ## Read this first
 
-The full functional contract is at `../SPEC.md` (relative to this folder). **Read it completely before writing code.** It defines the CLI, the workflow JSON format, every operation, reference semantics, conditions, retries, error codes and worked examples. When in doubt, the SPEC wins over your instincts.
+The full functional contract is at `../../../SPEC.md` (relative to this folder). **Read it completely before writing code.** It defines the CLI, the workflow JSON format, every operation, reference semantics, conditions, retries, error codes and worked examples. When in doubt, the SPEC wins over your instincts.
 
-Also skim `../PRD.md` §5 (CLI contract) for context.
+Also skim `../../../PRD.md` §5 (CLI contract) for context.
 
 ## What you must build
 
@@ -24,26 +24,26 @@ workflow run -        # JSON document on stdin
 The exact build/run commands the test harness will use for Javascript:
 
 ```bash
-cd cli-javascript
+cd submissions/round-1/javascript
 # (interpreted language — no build step)
 # run
-node workflow.js myworkflow.json   # or: run -  (stdin)
+node workflow.js run myworkflow.json     # or: run -   (stdin)
 ```
 
-Make sure those commands work from this folder (`cli-javascript`).
+Make sure those commands work from this folder (`submissions/round-1/javascript`).
 
 ## Rules
 
 ### Read / write boundary
 
-Your working directory is `cli-javascript/`. Pi was started here, and the session record is tied to this folder.
+Your working directory is `submissions/round-1/javascript/`. Pi was started here, and the session record is tied to this folder.
 
-- **You may read:** everything you need *below* the repository root — `../SPEC.md`, `../PRD.md`, and files inside `cli-javascript/`.
-- **You may only create or modify files inside `cli-javascript/`.** Everything else in the repo is read-only for you.
+- **You may read:** everything you need *below* the repository root — `../../../SPEC.md`, `../../../PRD.md`, and files inside `submissions/round-1/javascript/`.
+- **You may only create or modify files inside `submissions/round-1/javascript/`.** Everything else in the repo is read-only for you.
 - **Do not read** other `cli-*` folders. Do not read or modify `benchmark/`, `results/`, or `scripts/`.
-- Do not `cd` out of `cli-javascript/` to work, and do not create files anywhere else (no `/tmp` artifacts that end up in the repo, no edits to root docs).
+- Do not `cd` out of `submissions/round-1/javascript/` to work, and do not create files anywhere else (no `/tmp` artifacts that end up in the repo, no edits to root docs).
 
-If you believe you need a change outside `cli-javascript/`, stop and say so instead of making it.
+If you believe you need a change outside `submissions/round-1/javascript/`, stop and say so instead of making it.
 
 ### Engineering rules
 
@@ -59,13 +59,13 @@ Create a small `selftest/` subfolder (or similar) inside your folder with 5-10 h
 
 ## Deliverables
 
-- Working implementation in `cli-javascript/`.
-- `cli-javascript/README.md` — how to build, run, self-test, and your dependency list.
+- Working implementation in `submissions/round-1/javascript/`.
+- `submissions/round-1/javascript/README.md` — how to build, run, self-test, and your dependency list.
 - The exact commands in ````bash
-cd cli-javascript
+cd submissions/round-1/javascript
 # (interpreted language — no build step)
 # run
-node workflow.js myworkflow.json   # or: run -  (stdin)
+node workflow.js run myworkflow.json     # or: run -   (stdin)
 ```` working.
 
 Do not stop early: implement **every** operation in SPEC §4, all error codes in SPEC §7, references (§6), conditions (§5) and retries. Completeness is the whole point.

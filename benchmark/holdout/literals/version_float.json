@@ -1,0 +1,21 @@
+{
+  "name": "version_float",
+  "input": {
+    "version": 1.0,
+    "steps": []
+  },
+  "expected_exit_code": 2,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_WORKFLOW",
+      "step": null,
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_WORKFLOW",
+  "since": 2
+}

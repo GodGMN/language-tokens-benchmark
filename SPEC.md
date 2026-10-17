@@ -63,7 +63,7 @@ Always this shape (fields may be null/empty, but all are present):
 }
 ```
 
-- `version`: required, must be integer `1`.
+- `version`: required, must be the integer literal `1` (`1.0` is rejected with `INVALID_WORKFLOW`).
 - `steps`: required array, may be empty (valid workflow, no steps).
 - Unknown top-level fields: reject (`INVALID_WORKFLOW`).
 
@@ -100,14 +100,15 @@ Standard JSON: `null`, `boolean`, `number`, `string`, `array`, `object`.
 ### Numbers
 
 - All numeric parameters and math results are **signed 64-bit integers** (`i64`).
-- A JSON number is valid as a numeric parameter iff it is an integer that fits in i64 (no fractional part, `|n| <= 2^63-1`). Otherwise `INVALID_ARG`.
+- A numeric parameter must be a JSON **integer literal** (`123`, `-4`) that fits in i64. Literals with a fraction or exponent (`1.0`, `1e3`) are rejected with `INVALID_ARG`, even when the value is integral.
 - `type` op reports a JSON number as `"number"` regardless.
 
 ### i64 arithmetic
 
 - `+ - * / %` wrap-check: if the true mathematical result is outside `[2^63, 2^63-1]`, the operation fails with `ARITHMETIC_OVERFLOW`.
-- `divide`: truncates toward zero. `7 / 2 = 3`, `-7 / 2 = -3`.
-- `mod`: sign of the **dividend** (C99 style). `7 % 2 = 1`, `-7 % 2 = -1`.
+- `INT64_MIN / -1` and `INT64_MIN % -1` are `ARITHMETIC_OVERFLOW` (this avoids the trap/UB they cause in C and Rust).
+- `divide`: truncates toward zero. `7 / 2 = 3`, `-7 / 2 = -3`, `-7 / -2 = 3`.
+- `mod`: sign of the **dividend** (C99 style). `7 % 2 = 1`, `-7 % 2 = -1`, `7 % -2 = 1`, `-7 % -2 = -1`.
 - Division by zero: `DIVISION_BY_ZERO` (an operation error, not retriable — see §7).
 
 ### Strings
@@ -146,7 +147,7 @@ All values are totally ordered so that `sort` is deterministic:
 
 ## 4. Operations
 
-Argument names are exact. Missing required arg: `INVALID_ARG`. Wrong type: `INVALID_ARG`.
+Argument names are exact. Missing required arg: `INVALID_ARG`. Wrong type: `INVALID_ARG`. Unknown argument name: `INVALID_ARG`.
 Every op takes its `args` after `$ref` resolution.
 
 ### Math (2-number ops use args `a`, `b`)
@@ -173,7 +174,7 @@ Every op takes its `args` after `$ref` resolution.
 | `uppercase` | `input` (string) | ASCII upper |
 | `lowercase` | `input` (string) | ASCII lower |
 | `trim` | `input` (string) | remove ASCII whitespace (`space`, `\t`, `\n`, `\r`, `\f`, `\v`) from both ends |
-| `replace` | `input`, `search`, `replace` (all strings) | replace all literal, non-overlapping occurrences (left to right) |
+| `replace` | `input`, `search`, `replace` (all strings) | replace all literal, non-overlapping occurrences (left to right); empty `search` -> `INVALID_ARG` |
 | `length` | `input` (string) | number of Unicode code points (i64) |
 
 ### Arrays
@@ -186,7 +187,7 @@ Every op takes its `args` after `$ref` resolution.
 | `sort` | `input` (array) | ascending by value type; mixed types ordered: number < string < boolean < null < array < object; stable for equal keys (original order kept) |
 | `reverse` | `input` (array) | reversed |
 | `unique` | `input` (array) | dedup by structural equality, first occurrence kept |
-| `slice` | `input` (array), `start` (i64), `end` (optional i64) | like Python slice on indices: negatives count from end, clamped; `end` omitted -> end |
+| `slice` | `input` (array), `start` (i64), `end` (optional i64) | like Python slice on indices: negatives count from end, clamped; `end` omitted -> end; `start > end` -> `[]` |
 | `flatten` | `input` (array) | one level: arrays' elements are spliced in place; non-arrays kept as elements |
 
 **`map.transform`** (one of):
@@ -255,6 +256,7 @@ Every op takes its `args` after `$ref` resolution.
 ## 6. `$ref` references
 
 - `{"$ref": "step_id"}` and dotted paths: `{"$ref": "step_id.user.name"}`, array indices: `{"$ref": "step_id.items.0"}`.
+- Array indices are **non-negative decimal integers**. A negative (`items.-1`) or non-numeric (`items.x`) segment is `INVALID_REFERENCE`.
 - An object is a reference **only** if it has exactly one key, `$ref`, whose value is a string.
 - References resolve recursively anywhere inside `args` (including inside arrays and nested objects).
 - A reference may only target a step that is a direct or transitive `depends_on` of the referencing step.
@@ -301,7 +303,7 @@ The `step` field is the id of the step responsible for the failure, or `null` wh
 |---|---|
 | Any runtime failure of a step (bad args, overflow, div-by-zero, bad/skipped reference, bad condition, retries exhausted) | that step's id |
 | `UNKNOWN_DEPENDENCY` | the step whose `depends_on` is unknown |
-| `INVALID_WORKFLOW` about one step's fields | that step's id when it is parseable, else `null` |
+| `INVALID_WORKFLOW` about one step's fields | that step's `id` when it is a string (even if it fails the id pattern), else `null` |
 | `INVALID_WORKFLOW` about `version`/`steps`, and `CYCLIC_DEPENDENCY` | `null` |
 
 `error.message` is free-form and is never compared. `error.code` and `error.step` are always compared.

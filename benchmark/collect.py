@@ -21,8 +21,11 @@ import json
 import sys
 from pathlib import Path
 
+import common
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
+RESULTS = common.RESULTS
 PI_SESSIONS = Path.home() / ".pi" / "agent" / "sessions"
 
 
@@ -127,23 +130,25 @@ def collect_session(path: Path) -> dict:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--round", default="round-1")
-    ap.add_argument("--session", action="append", default=[],
-                    metavar="LANG=PATH_OR_ID", help="override/add a session mapping")
+    ap.add_argument("--round", default=None, help="round id (default from config.json)")
+    ap.add_argument("--session", action="append", default=[], metavar="LANG=PATH_OR_ID",
+                    help="override/add a session mapping")
     args = ap.parse_args()
 
-    round_cfg = HERE / "rounds" / args.round / "round.json"
-    cfg = json.loads(round_cfg.read_text()) if round_cfg.exists() else {"model": None, "languages": {}}
+    cfg = common.load_round(args.round or common.default_round())
+    round_id = cfg["id"]
+    sessions = {lang: common.lang_entry(cfg, lang)["session"] for lang in cfg.get("languages", {})}
     for kv in args.session:
         lang, _, val = kv.partition("=")
-        cfg["languages"][lang] = val
+        sessions[lang] = val
+    sessions = {k: v for k, v in sessions.items() if v}
 
-    if not cfg["languages"]:
-        print(f"no sessions configured in {round_cfg} (and no --session flags)", file=sys.stderr)
+    if not sessions:
+        print(f"no sessions configured for round {round_id}", file=sys.stderr)
         sys.exit(1)
 
-    out = {"round": args.round, "model": cfg.get("model"), "languages": {}}
-    for lang, val in sorted(cfg["languages"].items()):
+    out = {"round": round_id, "model": cfg.get("model"), "languages": {}}
+    for lang, val in sorted(sessions.items()):
         try:
             path = resolve_session(val)
         except FileNotFoundError as e:
@@ -152,11 +157,11 @@ def main():
         data = collect_session(path)
         data["source"] = val
         out["languages"][lang] = data
-        print(f"  {lang:12s} in={data['input']:>8d} out={data['output']:>8d} "
-              f"total={data['totalTokens']:>8d} turns={data['user_messages']} "
-              f"tools={data['tool_results']} cost=${data['cost']['total']:.4f}  [{path.name}]")
+        print(f"  {lang:12s} in={data['input']:>9d} out={data['output']:>9d} "
+              f"total={data['totalTokens']:>10d} turns={data['user_messages']} "
+              f"tools={data['tool_results']:>3d} cost=${data['cost']['total']:.4f}  [{path.name}]")
 
-    outdir = ROOT / "results" / args.round
+    outdir = RESULTS / round_id
     outdir.mkdir(parents=True, exist_ok=True)
     (outdir / "metrics.json").write_text(json.dumps(out, indent=2))
     print(f"\nwrote {outdir / 'metrics.json'}")

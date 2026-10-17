@@ -1,0 +1,50 @@
+{
+  "name": "ref_index_oob",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "obj",
+        "op": "constant",
+        "args": {
+          "value": [
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "id": "g",
+        "op": "constant",
+        "depends_on": [
+          "obj"
+        ],
+        "args": {
+          "value": {
+            "$ref": "obj.5"
+          }
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "failed",
+    "results": {
+      "obj": [
+        1,
+        2
+      ]
+    },
+    "execution_order": [
+      "obj"
+    ],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_REFERENCE",
+      "step": "g",
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_REFERENCE"
+}

@@ -1,0 +1,46 @@
+{
+  "name": "fail_until_partial",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "setup",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      },
+      {
+        "id": "f",
+        "op": "fail_until",
+        "args": {
+          "failures": 2,
+          "value": "ok"
+        },
+        "depends_on": [
+          "setup"
+        ],
+        "retry": {
+          "max_attempts": 2
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "failed",
+    "results": {
+      "setup": 1
+    },
+    "execution_order": [
+      "setup"
+    ],
+    "skipped": [],
+    "error": {
+      "code": "STEP_FAILED",
+      "step": "f",
+      "message": ""
+    }
+  },
+  "expected_error_code": "STEP_FAILED"
+}

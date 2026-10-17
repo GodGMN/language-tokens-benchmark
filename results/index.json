@@ -1,0 +1,120 @@
+{
+  "benchmark": "language-tokens-benchmark",
+  "rounds": [
+    {
+      "round": "round-1",
+      "label": "DeepSeek V4.1 Flash \u2014 one-shot",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17"
+      },
+      "tests": {
+        "total": 107,
+        "public": 32,
+        "holdout": 75,
+        "future_spec": 7
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "javascript",
+          "passed": 107,
+          "total": 107,
+          "pct": 100.0,
+          "output": 90736,
+          "total_tokens": 2959548,
+          "cost": 0.1338,
+          "tool_calls": 57,
+          "gen_eff_k": 1.18,
+          "tot_eff_k": 0.04,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1987,
+            "source_bytes": 53000
+          }
+        },
+        {
+          "rank": 2,
+          "language": "go",
+          "passed": 107,
+          "total": 107,
+          "pct": 100.0,
+          "output": 113306,
+          "total_tokens": 3365415,
+          "cost": 0.1624,
+          "tool_calls": 46,
+          "gen_eff_k": 0.94,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.14,
+          "code": {
+            "source_files": 6,
+            "source_lines": 2437,
+            "source_bytes": 70449
+          }
+        },
+        {
+          "rank": 3,
+          "language": "c",
+          "passed": 107,
+          "total": 107,
+          "pct": 100.0,
+          "output": 121998,
+          "total_tokens": 5224057,
+          "cost": 0.1907,
+          "tool_calls": 68,
+          "gen_eff_k": 0.88,
+          "tot_eff_k": 0.02,
+          "rel_cost": 1.77,
+          "code": {
+            "source_files": 3,
+            "source_lines": 3477,
+            "source_bytes": 104814
+          }
+        },
+        {
+          "rank": 4,
+          "language": "python",
+          "passed": 107,
+          "total": 107,
+          "pct": 100.0,
+          "output": 125031,
+          "total_tokens": 6222745,
+          "cost": 0.1999,
+          "tool_calls": 76,
+          "gen_eff_k": 0.86,
+          "tot_eff_k": 0.02,
+          "rel_cost": 2.1,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1688,
+            "source_bytes": 50693
+          }
+        },
+        {
+          "rank": 5,
+          "language": "rust",
+          "passed": 107,
+          "total": 107,
+          "pct": 100.0,
+          "output": 156063,
+          "total_tokens": 9405161,
+          "cost": 0.2549,
+          "tool_calls": 85,
+          "gen_eff_k": 0.69,
+          "tot_eff_k": 0.01,
+          "rel_cost": 3.18,
+          "code": {
+            "source_files": 7,
+            "source_lines": 2281,
+            "source_bytes": 72024
+          }
+        }
+      ]
+    }
+  ]
+}

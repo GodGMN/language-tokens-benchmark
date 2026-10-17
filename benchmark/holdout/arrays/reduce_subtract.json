@@ -1,0 +1,32 @@
+{
+  "name": "reduce_subtract",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "reduce",
+        "args": {
+          "input": [
+            1,
+            2,
+            3
+          ],
+          "op": "subtract"
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": -6
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "diamond_tiebreak",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "d",
+        "op": "constant",
+        "args": {
+          "value": 4
+        },
+        "depends_on": [
+          "b",
+          "c"
+        ]
+      },
+      {
+        "id": "c",
+        "op": "constant",
+        "args": {
+          "value": 3
+        },
+        "depends_on": [
+          "a"
+        ]
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "args": {
+          "value": 2
+        },
+        "depends_on": [
+          "a"
+        ]
+      },
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "a": 1,
+      "b": 2,
+      "c": 3,
+      "d": 4
+    },
+    "execution_order": [
+      "a",
+      "c",
+      "b",
+      "d"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

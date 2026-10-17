@@ -1,0 +1,38 @@
+{
+  "name": "merge_precedence",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "merge",
+        "args": {
+          "a": {
+            "x": 1,
+            "y": 2
+          },
+          "b": {
+            "y": 3,
+            "z": 4
+          }
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": {
+        "x": 1,
+        "y": 3,
+        "z": 4
+      }
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

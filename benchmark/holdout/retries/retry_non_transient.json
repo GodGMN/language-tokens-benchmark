@@ -1,0 +1,32 @@
+{
+  "name": "retry_non_transient",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "d",
+        "op": "divide",
+        "args": {
+          "a": 1,
+          "b": 0
+        },
+        "retry": {
+          "max_attempts": 3
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "DIVISION_BY_ZERO",
+      "step": "d",
+      "message": ""
+    }
+  },
+  "expected_error_code": "DIVISION_BY_ZERO"
+}

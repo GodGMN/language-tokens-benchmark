@@ -1,0 +1,41 @@
+{
+  "name": "slice_clamp",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "slice",
+        "args": {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "start": -10,
+          "end": 100
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "name": "large_chain",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "s0",
+        "op": "constant",
+        "args": {
+          "value": 0
+        }
+      },
+      {
+        "id": "s1",
+        "op": "add",
+        "depends_on": [
+          "s0"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s0"
+          },
+          "b": 1
+        }
+      },
+      {
+        "id": "s2",
+        "op": "add",
+        "depends_on": [
+          "s1"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s1"
+          },
+          "b": 1
+        }
+      },
+      {
+        "id": "s3",
+        "op": "add",
+        "depends_on": [
+          "s2"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s2"
+          },
+          "b": 1
+        }
+      },
+      {
+        "id": "s4",
+        "op": "add",
+        "depends_on": [
+          "s3"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s3"
+          },
+          "b": 1
+        }
+      },
+      {
+        "id": "s5",
+        "op": "add",
+        "depends_on": [
+          "s4"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s4"
+          },
+          "b": 1
+        }
+      },
+      {
+        "id": "s6",
+        "op": "add",
+        "depends_on": [
+          "s5"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s5"
+          },
+          "b": 1
+        }
+      },
+      {
+        "id": "s7",
+        "op": "add",
+        "depends_on": [
+          "s6"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s6"
+          },
+          "b": 1
+        }
+      },
+      {
+        "id": "s8",
+        "op": "add",
+        "depends_on": [
+          "s7"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s7"
+          },
+          "b": 1
+        }
+      },
+      {
+        "id": "s9",
+        "op": "add",
+        "depends_on": [
+          "s8"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s8"
+          },
+          "b": 1
+        }
+      },
+      {
+        "id": "s10",
+        "op": "add",
+        "depends_on": [
+          "s9"
+        ],
+        "args": {
+          "a": {
+            "$ref": "s9"
+          },
+          "b": 1
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "s0": 0,
+      "s1": 1,
+      "s2": 2,
+      "s3": 3,
+      "s4": 4,
+      "s5": 5,
+      "s6": 6,
+      "s7": 7,
+      "s8": 8,
+      "s9": 9,
+      "s10": 10
+    },
+    "execution_order": [
+      "s0",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7",
+      "s8",
+      "s9",
+      "s10"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

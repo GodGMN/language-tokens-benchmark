@@ -1,0 +1,33 @@
+{
+  "name": "reduce_mul_initial",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "reduce",
+        "args": {
+          "input": [
+            2,
+            3,
+            4
+          ],
+          "op": "multiply",
+          "initial": 2
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": 48
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

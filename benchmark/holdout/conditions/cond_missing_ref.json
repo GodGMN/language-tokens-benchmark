@@ -1,0 +1,49 @@
+{
+  "name": "cond_missing_ref",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "depends_on": [
+          "a"
+        ],
+        "args": {
+          "value": 2
+        },
+        "when": {
+          "op": "eq",
+          "left": {
+            "$ref": "a.x"
+          },
+          "right": 1
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "failed",
+    "results": {
+      "a": 1
+    },
+    "execution_order": [
+      "a"
+    ],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_REFERENCE",
+      "step": "b",
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_REFERENCE"
+}

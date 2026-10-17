@@ -1,0 +1,48 @@
+{
+  "name": "cond_mixed_type_false",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "x",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      },
+      {
+        "id": "y",
+        "op": "constant",
+        "depends_on": [
+          "x"
+        ],
+        "args": {
+          "value": 2
+        },
+        "when": {
+          "op": "gt",
+          "left": {
+            "$ref": "x"
+          },
+          "right": "a"
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "x": 1,
+      "y": null
+    },
+    "execution_order": [
+      "x",
+      "y"
+    ],
+    "skipped": [
+      "y"
+    ],
+    "error": null
+  }
+}

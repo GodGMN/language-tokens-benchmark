@@ -4,9 +4,9 @@ You are implementing one language of a token-usage benchmark. Your goal: impleme
 
 ## Read this first
 
-The full functional contract is at `../SPEC.md` (relative to this folder). **Read it completely before writing code.** It defines the CLI, the workflow JSON format, every operation, reference semantics, conditions, retries, error codes and worked examples. When in doubt, the SPEC wins over your instincts.
+The full functional contract is at `../../../SPEC.md` (relative to this folder). **Read it completely before writing code.** It defines the CLI, the workflow JSON format, every operation, reference semantics, conditions, retries, error codes and worked examples. When in doubt, the SPEC wins over your instincts.
 
-Also skim `../PRD.md` §5 (CLI contract) for context.
+Also skim `../../../PRD.md` §5 (CLI contract) for context.
 
 ## What you must build
 
@@ -24,27 +24,27 @@ workflow run -        # JSON document on stdin
 The exact build/run commands the test harness will use for Go:
 
 ```bash
-cd cli-go
+cd submissions/round-1/go
 # build
 go build -o workflow .
 # run
-./workflow run myworkflow.json   # or: run -  (stdin)
+./workflow run myworkflow.json     # or: run -   (stdin)
 ```
 
-Make sure those commands work from this folder (`cli-go`).
+Make sure those commands work from this folder (`submissions/round-1/go`).
 
 ## Rules
 
 ### Read / write boundary
 
-Your working directory is `cli-go/`. Pi was started here, and the session record is tied to this folder.
+Your working directory is `submissions/round-1/go/`. Pi was started here, and the session record is tied to this folder.
 
-- **You may read:** everything you need *below* the repository root — `../SPEC.md`, `../PRD.md`, and files inside `cli-go/`.
-- **You may only create or modify files inside `cli-go/`.** Everything else in the repo is read-only for you.
+- **You may read:** everything you need *below* the repository root — `../../../SPEC.md`, `../../../PRD.md`, and files inside `submissions/round-1/go/`.
+- **You may only create or modify files inside `submissions/round-1/go/`.** Everything else in the repo is read-only for you.
 - **Do not read** other `cli-*` folders. Do not read or modify `benchmark/`, `results/`, or `scripts/`.
-- Do not `cd` out of `cli-go/` to work, and do not create files anywhere else (no `/tmp` artifacts that end up in the repo, no edits to root docs).
+- Do not `cd` out of `submissions/round-1/go/` to work, and do not create files anywhere else (no `/tmp` artifacts that end up in the repo, no edits to root docs).
 
-If you believe you need a change outside `cli-go/`, stop and say so instead of making it.
+If you believe you need a change outside `submissions/round-1/go/`, stop and say so instead of making it.
 
 ### Engineering rules
 
@@ -60,14 +60,14 @@ Create a small `selftest/` subfolder (or similar) inside your folder with 5-10 h
 
 ## Deliverables
 
-- Working implementation in `cli-go/`.
-- `cli-go/README.md` — how to build, run, self-test, and your dependency list.
+- Working implementation in `submissions/round-1/go/`.
+- `submissions/round-1/go/README.md` — how to build, run, self-test, and your dependency list.
 - The exact commands in ````bash
-cd cli-go
+cd submissions/round-1/go
 # build
 go build -o workflow .
 # run
-./workflow run myworkflow.json   # or: run -  (stdin)
+./workflow run myworkflow.json     # or: run -   (stdin)
 ```` working.
 
 Do not stop early: implement **every** operation in SPEC §4, all error codes in SPEC §7, references (§6), conditions (§5) and retries. Completeness is the whole point.

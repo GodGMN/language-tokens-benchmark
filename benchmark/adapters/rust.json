@@ -1,6 +1,5 @@
 {
   "language": "rust",
-  "project_dir": "cli-rust",
   "build": [
     "cargo",
     "build",

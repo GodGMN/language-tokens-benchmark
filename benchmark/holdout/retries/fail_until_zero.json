@@ -1,0 +1,28 @@
+{
+  "name": "fail_until_zero",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "f",
+        "op": "fail_until",
+        "args": {
+          "failures": 0,
+          "value": "ok"
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "f": "ok"
+    },
+    "execution_order": [
+      "f"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

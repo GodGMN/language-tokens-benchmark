@@ -1,0 +1,34 @@
+{
+  "name": "omit_all",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "omit",
+        "args": {
+          "input": {
+            "a": 1,
+            "b": 2
+          },
+          "keys": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": {}
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

@@ -1,6 +1,5 @@
 {
   "language": "javascript",
-  "project_dir": "cli-javascript",
   "build": null,
   "run": [
     "node",

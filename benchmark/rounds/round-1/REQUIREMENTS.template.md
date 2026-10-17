@@ -4,9 +4,9 @@ You are implementing one language of a token-usage benchmark. Your goal: impleme
 
 ## Read this first
 
-The full functional contract is at `../SPEC.md` (relative to this folder). **Read it completely before writing code.** It defines the CLI, the workflow JSON format, every operation, reference semantics, conditions, retries, error codes and worked examples. When in doubt, the SPEC wins over your instincts.
+The full functional contract is at `{{REL_ROOT}}/SPEC.md` (relative to this folder). **Read it completely before writing code.** It defines the CLI, the workflow JSON format, every operation, reference semantics, conditions, retries, error codes and worked examples. When in doubt, the SPEC wins over your instincts.
 
-Also skim `../PRD.md` §5 (CLI contract) for context.
+Also skim `{{REL_ROOT}}/PRD.md` §5 (CLI contract) for context.
 
 ## What you must build
 
@@ -33,7 +33,7 @@ Make sure those commands work from this folder (`{{PROJECT_DIR}}`).
 
 Your working directory is `{{PROJECT_DIR}}/`. Pi was started here, and the session record is tied to this folder.
 
-- **You may read:** everything you need *below* the repository root — `../SPEC.md`, `../PRD.md`, and files inside `{{PROJECT_DIR}}/`.
+- **You may read:** everything you need *below* the repository root — `{{REL_ROOT}}/SPEC.md`, `{{REL_ROOT}}/PRD.md`, and files inside `{{PROJECT_DIR}}/`.
 - **You may only create or modify files inside `{{PROJECT_DIR}}/`.** Everything else in the repo is read-only for you.
 - **Do not read** other `cli-*` folders. Do not read or modify `benchmark/`, `results/`, or `scripts/`.
 - Do not `cd` out of `{{PROJECT_DIR}}/` to work, and do not create files anywhere else (no `/tmp` artifacts that end up in the repo, no edits to root docs).

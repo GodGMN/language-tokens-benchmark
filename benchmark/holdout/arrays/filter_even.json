@@ -1,0 +1,41 @@
+{
+  "name": "filter_even",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "filter",
+        "args": {
+          "input": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2
+          ],
+          "predicate": {
+            "type": "even"
+          }
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": [
+        -2,
+        0,
+        2
+      ]
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

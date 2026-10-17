@@ -1,0 +1,28 @@
+{
+  "name": "id_invalid",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "1abc",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 2,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_WORKFLOW",
+      "step": "1abc",
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_WORKFLOW"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "case_ascii",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "up",
+        "op": "uppercase",
+        "args": {
+          "input": "aéZ9"
+        }
+      },
+      {
+        "id": "lo",
+        "op": "lowercase",
+        "args": {
+          "input": "AÉz9"
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "up": "AéZ9",
+      "lo": "aÉz9"
+    },
+    "execution_order": [
+      "up",
+      "lo"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

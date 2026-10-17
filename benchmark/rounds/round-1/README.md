@@ -8,19 +8,19 @@ Five independent pi sessions, one per language. Same model, same prompt except t
 python3 benchmark/rounds/round-1/make_prompts.py
 ```
 
-This writes `prompt-<language>.md` for python, javascript, go, rust and c (the oracle is skipped).
+This writes `prompt-<language>.md` for every language in `round.json`.
 
 ## 2. Run one session per language
 
-Start pi **inside the language folder** and give it a fixed session id so the
+Start pi **inside `submissions/round-1/<language>`** and give it a fixed session id so the
 token collector can find it later:
 
 ```bash
-cd cli-python     && pi --session-id round1-python
-cd cli-javascript && pi --session-id round1-javascript
-cd cli-go         && pi --session-id round1-go
-cd cli-rust       && pi --session-id round1-rust
-cd cli-c          && pi --session-id round1-c
+cd submissions/round-1/python     && pi --session-id round1-python
+cd submissions/round-1/javascript && pi --session-id round1-javascript
+cd submissions/round-1/go         && pi --session-id round1-go
+cd submissions/round-1/rust       && pi --session-id round1-rust
+cd submissions/round-1/c          && pi --session-id round1-c
 ```
 
 Paste the matching `prompt-<language>.md` as the first message. Let each session

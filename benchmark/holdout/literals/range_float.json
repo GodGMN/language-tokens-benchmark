@@ -1,0 +1,30 @@
+{
+  "name": "range_float",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "range",
+        "args": {
+          "start": 1.0,
+          "end": 3
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_ARG",
+      "step": "r",
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_ARG",
+  "since": 2
+}

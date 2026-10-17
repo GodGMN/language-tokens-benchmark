@@ -1,0 +1,61 @@
+{
+  "name": "order_interleaved",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "c",
+        "op": "constant",
+        "args": {
+          "value": 3
+        },
+        "depends_on": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      },
+      {
+        "id": "d",
+        "op": "constant",
+        "args": {
+          "value": 4
+        },
+        "depends_on": [
+          "c"
+        ]
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "args": {
+          "value": 2
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "a": 1,
+      "b": 2,
+      "c": 3,
+      "d": 4
+    },
+    "execution_order": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

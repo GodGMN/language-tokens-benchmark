@@ -1,0 +1,42 @@
+{
+  "name": "i64_bounds",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "lo",
+        "op": "min",
+        "args": {
+          "input": [
+            -9223372036854775808,
+            5
+          ]
+        }
+      },
+      {
+        "id": "hi",
+        "op": "max",
+        "args": {
+          "input": [
+            9223372036854775807,
+            5
+          ]
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "lo": -9223372036854775808,
+      "hi": 9223372036854775807
+    },
+    "execution_order": [
+      "lo",
+      "hi"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

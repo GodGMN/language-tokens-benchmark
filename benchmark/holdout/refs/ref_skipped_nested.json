@@ -1,0 +1,65 @@
+{
+  "name": "ref_skipped_nested",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 1
+        }
+      },
+      {
+        "id": "s",
+        "op": "constant",
+        "depends_on": [
+          "a"
+        ],
+        "args": {
+          "value": 2
+        },
+        "when": {
+          "op": "gt",
+          "left": {
+            "$ref": "a"
+          },
+          "right": 5
+        }
+      },
+      {
+        "id": "t",
+        "op": "constant",
+        "depends_on": [
+          "s"
+        ],
+        "args": {
+          "value": {
+            "$ref": "s"
+          }
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "failed",
+    "results": {
+      "a": 1,
+      "s": null
+    },
+    "execution_order": [
+      "a",
+      "s"
+    ],
+    "skipped": [
+      "s"
+    ],
+    "error": {
+      "code": "SKIPPED_REFERENCE",
+      "step": "t",
+      "message": ""
+    }
+  },
+  "expected_error_code": "SKIPPED_REFERENCE"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "range_bounds",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "range",
+        "args": {
+          "start": 9223372036854775806,
+          "end": 9223372036854775807
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": [
+        9223372036854775806,
+        9223372036854775807
+      ]
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

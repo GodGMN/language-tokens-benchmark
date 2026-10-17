@@ -1,0 +1,30 @@
+{
+  "name": "exponent_arg",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "add",
+        "args": {
+          "a": 1000.0,
+          "b": 0
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_ARG",
+      "step": "r",
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_ARG",
+  "since": 2
+}

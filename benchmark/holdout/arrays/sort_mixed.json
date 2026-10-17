@@ -1,0 +1,39 @@
+{
+  "name": "sort_mixed",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "sort",
+        "args": {
+          "input": [
+            3,
+            "a",
+            2,
+            "b",
+            1
+          ]
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": [
+        1,
+        2,
+        3,
+        "a",
+        "b"
+      ]
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

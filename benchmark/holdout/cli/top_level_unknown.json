@@ -1,0 +1,21 @@
+{
+  "name": "top_level_unknown",
+  "input": {
+    "version": 1,
+    "steps": [],
+    "x": 1
+  },
+  "expected_exit_code": 2,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "INVALID_WORKFLOW",
+      "step": null,
+      "message": ""
+    }
+  },
+  "expected_error_code": "INVALID_WORKFLOW"
+}

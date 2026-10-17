@@ -1,0 +1,61 @@
+{
+  "name": "cond_not_all_true",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "x",
+        "op": "constant",
+        "args": {
+          "value": 5
+        }
+      },
+      {
+        "id": "y",
+        "op": "constant",
+        "depends_on": [
+          "x"
+        ],
+        "args": {
+          "value": "ok"
+        },
+        "when": {
+          "op": "not",
+          "condition": {
+            "op": "all",
+            "conditions": [
+              {
+                "op": "gt",
+                "left": {
+                  "$ref": "x"
+                },
+                "right": 1
+              },
+              {
+                "op": "lt",
+                "left": {
+                  "$ref": "x"
+                },
+                "right": 3
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "x": 5,
+      "y": "ok"
+    },
+    "execution_order": [
+      "x",
+      "y"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

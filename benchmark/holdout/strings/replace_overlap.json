@@ -1,0 +1,29 @@
+{
+  "name": "replace_overlap",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "replace",
+        "args": {
+          "input": "aaa",
+          "search": "aa",
+          "replace": "b"
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": "ba"
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

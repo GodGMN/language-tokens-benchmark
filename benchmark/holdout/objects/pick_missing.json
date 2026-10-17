@@ -1,0 +1,36 @@
+{
+  "name": "pick_missing",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "pick",
+        "args": {
+          "input": {
+            "a": 1
+          },
+          "keys": [
+            "a",
+            "z"
+          ]
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": {
+        "a": 1,
+        "z": null
+      }
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

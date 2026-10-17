@@ -1,0 +1,45 @@
+{
+  "name": "ref_in_array",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 7
+        }
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "depends_on": [
+          "a"
+        ],
+        "args": {
+          "value": [
+            {
+              "$ref": "a"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "a": 7,
+      "b": [
+        7
+      ]
+    },
+    "execution_order": [
+      "a",
+      "b"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

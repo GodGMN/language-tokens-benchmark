@@ -1,78 +1,84 @@
-# Workflow CLI Language Benchmark
+# Language Tokens Benchmark
 
-An experiment that measures how many **tokens** a language model needs to correctly implement the same declarative workflow engine in five languages: **Python, JavaScript (Node.js), Go, Rust and C**.
+How many tokens does a model need to implement the *same* program in different languages?
 
-Each implementation is written by a coding agent (one independent session per language), then judged by a single language-agnostic conformance suite that drives the binaries through their CLI and inspects their JSON output.
+This repo asks one question: given an identical, fully-specified CLI program, how many tokens does a frontier model spend to implement it correctly in **Python, JavaScript, Go, Rust and C**? Each implementation is produced by an independent one-shot agent session, then judged by a language-agnostic conformance suite that only talks to the binary through its CLI.
 
-> The goal is not to rank languages. The goal is to measure a model's code-generation efficiency per language under an identical functional specification.
+It is a measure of **code-generation efficiency per language**, not a ranking of languages.
 
-## How it works
+## Leaderboard
 
-1. **Phase 0 — Preparation.** This repo: spec, conformance suite, fixtures, adapters, scripts.
-2. **Phase 1 — One-shot implementation.** One agent session per `cli-*` folder, same model, same prompt (except the language), no access to the other implementations or to the private tests.
-3. **Phase 2 — Evaluation.** The runner builds each project and runs the full conformance suite against it.
-4. **Phase 3 — Optional repair.** Failed tests are fed back to each agent with an extra token budget.
+Round 1 — DeepSeek V4.1 Flash, one-shot, `thinking=high`. All five implementations pass **107/107** scored tests (32 public + 75 holdout).
+
+| rank | language | scored | output tokens | total tokens | cost | tool calls | src lines |
+|---|---|---|---|---|---|---|---|
+| 1 | **JavaScript** | 107/107 | 90,736 | 2,959,548 | $0.134 | 57 | 1,987 |
+| 2 | **Go** | 107/107 | 113,306 | 3,365,415 | $0.162 | 46 | 2,437 |
+| 3 | **C** | 107/107 | 121,998 | 5,224,057 | $0.191 | 68 | 3,477 |
+| 4 | **Python** | 107/107 | 125,031 | 6,222,745 | $0.200 | 76 | 1,688 |
+| 5 | **Rust** | 107/107 | 156,063 | 9,405,161 | $0.255 | 85 | 2,281 |
+
+Ranking is by total tokens among conforming implementations; the order is identical by output tokens, so it is not a cache artifact. Full breakdown: [`results/round-1/report.md`](results/round-1/report.md).
+
+## The task
+
+Every agent must build a CLI that executes a declarative JSON workflow:
+
+```bash
+workflow run <workflow.json>      # or: workflow run -   (JSON on stdin)
+```
+
+It parses a DAG of steps, resolves `$ref` references between them, evaluates `when` conditions, applies retries, and executes a fixed set of 40+ operations (arithmetic on `i64`, strings, arrays, objects, utilities) — emitting exactly one JSON document on stdout with deterministic ordering and a closed set of error codes. The full contract is [`SPEC.md`](SPEC.md).
+
+The task is deliberately sized to be **completable in one session but large enough to measure**: it has enough surface (integer overflow rules, UTF-8 code points, structural equality, total ordering across mixed types, skipped-step propagation, transient retries) that implementations cannot be gamed by a short answer, while still fitting in a single context window.
 
 ## Repository layout
 
 ```text
-├── PRD.md              # Product requirements (this experiment)
-├── SPEC.md             # The functional contract given to the implementing agents
-├── AGENTS.md           # Isolation rules for the implementing agents
-├── cli-python/         # Python implementation        (agent workspace)
-├── cli-javascript/     # Node.js implementation       (agent workspace)
-├── cli-go/             # Go implementation            (agent workspace)
-├── cli-rust/           # Rust implementation          (agent workspace)
-├── cli-c/              # C implementation             (agent workspace)
-├── benchmark/          # Python evaluation harness: adapters, tests, fixtures
-├── results/            # Generated reports per round
-└── scripts/            # Shell wrappers around the Python entry points
+SPEC.md                     The functional contract (frozen per spec version)
+PRD.md                      Experiment design and rationale
+AGENTS.md                   Rules given to implementing agents
+
+submissions/<round>/<lang>/ One implementation per round per language
+benchmark/
+  adapters/<lang>.json      How to build/run each language
+  fixtures/<category>/      Public conformance suite
+  holdout/<category>/       Edge-case evaluation suite (scored per spec version)
+  oracle/                   Independent reference implementation (Python)
+  rounds/<round>/           round.json (model, sessions) + agent prompts
+  common.py build.py runner.py collect.py report.py
+results/<round>/            report.md, summary.json, per-language results
+scripts/                    Wrappers (test, test-all, benchmark, launch-round)
+docs/                       Methodology, isolation, contributing
 ```
 
-## The deliverable each agent must build
-
-A CLI named `workflow` that executes a single command:
+## Reproducing a round
 
 ```bash
-workflow run <workflow.json>     # or: workflow run -   (JSON via stdin)
+python3 benchmark/rounds/round-1/make_prompts.py     # render per-language prompts
+./scripts/launch-round.sh round-1                    # 5 agents in parallel
+./scripts/benchmark.sh round-1                       # build + test + collect + report
 ```
 
-stdout contains exactly one JSON document:
+`collect.py` reads pi's session JSONL and sums **provider-reported** usage (input, output, cache read/write, reasoning, total, cost) per session — no estimates. See [`docs/methodology.md`](docs/methodology.md).
 
-```json
-{
-  "status": "completed",
-  "results": { "a": 10, "b": 20 },
-  "execution_order": ["a", "b"],
-  "skipped": []
-}
-```
+## Extending it
 
-Exit codes: `0` ok, `1` workflow failure, `2` validation error, `3` internal error.
+This is meant to grow by PR. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-The engine interprets a JSON workflow (steps with `op`, `args`, `depends_on`, `when`, `retry`), resolves DAG dependencies deterministically, supports `$ref` references between steps, conditions, retries and a fixed set of declarative operations (math, strings, arrays, objects, utilities). The full contract lives in [SPEC.md](SPEC.md).
+- **Add tests** → drop a fixture in `benchmark/fixtures/<category>/` (public) or `benchmark/holdout/<category>/` (scored edge cases). Format is documented in [`docs/test-format.md`](docs/test-format.md).
+- **Add a language** → add `benchmark/adapters/<lang>.json`, a submission dir, and a prompt template.
+- **Add a model** → create `benchmark/rounds/<round>/round.json` with the model metadata; `launch-round.sh` and `report.py` pick it up.
 
-## Running the benchmark
+## Methodology, briefly
 
-```bash
-# Build all implementations
-python3 benchmark/build.py --all
+- **Isolation:** each agent runs in its own submission directory with its own session id, same prompt except the language, no access to other submissions or the holdout suite. See [`docs/isolation.md`](docs/isolation.md).
+- **Spec versioning:** the SPEC can be clarified, but a round is always scored against the version it was run with. Holdout cases tagged `"since": N` only count once a round declares `spec_version >= N`, so nobody is penalised retroactively for a rule that did not exist.
+- **Correctness first:** non-conforming implementations are listed separately with their pass rate; the leaderboard only ranks conforming ones, by total tokens.
+- **Reproducible:** every round commits its model metadata, per-test outcomes and a machine-readable `summary.json`.
 
-# Run the conformance suite for one language / all languages
-python3 benchmark/runner.py --language go
-python3 benchmark/runner.py --all
+## Roadmap
 
-# Collect metrics + generate the comparative report
-python3 benchmark/collect.py --round <id>
-python3 benchmark/report.py --latest
-```
-
-Or use the wrappers in `scripts/` (`test.sh`, `test-all.sh`, `benchmark.sh`).
-
-## Running an implementation round
-
-Each language implementation is produced by one `pi` session started inside its `cli-*` folder with the requirements prompt (see `benchmark/rounds/`). Pi records exact per-message token usage in its session JSONL files, which `benchmark/collect.py` parses to build the per-language token ledger.
-
-## Reading the results
-
-Reports land in `results/<round-id>/` as raw data (per-session usage, per-test outcomes) plus a human-readable `report.md`. The main ranking: lowest total tokens among fully conforming implementations.
+- More languages (Java, Kotlin, Swift, TypeScript…).
+- More models per round (the round config already records model + params).
+- A published site generated from `results/*/summary.json`.

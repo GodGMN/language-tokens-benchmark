@@ -1,0 +1,44 @@
+{
+  "name": "two_flaky",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "f1",
+        "op": "fail_until",
+        "args": {
+          "failures": 1,
+          "value": "a"
+        },
+        "retry": {
+          "max_attempts": 2
+        }
+      },
+      {
+        "id": "f2",
+        "op": "fail_until",
+        "args": {
+          "failures": 2,
+          "value": "b"
+        },
+        "retry": {
+          "max_attempts": 3
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "f1": "a",
+      "f2": "b"
+    },
+    "execution_order": [
+      "f1",
+      "f2"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

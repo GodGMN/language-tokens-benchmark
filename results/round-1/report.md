@@ -1,22 +1,26 @@
 # Benchmark report — round-1
 
-Model: deepseek-flash
+**DeepSeek V4.1 Flash — one-shot**
 
-| language | status | tests | % | conforming | in | out | total | reasoning | cache R/W | cost $ | turns | tool calls | src files | src lines | gen eff (k) | tot eff (k) | rel cost |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| python | ok | 32/32 | 100.0 | yes | 45106 | 125031 | 6222745 | 91213 | 6052608/0 | 0.1999 | 1 | 76 | 2 | 1688 | 0.26 | 0.01 | 2.1 |
-| javascript | ok | 32/32 | 100.0 | yes | 26188 | 90736 | 2959548 | 59475 | 2842624/0 | 0.1338 | 1 | 57 | 2 | 1987 | 0.35 | 0.01 | 1.0 |
-| go | ok | 32/32 | 100.0 | yes | 23565 | 113306 | 3365415 | 78740 | 3228544/0 | 0.1624 | 1 | 46 | 6 | 2437 | 0.28 | 0.01 | 1.14 |
-| rust | ok | 32/32 | 100.0 | yes | 41418 | 156063 | 9405161 | 114295 | 9207680/0 | 0.2549 | 1 | 85 | 7 | 2281 | 0.21 | 0.0 | 3.18 |
-| c | ok | 32/32 | 100.0 | yes | 46699 | 121998 | 5224057 | 63902 | 5055360/0 | 0.1907 | 1 | 68 | 3 | 3477 | 0.26 | 0.01 | 1.77 |
-| oracle | reference | 32/32 | 100.0 | yes | — | — | — | — | —/— | — | — | — | 1 | 862 | — | — | — |
+Model: **DeepSeek V4.1 Flash** (`deepseek/deepseek-flash`) · 763B total, ~16B active (8B active during prefill) · thinking=high
 
-**Metrics** — `in/out/total/reasoning/cache`: provider-reported tokens summed from the pi session (`message.usage` on every assistant turn). `gen eff (k)` = passed_tests / output_tokens * 1000. `tot eff (k)` = passed_tests / total_tokens * 1000. `rel cost` = total_tokens / min(total_tokens of conforming implementations).
+Tests per implementation: 32 public + 75 holdout = 107 scored (+7 future-spec, not scored)
 
-**Ranking** (conforming implementations, by lowest total tokens):
-1. **javascript** — 2959548 total tokens, 1 turns, 57 tool calls
-2. **go** — 3365415 total tokens, 1 turns, 46 tool calls
-3. **c** — 5224057 total tokens, 1 turns, 68 tool calls
-4. **python** — 6222745 total tokens, 1 turns, 76 tool calls
-5. **rust** — 9405161 total tokens, 1 turns, 85 tool calls
+| lang | status | scored | public | holdout | future-spec | output tok | total tok | cost $ | tool calls | src files | src lines | gen eff (k) | tot eff (k) | rel cost |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| python | ok | 107/107 | 32/32 | 75/75 | 1/7 | 125,031 | 6,222,745 | 0.1999 | 76 | 2 | 1688 | 0.86 | 0.02 | 2.1 |
+| javascript | ok | 107/107 | 32/32 | 75/75 | 1/7 | 90,736 | 2,959,548 | 0.1338 | 57 | 2 | 1987 | 1.18 | 0.04 | 1.0 |
+| go | ok | 107/107 | 32/32 | 75/75 | 1/7 | 113,306 | 3,365,415 | 0.1624 | 46 | 6 | 2437 | 0.94 | 0.03 | 1.14 |
+| rust | ok | 107/107 | 32/32 | 75/75 | 2/7 | 156,063 | 9,405,161 | 0.2549 | 85 | 7 | 2281 | 0.69 | 0.01 | 3.18 |
+| c | ok | 107/107 | 32/32 | 75/75 | 5/7 | 121,998 | 5,224,057 | 0.1907 | 68 | 3 | 3477 | 0.88 | 0.02 | 1.77 |
+| oracle | reference | 107/107 | 32/32 | 75/75 | 7/7 | — | — | — | — | 1 | 904 | — | — | — |
 
+**Metrics** — `output/total tok`: provider-reported usage summed from the pi session. `gen eff (k)` = passed / output_tokens × 1000. `tot eff (k)` = passed / total_tokens × 1000. `rel cost` = total_tokens ÷ best conforming total. `holdout` = edge-case suite scored for this round's spec version. `future-spec` = holdout cases for rules added after this round (informational).
+
+## Leaderboard (conforming, by total tokens)
+
+1. **javascript** — 2,959,548 tokens, 90,736 output, 57 tool calls, $0.1338
+2. **go** — 3,365,415 tokens, 113,306 output, 46 tool calls, $0.1624
+3. **c** — 5,224,057 tokens, 121,998 output, 68 tool calls, $0.1907
+4. **python** — 6,222,745 tokens, 125,031 output, 76 tool calls, $0.1999
+5. **rust** — 9,405,161 tokens, 156,063 output, 85 tool calls, $0.2549

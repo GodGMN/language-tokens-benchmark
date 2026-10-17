@@ -1,0 +1,41 @@
+{
+  "name": "two_cycle",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 1
+        },
+        "depends_on": [
+          "b"
+        ]
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "args": {
+          "value": 2
+        },
+        "depends_on": [
+          "a"
+        ]
+      }
+    ]
+  },
+  "expected_exit_code": 2,
+  "expected_output": {
+    "status": "failed",
+    "results": {},
+    "execution_order": [],
+    "skipped": [],
+    "error": {
+      "code": "CYCLIC_DEPENDENCY",
+      "step": null,
+      "message": ""
+    }
+  },
+  "expected_error_code": "CYCLIC_DEPENDENCY"
+}

@@ -1,6 +1,5 @@
 {
   "language": "python",
-  "project_dir": "cli-python",
   "build": null,
   "run": [
     "python3",

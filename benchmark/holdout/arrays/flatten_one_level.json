@@ -1,0 +1,49 @@
+{
+  "name": "flatten_one_level",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "flatten",
+        "args": {
+          "input": [
+            1,
+            [
+              2,
+              [
+                3,
+                [
+                  4
+                ]
+              ]
+            ],
+            5
+          ]
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": [
+        1,
+        2,
+        [
+          3,
+          [
+            4
+          ]
+        ],
+        5
+      ]
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

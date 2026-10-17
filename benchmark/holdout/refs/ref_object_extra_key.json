@@ -1,0 +1,45 @@
+{
+  "name": "ref_object_extra_key",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "constant",
+        "args": {
+          "value": 10
+        }
+      },
+      {
+        "id": "b",
+        "op": "constant",
+        "depends_on": [
+          "a"
+        ],
+        "args": {
+          "value": {
+            "$ref": "a",
+            "x": 1
+          }
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "a": 10,
+      "b": {
+        "$ref": "a",
+        "x": 1
+      }
+    },
+    "execution_order": [
+      "a",
+      "b"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

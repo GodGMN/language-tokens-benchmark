@@ -4,40 +4,29 @@ __pycache__/
 .venv/
 .pytest_cache/
 
-# JavaScript / Node
-node_modules/
+# Node
+**/node_modules/
 npm-debug.log*
 
-# Go
-cli-go/bin/
-*.test
+# Build output (any language, anywhere)
+**/target/
+**/*.o
+**/*.out
+**/__pycache__/
 
-# Rust
-cli-rust/target/
-
-# C
-cli-c/build/
-*.o
-*.out
-
-# Compiled binaries from implementations
-cli-go/workflow
-cli-c/workflow
-cli-rust/workflow
-cli-*/bin/
+# Compiled `workflow` binaries (path-specific so the JS shell launcher stays tracked)
+submissions/**/go/workflow
+submissions/**/c/workflow
+submissions/**/rust/workflow
+submissions/**/bin/workflow
 
 # Results: keep the derived artifacts, ignore raw session dumps
 results/**/*.jsonl
 results/**/raw/
 results/**/*.log
 
+
 # Editor / OS
 .vscode/
 .idea/
 .DS_Store
-
-# Pi sessions (if kept in-repo)
-.pi-sessions/
-
-# Private evaluation fixtures — must never be visible to implementing agents
-benchmark/fixtures-private/

@@ -1,41 +1,63 @@
 #!/usr/bin/env python3
 """Render REQUIREMENTS.template.md into per-language prompt files.
 
-Usage: python3 make_prompts.py
-Reads ../adapters/*.json and writes prompt-<language>.md next to itself.
-Copy the content of prompt-<language>.md into the pi session running in cli-<language>/.
+Usage:
+  python3 benchmark/rounds/round-1/make_prompts.py
+
+Reads the round's round.json + the adapters, and computes the correct relative
+path from each submission folder back to the repo root (so `../../SPEC.md`
+depth is never hardcoded wrong).
 """
 import json
+import os
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ADAPTERS = HERE.parent.parent / "adapters"
+BENCH = HERE.parent.parent
+ROOT = BENCH.parent
+
+sys.path.insert(0, str(BENCH))
+import common  # noqa: E402
+
 TEMPLATE = (HERE / "REQUIREMENTS.template.md").read_text()
 
 
-def commands_block(adapter: dict) -> str:
-    lines = ["```bash", f"cd {adapter['project_dir']}"]
+def commands_block(adapter: dict, project_rel: str) -> str:
+    lines = ["```bash", f"cd {project_rel}"]
     if adapter.get("build"):
         lines.append("# build")
         lines.append(" ".join(adapter["build"]))
     else:
         lines.append("# (interpreted language — no build step)")
+    run = adapter["run"]
+    example = [c for c in run]
+    # Show a friendly example instead of the raw {input} placeholder.
+    rendered = " ".join(example).replace("{input}", "myworkflow.json")
     lines.append("# run")
-    lines.append(" ".join(adapter["run"][:2] + ["myworkflow.json", "  # or: run -  (stdin)"]))
+    lines.append(rendered + "     # or: run -   (stdin)")
     lines.append("```")
     return "\n".join(lines)
 
 
 def main() -> None:
-    for f in sorted(ADAPTERS.glob("*.json")):
-        a = json.loads(f.read_text())
-        lang, proj = a["language"], a["project_dir"]
-        if lang == "oracle":
-            continue  # reference implementation, not one of the benchmarked languages
+    round_cfg = common.load_round(HERE.name)
+    adapters = common.load_adapters()
+    submissions = round_cfg["submissions"]
+
+    for lang in common.round_languages(round_cfg):
+        adapter = adapters[lang]
+        entry = common.lang_entry(round_cfg, lang)
+        project_rel = f"{submissions}/{entry['path']}"
+        project_abs = ROOT / project_rel
+        rel_root = os.path.relpath(ROOT, project_abs)  # e.g. ../../..
+
         prompt = (
-            TEMPLATE.replace("{{LANGUAGE}}", lang.capitalize() if lang != "c" else "C")
-            .replace("{{ADAPTER_COMMANDS}}", commands_block(a))
-            .replace("{{PROJECT_DIR}}", proj)
+            TEMPLATE
+            .replace("{{LANGUAGE}}", "C" if lang == "c" else lang.capitalize())
+            .replace("{{PROJECT_DIR}}", project_rel)
+            .replace("{{REL_ROOT}}", rel_root)
+            .replace("{{ADAPTER_COMMANDS}}", commands_block(adapter, project_rel))
         )
         out = HERE / f"prompt-{lang}.md"
         out.write_text(prompt)

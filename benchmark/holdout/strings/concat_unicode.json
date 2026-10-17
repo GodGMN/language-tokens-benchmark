@@ -1,0 +1,28 @@
+{
+  "name": "concat_unicode",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "r",
+        "op": "concat",
+        "args": {
+          "a": "ñ",
+          "b": "😀"
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "r": "ñ😀"
+    },
+    "execution_order": [
+      "r"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

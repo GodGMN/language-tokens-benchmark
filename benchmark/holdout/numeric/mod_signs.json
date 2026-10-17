@@ -1,0 +1,58 @@
+{
+  "name": "mod_signs",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "a",
+        "op": "mod",
+        "args": {
+          "a": -7,
+          "b": 2
+        }
+      },
+      {
+        "id": "b",
+        "op": "mod",
+        "args": {
+          "a": 7,
+          "b": -2
+        }
+      },
+      {
+        "id": "c",
+        "op": "mod",
+        "args": {
+          "a": -7,
+          "b": -2
+        }
+      },
+      {
+        "id": "d",
+        "op": "mod",
+        "args": {
+          "a": 7,
+          "b": 2
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "a": -1,
+      "b": 1,
+      "c": -1,
+      "d": 1
+    },
+    "execution_order": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

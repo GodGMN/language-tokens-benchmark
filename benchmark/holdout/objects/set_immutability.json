@@ -1,0 +1,65 @@
+{
+  "name": "set_immutability",
+  "input": {
+    "version": 1,
+    "steps": [
+      {
+        "id": "o",
+        "op": "constant",
+        "args": {
+          "value": {
+            "a": 1
+          }
+        }
+      },
+      {
+        "id": "s",
+        "op": "set",
+        "depends_on": [
+          "o"
+        ],
+        "args": {
+          "input": {
+            "$ref": "o"
+          },
+          "key": "b",
+          "value": 2
+        }
+      },
+      {
+        "id": "g",
+        "op": "get",
+        "depends_on": [
+          "s"
+        ],
+        "args": {
+          "input": {
+            "$ref": "o"
+          },
+          "key": "b"
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "completed",
+    "results": {
+      "o": {
+        "a": 1
+      },
+      "s": {
+        "a": 1,
+        "b": 2
+      },
+      "g": null
+    },
+    "execution_order": [
+      "o",
+      "s",
+      "g"
+    ],
+    "skipped": [],
+    "error": null
+  }
+}

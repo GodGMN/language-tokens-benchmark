@@ -4,9 +4,9 @@ You are implementing one language of a token-usage benchmark. Your goal: impleme
 
 ## Read this first
 
-The full functional contract is at `../SPEC.md` (relative to this folder). **Read it completely before writing code.** It defines the CLI, the workflow JSON format, every operation, reference semantics, conditions, retries, error codes and worked examples. When in doubt, the SPEC wins over your instincts.
+The full functional contract is at `../../../SPEC.md` (relative to this folder). **Read it completely before writing code.** It defines the CLI, the workflow JSON format, every operation, reference semantics, conditions, retries, error codes and worked examples. When in doubt, the SPEC wins over your instincts.
 
-Also skim `../PRD.md` §5 (CLI contract) for context.
+Also skim `../../../PRD.md` §5 (CLI contract) for context.
 
 ## What you must build
 
@@ -24,27 +24,27 @@ workflow run -        # JSON document on stdin
 The exact build/run commands the test harness will use for Rust:
 
 ```bash
-cd cli-rust
+cd submissions/round-1/rust
 # build
 cargo build --release
 # run
-target/release/workflow run myworkflow.json   # or: run -  (stdin)
+target/release/workflow run myworkflow.json     # or: run -   (stdin)
 ```
 
-Make sure those commands work from this folder (`cli-rust`).
+Make sure those commands work from this folder (`submissions/round-1/rust`).
 
 ## Rules
 
 ### Read / write boundary
 
-Your working directory is `cli-rust/`. Pi was started here, and the session record is tied to this folder.
+Your working directory is `submissions/round-1/rust/`. Pi was started here, and the session record is tied to this folder.
 
-- **You may read:** everything you need *below* the repository root — `../SPEC.md`, `../PRD.md`, and files inside `cli-rust/`.
-- **You may only create or modify files inside `cli-rust/`.** Everything else in the repo is read-only for you.
+- **You may read:** everything you need *below* the repository root — `../../../SPEC.md`, `../../../PRD.md`, and files inside `submissions/round-1/rust/`.
+- **You may only create or modify files inside `submissions/round-1/rust/`.** Everything else in the repo is read-only for you.
 - **Do not read** other `cli-*` folders. Do not read or modify `benchmark/`, `results/`, or `scripts/`.
-- Do not `cd` out of `cli-rust/` to work, and do not create files anywhere else (no `/tmp` artifacts that end up in the repo, no edits to root docs).
+- Do not `cd` out of `submissions/round-1/rust/` to work, and do not create files anywhere else (no `/tmp` artifacts that end up in the repo, no edits to root docs).
 
-If you believe you need a change outside `cli-rust/`, stop and say so instead of making it.
+If you believe you need a change outside `submissions/round-1/rust/`, stop and say so instead of making it.
 
 ### Engineering rules
 
@@ -60,14 +60,14 @@ Create a small `selftest/` subfolder (or similar) inside your folder with 5-10 h
 
 ## Deliverables
 
-- Working implementation in `cli-rust/`.
-- `cli-rust/README.md` — how to build, run, self-test, and your dependency list.
+- Working implementation in `submissions/round-1/rust/`.
+- `submissions/round-1/rust/README.md` — how to build, run, self-test, and your dependency list.
 - The exact commands in ````bash
-cd cli-rust
+cd submissions/round-1/rust
 # build
 cargo build --release
 # run
-target/release/workflow run myworkflow.json   # or: run -  (stdin)
+target/release/workflow run myworkflow.json     # or: run -   (stdin)
 ```` working.
 
 Do not stop early: implement **every** operation in SPEC §4, all error codes in SPEC §7, references (§6), conditions (§5) and retries. Completeness is the whole point.

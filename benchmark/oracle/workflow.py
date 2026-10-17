@@ -25,12 +25,10 @@ class WFError(Exception):
 # ---------- i64 ----------
 
 def as_i64(v, what="value"):
-    if isinstance(v, bool) or not isinstance(v, (int, float)):
-        raise WFError("INVALID_ARG", message=f"expected integer, got {type(v).__name__} ({what})")
-    if isinstance(v, float):
-        if v != int(v) or not (I64_MIN <= v <= I64_MAX):
-            raise WFError("INVALID_ARG", message=f"expected integer, got float {v}")
-        return int(v)
+    # Numeric params must be JSON integer literals: reject bools and floats
+    # (1.0 and 1e3 are floats to the JSON parser even when integral).
+    if isinstance(v, bool) or not isinstance(v, int):
+        raise WFError("INVALID_ARG", message=f"expected integer literal, got {type(v).__name__} ({what})")
     if not (I64_MIN <= v <= I64_MAX):
         raise WFError("INVALID_ARG", message=f"integer out of i64 range: {v}")
     return v
@@ -57,6 +55,8 @@ def imul(a, b):
 def idiv(a, b):
     if b == 0:
         raise WFError("DIVISION_BY_ZERO", message="divide by zero")
+    if a == I64_MIN and b == -1:
+        raise WFError("ARITHMETIC_OVERFLOW", message="INT64_MIN / -1")
     q = abs(a) // abs(b)
     return check_i64(q if (a >= 0) == (b >= 0) else -q, "divide")
 
@@ -64,6 +64,8 @@ def idiv(a, b):
 def imod(a, b):
     if b == 0:
         raise WFError("DIVISION_BY_ZERO", message="mod by zero")
+    if a == I64_MIN and b == -1:
+        raise WFError("ARITHMETIC_OVERFLOW", message="INT64_MIN % -1")
     r = abs(a) % abs(b)
     return check_i64(r if a >= 0 else -r, "mod")
 
@@ -132,13 +134,11 @@ def cmp_values(a, b):
     if ta == "null":
         return 0
     if ta == "array":
-        if len(a) != len(b):
-            return (len(a) > len(b)) - (len(a) < len(b))
         for x, y in zip(a, b):
             c = cmp_values(x, y)
             if c:
                 return c
-        return 0
+        return (len(a) > len(b)) - (len(a) < len(b))
     # object: compare by sorted key representation
     ka, kb = sorted(a.keys()), sorted(b.keys())
     if ka != kb:
@@ -186,7 +186,7 @@ def resolve_value(v, results, deps_of_step, step_id):
             if isinstance(cur, dict) and seg in cur:
                 cur = cur[seg]
             elif isinstance(cur, list):
-                if not seg.lstrip("-").isdigit() or not (-(len(cur)) <= int(seg) < len(cur)):
+                if not seg.isdigit() or int(seg) >= len(cur):
                     raise WFError("INVALID_REFERENCE", step=step_id, message=f"bad index {seg} in {target}")
                 cur = cur[int(seg)]
             else:
@@ -278,8 +278,8 @@ def op_split(args, step):
 
 def op_join(args, step):
     arr, sep = args.get("input"), args.get("sep")
-    if not isinstance(arr, list) or not isinstance(sep, str):
-        raise WFError("INVALID_ARG", step=step, message="join: bad args")
+    if not isinstance(arr, list) or not isinstance(sep, str) or not all(isinstance(x, str) for x in arr):
+        raise WFError("INVALID_ARG", step=step, message="join: input must be an array of strings")
     return sep.join(arr)
 
 
@@ -312,7 +312,12 @@ def op_trim(args, step):
 
 
 def op_replace(args, step):
-    return args.get("input", "").replace(args.get("search", ""), args.get("replace", ""))
+    inp, search, repl = args.get("input"), args.get("search"), args.get("replace")
+    if not isinstance(inp, str) or not isinstance(search, str) or not isinstance(repl, str):
+        raise WFError("INVALID_ARG", step=step, message="replace: args must be strings")
+    if search == "":
+        raise WFError("INVALID_ARG", step=step, message="replace: empty search")
+    return inp.replace(search, repl)
 
 
 def op_length(args, step):
@@ -557,6 +562,8 @@ class AttemptCounter:
 
 def op_fail_until(args, step, counter):
     failures = as_i64(args.get("failures"))
+    if not (0 <= failures <= 10):
+        raise WFError("INVALID_ARG", step=step, message="failures must be 0..10")
     attempt = counter.bump(step)
     if attempt <= failures:
         raise WFError("TRANSIENT_FAILURE", step=step, message=f"attempt {attempt} of fail_until")
@@ -606,6 +613,23 @@ OPS = {
     "fail_until": lambda a, s, c: op_fail_until(a, s, c),
 }
 
+OP_ARGS = {
+    "add": {"a", "b"}, "subtract": {"a", "b"}, "multiply": {"a", "b"},
+    "divide": {"a", "b"}, "mod": {"a", "b"},
+    "sum": {"input"}, "min": {"input"}, "max": {"input"}, "range": {"start", "end"},
+    "concat": {"a", "b"}, "split": {"input", "sep"}, "join": {"input", "sep"},
+    "uppercase": {"input"}, "lowercase": {"input"}, "trim": {"input"},
+    "replace": {"input", "search", "replace"}, "length": {"input"},
+    "map": {"input", "transform"}, "filter": {"input", "predicate"},
+    "reduce": {"input", "op", "initial"}, "sort": {"input"}, "reverse": {"input"},
+    "unique": {"input"}, "slice": {"input", "start", "end"}, "flatten": {"input"},
+    "get": {"input", "key"}, "set": {"input", "key", "value"}, "keys": {"input"},
+    "values": {"input"}, "merge": {"a", "b"}, "pick": {"input", "keys"}, "omit": {"input", "keys"},
+    "constant": {"value"}, "equals": {"a", "b"}, "compare": {"a", "b", "op"},
+    "and": {"a", "b"}, "or": {"a", "b"}, "not": {"a"}, "type": {"value"},
+    "fail_until": {"failures", "value"},
+}
+
 TRANSIENT = {"TRANSIENT_FAILURE"}
 # Structural validation failures exit 2 (SPEC §7); every runtime
 # failure, including INVALID_ARG / INVALID_CONDITION, exits 1.
@@ -617,8 +641,9 @@ VALIDATION = {"INVALID_WORKFLOW", "UNKNOWN_DEPENDENCY", "CYCLIC_DEPENDENCY"}
 def structural_validate(doc):
     if not isinstance(doc, dict) or set(doc.keys()) - {"version", "steps"}:
         raise WFError("INVALID_WORKFLOW", message="unknown top-level fields")
-    if doc.get("version") != 1:
-        raise WFError("INVALID_WORKFLOW", message="version must be 1")
+    version = doc.get("version")
+    if isinstance(version, bool) or not isinstance(version, int) or version != 1:
+        raise WFError("INVALID_WORKFLOW", message="version must be the integer 1")
     steps = doc.get("steps")
     if not isinstance(steps, list):
         raise WFError("INVALID_WORKFLOW", message="steps must be array")
@@ -630,7 +655,8 @@ def structural_validate(doc):
             raise WFError("INVALID_WORKFLOW", step=where, message="unknown step fields")
         sid = st.get("id")
         if not isinstance(sid, str) or not _id_ok(sid):
-            raise WFError("INVALID_WORKFLOW", step=f"steps[{i}]", message=f"bad id {sid!r}")
+            raise WFError("INVALID_WORKFLOW", step=sid if isinstance(sid, str) else None,
+                          message=f"bad id {sid!r}")
         if sid in seen:
             raise WFError("INVALID_WORKFLOW", step=sid, message="duplicate id")
         seen.add(sid)
@@ -681,10 +707,23 @@ def _id_ok(s):
     return re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", s) is not None
 
 
+COND_KEYS = {
+    "eq": {"op", "left", "right"}, "ne": {"op", "left", "right"},
+    "gt": {"op", "left", "right"}, "gte": {"op", "left", "right"},
+    "lt": {"op", "left", "right"}, "lte": {"op", "left", "right"},
+    "all": {"op", "conditions"}, "any": {"op", "conditions"}, "not": {"op", "condition"},
+}
+
+
 def _validate_condition(c, sid):
     if not isinstance(c, dict) or "op" not in c:
         raise WFError("INVALID_WORKFLOW", step=sid, message="bad condition")
     op = c["op"]
+    if op not in COND_KEYS:
+        raise WFError("INVALID_WORKFLOW", step=sid, message=f"unknown condition op {op}")
+    extra = set(c) - COND_KEYS[op]
+    if extra:
+        raise WFError("INVALID_WORKFLOW", step=sid, message=f"unknown condition fields: {sorted(extra)}")
     if op in ("eq", "ne", "gt", "gte", "lt", "lte"):
         if "left" not in c or "right" not in c:
             raise WFError("INVALID_WORKFLOW", step=sid, message="comparison needs left/right")
@@ -694,10 +733,8 @@ def _validate_condition(c, sid):
             raise WFError("INVALID_WORKFLOW", step=sid, message="all/any needs conditions")
         for x in conds:
             _validate_condition(x, sid)
-    elif op == "not":
+    else:  # not
         _validate_condition(c.get("condition"), sid)
-    else:
-        raise WFError("INVALID_WORKFLOW", step=sid, message=f"unknown condition op {op}")
 
 
 def eval_condition(c, results, deps, step_id):
@@ -777,6 +814,11 @@ def _run_step(step, results, tdeps, counter):
     for attempt in range(max_attempts):
         try:
             args = resolve_value(step.get("args", {}), results, tdeps[sid], sid)
+            if not isinstance(args, dict):
+                raise WFError("INVALID_ARG", step=sid, message="args must be an object")
+            unknown = set(args) - OP_ARGS[step["op"]]
+            if unknown:
+                raise WFError("INVALID_ARG", step=sid, message=f"unknown args: {sorted(unknown)}")
             return OPS[step["op"]](args, sid, counter)
         except WFError as e:
             if e.code in TRANSIENT and attempt < max_attempts - 1:
