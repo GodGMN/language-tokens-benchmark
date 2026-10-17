@@ -7,7 +7,7 @@
   "expected_output": {
     "status": "error",
     "code": "PARSE_ERROR",
-    "position": 2,
+    "position": 0,
     "message": "bad escape \\q"
   }
 }

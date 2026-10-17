@@ -200,6 +200,11 @@ string escaping as JSON.
 | `TYPE_ERROR` on a ternary condition | the `?` token |
 | `INVALID_REQUEST` | `null` |
 
+For an error inside a string literal (bad escape, raw newline) the offending
+token is the string, so `position` is its opening quote. An **unterminated**
+string is not position-checked (both the opening quote and end-of-input are
+accepted).
+
 ## 7. Examples
 
 | source | vars | result |

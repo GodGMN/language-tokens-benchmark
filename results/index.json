@@ -819,6 +819,48 @@
           }
         }
       ]
+    },
+    {
+      "round": "round-8-expr",
+      "label": "DeepSeek V4.1 Flash \u2014 expression evaluator (spec v1)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 56,
+        "public": 26,
+        "holdout": 30,
+        "future_spec": 0
+      },
+      "leaderboard": []
+    },
+    {
+      "round": "round-9-patch",
+      "label": "DeepSeek V4.1 Flash \u2014 JSON patch engine (spec v1)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 38,
+        "public": 14,
+        "holdout": 24,
+        "future_spec": 0
+      },
+      "leaderboard": []
     }
   ]
 }

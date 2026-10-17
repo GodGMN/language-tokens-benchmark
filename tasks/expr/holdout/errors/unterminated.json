@@ -4,10 +4,5 @@
     "source": "\"abc"
   },
   "expected_exit_code": 1,
-  "expected_output": {
-    "status": "error",
-    "code": "PARSE_ERROR",
-    "position": 0,
-    "message": "unterminated string"
-  }
+  "expected_error_code": "PARSE_ERROR"
 }

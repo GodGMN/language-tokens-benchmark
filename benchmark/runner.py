@@ -135,7 +135,8 @@ def check(fixture, result, envelope="workflow"):
 
     exp_code = fixture.get("expected_error_code")
     if exp_code is not None:
-        got = (actual.get("error") or {}).get("code")
+        src = (actual.get("error") or {}) if envelope == "workflow" else actual
+        got = src.get("code")
         if got != exp_code:
             reasons.append(f"error.code {got!r} != expected {exp_code!r}")
     return reasons

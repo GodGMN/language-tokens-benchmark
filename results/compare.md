@@ -1,42 +1,52 @@
 # Cross-round comparison
 
-| round | spec | language | scored | output tok | total tok | cost $ | conforming |
-|---|---|---|---|---|---|---|---|
-| round-1 | v1 | python | 106/106 | 125,031 | 6,222,745 | 0.1999 | yes |
-| round-1 | v1 | javascript | 106/106 | 90,736 | 2,959,548 | 0.1338 | yes |
-| round-1 | v1 | go | 106/106 | 113,306 | 3,365,415 | 0.1624 | yes |
-| round-1 | v1 | rust | 106/106 | 156,063 | 9,405,161 | 0.2549 | yes |
-| round-1 | v1 | c | 106/106 | 121,998 | 5,224,057 | 0.1907 | yes |
-| round-2 | v2 | python | 112/112 | 82,123 | 3,323,523 | 0.1278 | yes |
-| round-2 | v2 | javascript | 112/112 | 119,392 | 4,913,756 | 0.1804 | yes |
-| round-2 | v2 | go | 112/112 | 110,406 | 3,455,929 | 0.1630 | yes |
-| round-2 | v2 | rust | 112/112 | 104,408 | 4,194,694 | 0.1579 | yes |
-| round-2 | v2 | c | 112/112 | 118,885 | 6,107,267 | 0.1916 | yes |
-| round-3 | v2 | python | 112/112 | 106,168 | 5,585,811 | 0.1709 | yes |
-| round-3 | v2 | javascript | 112/112 | 67,714 | 1,351,236 | 0.0945 | yes |
-| round-3 | v2 | go | 112/112 | 69,835 | 1,891,864 | 0.1012 | yes |
-| round-3 | v2 | rust | 112/112 | 112,031 | 4,635,085 | 0.1718 | yes |
-| round-3 | v2 | c | 112/112 | 142,225 | 6,068,702 | 0.2152 | yes |
-| round-4 | v2 | python | 112/112 | 78,385 | 3,121,625 | 0.1212 | yes |
-| round-4 | v2 | javascript | 112/112 | 157,602 | 9,721,332 | 0.2605 | yes |
-| round-4 | v2 | go | 112/112 | 170,119 | 6,404,923 | 0.2514 | yes |
-| round-4 | v2 | rust | 112/112 | 125,886 | 8,193,632 | 0.2108 | yes |
-| round-4 | v2 | c | 112/112 | 117,365 | 6,633,406 | 0.1984 | yes |
-| round-5 | v2 | python | 112/112 | 154,250 | 11,614,289 | 0.2661 | yes |
-| round-5 | v2 | javascript | 112/112 | 93,405 | 2,785,938 | 0.1373 | yes |
-| round-5 | v2 | go | 112/112 | 101,824 | 2,538,895 | 0.1432 | yes |
-| round-5 | v2 | rust | 112/112 | 140,846 | 6,020,679 | 0.2184 | yes |
-| round-5 | v2 | c | 112/112 | 121,115 | 6,223,051 | 0.2048 | yes |
-| round-6 | v2 | python | 112/112 | 86,096 | 3,667,690 | 0.1347 | yes |
-| round-6 | v2 | javascript | 112/112 | 96,639 | 4,513,010 | 0.1527 | yes |
-| round-6 | v2 | go | 112/112 | 102,388 | 4,517,854 | 0.1588 | yes |
-| round-6 | v2 | rust | 112/112 | 135,279 | 8,987,971 | 0.2302 | yes |
-| round-6 | v2 | c | 112/112 | 108,581 | 3,997,438 | 0.1626 | yes |
-| round-7 | v2 | python | 112/112 | 123,874 | 6,737,225 | 0.2003 | yes |
-| round-7 | v2 | javascript | 112/112 | 87,820 | 3,007,457 | 0.1322 | yes |
-| round-7 | v2 | go | 112/112 | 78,537 | 4,149,141 | 0.1277 | yes |
-| round-7 | v2 | rust | 112/112 | 131,824 | 7,532,337 | 0.2146 | yes |
-| round-7 | v2 | c | 112/112 | 154,778 | 12,365,110 | 0.2866 | yes |
+| round | task | spec | language | scored | output tok | total tok | cost $ | conforming |
+|---|---|---|---|---|---|---|---|---|
+| round-1 | workflow | v1 | python | 106/106 | 125,031 | 6,222,745 | 0.1999 | yes |
+| round-1 | workflow | v1 | javascript | 106/106 | 90,736 | 2,959,548 | 0.1338 | yes |
+| round-1 | workflow | v1 | go | 106/106 | 113,306 | 3,365,415 | 0.1624 | yes |
+| round-1 | workflow | v1 | rust | 106/106 | 156,063 | 9,405,161 | 0.2549 | yes |
+| round-1 | workflow | v1 | c | 106/106 | 121,998 | 5,224,057 | 0.1907 | yes |
+| round-2 | workflow | v2 | python | 112/112 | 82,123 | 3,323,523 | 0.1278 | yes |
+| round-2 | workflow | v2 | javascript | 112/112 | 119,392 | 4,913,756 | 0.1804 | yes |
+| round-2 | workflow | v2 | go | 112/112 | 110,406 | 3,455,929 | 0.1630 | yes |
+| round-2 | workflow | v2 | rust | 112/112 | 104,408 | 4,194,694 | 0.1579 | yes |
+| round-2 | workflow | v2 | c | 112/112 | 118,885 | 6,107,267 | 0.1916 | yes |
+| round-3 | workflow | v2 | python | 112/112 | 106,168 | 5,585,811 | 0.1709 | yes |
+| round-3 | workflow | v2 | javascript | 112/112 | 67,714 | 1,351,236 | 0.0945 | yes |
+| round-3 | workflow | v2 | go | 112/112 | 69,835 | 1,891,864 | 0.1012 | yes |
+| round-3 | workflow | v2 | rust | 112/112 | 112,031 | 4,635,085 | 0.1718 | yes |
+| round-3 | workflow | v2 | c | 112/112 | 142,225 | 6,068,702 | 0.2152 | yes |
+| round-4 | workflow | v2 | python | 112/112 | 78,385 | 3,121,625 | 0.1212 | yes |
+| round-4 | workflow | v2 | javascript | 112/112 | 157,602 | 9,721,332 | 0.2605 | yes |
+| round-4 | workflow | v2 | go | 112/112 | 170,119 | 6,404,923 | 0.2514 | yes |
+| round-4 | workflow | v2 | rust | 112/112 | 125,886 | 8,193,632 | 0.2108 | yes |
+| round-4 | workflow | v2 | c | 112/112 | 117,365 | 6,633,406 | 0.1984 | yes |
+| round-5 | workflow | v2 | python | 112/112 | 154,250 | 11,614,289 | 0.2661 | yes |
+| round-5 | workflow | v2 | javascript | 112/112 | 93,405 | 2,785,938 | 0.1373 | yes |
+| round-5 | workflow | v2 | go | 112/112 | 101,824 | 2,538,895 | 0.1432 | yes |
+| round-5 | workflow | v2 | rust | 112/112 | 140,846 | 6,020,679 | 0.2184 | yes |
+| round-5 | workflow | v2 | c | 112/112 | 121,115 | 6,223,051 | 0.2048 | yes |
+| round-6 | workflow | v2 | python | 112/112 | 86,096 | 3,667,690 | 0.1347 | yes |
+| round-6 | workflow | v2 | javascript | 112/112 | 96,639 | 4,513,010 | 0.1527 | yes |
+| round-6 | workflow | v2 | go | 112/112 | 102,388 | 4,517,854 | 0.1588 | yes |
+| round-6 | workflow | v2 | rust | 112/112 | 135,279 | 8,987,971 | 0.2302 | yes |
+| round-6 | workflow | v2 | c | 112/112 | 108,581 | 3,997,438 | 0.1626 | yes |
+| round-7 | workflow | v2 | python | 112/112 | 123,874 | 6,737,225 | 0.2003 | yes |
+| round-7 | workflow | v2 | javascript | 112/112 | 87,820 | 3,007,457 | 0.1322 | yes |
+| round-7 | workflow | v2 | go | 112/112 | 78,537 | 4,149,141 | 0.1277 | yes |
+| round-7 | workflow | v2 | rust | 112/112 | 131,824 | 7,532,337 | 0.2146 | yes |
+| round-7 | workflow | v2 | c | 112/112 | 154,778 | 12,365,110 | 0.2866 | yes |
+| round-8-expr | workflow | v1 | python | 55/56 | 73,983 | 2,524,500 | 0.1122 | no |
+| round-8-expr | workflow | v1 | javascript | 55/56 | 60,022 | 1,241,698 | 0.0835 | no |
+| round-8-expr | workflow | v1 | go | 54/56 | 60,130 | 1,408,634 | 0.0861 | no |
+| round-8-expr | workflow | v1 | rust | 55/56 | 59,463 | 1,067,224 | 0.0802 | no |
+| round-8-expr | workflow | v1 | c | 55/56 | 71,378 | 1,887,134 | 0.1026 | no |
+| round-9-patch | workflow | v1 | python | 37/38 | 37,514 | 700,543 | 0.0539 | no |
+| round-9-patch | workflow | v1 | javascript | 37/38 | 66,718 | 1,562,150 | 0.0945 | no |
+| round-9-patch | workflow | v1 | go | 37/38 | 42,905 | 709,941 | 0.0590 | no |
+| round-9-patch | workflow | v1 | rust | 37/38 | 44,765 | 925,327 | 0.0654 | no |
+| round-9-patch | workflow | v1 | c | 37/38 | 77,186 | 2,355,515 | 0.1118 | no |
 
 ## Output-token stability across rounds
 

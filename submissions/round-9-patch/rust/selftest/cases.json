@@ -1,0 +1,300 @@
+[
+  {
+    "name": "add object member",
+    "request": {"document": {"a": 1}, "patch": [{"op": "add", "path": "/b", "value": 2}]},
+    "expected": {"status": "ok", "document": {"a": 1, "b": 2}}
+  },
+  {
+    "name": "add array element before position",
+    "request": {"document": [1, 2, 3], "patch": [{"op": "add", "path": "/1", "value": 9}]},
+    "expected": {"status": "ok", "document": [1, 9, 2, 3]}
+  },
+  {
+    "name": "add array append with dash",
+    "request": {"document": [1, 2, 3], "patch": [{"op": "add", "path": "/-", "value": 4}]},
+    "expected": {"status": "ok", "document": [1, 2, 3, 4]}
+  },
+  {
+    "name": "add array index equal to length",
+    "request": {"document": [1, 2], "patch": [{"op": "add", "path": "/2", "value": 3}]},
+    "expected": {"status": "ok", "document": [1, 2, 3]}
+  },
+  {
+    "name": "add whole document",
+    "request": {"document": {"a": 1}, "patch": [{"op": "add", "path": "", "value": [1, 2]}]},
+    "expected": {"status": "ok", "document": [1, 2]}
+  },
+  {
+    "name": "add nested path",
+    "request": {"document": {"a": {"b": {"c": 1}}}, "patch": [{"op": "add", "path": "/a/b/d", "value": 2}]},
+    "expected": {"status": "ok", "document": {"a": {"b": {"c": 1, "d": 2}}}}
+  },
+  {
+    "name": "add empty object key",
+    "request": {"document": {"a": 1}, "patch": [{"op": "add", "path": "/", "value": 2}]},
+    "expected": {"status": "ok", "document": {"a": 1, "": 2}}
+  },
+  {
+    "name": "dash is a normal object key",
+    "request": {"document": {"a": 1}, "patch": [{"op": "add", "path": "/-", "value": 2}]},
+    "expected": {"status": "ok", "document": {"a": 1, "-": 2}}
+  },
+  {
+    "name": "remove object member",
+    "request": {"document": {"a": 1, "b": 2}, "patch": [{"op": "remove", "path": "/a"}]},
+    "expected": {"status": "ok", "document": {"b": 2}}
+  },
+  {
+    "name": "remove nested member leaves empty object",
+    "request": {"document": {"a": {"b": 1}}, "patch": [{"op": "remove", "path": "/a/b"}]},
+    "expected": {"status": "ok", "document": {"a": {}}}
+  },
+  {
+    "name": "remove array element",
+    "request": {"document": [1, 2, 3], "patch": [{"op": "remove", "path": "/1"}]},
+    "expected": {"status": "ok", "document": [1, 3]}
+  },
+  {
+    "name": "remove shifts object keys without swapping",
+    "request": {"document": {"a": 1, "b": 2, "c": 3}, "patch": [{"op": "remove", "path": "/a"}]},
+    "expected": {"status": "ok", "document": {"b": 2, "c": 3}}
+  },
+  {
+    "name": "remove empty object key",
+    "request": {"document": {"": 1, "a": 2}, "patch": [{"op": "remove", "path": "/"}]},
+    "expected": {"status": "ok", "document": {"a": 2}}
+  },
+  {
+    "name": "replace object member",
+    "request": {"document": {"a": 1}, "patch": [{"op": "replace", "path": "/a", "value": {"x": 2}}]},
+    "expected": {"status": "ok", "document": {"a": {"x": 2}}}
+  },
+  {
+    "name": "replace array element",
+    "request": {"document": [1, 2, 3], "patch": [{"op": "replace", "path": "/0", "value": 7}]},
+    "expected": {"status": "ok", "document": [7, 2, 3]}
+  },
+  {
+    "name": "replace whole document",
+    "request": {"document": {"a": 1}, "patch": [{"op": "replace", "path": "", "value": null}]},
+    "expected": {"status": "ok", "document": null}
+  },
+  {
+    "name": "move object member",
+    "request": {"document": {"a": 1, "b": 2}, "patch": [{"op": "move", "from": "/a", "path": "/c"}]},
+    "expected": {"status": "ok", "document": {"b": 2, "c": 1}}
+  },
+  {
+    "name": "move array element to end",
+    "request": {"document": [1, 2, 3], "patch": [{"op": "move", "from": "/0", "path": "/-"}]},
+    "expected": {"status": "ok", "document": [2, 3, 1]}
+  },
+  {
+    "name": "move value to document root",
+    "request": {"document": {"a": {"x": 1}, "b": 2}, "patch": [{"op": "move", "from": "/a", "path": ""}]},
+    "expected": {"status": "ok", "document": {"x": 1}}
+  },
+  {
+    "name": "move overwrites target member in place",
+    "request": {"document": {"a": 1, "b": 2, "c": 3}, "patch": [{"op": "move", "from": "/a", "path": "/b"}]},
+    "expected": {"status": "ok", "document": {"b": 1, "c": 3}}
+  },
+  {
+    "name": "copy nested value",
+    "request": {"document": {"a": {"b": [1, 2]}}, "patch": [{"op": "copy", "from": "/a/b", "path": "/c"}]},
+    "expected": {"status": "ok", "document": {"a": {"b": [1, 2]}, "c": [1, 2]}}
+  },
+  {
+    "name": "copy into a descendant is allowed",
+    "request": {"document": {"a": {"b": 1}}, "patch": [{"op": "copy", "from": "/a", "path": "/a/c"}]},
+    "expected": {"status": "ok", "document": {"a": {"b": 1, "c": {"b": 1}}}}
+  },
+  {
+    "name": "copy the whole document",
+    "request": {"document": {"x": 1}, "patch": [{"op": "copy", "from": "", "path": "/a"}]},
+    "expected": {"status": "ok", "document": {"x": 1, "a": {"x": 1}}}
+  },
+  {
+    "name": "test whole document",
+    "request": {"document": {"a": [1, 2]}, "patch": [{"op": "test", "path": "", "value": {"a": [1, 2]}}]},
+    "expected": {"status": "ok", "document": {"a": [1, 2]}}
+  },
+  {
+    "name": "test numbers by value",
+    "request": {"document": {"a": 1}, "patch": [{"op": "test", "path": "/a", "value": 1.0}]},
+    "expected": {"status": "ok", "document": {"a": 1}}
+  },
+  {
+    "name": "test objects ignore key order",
+    "request": {"document": {"a": {"x": 1, "y": 2}}, "patch": [{"op": "test", "path": "/a", "value": {"y": 2, "x": 1}}]},
+    "expected": {"status": "ok", "document": {"a": {"x": 1, "y": 2}}}
+  },
+  {
+    "name": "pointer escape tilde",
+    "request": {"document": {"a~b": 1}, "patch": [{"op": "test", "path": "/a~0b", "value": 1}]},
+    "expected": {"status": "ok", "document": {"a~b": 1}}
+  },
+  {
+    "name": "pointer escape slash",
+    "request": {"document": {"a/b": 2}, "patch": [{"op": "test", "path": "/a~1b", "value": 2}]},
+    "expected": {"status": "ok", "document": {"a/b": 2}}
+  },
+  {
+    "name": "pointer escape tilde then one",
+    "request": {"document": {"a~1b": 3}, "patch": [{"op": "test", "path": "/a~01b", "value": 3}]},
+    "expected": {"status": "ok", "document": {"a~1b": 3}}
+  },
+  {
+    "name": "operations run in order",
+    "request": {"document": [1, 2, 3], "patch": [
+      {"op": "add", "path": "/1", "value": 9},
+      {"op": "remove", "path": "/0"},
+      {"op": "replace", "path": "/2", "value": 7},
+      {"op": "test", "path": "/1", "value": 2}
+    ]},
+    "expected": {"status": "ok", "document": [9, 2, 7]}
+  },
+  {
+    "name": "empty patch",
+    "request": {"document": {"a": 1}, "patch": []},
+    "expected": {"status": "ok", "document": {"a": 1}}
+  },
+  {
+    "name": "error path not found object member",
+    "request": {"document": {"a": 1}, "patch": [{"op": "remove", "path": "/x"}]},
+    "expected": {"status": "error", "code": "PATH_NOT_FOUND", "index": 0}
+  },
+  {
+    "name": "error path not found scalar parent",
+    "request": {"document": {"a": 1}, "patch": [{"op": "add", "path": "/a/b", "value": 2}]},
+    "expected": {"status": "error", "code": "PATH_NOT_FOUND", "index": 0}
+  },
+  {
+    "name": "error path not found move source",
+    "request": {"document": {"a": 1}, "patch": [{"op": "move", "from": "/x", "path": "/a"}]},
+    "expected": {"status": "error", "code": "PATH_NOT_FOUND", "index": 0}
+  },
+  {
+    "name": "error index add beyond length",
+    "request": {"document": [1], "patch": [{"op": "add", "path": "/5", "value": 0}]},
+    "expected": {"status": "error", "code": "INDEX_ERROR", "index": 0}
+  },
+  {
+    "name": "error index remove at length",
+    "request": {"document": [1], "patch": [{"op": "remove", "path": "/1"}]},
+    "expected": {"status": "error", "code": "INDEX_ERROR", "index": 0}
+  },
+  {
+    "name": "error index leading zero",
+    "request": {"document": [1, 2], "patch": [{"op": "add", "path": "/01", "value": 9}]},
+    "expected": {"status": "error", "code": "INDEX_ERROR", "index": 0}
+  },
+  {
+    "name": "error index malformed decimal",
+    "request": {"document": [1, 2], "patch": [{"op": "remove", "path": "/1.0"}]},
+    "expected": {"status": "error", "code": "INDEX_ERROR", "index": 0}
+  },
+  {
+    "name": "error index dash on remove",
+    "request": {"document": [1], "patch": [{"op": "remove", "path": "/-"}]},
+    "expected": {"status": "error", "code": "INDEX_ERROR", "index": 0}
+  },
+  {
+    "name": "error index dash as intermediate segment",
+    "request": {"document": {"a": [1]}, "patch": [{"op": "add", "path": "/a/-/x", "value": 2}]},
+    "expected": {"status": "error", "code": "INDEX_ERROR", "index": 0}
+  },
+  {
+    "name": "error invalid path missing leading slash",
+    "request": {"document": {"a": 1}, "patch": [{"op": "remove", "path": "a"}]},
+    "expected": {"status": "error", "code": "INVALID_PATH", "index": 0}
+  },
+  {
+    "name": "error invalid path bad tilde escape",
+    "request": {"document": {"a": 1}, "patch": [{"op": "remove", "path": "/a~2b"}]},
+    "expected": {"status": "error", "code": "INVALID_PATH", "index": 0}
+  },
+  {
+    "name": "error invalid path remove root",
+    "request": {"document": {"a": 1}, "patch": [{"op": "remove", "path": ""}]},
+    "expected": {"status": "error", "code": "INVALID_PATH", "index": 0}
+  },
+  {
+    "name": "error unknown operation",
+    "request": {"document": {"a": 1}, "patch": [{"op": "frobnicate", "path": "/a"}]},
+    "expected": {"status": "error", "code": "UNKNOWN_OP", "index": 0}
+  },
+  {
+    "name": "error test failed",
+    "request": {"document": {"a": 1}, "patch": [{"op": "test", "path": "/a", "value": 2}]},
+    "expected": {"status": "error", "code": "TEST_FAILED", "index": 0}
+  },
+  {
+    "name": "error move into descendant",
+    "request": {"document": {"a": {"b": 1}}, "patch": [{"op": "move", "from": "/a", "path": "/a/b"}]},
+    "expected": {"status": "error", "code": "INVALID_MOVE", "index": 0}
+  },
+  {
+    "name": "error move onto itself",
+    "request": {"document": {"a": 1}, "patch": [{"op": "move", "from": "/a", "path": "/a"}]},
+    "expected": {"status": "error", "code": "INVALID_MOVE", "index": 0}
+  },
+  {
+    "name": "error atomic later failing operation",
+    "request": {"document": {"a": 1}, "patch": [
+      {"op": "add", "path": "/b", "value": 2},
+      {"op": "remove", "path": "/missing"}
+    ]},
+    "expected": {"status": "error", "code": "PATH_NOT_FOUND", "index": 1}
+  },
+  {
+    "name": "error invalid request unknown top level field",
+    "request": {"document": {}, "patch": [], "extra": 1},
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": null}
+  },
+  {
+    "name": "error invalid request missing document",
+    "request": {"patch": []},
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": null}
+  },
+  {
+    "name": "error invalid request patch not array",
+    "request": {"document": {}, "patch": {}},
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": null}
+  },
+  {
+    "name": "error invalid request request not object",
+    "request": [],
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": null}
+  },
+  {
+    "name": "error invalid request operation not object",
+    "request": {"document": {}, "patch": [1]},
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": 0}
+  },
+  {
+    "name": "error invalid request missing value",
+    "request": {"document": {}, "patch": [{"op": "add", "path": "/a"}]},
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": 0}
+  },
+  {
+    "name": "error invalid request extra operation field",
+    "request": {"document": {}, "patch": [{"op": "add", "path": "/a", "value": 1, "from": "/x"}]},
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": 0}
+  },
+  {
+    "name": "error invalid request non-string path",
+    "request": {"document": {}, "patch": [{"op": "remove", "path": 1}]},
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": 0}
+  },
+  {
+    "name": "error invalid request non-string from",
+    "request": {"document": {}, "patch": [{"op": "copy", "path": "/a", "from": 1}]},
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": 0}
+  },
+  {
+    "name": "error invalid request remove with value field",
+    "request": {"document": {}, "patch": [{"op": "remove", "path": "/a", "value": 1}]},
+    "expected": {"status": "error", "code": "INVALID_REQUEST", "index": 0}
+  }
+]

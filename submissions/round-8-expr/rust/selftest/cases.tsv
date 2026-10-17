@@ -1,0 +1,110 @@
+# name<TAB>request JSON<TAB>expected<TAB>exit code
+# Success cases: expected is the exact stdout document (without trailing newline).
+# Error cases: expected is "ERR CODE POSITION" where POSITION is a number or null.
+precedence_mul	{"source":"1 + 2 * 3"}	{"status":"ok","value":7}	0
+parentheses	{"source":"(1 + 2) * 3"}	{"status":"ok","value":9}	0
+sub_left_assoc	{"source":"10 - 3 - 2"}	{"status":"ok","value":5}	0
+div_left_assoc	{"source":"20 / 5 / 2"}	{"status":"ok","value":2}	0
+unary_double	{"source":"- - 5"}	{"status":"ok","value":5}	0
+unary_not	{"source":"!false"}	{"status":"ok","value":true}	0
+precedence_eq	{"source":"2 + 3 * 4 == 14"}	{"status":"ok","value":true}	0
+precedence_and_or	{"source":"true || false && false"}	{"status":"ok","value":true}	0
+precedence_rel_eq	{"source":"1 < 2 == true"}	{"status":"ok","value":true}	0
+precedence_mixed	{"source":"1 + 2 > 2 && 3 == 3"}	{"status":"ok","value":true}	0
+mod_negative	{"source":"-7 % 3"}	{"status":"ok","value":-1}	0
+mod_positive	{"source":"7 % 3"}	{"status":"ok","value":1}	0
+div_toward_zero	{"source":"-7 / 2"}	{"status":"ok","value":-3}	0
+string_compare	{"source":"\"a\" < \"b\""}	{"status":"ok","value":true}	0
+string_byte_order	{"source":"\"a\" < \"é\""}	{"status":"ok","value":true}	0
+array_deep_eq	{"source":"[1,[2,3]] == [1,[2,3]]"}	{"status":"ok","value":true}	0
+null_eq	{"source":"null == null"}	{"status":"ok","value":true}	0
+cross_type_eq	{"source":"0 == false"}	{"status":"ok","value":false}	0
+short_circuit_and	{"source":"false && missing"}	{"status":"ok","value":false}	0
+short_circuit_or	{"source":"true || (1 / 0 == 0)"}	{"status":"ok","value":true}	0
+ternary_then	{"source":"true ? 1 : missing"}	{"status":"ok","value":1}	0
+ternary_else	{"source":"false ? missing : 2"}	{"status":"ok","value":2}	0
+ternary_right_assoc	{"source":"false ? 1 : true ? 2 : 3"}	{"status":"ok","value":2}	0
+array_eval_order	{"source":"[1, 2, len(\"abc\")]"}	{"status":"ok","value":[1,2,3]}	0
+vars	{"source":"x * y + 1","vars":{"x":3,"y":4}}	{"status":"ok","value":13}	0
+len_unicode	{"source":"len(\"héllo\")"}	{"status":"ok","value":5}	0
+len_array	{"source":"len([1,2,3])"}	{"status":"ok","value":3}	0
+sum	{"source":"sum([1,2,3,4])"}	{"status":"ok","value":10}	0
+sum_empty	{"source":"sum([])"}	{"status":"ok","value":0}	0
+min	{"source":"min([3,-1,2])"}	{"status":"ok","value":-1}	0
+max	{"source":"max([3,-1,2])"}	{"status":"ok","value":3}	0
+abs	{"source":"abs(-12)"}	{"status":"ok","value":12}	0
+neg	{"source":"neg(12)"}	{"status":"ok","value":-12}	0
+upper_ascii_only	{"source":"upper(\"Abc ä\")"}	{"status":"ok","value":"ABC ä"}	0
+lower_ascii_only	{"source":"lower(\"AbC Ä\")"}	{"status":"ok","value":"abc Ä"}	0
+trim	{"source":"trim(\" \\t\\nhi\\r\\f\\u000b \")"}	{"status":"ok","value":"hi"}	0
+contains	{"source":"contains(\"hello\",\"ell\")"}	{"status":"ok","value":true}	0
+contains_empty	{"source":"contains(\"hello\",\"\")"}	{"status":"ok","value":true}	0
+starts_with	{"source":"starts_with(\"hello\",\"he\")"}	{"status":"ok","value":true}	0
+ends_with	{"source":"ends_with(\"hello\",\"lo\")"}	{"status":"ok","value":true}	0
+substr_mid	{"source":"substr(\"abcdef\",2,3)"}	{"status":"ok","value":"cde"}	0
+substr_negative	{"source":"substr(\"abcdef\",-2,2)"}	{"status":"ok","value":"ef"}	0
+substr_clamp_left	{"source":"substr(\"abcdef\",-100,2)"}	{"status":"ok","value":"ab"}	0
+substr_clamp_right	{"source":"substr(\"abcdef\",4,100)"}	{"status":"ok","value":"ef"}	0
+substr_zero_len	{"source":"substr(\"abcdef\",2,0)"}	{"status":"ok","value":""}	0
+index_of	{"source":"index_of(\"hello\",\"l\")"}	{"status":"ok","value":2}	0
+index_of_absent	{"source":"index_of(\"hello\",\"z\")"}	{"status":"ok","value":-1}	0
+index_of_empty	{"source":"index_of(\"abc\",\"\")"}	{"status":"ok","value":0}	0
+index_of_unicode	{"source":"index_of(\"héllo\",\"l\")"}	{"status":"ok","value":2}	0
+join	{"source":"join([\"a\",\"b\",\"c\"],\"-\")"}	{"status":"ok","value":"a-b-c"}	0
+join_empty	{"source":"join([],\"-\")"}	{"status":"ok","value":""}	0
+split	{"source":"split(\"a,b,,c\",\",\")"}	{"status":"ok","value":["a","b","","c"]}	0
+split_empty_sep	{"source":"split(\"abc\",\"\")"}	{"status":"ok","value":["a","b","c"]}	0
+type_integer	{"source":"type(1)"}	{"status":"ok","value":"integer"}	0
+type_boolean	{"source":"type(true)"}	{"status":"ok","value":"boolean"}	0
+type_string	{"source":"type(\"x\")"}	{"status":"ok","value":"string"}	0
+type_array	{"source":"type([1])"}	{"status":"ok","value":"array"}	0
+type_null	{"source":"type(null)"}	{"status":"ok","value":"null"}	0
+to_string_int	{"source":"to_string(42)"}	{"status":"ok","value":"42"}	0
+to_string_bool	{"source":"to_string(true)"}	{"status":"ok","value":"true"}	0
+to_string_null	{"source":"to_string(null)"}	{"status":"ok","value":"null"}	0
+to_string_string	{"source":"to_string(\"x\")"}	{"status":"ok","value":"x"}	0
+to_string_array	{"source":"to_string([1,\"a\",null,[true]])"}	{"status":"ok","value":"[1,\"a\",null,[true]]"}	0
+nested_functions	{"source":"sum([len(\"ab\"), abs(-3)])"}	{"status":"ok","value":5}	0
+unicode_escape	{"source":"len(\"\\u00e9\")"}	{"status":"ok","value":1}	0
+surrogate_pair	{"source":"len(\"\\uD83D\\uDE00\")"}	{"status":"ok","value":1}	0
+invalid_missing_source	{}	ERR INVALID_REQUEST null	2
+invalid_unknown_field	{"source":"1","extra":2}	ERR INVALID_REQUEST null	2
+invalid_source_type	{"source":1}	ERR INVALID_REQUEST null	2
+invalid_vars_type	{"source":"1","vars":[]}	ERR INVALID_REQUEST null	2
+invalid_json	not json	ERR INVALID_REQUEST null	2
+parse_unexpected_eof	{"source":"1 +"}	ERR PARSE_ERROR 3	1
+parse_unclosed_paren	{"source":"(1 + 2"}	ERR PARSE_ERROR 6	1
+parse_unterminated_string	{"source":"\"abc"}	ERR PARSE_ERROR 0	1
+parse_bad_escape	{"source":"\"\\q\""}	ERR PARSE_ERROR 0	1
+parse_bad_character	{"source":"1 @ 2"}	ERR PARSE_ERROR 2	1
+parse_extra_token	{"source":"1 2"}	ERR PARSE_ERROR 2	1
+parse_array_trailing_comma	{"source":"[1,]"}	ERR PARSE_ERROR 3	1
+parse_keyword_call	{"source":"true(1)"}	ERR PARSE_ERROR 4	1
+parse_unary_plus	{"source":"1 + + 2"}	ERR PARSE_ERROR 4	1
+parse_unicode_offset	{"source":"\"é\" +"}	ERR PARSE_ERROR 5	1
+overflow_literal	{"source":"9223372036854775808"}	ERR OVERFLOW 0	1
+overflow_add	{"source":"9223372036854775807 + 1"}	ERR OVERFLOW 20	1
+overflow_unary	{"source":"-x","vars":{"x":-9223372036854775808}}	ERR OVERFLOW 0	1
+overflow_div_min	{"source":"x / -1","vars":{"x":-9223372036854775808}}	ERR OVERFLOW 2	1
+overflow_mod_min	{"source":"x % -1","vars":{"x":-9223372036854775808}}	ERR OVERFLOW 2	1
+division_by_zero	{"source":"1 / 0"}	ERR DIVISION_BY_ZERO 2	1
+modulo_by_zero	{"source":"5 % 0"}	ERR DIVISION_BY_ZERO 2	1
+type_arithmetic	{"source":"1 + true"}	ERR TYPE_ERROR 2	1
+type_comparison	{"source":"\"a\" < 1"}	ERR TYPE_ERROR 4	1
+type_and	{"source":"1 && true"}	ERR TYPE_ERROR 2	1
+type_ternary_cond	{"source":"1 ? 2 : 3"}	ERR TYPE_ERROR 2	1
+type_unary	{"source":"!1"}	ERR TYPE_ERROR 0	1
+unknown_variable	{"source":"foo"}	ERR UNKNOWN_VARIABLE 0	1
+unknown_variable_nested	{"source":"true && missing"}	ERR UNKNOWN_VARIABLE 8	1
+unknown_function	{"source":"nope(1)"}	ERR UNKNOWN_FUNCTION 0	1
+arity_zero	{"source":"len()"}	ERR ARITY_ERROR 0	1
+arity_many	{"source":"len(1,2)"}	ERR ARITY_ERROR 0	1
+empty_min	{"source":"min([])"}	ERR EMPTY_ARRAY 0	1
+empty_max	{"source":"max([])"}	ERR EMPTY_ARRAY 0	1
+function_type	{"source":"abs(\"x\")"}	ERR TYPE_ERROR 0	1
+function_overflow	{"source":"abs(x)","vars":{"x":-9223372036854775808}}	ERR OVERFLOW 0	1
+sum_overflow	{"source":"sum([9223372036854775807,1])"}	ERR OVERFLOW 0	1
+sum_type	{"source":"sum([1,\"x\"])"}	ERR TYPE_ERROR 0	1
+substr_negative_len	{"source":"substr(\"abc\",0,-1)"}	ERR TYPE_ERROR 0	1
+join_type	{"source":"join([\"a\",1],\",\")"}	ERR TYPE_ERROR 0	1
+index_of_type	{"source":"index_of(1,\"a\")"}	ERR TYPE_ERROR 0	1

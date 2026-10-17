@@ -1,0 +1,224 @@
+[
+  {
+    "language": "python",
+    "reference": false,
+    "passed": 55,
+    "total": 56,
+    "pct": 98.2,
+    "conforming": false,
+    "public": [
+      26,
+      26
+    ],
+    "holdout": [
+      29,
+      30
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 29525,
+    "output": 73983,
+    "reasoning": 49750,
+    "cache_read": 2420992,
+    "cache_write": 0,
+    "total_tokens": 2524500,
+    "cost": 0.1122,
+    "turns": 38,
+    "user_messages": 1,
+    "tool_calls": 38,
+    "code": {
+      "source_files": 2,
+      "source_lines": 1340,
+      "source_bytes": 39693
+    },
+    "gen_eff_k": 0.74,
+    "tot_eff_k": 0.02
+  },
+  {
+    "language": "javascript",
+    "reference": false,
+    "passed": 55,
+    "total": 56,
+    "pct": 98.2,
+    "conforming": false,
+    "public": [
+      26,
+      26
+    ],
+    "holdout": [
+      29,
+      30
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 14956,
+    "output": 60022,
+    "reasoning": 38152,
+    "cache_read": 1166720,
+    "cache_write": 0,
+    "total_tokens": 1241698,
+    "cost": 0.0835,
+    "turns": 22,
+    "user_messages": 1,
+    "tool_calls": 24,
+    "code": {
+      "source_files": 3,
+      "source_lines": 1716,
+      "source_bytes": 51532
+    },
+    "gen_eff_k": 0.92,
+    "tot_eff_k": 0.04
+  },
+  {
+    "language": "go",
+    "reference": false,
+    "passed": 54,
+    "total": 56,
+    "pct": 96.4,
+    "conforming": false,
+    "public": [
+      26,
+      26
+    ],
+    "holdout": [
+      28,
+      30
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 19864,
+    "output": 60130,
+    "reasoning": 37974,
+    "cache_read": 1328640,
+    "cache_write": 0,
+    "total_tokens": 1408634,
+    "cost": 0.0861,
+    "turns": 30,
+    "user_messages": 1,
+    "tool_calls": 36,
+    "code": {
+      "source_files": 6,
+      "source_lines": 1506,
+      "source_bytes": 33293
+    },
+    "gen_eff_k": 0.9,
+    "tot_eff_k": 0.04
+  },
+  {
+    "language": "rust",
+    "reference": false,
+    "passed": 55,
+    "total": 56,
+    "pct": 98.2,
+    "conforming": false,
+    "public": [
+      26,
+      26
+    ],
+    "holdout": [
+      29,
+      30
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 9617,
+    "output": 59463,
+    "reasoning": 38966,
+    "cache_read": 998144,
+    "cache_write": 0,
+    "total_tokens": 1067224,
+    "cost": 0.0802,
+    "turns": 23,
+    "user_messages": 1,
+    "tool_calls": 23,
+    "code": {
+      "source_files": 1,
+      "source_lines": 1748,
+      "source_bytes": 53465
+    },
+    "gen_eff_k": 0.92,
+    "tot_eff_k": 0.05
+  },
+  {
+    "language": "c",
+    "reference": false,
+    "passed": 55,
+    "total": 56,
+    "pct": 98.2,
+    "conforming": false,
+    "public": [
+      26,
+      26
+    ],
+    "holdout": [
+      29,
+      30
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": 20428,
+    "output": 71378,
+    "reasoning": 36650,
+    "cache_read": 1795328,
+    "cache_write": 0,
+    "total_tokens": 1887134,
+    "cost": 0.1026,
+    "turns": 29,
+    "user_messages": 1,
+    "tool_calls": 34,
+    "code": {
+      "source_files": 2,
+      "source_lines": 2882,
+      "source_bytes": 79203
+    },
+    "gen_eff_k": 0.77,
+    "tot_eff_k": 0.03
+  },
+  {
+    "language": "oracle",
+    "reference": true,
+    "passed": 56,
+    "total": 56,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      26,
+      26
+    ],
+    "holdout": [
+      30,
+      30
+    ],
+    "future": [
+      0,
+      0
+    ],
+    "input": null,
+    "output": null,
+    "reasoning": null,
+    "cache_read": null,
+    "cache_write": null,
+    "total_tokens": null,
+    "cost": null,
+    "turns": null,
+    "user_messages": null,
+    "tool_calls": null,
+    "code": {
+      "source_files": 1,
+      "source_lines": 527,
+      "source_bytes": 16657
+    },
+    "gen_eff_k": null,
+    "tot_eff_k": null
+  }
+]

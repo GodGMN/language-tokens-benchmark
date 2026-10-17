@@ -18,11 +18,11 @@ SANDBOX_ROOT="${SANDBOX_ROOT:-/tmp/ltb-$ROUND}"
 RJSON="benchmark/rounds/$ROUND/round.json"
 [[ -f "$RJSON" ]] || { echo "missing $RJSON" >&2; exit 1; }
 
-read -r SUBMISSIONS R_PROVIDER R_MODEL R_THINKING LANGS < <(python3 - "$RJSON" <<'PY'
+read -r SUBMISSIONS R_PROVIDER R_MODEL R_THINKING R_TASK LANGS < <(python3 - "$RJSON" <<'PY'
 import json, sys
 d = json.load(open(sys.argv[1])); m = d.get("model") or {}
 print(d["submissions"], m.get("provider","-"), m.get("name","-"), m.get("thinking","-"),
-      " ".join(d["languages"]))
+      d.get("task","workflow"), " ".join(d["languages"]))
 PY
 )
 LANGS_ARR=($LANGS)
@@ -63,7 +63,13 @@ for lang in "${LANGS_ARR[@]}"; do
   # Fresh sandbox: only SPEC, PRD and the empty submission dir.
   rm -rf "$sb"
   mkdir -p "$sb/submissions/$ROUND/$lang"
-  cp "$ROOT/SPEC.md" "$ROOT/PRD.md" "$sb/"
+  if [[ "$R_TASK" == "workflow" ]]; then
+    cp "$ROOT/SPEC.md" "$sb/SPEC.md"
+  else
+    mkdir -p "$sb/tasks/$R_TASK"
+    cp "$ROOT/tasks/$R_TASK/SPEC.md" "$sb/tasks/$R_TASK/SPEC.md"
+  fi
+  cp "$ROOT/PRD.md" "$sb/PRD.md"
   cp "$ROOT/benchmark/rounds/$ROUND/prompt-$lang.md" "$sb/prompt.md"
 
   # Wrapper: run the agent, then copy its output back and mark done.

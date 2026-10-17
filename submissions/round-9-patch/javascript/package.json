@@ -1,0 +1,17 @@
+{
+  "name": "patch-json-cli",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dependency-free JSON Patch engine CLI (RFC 6901/6902 style)",
+  "main": "patch.js",
+  "bin": {
+    "patch": "patch.js"
+  },
+  "scripts": {
+    "test": "node selftest/run.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

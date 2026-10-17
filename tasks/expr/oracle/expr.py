@@ -78,7 +78,7 @@ def read_string(src, start):
                 out.append(simple[e]); i += 2; continue
             if e == "u":
                 if i + 6 > n or any(ch not in "0123456789abcdefABCDEF" for ch in src[i+2:i+6]):
-                    raise ParseError(i, "bad \\u escape")
+                    raise ParseError(start, "bad \\u escape")
                 cp = int(src[i+2:i+6], 16)
                 i += 6
                 if 0xD800 <= cp <= 0xDBFF and src[i:i+2] == "\\u":
@@ -89,9 +89,9 @@ def read_string(src, start):
                             i += 6
                 out.append(chr(cp))
                 continue
-            raise ParseError(i, f"bad escape \\{e}")
+            raise ParseError(start, f"bad escape \\{e}")
         if c == "\n":
-            raise ParseError(i, "newline in string")
+            raise ParseError(start, "newline in string")
         out.append(c); i += 1
     raise ParseError(start, "unterminated string")
 

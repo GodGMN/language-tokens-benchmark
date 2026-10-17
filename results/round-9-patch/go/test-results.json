@@ -1,0 +1,442 @@
+{
+  "language": "go",
+  "passed": 37,
+  "total": 38,
+  "spec_version": 1,
+  "buckets": {
+    "public": [
+      14,
+      14
+    ],
+    "holdout": [
+      23,
+      24
+    ],
+    "future": [
+      0,
+      0
+    ]
+  },
+  "results": [
+    {
+      "name": "add_append",
+      "file": "tasks/patch/fixtures/arrays/add_append.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "add_index",
+      "file": "tasks/patch/fixtures/arrays/add_index.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "remove_index",
+      "file": "tasks/patch/fixtures/arrays/remove_index.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "replace_index",
+      "file": "tasks/patch/fixtures/arrays/replace_index.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "add_key",
+      "file": "tasks/patch/fixtures/basic/add_key.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "add_nested",
+      "file": "tasks/patch/fixtures/basic/add_nested.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "remove_key",
+      "file": "tasks/patch/fixtures/basic/remove_key.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "replace_key",
+      "file": "tasks/patch/fixtures/basic/replace_key.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "test_ok",
+      "file": "tasks/patch/fixtures/basic/test_ok.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "bad_pointer",
+      "file": "tasks/patch/fixtures/errors/bad_pointer.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "index_oob",
+      "file": "tasks/patch/fixtures/errors/index_oob.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.003
+    },
+    {
+      "name": "remove_missing",
+      "file": "tasks/patch/fixtures/errors/remove_missing.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "test_fail",
+      "file": "tasks/patch/fixtures/errors/test_fail.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "unknown_op",
+      "file": "tasks/patch/fixtures/errors/unknown_op.json",
+      "private": false,
+      "since": 1,
+      "bucket": "public",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.003
+    },
+    {
+      "name": "add_missing_parent",
+      "file": "tasks/patch/holdout/errors/add_missing_parent.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.003
+    },
+    {
+      "name": "atomic",
+      "file": "tasks/patch/holdout/errors/atomic.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "extra_field",
+      "file": "tasks/patch/holdout/errors/extra_field.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": false,
+      "reasons": [
+        "output mismatch"
+      ],
+      "exit_code": 2,
+      "seconds": 0.002
+    },
+    {
+      "name": "leading_zero",
+      "file": "tasks/patch/holdout/errors/leading_zero.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "move_missing",
+      "file": "tasks/patch/holdout/errors/move_missing.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "remove_root",
+      "file": "tasks/patch/holdout/errors/remove_root.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "scalar_parent",
+      "file": "tasks/patch/holdout/errors/scalar_parent.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.003
+    },
+    {
+      "name": "stdin_case",
+      "file": "tasks/patch/holdout/errors/stdin_case.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "test_missing",
+      "file": "tasks/patch/holdout/errors/test_missing.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "add_insert_mid",
+      "file": "tasks/patch/holdout/ops/add_insert_mid.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "add_root",
+      "file": "tasks/patch/holdout/ops/add_root.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "copy_child",
+      "file": "tasks/patch/holdout/ops/copy_child.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "copy_deep",
+      "file": "tasks/patch/holdout/ops/copy_deep.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "deep_add",
+      "file": "tasks/patch/holdout/ops/deep_add.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "move_descendant",
+      "file": "tasks/patch/holdout/ops/move_descendant.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "move_nested",
+      "file": "tasks/patch/holdout/ops/move_nested.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "move_self",
+      "file": "tasks/patch/holdout/ops/move_self.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.003
+    },
+    {
+      "name": "test_root",
+      "file": "tasks/patch/holdout/ops/test_root.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "bad_escape",
+      "file": "tasks/patch/holdout/pointers/bad_escape.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 1,
+      "seconds": 0.002
+    },
+    {
+      "name": "empty_key",
+      "file": "tasks/patch/holdout/pointers/empty_key.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "escape_slash",
+      "file": "tasks/patch/holdout/pointers/escape_slash.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "escape_tilde",
+      "file": "tasks/patch/holdout/pointers/escape_tilde.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "name": "nested_array",
+      "file": "tasks/patch/holdout/pointers/nested_array.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "name": "root_replace",
+      "file": "tasks/patch/holdout/pointers/root_replace.json",
+      "private": true,
+      "since": 1,
+      "bucket": "holdout",
+      "passed": true,
+      "reasons": [],
+      "exit_code": 0,
+      "seconds": 0.002
+    }
+  ]
+}

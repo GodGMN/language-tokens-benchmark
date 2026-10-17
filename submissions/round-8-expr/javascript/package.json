@@ -1,0 +1,17 @@
+{
+  "name": "expr-cli",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Expression evaluator CLI for the expr language benchmark",
+  "main": "expr.js",
+  "bin": {
+    "expr": "expr.js"
+  },
+  "scripts": {
+    "test": "node selftest/run.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=16"
+  }
+}

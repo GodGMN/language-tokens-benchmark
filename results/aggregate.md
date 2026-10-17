@@ -1,8 +1,38 @@
 # Aggregated results
 
-Samples are grouped by **model group and spec version**; rounds that differ in either are not pooled.
+Samples are grouped by **model group, task and spec version**; rounds that differ in any of them are not pooled.
 
-## deepseek-v4.1-flash-1017 · spec v1
+## expr · deepseek-v4.1-flash-1017 · spec v1
+
+Samples: 1 round(s) — round-8-expr  
+Version(s): DeepSeek-V4.1-Flash-1017
+
+> Fewer than 3 samples: treat these numbers as indicative only.
+
+| language | samples | conforming | output tok (median [min–max]) | total tok (median [min–max]) | turns (median) |
+|---|---|---|---|---|---|
+| python | 1 | 0/1 | — | — | 38 |
+| javascript | 1 | 0/1 | — | — | 22 |
+| go | 1 | 0/1 | — | — | 30 |
+| rust | 1 | 0/1 | — | — | 23 |
+| c | 1 | 0/1 | — | — | 29 |
+
+## patch · deepseek-v4.1-flash-1017 · spec v1
+
+Samples: 1 round(s) — round-9-patch  
+Version(s): DeepSeek-V4.1-Flash-1017
+
+> Fewer than 3 samples: treat these numbers as indicative only.
+
+| language | samples | conforming | output tok (median [min–max]) | total tok (median [min–max]) | turns (median) |
+|---|---|---|---|---|---|
+| python | 1 | 0/1 | — | — | 20 |
+| javascript | 1 | 0/1 | — | — | 29 |
+| go | 1 | 0/1 | — | — | 21 |
+| rust | 1 | 0/1 | — | — | 28 |
+| c | 1 | 0/1 | — | — | 41 |
+
+## workflow · deepseek-v4.1-flash-1017 · spec v1
 
 Samples: 1 round(s) — round-1  
 Version(s): DeepSeek-V4.1-Flash-1017
@@ -17,7 +47,7 @@ Version(s): DeepSeek-V4.1-Flash-1017
 | rust | 1 | 1/1 | 156,063 [156,063–156,063] | 9,405,161 [9,405,161–9,405,161] | 85 |
 | c | 1 | 1/1 | 121,998 [121,998–121,998] | 5,224,057 [5,224,057–5,224,057] | 55 |
 
-## deepseek-v4.1-flash-1017 · spec v2
+## workflow · deepseek-v4.1-flash-1017 · spec v2
 
 Samples: 6 round(s) — round-2, round-3, round-4, round-5, round-6, round-7  
 Version(s): DeepSeek-V4.1-Flash-1017

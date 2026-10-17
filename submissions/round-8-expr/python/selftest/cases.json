@@ -1,0 +1,2780 @@
+{
+  "cases": [
+    {
+      "name": "precedence_mul",
+      "request": {
+        "source": "1 + 2 * 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 7
+      },
+      "exit": 0
+    },
+    {
+      "name": "parentheses",
+      "request": {
+        "source": "(1 + 2) * 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 9
+      },
+      "exit": 0
+    },
+    {
+      "name": "unary_after_mul",
+      "request": {
+        "source": "2 * -3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -6
+      },
+      "exit": 0
+    },
+    {
+      "name": "left_assoc_sub",
+      "request": {
+        "source": "1 - 2 - 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -4
+      },
+      "exit": 0
+    },
+    {
+      "name": "left_assoc_div",
+      "request": {
+        "source": "20 / 2 / 2"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 5
+      },
+      "exit": 0
+    },
+    {
+      "name": "precedence_and",
+      "request": {
+        "source": "true || false && false"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "precedence_eq_add",
+      "request": {
+        "source": "1 + 2 == 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "precedence_cmp_eq",
+      "request": {
+        "source": "1 < 2 == 2 < 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "precedence_not_eq",
+      "request": {
+        "source": "!true == false"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "unary_chain_minus",
+      "request": {
+        "source": "--5"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 5
+      },
+      "exit": 0
+    },
+    {
+      "name": "unary_chain_not",
+      "request": {
+        "source": "!!false"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "unary_before_mul",
+      "request": {
+        "source": "-1 * 2"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -2
+      },
+      "exit": 0
+    },
+    {
+      "name": "and_or",
+      "request": {
+        "source": "false && true || true"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "mixed_bool",
+      "request": {
+        "source": "1 + 2 == 3 && 4 > 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "ternary_right_assoc_1",
+      "request": {
+        "source": "true ? 1 : false ? 2 : 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 1
+      },
+      "exit": 0
+    },
+    {
+      "name": "ternary_right_assoc_2",
+      "request": {
+        "source": "false ? 1 : true ? 2 : 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 2
+      },
+      "exit": 0
+    },
+    {
+      "name": "ternary_nested_then",
+      "request": {
+        "source": "true ? false ? 1 : 2 : 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 2
+      },
+      "exit": 0
+    },
+    {
+      "name": "int_max",
+      "request": {
+        "source": "9223372036854775807"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 9223372036854775807
+      },
+      "exit": 0
+    },
+    {
+      "name": "int_zero_padded",
+      "request": {
+        "source": "00042"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 42
+      },
+      "exit": 0
+    },
+    {
+      "name": "string_escapes",
+      "request": {
+        "source": "\"a\\\"b\\\\c\\/d\\ne\\tf\\rg\\bh\\fi\""
+      },
+      "expected": {
+        "status": "ok",
+        "value": "a\"b\\c/d\ne\tf\rg\bh\fi"
+      },
+      "exit": 0
+    },
+    {
+      "name": "string_unicode_bmp",
+      "request": {
+        "source": "\"A\\u00e9Z\""
+      },
+      "expected": {
+        "status": "ok",
+        "value": "AéZ"
+      },
+      "exit": 0
+    },
+    {
+      "name": "string_unicode_pair",
+      "request": {
+        "source": "\"\\ud83d\\ude00\""
+      },
+      "expected": {
+        "status": "ok",
+        "value": "😀"
+      },
+      "exit": 0
+    },
+    {
+      "name": "string_raw_unicode",
+      "request": {
+        "source": "\"héllo 😀\""
+      },
+      "expected": {
+        "status": "ok",
+        "value": "héllo 😀"
+      },
+      "exit": 0
+    },
+    {
+      "name": "short_and_missing",
+      "request": {
+        "source": "false && missing"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "short_or_missing",
+      "request": {
+        "source": "true || missing"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "short_and_div",
+      "request": {
+        "source": "false && (1 / 0 == 0)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "short_or_div",
+      "request": {
+        "source": "true || (1 / 0 == 0)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "and_evaluates_rhs",
+      "request": {
+        "source": "true && true"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "or_evaluates_rhs",
+      "request": {
+        "source": "false || true"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "ternary_then_only",
+      "request": {
+        "source": "true ? 1 : 1 / 0"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 1
+      },
+      "exit": 0
+    },
+    {
+      "name": "ternary_else_only",
+      "request": {
+        "source": "false ? 1 / 0 : 2"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 2
+      },
+      "exit": 0
+    },
+    {
+      "name": "ternary_missing_dead",
+      "request": {
+        "source": "true ? 1 : missing"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 1
+      },
+      "exit": 0
+    },
+    {
+      "name": "ternary_missing_dead_2",
+      "request": {
+        "source": "false ? missing : 2"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 2
+      },
+      "exit": 0
+    },
+    {
+      "name": "array_mixed",
+      "request": {
+        "source": "[1, \"a\", true, null, [2, 3]]"
+      },
+      "expected": {
+        "status": "ok",
+        "value": [
+          1,
+          "a",
+          true,
+          null,
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "exit": 0
+    },
+    {
+      "name": "array_empty",
+      "request": {
+        "source": "[]"
+      },
+      "expected": {
+        "status": "ok",
+        "value": []
+      },
+      "exit": 0
+    },
+    {
+      "name": "array_len_call",
+      "request": {
+        "source": "[1, 2, len(\"abc\")]"
+      },
+      "expected": {
+        "status": "ok",
+        "value": [
+          1,
+          2,
+          3
+        ]
+      },
+      "exit": 0
+    },
+    {
+      "name": "equality_null",
+      "request": {
+        "source": "null == null"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "equality_null_false",
+      "request": {
+        "source": "null == false"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "equality_bool_int",
+      "request": {
+        "source": "1 == true"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "equality_int",
+      "request": {
+        "source": "1 == 1"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "equality_string",
+      "request": {
+        "source": "\"abc\" == \"abc\""
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "equality_arrays",
+      "request": {
+        "source": "[1, [2, 3]] == [1, [2, 3]]"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "equality_arrays_diff",
+      "request": {
+        "source": "[1, 2] == [1, 3]"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "equality_length",
+      "request": {
+        "source": "[1] == [1, 2]"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "inequality",
+      "request": {
+        "source": "1 != 2"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "inequality_same",
+      "request": {
+        "source": "1 != 1"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "cmp_strings",
+      "request": {
+        "source": "\"abc\" < \"abd\""
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "cmp_strings_case",
+      "request": {
+        "source": "\"Z\" < \"a\""
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "cmp_strings_unicode",
+      "request": {
+        "source": "\"é\" < \"z\""
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "cmp_int",
+      "request": {
+        "source": "-5 < 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "var_int",
+      "request": {
+        "source": "x",
+        "vars": {
+          "x": 5
+        }
+      },
+      "expected": {
+        "status": "ok",
+        "value": 5
+      },
+      "exit": 0
+    },
+    {
+      "name": "var_null",
+      "request": {
+        "source": "x",
+        "vars": {
+          "x": null
+        }
+      },
+      "expected": {
+        "status": "ok",
+        "value": null
+      },
+      "exit": 0
+    },
+    {
+      "name": "var_array",
+      "request": {
+        "source": "sum(x)",
+        "vars": {
+          "x": [
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      "expected": {
+        "status": "ok",
+        "value": 6
+      },
+      "exit": 0
+    },
+    {
+      "name": "var_nested",
+      "request": {
+        "source": "x",
+        "vars": {
+          "x": [
+            1,
+            "a",
+            [
+              true,
+              null
+            ]
+          ]
+        }
+      },
+      "expected": {
+        "status": "ok",
+        "value": [
+          1,
+          "a",
+          [
+            true,
+            null
+          ]
+        ]
+      },
+      "exit": 0
+    },
+    {
+      "name": "var_in_ternary",
+      "request": {
+        "source": "x > 3 ? \"big\" : \"small\"",
+        "vars": {
+          "x": 5
+        }
+      },
+      "expected": {
+        "status": "ok",
+        "value": "big"
+      },
+      "exit": 0
+    },
+    {
+      "name": "div_trunc_neg",
+      "request": {
+        "source": "-7 / 2"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -3
+      },
+      "exit": 0
+    },
+    {
+      "name": "div_trunc_neg2",
+      "request": {
+        "source": "7 / -2"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -3
+      },
+      "exit": 0
+    },
+    {
+      "name": "mod_neg_dividend",
+      "request": {
+        "source": "-7 % 3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -1
+      },
+      "exit": 0
+    },
+    {
+      "name": "mod_neg_divisor",
+      "request": {
+        "source": "7 % -3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 1
+      },
+      "exit": 0
+    },
+    {
+      "name": "mod_both_neg",
+      "request": {
+        "source": "-7 % -3"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -1
+      },
+      "exit": 0
+    },
+    {
+      "name": "min_via_arithmetic",
+      "request": {
+        "source": "(-9223372036854775807 - 1)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -9223372036854775808
+      },
+      "exit": 0
+    },
+    {
+      "name": "min_plus_one",
+      "request": {
+        "source": "(-9223372036854775807 - 1) + 1"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -9223372036854775807
+      },
+      "exit": 0
+    },
+    {
+      "name": "max_minus_max",
+      "request": {
+        "source": "9223372036854775807 - 9223372036854775807"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 0
+      },
+      "exit": 0
+    },
+    {
+      "name": "mul_negative_zero",
+      "request": {
+        "source": "0 * -5"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 0
+      },
+      "exit": 0
+    },
+    {
+      "name": "paren_unary",
+      "request": {
+        "source": "-(1 + 2)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -3
+      },
+      "exit": 0
+    },
+    {
+      "name": "len_string",
+      "request": {
+        "source": "len(\"hello\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 5
+      },
+      "exit": 0
+    },
+    {
+      "name": "len_unicode",
+      "request": {
+        "source": "len(\"héllo😀\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 6
+      },
+      "exit": 0
+    },
+    {
+      "name": "len_array",
+      "request": {
+        "source": "len([1, 2, 3])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 3
+      },
+      "exit": 0
+    },
+    {
+      "name": "len_empty",
+      "request": {
+        "source": "len(\"\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 0
+      },
+      "exit": 0
+    },
+    {
+      "name": "sum_basic",
+      "request": {
+        "source": "sum([1, 2, 3])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 6
+      },
+      "exit": 0
+    },
+    {
+      "name": "sum_empty",
+      "request": {
+        "source": "sum([])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 0
+      },
+      "exit": 0
+    },
+    {
+      "name": "sum_negative",
+      "request": {
+        "source": "sum([-1, 2, -3])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -2
+      },
+      "exit": 0
+    },
+    {
+      "name": "min_basic",
+      "request": {
+        "source": "min([3, 1, 2])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 1
+      },
+      "exit": 0
+    },
+    {
+      "name": "max_basic",
+      "request": {
+        "source": "max([3, 1, 2])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 3
+      },
+      "exit": 0
+    },
+    {
+      "name": "min_negative",
+      "request": {
+        "source": "min([-3, -1, -2])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -3
+      },
+      "exit": 0
+    },
+    {
+      "name": "max_negative",
+      "request": {
+        "source": "max([-3, -1, -2])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -1
+      },
+      "exit": 0
+    },
+    {
+      "name": "abs_positive",
+      "request": {
+        "source": "abs(5)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 5
+      },
+      "exit": 0
+    },
+    {
+      "name": "abs_negative",
+      "request": {
+        "source": "abs(-5)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 5
+      },
+      "exit": 0
+    },
+    {
+      "name": "abs_zero",
+      "request": {
+        "source": "abs(0)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 0
+      },
+      "exit": 0
+    },
+    {
+      "name": "neg_positive",
+      "request": {
+        "source": "neg(5)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -5
+      },
+      "exit": 0
+    },
+    {
+      "name": "neg_negative",
+      "request": {
+        "source": "neg(-5)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 5
+      },
+      "exit": 0
+    },
+    {
+      "name": "neg_zero",
+      "request": {
+        "source": "neg(0)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 0
+      },
+      "exit": 0
+    },
+    {
+      "name": "upper_ascii",
+      "request": {
+        "source": "upper(\"aBc-z\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "ABC-Z"
+      },
+      "exit": 0
+    },
+    {
+      "name": "upper_non_ascii",
+      "request": {
+        "source": "upper(\"aé\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "Aé"
+      },
+      "exit": 0
+    },
+    {
+      "name": "lower_ascii",
+      "request": {
+        "source": "lower(\"AbC-Z\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "abc-z"
+      },
+      "exit": 0
+    },
+    {
+      "name": "lower_non_ascii",
+      "request": {
+        "source": "lower(\"AÉ\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "aÉ"
+      },
+      "exit": 0
+    },
+    {
+      "name": "trim",
+      "request": {
+        "source": "trim(\" \\t\\n\\r\\f\\u000babc \\t\\n\\r\\f\\u000b\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "abc"
+      },
+      "exit": 0
+    },
+    {
+      "name": "trim_inner",
+      "request": {
+        "source": "trim(\"  a b  \")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "a b"
+      },
+      "exit": 0
+    },
+    {
+      "name": "contains_yes",
+      "request": {
+        "source": "contains(\"hello\", \"ell\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "contains_no",
+      "request": {
+        "source": "contains(\"hello\", \"z\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "contains_empty",
+      "request": {
+        "source": "contains(\"hello\", \"\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "starts_yes",
+      "request": {
+        "source": "starts_with(\"hello\", \"he\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "starts_no",
+      "request": {
+        "source": "starts_with(\"hello\", \"lo\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "starts_empty",
+      "request": {
+        "source": "starts_with(\"hello\", \"\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "ends_yes",
+      "request": {
+        "source": "ends_with(\"hello\", \"lo\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "ends_no",
+      "request": {
+        "source": "ends_with(\"hello\", \"he\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": false
+      },
+      "exit": 0
+    },
+    {
+      "name": "ends_empty",
+      "request": {
+        "source": "ends_with(\"hello\", \"\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": true
+      },
+      "exit": 0
+    },
+    {
+      "name": "substr_basic",
+      "request": {
+        "source": "substr(\"abcdef\", 1, 3)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "bcd"
+      },
+      "exit": 0
+    },
+    {
+      "name": "substr_negative_start",
+      "request": {
+        "source": "substr(\"abcdef\", -2, 2)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "ef"
+      },
+      "exit": 0
+    },
+    {
+      "name": "substr_negative_clamp",
+      "request": {
+        "source": "substr(\"abcdef\", -100, 2)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "ab"
+      },
+      "exit": 0
+    },
+    {
+      "name": "substr_start_past_end",
+      "request": {
+        "source": "substr(\"abcdef\", 10, 2)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": ""
+      },
+      "exit": 0
+    },
+    {
+      "name": "substr_len_past_end",
+      "request": {
+        "source": "substr(\"abcdef\", 2, 100)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "cdef"
+      },
+      "exit": 0
+    },
+    {
+      "name": "substr_zero_len",
+      "request": {
+        "source": "substr(\"abcdef\", 2, 0)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": ""
+      },
+      "exit": 0
+    },
+    {
+      "name": "substr_unicode",
+      "request": {
+        "source": "substr(\"héllo😀\", 1, 2)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "él"
+      },
+      "exit": 0
+    },
+    {
+      "name": "index_of_found",
+      "request": {
+        "source": "index_of(\"hello\", \"ll\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 2
+      },
+      "exit": 0
+    },
+    {
+      "name": "index_of_not_found",
+      "request": {
+        "source": "index_of(\"hello\", \"z\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": -1
+      },
+      "exit": 0
+    },
+    {
+      "name": "index_of_empty",
+      "request": {
+        "source": "index_of(\"hello\", \"\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 0
+      },
+      "exit": 0
+    },
+    {
+      "name": "index_of_unicode",
+      "request": {
+        "source": "index_of(\"héllo😀\", \"llo\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 2
+      },
+      "exit": 0
+    },
+    {
+      "name": "index_of_unicode2",
+      "request": {
+        "source": "index_of(\"héllo😀\", \"😀\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": 5
+      },
+      "exit": 0
+    },
+    {
+      "name": "join_basic",
+      "request": {
+        "source": "join([\"a\", \"b\", \"c\"], \"-\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "a-b-c"
+      },
+      "exit": 0
+    },
+    {
+      "name": "join_empty",
+      "request": {
+        "source": "join([], \"-\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": ""
+      },
+      "exit": 0
+    },
+    {
+      "name": "join_empty_sep",
+      "request": {
+        "source": "join([\"a\", \"b\"], \"\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "ab"
+      },
+      "exit": 0
+    },
+    {
+      "name": "split_basic",
+      "request": {
+        "source": "split(\"a,b,c\", \",\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "exit": 0
+    },
+    {
+      "name": "split_empties",
+      "request": {
+        "source": "split(\"a,,b\", \",\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": [
+          "a",
+          "",
+          "b"
+        ]
+      },
+      "exit": 0
+    },
+    {
+      "name": "split_empty_sep",
+      "request": {
+        "source": "split(\"abc\", \"\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "exit": 0
+    },
+    {
+      "name": "split_empty_sep_unicode",
+      "request": {
+        "source": "split(\"😀a\", \"\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": [
+          "😀",
+          "a"
+        ]
+      },
+      "exit": 0
+    },
+    {
+      "name": "split_empty_source",
+      "request": {
+        "source": "split(\"\", \",\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": [
+          ""
+        ]
+      },
+      "exit": 0
+    },
+    {
+      "name": "split_empty_sep_empty_source",
+      "request": {
+        "source": "split(\"\", \"\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": []
+      },
+      "exit": 0
+    },
+    {
+      "name": "type_integer",
+      "request": {
+        "source": "type(1)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "integer"
+      },
+      "exit": 0
+    },
+    {
+      "name": "type_boolean",
+      "request": {
+        "source": "type(true)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "boolean"
+      },
+      "exit": 0
+    },
+    {
+      "name": "type_string",
+      "request": {
+        "source": "type(\"x\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "string"
+      },
+      "exit": 0
+    },
+    {
+      "name": "type_array",
+      "request": {
+        "source": "type([1])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "array"
+      },
+      "exit": 0
+    },
+    {
+      "name": "type_null",
+      "request": {
+        "source": "type(null)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "null"
+      },
+      "exit": 0
+    },
+    {
+      "name": "to_string_int",
+      "request": {
+        "source": "to_string(42)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "42"
+      },
+      "exit": 0
+    },
+    {
+      "name": "to_string_negative",
+      "request": {
+        "source": "to_string(-42)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "-42"
+      },
+      "exit": 0
+    },
+    {
+      "name": "to_string_true",
+      "request": {
+        "source": "to_string(true)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "true"
+      },
+      "exit": 0
+    },
+    {
+      "name": "to_string_false",
+      "request": {
+        "source": "to_string(false)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "false"
+      },
+      "exit": 0
+    },
+    {
+      "name": "to_string_null",
+      "request": {
+        "source": "to_string(null)"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "null"
+      },
+      "exit": 0
+    },
+    {
+      "name": "to_string_string",
+      "request": {
+        "source": "to_string(\"hi\")"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "hi"
+      },
+      "exit": 0
+    },
+    {
+      "name": "to_string_array",
+      "request": {
+        "source": "to_string([1, \"a\", true, null])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "[1,\"a\",true,null]"
+      },
+      "exit": 0
+    },
+    {
+      "name": "to_string_nested",
+      "request": {
+        "source": "to_string([1, [2, \"x\"], null])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "[1,[2,\"x\"],null]"
+      },
+      "exit": 0
+    },
+    {
+      "name": "to_string_escape",
+      "request": {
+        "source": "to_string([\"a\\\"b\", \"c\\nd\"])"
+      },
+      "expected": {
+        "status": "ok",
+        "value": "[\"a\\\"b\",\"c\\nd\"]"
+      },
+      "exit": 0
+    },
+    {
+      "name": "parse_empty",
+      "request": {
+        "source": ""
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_ws_only",
+      "request": {
+        "source": "   "
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 3
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_trailing_op",
+      "request": {
+        "source": "1 +"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 3
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_missing_paren",
+      "request": {
+        "source": "(1 + 2"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 6
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_missing_bracket",
+      "request": {
+        "source": "[1, 2"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 5
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_juxtaposition",
+      "request": {
+        "source": "1 2"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_array_trailing_comma",
+      "request": {
+        "source": "[1,]"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 3
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_array_double_comma",
+      "request": {
+        "source": "[1,,2]"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 3
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_call_trailing_comma",
+      "request": {
+        "source": "f(1,)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 4
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_unterminated_string",
+      "request": {
+        "source": "\"abc"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_bad_escape",
+      "request": {
+        "source": "\"a\\q\""
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_short_unicode",
+      "request": {
+        "source": "\"\\u12\""
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_high_surrogate",
+      "request": {
+        "source": "\"\\ud800\""
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_low_surrogate",
+      "request": {
+        "source": "\"\\udc00\""
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_stray_char",
+      "request": {
+        "source": "@"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_single_amp",
+      "request": {
+        "source": "1 & 2"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_single_eq",
+      "request": {
+        "source": "1 = 2"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_ternary_missing_colon",
+      "request": {
+        "source": "true ? 1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 8
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_array_missing_comma",
+      "request": {
+        "source": "[1 2]"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 3
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_double_star",
+      "request": {
+        "source": "1 + * 2"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 4
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_extra_paren",
+      "request": {
+        "source": "(1))"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 3
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_two_strings",
+      "request": {
+        "source": "\"a\" \"b\""
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 4
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_unfinished_call",
+      "request": {
+        "source": "foo("
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 4
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_unary_missing_operand",
+      "request": {
+        "source": "-"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 1
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_not_missing_operand",
+      "request": {
+        "source": "!"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 1
+      },
+      "exit": 1
+    },
+    {
+      "name": "parse_stray_question",
+      "request": {
+        "source": "?"
+      },
+      "expected": {
+        "status": "error",
+        "code": "PARSE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_literal",
+      "request": {
+        "source": "9223372036854775808"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_literal_padded",
+      "request": {
+        "source": "0009223372036854775808"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_literal_20_digits",
+      "request": {
+        "source": "18446744073709551616"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_negative_literal",
+      "request": {
+        "source": "-9223372036854775808"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 1
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_add",
+      "request": {
+        "source": "9223372036854775807 + 1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 20
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_sub",
+      "request": {
+        "source": "-9223372036854775807 - 2"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 21
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_mul",
+      "request": {
+        "source": "9223372036854775807 * 2"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 20
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_div_min",
+      "request": {
+        "source": "(-9223372036854775807 - 1) / -1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 27
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_mod_min",
+      "request": {
+        "source": "(-9223372036854775807 - 1) % -1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 27
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_unary_min",
+      "request": {
+        "source": "-(-9223372036854775807 - 1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_abs",
+      "request": {
+        "source": "abs(-9223372036854775807 - 1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_neg",
+      "request": {
+        "source": "neg(-9223372036854775807 - 1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "overflow_sum",
+      "request": {
+        "source": "sum([9223372036854775807, 1])"
+      },
+      "expected": {
+        "status": "error",
+        "code": "OVERFLOW",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "div_zero",
+      "request": {
+        "source": "1 / 0"
+      },
+      "expected": {
+        "status": "error",
+        "code": "DIVISION_BY_ZERO",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "mod_zero",
+      "request": {
+        "source": "1 % 0"
+      },
+      "expected": {
+        "status": "error",
+        "code": "DIVISION_BY_ZERO",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "div_zero_complex",
+      "request": {
+        "source": "(1 - 1) % (2 - 2)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "DIVISION_BY_ZERO",
+        "position": 8
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_add_bool",
+      "request": {
+        "source": "1 + true"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_add_bool_left",
+      "request": {
+        "source": "true + 1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 5
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_sub_strings",
+      "request": {
+        "source": "\"a\" - \"b\""
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 4
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_mul_null",
+      "request": {
+        "source": "1 * null"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_div_bool",
+      "request": {
+        "source": "1 / false"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_unary_minus_bool",
+      "request": {
+        "source": "-true"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_not_int",
+      "request": {
+        "source": "!1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_cmp_mixed",
+      "request": {
+        "source": "\"a\" < 1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 4
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_cmp_mixed2",
+      "request": {
+        "source": "1 < \"a\""
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_cmp_bool",
+      "request": {
+        "source": "true < false"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 5
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_and_right",
+      "request": {
+        "source": "true && 1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 5
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_and_left",
+      "request": {
+        "source": "1 && true"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_or_right",
+      "request": {
+        "source": "false || 1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 6
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_or_left",
+      "request": {
+        "source": "1 || true"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_ternary_cond",
+      "request": {
+        "source": "1 ? 2 : 3"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 2
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_len_int",
+      "request": {
+        "source": "len(1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_len_bool",
+      "request": {
+        "source": "len(true)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_sum_not_array",
+      "request": {
+        "source": "sum(\"abc\")"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_sum_element",
+      "request": {
+        "source": "sum([1, true])"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_min_element",
+      "request": {
+        "source": "min([1, true])"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_max_element",
+      "request": {
+        "source": "max([1, true])"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_abs_bool",
+      "request": {
+        "source": "abs(true)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_neg_bool",
+      "request": {
+        "source": "neg(true)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_upper_int",
+      "request": {
+        "source": "upper(1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_lower_int",
+      "request": {
+        "source": "lower(1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_trim_int",
+      "request": {
+        "source": "trim(1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_contains_int",
+      "request": {
+        "source": "contains(1, \"a\")"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_starts_int",
+      "request": {
+        "source": "starts_with(\"a\", 1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_ends_int",
+      "request": {
+        "source": "ends_with(\"a\", 1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_substr_string",
+      "request": {
+        "source": "substr(1, 0, 1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_substr_start",
+      "request": {
+        "source": "substr(\"a\", \"0\", 1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_substr_negative_len",
+      "request": {
+        "source": "substr(\"abc\", 0, -1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_index_of_int",
+      "request": {
+        "source": "index_of(1, \"a\")"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_join_not_array",
+      "request": {
+        "source": "join(\"ab\", \",\")"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_join_element",
+      "request": {
+        "source": "join([\"a\", 1], \",\")"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_join_sep",
+      "request": {
+        "source": "join([\"a\"], 1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "type_split_int",
+      "request": {
+        "source": "split(1, \",\")"
+      },
+      "expected": {
+        "status": "error",
+        "code": "TYPE_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "unknown_variable",
+      "request": {
+        "source": "y"
+      },
+      "expected": {
+        "status": "error",
+        "code": "UNKNOWN_VARIABLE",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "unknown_variable_bare_ident",
+      "request": {
+        "source": "foo + 1"
+      },
+      "expected": {
+        "status": "error",
+        "code": "UNKNOWN_VARIABLE",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "unknown_variable_arg",
+      "request": {
+        "source": "len(z)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "UNKNOWN_VARIABLE",
+        "position": 4
+      },
+      "exit": 1
+    },
+    {
+      "name": "unknown_function",
+      "request": {
+        "source": "foo(1)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "UNKNOWN_FUNCTION",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "unknown_function_nested",
+      "request": {
+        "source": "1 + foo(2)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "UNKNOWN_FUNCTION",
+        "position": 4
+      },
+      "exit": 1
+    },
+    {
+      "name": "unknown_function_case",
+      "request": {
+        "source": "LEN(\"x\")"
+      },
+      "expected": {
+        "status": "error",
+        "code": "UNKNOWN_FUNCTION",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "unknown_function_args_evaluated",
+      "request": {
+        "source": "foo(1/0)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "DIVISION_BY_ZERO",
+        "position": 5
+      },
+      "exit": 1
+    },
+    {
+      "name": "arity_len_extra",
+      "request": {
+        "source": "len(1, 2)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "ARITY_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "arity_len_none",
+      "request": {
+        "source": "len()"
+      },
+      "expected": {
+        "status": "error",
+        "code": "ARITY_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "arity_substr_missing",
+      "request": {
+        "source": "substr(\"a\", 0)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "ARITY_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "arity_min_extra",
+      "request": {
+        "source": "min([1], 2)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "ARITY_ERROR",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "empty_min",
+      "request": {
+        "source": "min([])"
+      },
+      "expected": {
+        "status": "error",
+        "code": "EMPTY_ARRAY",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "empty_max",
+      "request": {
+        "source": "max([])"
+      },
+      "expected": {
+        "status": "error",
+        "code": "EMPTY_ARRAY",
+        "position": 0
+      },
+      "exit": 1
+    },
+    {
+      "name": "arity_nested_position",
+      "request": {
+        "source": "1 + len(1, 2)"
+      },
+      "expected": {
+        "status": "error",
+        "code": "ARITY_ERROR",
+        "position": 4
+      },
+      "exit": 1
+    },
+    {
+      "name": "invalid_missing_source",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": {
+        "vars": {}
+      }
+    },
+    {
+      "name": "invalid_source_not_string",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": {
+        "source": 1
+      }
+    },
+    {
+      "name": "invalid_source_null",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": {
+        "source": null
+      }
+    },
+    {
+      "name": "invalid_unknown_field",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": {
+        "source": "1",
+        "extra": 1
+      }
+    },
+    {
+      "name": "invalid_vars_array",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": {
+        "source": "1",
+        "vars": []
+      }
+    },
+    {
+      "name": "invalid_vars_null",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": {
+        "source": "1",
+        "vars": null
+      }
+    },
+    {
+      "name": "invalid_vars_float",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": {
+        "source": "1",
+        "vars": {
+          "x": 1.5
+        }
+      }
+    },
+    {
+      "name": "invalid_vars_object",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": {
+        "source": "1",
+        "vars": {
+          "x": {}
+        }
+      }
+    },
+    {
+      "name": "invalid_top_level_array",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": []
+    },
+    {
+      "name": "invalid_top_level_null",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "request": null
+    },
+    {
+      "name": "invalid_json",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "raw": "{not json"
+    },
+    {
+      "name": "invalid_empty_input",
+      "expected": {
+        "status": "error",
+        "code": "INVALID_REQUEST",
+        "position": null
+      },
+      "exit": 2,
+      "raw": ""
+    }
+  ]
+}

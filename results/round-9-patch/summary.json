@@ -1,0 +1,246 @@
+{
+  "round": "round-9-patch",
+  "label": "DeepSeek V4.1 Flash \u2014 JSON patch engine (spec v1)",
+  "spec_version": 1,
+  "model": {
+    "name": "deepseek-flash",
+    "provider": "deepseek",
+    "display": "DeepSeek V4.1 Flash",
+    "params": "763B total, ~16B active (8B active during prefill)",
+    "thinking": "high",
+    "date": "2026-10-17",
+    "version": "DeepSeek-V4.1-Flash-1017",
+    "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+  },
+  "tests": {
+    "total": 38,
+    "public": 14,
+    "holdout": 24,
+    "future_spec": 0
+  },
+  "leaderboard": [],
+  "all": [
+    {
+      "language": "python",
+      "reference": false,
+      "passed": 37,
+      "total": 38,
+      "pct": 97.4,
+      "conforming": false,
+      "public": [
+        14,
+        14
+      ],
+      "holdout": [
+        23,
+        24
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 16757,
+      "output": 37514,
+      "reasoning": 22629,
+      "cache_read": 646272,
+      "cache_write": 0,
+      "total_tokens": 700543,
+      "cost": 0.0539,
+      "turns": 20,
+      "user_messages": 1,
+      "tool_calls": 21,
+      "code": {
+        "source_files": 2,
+        "source_lines": 1029,
+        "source_bytes": 37065
+      },
+      "gen_eff_k": 0.99,
+      "tot_eff_k": 0.05
+    },
+    {
+      "language": "javascript",
+      "reference": false,
+      "passed": 37,
+      "total": 38,
+      "pct": 97.4,
+      "conforming": false,
+      "public": [
+        14,
+        14
+      ],
+      "holdout": [
+        23,
+        24
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 18696,
+      "output": 66718,
+      "reasoning": 46062,
+      "cache_read": 1476736,
+      "cache_write": 0,
+      "total_tokens": 1562150,
+      "cost": 0.0945,
+      "turns": 29,
+      "user_messages": 1,
+      "tool_calls": 31,
+      "code": {
+        "source_files": 2,
+        "source_lines": 1366,
+        "source_bytes": 38759
+      },
+      "gen_eff_k": 0.55,
+      "tot_eff_k": 0.02
+    },
+    {
+      "language": "go",
+      "reference": false,
+      "passed": 37,
+      "total": 38,
+      "pct": 97.4,
+      "conforming": false,
+      "public": [
+        14,
+        14
+      ],
+      "holdout": [
+        23,
+        24
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 11804,
+      "output": 42905,
+      "reasoning": 26103,
+      "cache_read": 655232,
+      "cache_write": 0,
+      "total_tokens": 709941,
+      "cost": 0.059,
+      "turns": 21,
+      "user_messages": 1,
+      "tool_calls": 24,
+      "code": {
+        "source_files": 5,
+        "source_lines": 1023,
+        "source_bytes": 30435
+      },
+      "gen_eff_k": 0.86,
+      "tot_eff_k": 0.05
+    },
+    {
+      "language": "rust",
+      "reference": false,
+      "passed": 37,
+      "total": 38,
+      "pct": 97.4,
+      "conforming": false,
+      "public": [
+        14,
+        14
+      ],
+      "holdout": [
+        23,
+        24
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 21682,
+      "output": 44765,
+      "reasoning": 28135,
+      "cache_read": 858880,
+      "cache_write": 0,
+      "total_tokens": 925327,
+      "cost": 0.0654,
+      "turns": 28,
+      "user_messages": 1,
+      "tool_calls": 36,
+      "code": {
+        "source_files": 2,
+        "source_lines": 857,
+        "source_bytes": 26562
+      },
+      "gen_eff_k": 0.83,
+      "tot_eff_k": 0.04
+    },
+    {
+      "language": "c",
+      "reference": false,
+      "passed": 37,
+      "total": 38,
+      "pct": 97.4,
+      "conforming": false,
+      "public": [
+        14,
+        14
+      ],
+      "holdout": [
+        23,
+        24
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": 18745,
+      "output": 77186,
+      "reasoning": 42352,
+      "cache_read": 2259584,
+      "cache_write": 0,
+      "total_tokens": 2355515,
+      "cost": 0.1118,
+      "turns": 41,
+      "user_messages": 1,
+      "tool_calls": 42,
+      "code": {
+        "source_files": 4,
+        "source_lines": 2372,
+        "source_bytes": 71208
+      },
+      "gen_eff_k": 0.48,
+      "tot_eff_k": 0.02
+    },
+    {
+      "language": "oracle",
+      "reference": true,
+      "passed": 38,
+      "total": 38,
+      "pct": 100.0,
+      "conforming": true,
+      "public": [
+        14,
+        14
+      ],
+      "holdout": [
+        24,
+        24
+      ],
+      "future": [
+        0,
+        0
+      ],
+      "input": null,
+      "output": null,
+      "reasoning": null,
+      "cache_read": null,
+      "cache_write": null,
+      "total_tokens": null,
+      "cost": null,
+      "turns": null,
+      "user_messages": null,
+      "tool_calls": null,
+      "code": {
+        "source_files": 1,
+        "source_lines": 224,
+        "source_bytes": 7878
+      },
+      "gen_eff_k": null,
+      "tot_eff_k": null
+    }
+  ]
+}

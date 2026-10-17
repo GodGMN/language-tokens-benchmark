@@ -1,0 +1,12 @@
+[package]
+name = "patch"
+version = "1.0.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "patch"
+path = "src/main.rs"
+
+[dependencies]
+serde_json = { version = "=1.0.151", features = ["preserve_order"] }
