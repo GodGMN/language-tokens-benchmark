@@ -34,12 +34,24 @@ Make sure those commands work from this folder (`cli-javascript`).
 
 ## Rules
 
-1. **Stay in your folder.** Only create/modify files inside `cli-javascript/`. Do not touch `benchmark/`, other `cli-*` folders, or the root docs.
-2. **Dependencies.** Standard library plus at most a small number of well-known libraries for JSON parsing and CLI arg handling are allowed (for C: one small JSON library is explicitly allowed — e.g. a single-header one). Pin versions (package manager lockfile / Makefile / vendored). **No workflow engines, no DAG/graph libraries, no eval/code-interpreters.**
-3. **No user-code execution.** Operations are a fixed, closed set (see SPEC §4). No `eval`, no user-supplied functions.
-4. **i64 arithmetic.** Numbers are signed 64-bit integers; overflow = `ARITHMETIC_OVERFLOW`; division truncates toward zero; mod takes the dividend's sign. No floats anywhere in math.
-5. **Deterministic.** Same input -> same output, always. No randomness, no timestamps in output, no wall-clock dependence.
-6. **No network, no filesystem side effects** beyond reading the input document (and stdin).
+### Read / write boundary
+
+Your working directory is `cli-javascript/`. Pi was started here, and the session record is tied to this folder.
+
+- **You may read:** everything you need *below* the repository root — `../SPEC.md`, `../PRD.md`, and files inside `cli-javascript/`.
+- **You may only create or modify files inside `cli-javascript/`.** Everything else in the repo is read-only for you.
+- **Do not read** other `cli-*` folders. Do not read or modify `benchmark/`, `results/`, or `scripts/`.
+- Do not `cd` out of `cli-javascript/` to work, and do not create files anywhere else (no `/tmp` artifacts that end up in the repo, no edits to root docs).
+
+If you believe you need a change outside `cli-javascript/`, stop and say so instead of making it.
+
+### Engineering rules
+
+1. **Dependencies.** Standard library plus at most a small number of well-known libraries for JSON parsing and CLI arg handling are allowed (for C: one small JSON library is explicitly allowed — e.g. a single-header one). Pin versions (package manager lockfile / Makefile / vendored). **No workflow engines, no DAG/graph libraries, no eval/code-interpreters.**
+2. **No user-code execution.** Operations are a fixed, closed set (see SPEC §4). No `eval`, no user-supplied functions.
+3. **i64 arithmetic.** Numbers are signed 64-bit integers; overflow = `ARITHMETIC_OVERFLOW`; division truncates toward zero; mod takes the dividend's sign. No floats anywhere in math.
+4. **Deterministic.** Same input -> same output, always. No randomness, no timestamps in output, no wall-clock dependence.
+5. **No network, no filesystem side effects** beyond reading the input document (and stdin).
 
 ## Self-verification (do this before finishing)
 
