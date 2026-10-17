@@ -31,6 +31,7 @@ def load_all():
         except FileNotFoundError:
             cfg = {}
         s["_group"] = cfg.get("group") or (s.get("model") or {}).get("name") or "ungrouped"
+        s["_spec"] = s.get("spec_version", cfg.get("spec_version", 1))
         s["_version"] = (cfg.get("model") or {}).get("version") or "unspecified"
         s["_by_lang"] = {r["language"]: r for r in s.get("all", [])}
         out.append(s)
@@ -52,12 +53,15 @@ def main():
 
     groups = {}
     for r in rounds:
-        groups.setdefault(r["_group"], []).append(r)
+        # Group by model group AND spec version: different specs are different tasks.
+        groups.setdefault((r["_group"], r["_spec"]), []).append(r)
 
-    lines = ["# Aggregated results", ""]
-    for group, rs in sorted(groups.items()):
+    lines = ["# Aggregated results", "",
+             "Samples are grouped by **model group and spec version**; rounds that differ "
+             "in either are not pooled.", ""]
+    for (group, spec), rs in sorted(groups.items()):
         versions = sorted({r["_version"] for r in rs})
-        lines += [f"## {group}", "",
+        lines += [f"## {group} · spec v{spec}", "",
                   f"Samples: {len(rs)} round(s) — {', '.join(r['round'] for r in rs)}  ",
                   f"Version(s): {', '.join(versions)}", ""]
         if len(rs) < 3:
@@ -93,8 +97,9 @@ def main():
         "- Only **conforming** samples contribute to the token medians; a sample that",
         "  fails the suite is recorded in the conformance column but never averaged in.",
         "- Report the median with the min–max range while the sample count is small.",
-        "- **Do not pool rounds from different model versions.** Group them by the",
-        "  exact version; if the provider does not expose one, record it manually.",
+        "- **Do not pool rounds that differ in model version or spec version.** Both are",
+        "  different tasks; group by both. If the provider exposes no version, record it",
+        "  manually per round.",
         "- Total tokens ≈ turns × context size, so it is far noisier than output",
         "  tokens. Prefer output tokens for 'effort' and total tokens for 'cost'.",
         "",
