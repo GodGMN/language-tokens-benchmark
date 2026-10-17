@@ -38,3 +38,6 @@ submissions/**/rust/expr
 submissions/**/go/patch
 submissions/**/c/patch
 submissions/**/rust/patch
+
+# Runtime markers
+results/**/.done

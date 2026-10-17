@@ -125,6 +125,23 @@ python3 benchmark/rounds/round-1/make_prompts.py     # render per-language promp
 
 `collect.py` reads pi's session JSONL and sums **provider-reported** usage (input, output, cache read/write, reasoning, total, cost) per session — no estimates. See [`docs/methodology.md`](docs/methodology.md).
 
+## Data for analysis
+
+Every round is exported to tidy tables for analysis:
+
+```bash
+python3 benchmark/export.py
+```
+
+| file | rows |
+|---|---|
+| `results/dataset.csv` | one per (round, language) sample: tokens, cost, turns, conformance |
+| `results/dataset_tests.csv` | one per (round, language, test) outcome |
+| `results/dataset.json` | the sample rows as JSON |
+
+Per-round detail lives in `results/<round>/` (`report.md`, `summary.json`,
+`metrics.json`, `<lang>/test-results.json`).
+
 ## Extending it
 
 This is meant to grow by PR. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
