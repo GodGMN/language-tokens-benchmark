@@ -1,0 +1,23 @@
+{
+  "language": "go",
+  "build": [
+    "go",
+    "build",
+    "-o",
+    "expr",
+    "."
+  ],
+  "run": [
+    "./expr",
+    "eval",
+    "{input}"
+  ],
+  "run_stdin": [
+    "./expr",
+    "eval",
+    "-"
+  ],
+  "requires": [
+    "go.mod"
+  ]
+}

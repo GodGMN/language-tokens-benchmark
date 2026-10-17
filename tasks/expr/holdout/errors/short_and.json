@@ -1,0 +1,11 @@
+{
+  "name": "short_and",
+  "input": {
+    "source": "false && (1/0 == 0)"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "mod_sign",
+  "input": {
+    "source": "-7 % 2"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": -1
+  }
+}

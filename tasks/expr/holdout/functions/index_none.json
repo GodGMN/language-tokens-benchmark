@@ -1,0 +1,11 @@
+{
+  "name": "index_none",
+  "input": {
+    "source": "index_of(\"abc\",\"z\")"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": -1
+  }
+}

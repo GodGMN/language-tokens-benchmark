@@ -1,0 +1,11 @@
+{
+  "name": "string_order",
+  "input": {
+    "source": "\"a\" < \"b\""
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": true
+  }
+}

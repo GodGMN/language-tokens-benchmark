@@ -1,0 +1,19 @@
+{
+  "name": "escape_slash",
+  "input": {
+    "document": {
+      "a/b": 1
+    },
+    "patch": [
+      {
+        "op": "remove",
+        "path": "/a~1b"
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {}
+  }
+}

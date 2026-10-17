@@ -1,0 +1,29 @@
+{
+  "name": "copy_child",
+  "input": {
+    "document": {
+      "a": {
+        "b": 1
+      }
+    },
+    "patch": [
+      {
+        "op": "copy",
+        "from": "/a",
+        "path": "/a/c"
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {
+      "a": {
+        "b": 1,
+        "c": {
+          "b": 1
+        }
+      }
+    }
+  }
+}

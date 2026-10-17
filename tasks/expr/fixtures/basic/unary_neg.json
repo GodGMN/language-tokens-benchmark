@@ -1,0 +1,11 @@
+{
+  "name": "unary_neg",
+  "input": {
+    "source": "2 * -3"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": -6
+  }
+}

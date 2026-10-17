@@ -1,0 +1,14 @@
+{
+  "name": "vars",
+  "input": {
+    "source": "x + 1",
+    "vars": {
+      "x": 41
+    }
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": 42
+  }
+}

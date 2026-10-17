@@ -1,0 +1,11 @@
+{
+  "name": "abs_neg",
+  "input": {
+    "source": "abs(-5)"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": 5
+  }
+}

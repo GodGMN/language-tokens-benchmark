@@ -32,6 +32,7 @@ def load_all():
             cfg = {}
         s["_group"] = cfg.get("group") or (s.get("model") or {}).get("name") or "ungrouped"
         s["_spec"] = s.get("spec_version", cfg.get("spec_version", 1))
+        s["_task"] = cfg.get("task", "workflow")
         s["_version"] = (cfg.get("model") or {}).get("version") or "unspecified"
         s["_by_lang"] = {r["language"]: r for r in s.get("all", [])}
         out.append(s)
@@ -54,14 +55,14 @@ def main():
     groups = {}
     for r in rounds:
         # Group by model group AND spec version: different specs are different tasks.
-        groups.setdefault((r["_group"], r["_spec"]), []).append(r)
+        groups.setdefault((r["_group"], r["_task"], r["_spec"]), []).append(r)
 
     lines = ["# Aggregated results", "",
-             "Samples are grouped by **model group and spec version**; rounds that differ "
-             "in either are not pooled.", ""]
-    for (group, spec), rs in sorted(groups.items()):
+             "Samples are grouped by **model group, task and spec version**; rounds that "
+             "differ in any of them are not pooled.", ""]
+    for (group, task, spec), rs in sorted(groups.items()):
         versions = sorted({r["_version"] for r in rs})
-        lines += [f"## {group} · spec v{spec}", "",
+        lines += [f"## {task} · {group} · spec v{spec}", "",
                   f"Samples: {len(rs)} round(s) — {', '.join(r['round'] for r in rs)}  ",
                   f"Version(s): {', '.join(versions)}", ""]
         if len(rs) < 3:

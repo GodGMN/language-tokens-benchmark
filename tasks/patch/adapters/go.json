@@ -1,0 +1,23 @@
+{
+  "language": "go",
+  "build": [
+    "go",
+    "build",
+    "-o",
+    "patch",
+    "."
+  ],
+  "run": [
+    "./patch",
+    "apply",
+    "{input}"
+  ],
+  "run_stdin": [
+    "./patch",
+    "apply",
+    "-"
+  ],
+  "requires": [
+    "go.mod"
+  ]
+}

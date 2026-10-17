@@ -15,6 +15,7 @@ ROOT = HERE.parent
 ADAPTERS = HERE / "adapters"
 ROUNDS = HERE / "rounds"
 RESULTS = ROOT / "results"
+TASKS = ROOT / "tasks"
 
 
 def default_round() -> str:
@@ -24,8 +25,28 @@ def default_round() -> str:
     return "round-1"
 
 
-def load_adapters() -> dict:
-    return {p.stem: json.loads(p.read_text()) for p in sorted(ADAPTERS.glob("*.json"))}
+def task_paths(round_cfg: dict) -> dict:
+    """Resolve the task a round targets.
+
+    The original `workflow` task lives at the repo root (back-compat). Any other
+    task is self-contained under `tasks/<task>/`.
+    """
+    task = round_cfg.get("task", "workflow")
+    if task == "workflow":
+        return {"id": task, "envelope": "workflow", "spec": ROOT / "SPEC.md",
+                "prompt": HERE / "rounds" / "REQUIREMENTS.template.md",
+                "adapters": ADAPTERS, "fixtures": HERE / "fixtures",
+                "holdout": HERE / "holdout", "oracle": HERE / "oracle"}
+    base = TASKS / task
+    return {"id": task, "envelope": "generic", "spec": base / "SPEC.md",
+            "prompt": base / "PROMPT.template.md",
+            "adapters": base / "adapters", "fixtures": base / "fixtures",
+            "holdout": base / "holdout", "oracle": base / "oracle"}
+
+
+def load_adapters(adapters_dir=None) -> dict:
+    d = adapters_dir or ADAPTERS
+    return {p.stem: json.loads(p.read_text()) for p in sorted(Path(d).glob("*.json"))}
 
 
 def load_round(round_id: str | None = None) -> dict:

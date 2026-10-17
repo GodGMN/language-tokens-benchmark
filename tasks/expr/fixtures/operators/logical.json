@@ -1,0 +1,11 @@
+{
+  "name": "logical",
+  "input": {
+    "source": "true && !false"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": true
+  }
+}

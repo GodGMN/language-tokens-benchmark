@@ -1,0 +1,24 @@
+{
+  "name": "add_root",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "add",
+        "path": "",
+        "value": {
+          "b": 2
+        }
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {
+      "b": 2
+    }
+  }
+}

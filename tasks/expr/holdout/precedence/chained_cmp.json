@@ -1,0 +1,13 @@
+{
+  "name": "chained_cmp",
+  "input": {
+    "source": "1 < 2 < 3"
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "TYPE_ERROR",
+    "position": 6,
+    "message": "< needs two integers or two strings"
+  }
+}

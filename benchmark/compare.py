@@ -28,8 +28,8 @@ def main():
         sys.exit("no results/*/summary.json found")
 
     lines = ["# Cross-round comparison", ""]
-    lines.append("| round | spec | language | scored | output tok | total tok | cost $ | conforming |")
-    lines.append("|---|---|---|---|---|---|---|---|")
+    lines.append("| round | task | spec | language | scored | output tok | total tok | cost $ | conforming |")
+    lines.append("|---|---|---|---|---|---|---|---|---|")
     stability = {l: [] for l in LANGS}
     for r in rounds:
         by_lang = {row["language"]: row for row in r.get("all", [])}
@@ -40,6 +40,7 @@ def main():
             conf = row.get("conforming")
             lines.append("| " + " | ".join([
                 r.get("round", "?"),
+                r.get("task", "workflow"),
                 f'v{r.get("spec_version", 1)}',
                 lang,
                 f'{row["passed"]}/{row["total"]}',

@@ -69,13 +69,14 @@ def main():
 
     metrics, tests = gather(round_id)
     model = metrics.get("model") or round_cfg.get("model") or {}
+    tp = common.task_paths(round_cfg)
 
     rows = []
     extras = [l for l in tests if l not in LANGUAGES]  # e.g. oracle
     for lang in LANGUAGES + extras:
         m = metrics.get("languages", {}).get(lang)
         t = tests.get(lang)
-        adapter = common.load_adapters().get(lang, {"language": lang})
+        adapter = common.load_adapters(tp["adapters"]).get(lang, {"language": lang})
         project = common.resolve_project(adapter, round_cfg)
         code = code_metrics(project)
 
@@ -126,7 +127,7 @@ def main():
 
     lines = [
         f"# Benchmark report — {round_id}", "",
-        f"**{round_cfg.get('label', round_id)}**",
+        f"**{round_cfg.get('label', round_id)}**  ·  task `{round_cfg.get('task', 'workflow')}`",
         "",
         f"Model: **{model.get('display') or model.get('name') or 'unknown'}** "
         f"(`{model.get('provider','?')}/{model.get('name','?')}`"

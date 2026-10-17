@@ -1,0 +1,27 @@
+{
+  "name": "add_index",
+  "input": {
+    "document": [
+      1,
+      2,
+      3
+    ],
+    "patch": [
+      {
+        "op": "add",
+        "path": "/1",
+        "value": 9
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": [
+      1,
+      9,
+      2,
+      3
+    ]
+  }
+}

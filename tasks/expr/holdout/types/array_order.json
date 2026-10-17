@@ -1,0 +1,13 @@
+{
+  "name": "array_order",
+  "input": {
+    "source": "[1] < [2]"
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "TYPE_ERROR",
+    "position": 4,
+    "message": "< needs two integers or two strings"
+  }
+}

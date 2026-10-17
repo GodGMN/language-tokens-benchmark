@@ -1,0 +1,22 @@
+{
+  "name": "bad_escape",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "add",
+        "path": "/a~2",
+        "value": 1
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "INVALID_PATH",
+    "index": 0,
+    "message": "bad escape in 'a~2'"
+  }
+}

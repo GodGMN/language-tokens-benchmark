@@ -1,0 +1,21 @@
+{
+  "name": "remove_root",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "remove",
+        "path": ""
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "INVALID_PATH",
+    "index": 0,
+    "message": "cannot remove the root"
+  }
+}

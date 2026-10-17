@@ -1,0 +1,11 @@
+{
+  "name": "mixed_prec",
+  "input": {
+    "source": "1 + 2 * 3 == 7 && 2 < 3"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": true
+  }
+}

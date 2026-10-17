@@ -1,0 +1,22 @@
+{
+  "name": "bad_pointer",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "add",
+        "path": "a",
+        "value": 1
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "INVALID_PATH",
+    "index": 0,
+    "message": "pointer must start with /"
+  }
+}

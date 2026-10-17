@@ -1,0 +1,24 @@
+{
+  "name": "replace_index",
+  "input": {
+    "document": [
+      1,
+      2
+    ],
+    "patch": [
+      {
+        "op": "replace",
+        "path": "/1",
+        "value": 9
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": [
+      1,
+      9
+    ]
+  }
+}

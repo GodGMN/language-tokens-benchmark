@@ -1,0 +1,25 @@
+{
+  "name": "add_append",
+  "input": {
+    "document": [
+      1,
+      2
+    ],
+    "patch": [
+      {
+        "op": "add",
+        "path": "/-",
+        "value": 3
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": [
+      1,
+      2,
+      3
+    ]
+  }
+}

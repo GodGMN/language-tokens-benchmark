@@ -1,0 +1,11 @@
+{
+  "name": "upper",
+  "input": {
+    "source": "upper(\"aBc\")"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": "ABC"
+  }
+}

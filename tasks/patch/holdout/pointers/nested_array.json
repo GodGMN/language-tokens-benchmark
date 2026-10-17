@@ -1,0 +1,33 @@
+{
+  "name": "nested_array",
+  "input": {
+    "document": {
+      "x": {
+        "y": [
+          10,
+          20
+        ]
+      }
+    },
+    "patch": [
+      {
+        "op": "add",
+        "path": "/x/y/1",
+        "value": 15
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {
+      "x": {
+        "y": [
+          10,
+          15,
+          20
+        ]
+      }
+    }
+  }
+}

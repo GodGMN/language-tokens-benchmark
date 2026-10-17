@@ -1,0 +1,27 @@
+{
+  "name": "test_root",
+  "input": {
+    "document": [
+      1,
+      2
+    ],
+    "patch": [
+      {
+        "op": "test",
+        "path": "",
+        "value": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": [
+      1,
+      2
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "overflow_literal",
+  "input": {
+    "source": "9223372036854775808"
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "OVERFLOW",
+    "position": 0,
+    "message": "integer literal out of range"
+  }
+}

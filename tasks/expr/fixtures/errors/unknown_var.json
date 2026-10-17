@@ -1,0 +1,13 @@
+{
+  "name": "unknown_var",
+  "input": {
+    "source": "y"
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "UNKNOWN_VARIABLE",
+    "position": 0,
+    "message": "unknown variable y"
+  }
+}

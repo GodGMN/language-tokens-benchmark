@@ -1,0 +1,19 @@
+{
+  "language": "javascript",
+  "build": null,
+  "run": [
+    "node",
+    "patch.js",
+    "apply",
+    "{input}"
+  ],
+  "run_stdin": [
+    "node",
+    "patch.js",
+    "apply",
+    "-"
+  ],
+  "requires": [
+    "patch.js"
+  ]
+}

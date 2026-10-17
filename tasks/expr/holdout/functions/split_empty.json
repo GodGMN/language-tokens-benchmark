@@ -1,0 +1,15 @@
+{
+  "name": "split_empty",
+  "input": {
+    "source": "split(\"a😀b\",\"\")"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": [
+      "a",
+      "😀",
+      "b"
+    ]
+  }
+}

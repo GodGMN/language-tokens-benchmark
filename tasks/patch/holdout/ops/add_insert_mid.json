@@ -1,0 +1,27 @@
+{
+  "name": "add_insert_mid",
+  "input": {
+    "document": [
+      1,
+      2,
+      3
+    ],
+    "patch": [
+      {
+        "op": "add",
+        "path": "/3",
+        "value": 4
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "remove_index",
+  "input": {
+    "document": [
+      1,
+      2,
+      3
+    ],
+    "patch": [
+      {
+        "op": "remove",
+        "path": "/0"
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": [
+      2,
+      3
+    ]
+  }
+}

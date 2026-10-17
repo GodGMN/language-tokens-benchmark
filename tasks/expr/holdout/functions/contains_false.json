@@ -1,0 +1,11 @@
+{
+  "name": "contains_false",
+  "input": {
+    "source": "contains(\"abc\",\"z\")"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": false
+  }
+}

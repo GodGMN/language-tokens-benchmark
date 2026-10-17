@@ -1,0 +1,24 @@
+{
+  "name": "add_nested",
+  "input": {
+    "document": {
+      "u": {}
+    },
+    "patch": [
+      {
+        "op": "add",
+        "path": "/u/name",
+        "value": "Ana"
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {
+      "u": {
+        "name": "Ana"
+      }
+    }
+  }
+}

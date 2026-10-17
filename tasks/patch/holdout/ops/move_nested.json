@@ -1,0 +1,22 @@
+{
+  "name": "move_nested",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "move",
+        "from": "/a",
+        "path": "/b"
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {
+      "b": 1
+    }
+  }
+}

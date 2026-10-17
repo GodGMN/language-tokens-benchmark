@@ -1,0 +1,17 @@
+{
+  "language": "oracle",
+  "project_dir": "tasks/patch/oracle",
+  "build": null,
+  "run": [
+    "python3",
+    "patch.py",
+    "apply",
+    "{input}"
+  ],
+  "run_stdin": [
+    "python3",
+    "patch.py",
+    "apply",
+    "-"
+  ]
+}

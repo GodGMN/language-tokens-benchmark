@@ -1,0 +1,11 @@
+{
+  "name": "double_neg",
+  "input": {
+    "source": "--5"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": 5
+  }
+}

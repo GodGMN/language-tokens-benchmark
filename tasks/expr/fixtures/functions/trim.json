@@ -1,0 +1,11 @@
+{
+  "name": "trim",
+  "input": {
+    "source": "trim(\"  x  \")"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": "x"
+  }
+}

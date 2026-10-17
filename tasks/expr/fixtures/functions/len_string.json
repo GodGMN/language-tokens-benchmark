@@ -1,0 +1,11 @@
+{
+  "name": "len_string",
+  "input": {
+    "source": "len(\"abc\")"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": 3
+  }
+}

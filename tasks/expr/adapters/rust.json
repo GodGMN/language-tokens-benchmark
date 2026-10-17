@@ -1,0 +1,21 @@
+{
+  "language": "rust",
+  "build": [
+    "cargo",
+    "build",
+    "--release"
+  ],
+  "run": [
+    "target/release/expr",
+    "eval",
+    "{input}"
+  ],
+  "run_stdin": [
+    "target/release/expr",
+    "eval",
+    "-"
+  ],
+  "requires": [
+    "Cargo.toml"
+  ]
+}

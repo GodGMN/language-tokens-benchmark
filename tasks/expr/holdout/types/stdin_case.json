@@ -1,0 +1,12 @@
+{
+  "name": "stdin_case",
+  "input": {
+    "source": "len(\"xy\")"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": 2
+  },
+  "stdin": true
+}

@@ -1,0 +1,22 @@
+{
+  "name": "test_fail",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "test",
+        "path": "/a",
+        "value": 2
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "TEST_FAILED",
+    "index": 0,
+    "message": "test failed"
+  }
+}

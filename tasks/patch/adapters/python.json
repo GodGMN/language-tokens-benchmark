@@ -1,0 +1,19 @@
+{
+  "language": "python",
+  "build": null,
+  "run": [
+    "python3",
+    "patch.py",
+    "apply",
+    "{input}"
+  ],
+  "run_stdin": [
+    "python3",
+    "patch.py",
+    "apply",
+    "-"
+  ],
+  "requires": [
+    "patch.py"
+  ]
+}

@@ -28,7 +28,7 @@ cd submissions/round-2/rust
 # build
 cargo build --release
 # run
-target/release/workflow run myworkflow.json     # or: run -   (stdin)
+target/release/workflow run request.json     # or: - for stdin
 ```
 
 Make sure those commands work from this folder (`submissions/round-2/rust`).
@@ -67,7 +67,7 @@ cd submissions/round-2/rust
 # build
 cargo build --release
 # run
-target/release/workflow run myworkflow.json     # or: run -   (stdin)
+target/release/workflow run request.json     # or: - for stdin
 ```` working.
 
 Do not stop early: implement **every** operation in SPEC §4, all error codes in SPEC §7, references (§6), conditions (§5) and retries. Completeness is the whole point.

@@ -20,28 +20,25 @@ import tempfile
 import time
 from pathlib import Path
 
-from common import (HERE, RESULTS, default_round, load_adapters, load_round,
-                    project_ready, resolve_project)
-
-FIXTURES = HERE / "fixtures"
-PRIVATE = HERE / "holdout"
-
+from common import (HERE, ROOT, RESULTS, default_round, load_adapters, load_round,
+                    project_ready, resolve_project, task_paths)
 
 def project_ready_any(adapter, round_cfg):
     return project_ready(adapter, resolve_project(adapter, round_cfg))
 
 
-def load_fixtures(category=None, include_private=True):
+def load_fixtures(tp, category=None, include_private=True):
     """Public fixtures always; holdout ones only if present and requested."""
-    roots = [FIXTURES] + ([PRIVATE] if include_private and PRIVATE.is_dir() else [])
+    public, private = tp["fixtures"], tp["holdout"]
+    roots = [public] + ([private] if include_private and Path(private).is_dir() else [])
     out = []
     for root in roots:
         for f in sorted(root.glob("*/*.json")):
             if category and f.parent.name != category:
                 continue
             d = json.loads(f.read_text())
-            d["_file"] = str(f.relative_to(HERE))
-            d["_private"] = root is PRIVATE
+            d["_file"] = str(f.relative_to(ROOT))
+            d["_private"] = root is private
             out.append(d)
     return out
 
@@ -107,17 +104,16 @@ def shape_errors(resp):
     return problems
 
 
-def comparable(resp):
-    """Strip the free-form error.message before comparing (SPEC §5.4)."""
-    if not isinstance(resp, dict):
-        return resp
-    resp = dict(resp)
-    if isinstance(resp.get("error"), dict):
-        resp["error"] = {k: v for k, v in resp["error"].items() if k != "message"}
-    return resp
+def comparable(x):
+    """Recursively drop free-form "message" fields before comparing."""
+    if isinstance(x, dict):
+        return {k: comparable(v) for k, v in x.items() if k != "message"}
+    if isinstance(x, list):
+        return [comparable(v) for v in x]
+    return x
 
 
-def check(fixture, result):
+def check(fixture, result, envelope="workflow"):
     reasons = []
     exp_exit = fixture.get("expected_exit_code")
     if result["exit_code"] != exp_exit:
@@ -126,7 +122,8 @@ def check(fixture, result):
         reasons.append("stdout is not valid JSON")
         return reasons
     actual = result["stdout_json"]
-    reasons.extend(shape_errors(actual))
+    if envelope == "workflow":
+        reasons.extend(shape_errors(actual))
 
     exp = fixture.get("expected_output")
     if exp is not None and comparable(exp) != comparable(actual):
@@ -144,7 +141,7 @@ def check(fixture, result):
     return reasons
 
 
-def run_language(adapter, fixtures, project, timeout, spec_version, verbose=True):
+def run_language(adapter, fixtures, project, timeout, spec_version, envelope="workflow", verbose=True):
     """Run fixtures, bucketing into public / scored-holdout / future-spec.
 
     A holdout fixture tagged `"since": N` only counts for rounds whose
@@ -155,7 +152,7 @@ def run_language(adapter, fixtures, project, timeout, spec_version, verbose=True
     buckets = {"public": [0, 0], "holdout": [0, 0], "future": [0, 0]}
     for fx in fixtures:
         r = run_fixture(adapter, fx, project, timeout)
-        reasons = check(fx, r)
+        reasons = check(fx, r, envelope)
         ok = not reasons
         since = fx.get("since", 1)
         if not fx["_private"]:
@@ -191,8 +188,9 @@ def main():
 
     round_cfg = load_round(args.round or default_round())
     round_id = round_cfg["id"]
-    adapters = load_adapters()
-    fixtures = load_fixtures(args.category, include_private=not args.public)
+    tp = task_paths(round_cfg)
+    adapters = load_adapters(tp["adapters"])
+    fixtures = load_fixtures(tp, args.category, include_private=not args.public)
     if not fixtures:
         print("no fixtures found", file=sys.stderr)
         sys.exit(1)
@@ -209,7 +207,7 @@ def main():
             continue
         print(f"\n== {n} ({project.relative_to(HERE.parent)}) — {len(fixtures)} fixtures ==")
         passed, total, buckets, results = run_language(
-            adapter, fixtures, project, args.timeout, spec_version)
+            adapter, fixtures, project, args.timeout, spec_version, tp["envelope"])
         summary[n] = {"passed": passed, "total": total, "buckets": buckets}
         ok_all &= passed == total
         outdir = RESULTS / round_id / n
@@ -222,7 +220,7 @@ def main():
         print(f"  -> {passed}/{total} scored (public {buckets['public'][0]}/{buckets['public'][1]}, "
               f"holdout {buckets['holdout'][0]}/{buckets['holdout'][1]}{fut_note})")
 
-    print("\n== summary (scored against spec v%s) ==" % spec_version)
+    print("\n== summary — task %s, spec v%s ==" % (tp["id"], spec_version))
     for n, s in summary.items():
         if s.get("skipped"):
             print(f"  {n:12s} not implemented")

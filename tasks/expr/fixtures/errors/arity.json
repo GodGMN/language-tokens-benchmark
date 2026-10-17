@@ -1,0 +1,13 @@
+{
+  "name": "arity",
+  "input": {
+    "source": "len()"
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "ARITY_ERROR",
+    "position": 0,
+    "message": "len expects 1 args"
+  }
+}

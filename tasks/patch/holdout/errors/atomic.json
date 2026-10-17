@@ -1,0 +1,26 @@
+{
+  "name": "atomic",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "add",
+        "path": "/b",
+        "value": 2
+      },
+      {
+        "op": "remove",
+        "path": "/zz"
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "PATH_NOT_FOUND",
+    "index": 1,
+    "message": "missing key 'zz'"
+  }
+}

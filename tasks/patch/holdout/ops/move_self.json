@@ -1,0 +1,22 @@
+{
+  "name": "move_self",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "move",
+        "from": "/a",
+        "path": "/a"
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "INVALID_MOVE",
+    "index": 0,
+    "message": "move to itself"
+  }
+}

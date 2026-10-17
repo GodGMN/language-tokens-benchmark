@@ -1,0 +1,11 @@
+{
+  "name": "eq_mixed",
+  "input": {
+    "source": "1 == \"1\""
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": false
+  }
+}

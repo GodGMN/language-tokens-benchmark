@@ -1,0 +1,13 @@
+{
+  "name": "trailing",
+  "input": {
+    "source": "1 2"
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "PARSE_ERROR",
+    "position": 2,
+    "message": "trailing tokens"
+  }
+}

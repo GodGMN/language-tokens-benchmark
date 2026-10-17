@@ -1,0 +1,11 @@
+{
+  "name": "ternary_right",
+  "input": {
+    "source": "true ? 1 : false ? 2 : 3"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": 1
+  }
+}

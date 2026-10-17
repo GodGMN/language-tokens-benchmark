@@ -1,0 +1,17 @@
+{
+  "language": "oracle",
+  "project_dir": "tasks/expr/oracle",
+  "build": null,
+  "run": [
+    "python3",
+    "expr.py",
+    "eval",
+    "{input}"
+  ],
+  "run_stdin": [
+    "python3",
+    "expr.py",
+    "eval",
+    "-"
+  ]
+}

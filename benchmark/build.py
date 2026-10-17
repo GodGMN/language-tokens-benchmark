@@ -13,7 +13,7 @@ import subprocess
 import sys
 
 from common import (ROOT, default_round, load_adapters, load_round,
-                    project_ready, resolve_project)
+                    project_ready, resolve_project, task_paths)
 
 
 def build_one(name, adapter, round_cfg):
@@ -42,7 +42,7 @@ def main():
     args = ap.parse_args()
 
     round_cfg = load_round(args.round or default_round())
-    adapters = load_adapters()
+    adapters = load_adapters(task_paths(round_cfg)["adapters"])
     names = list(adapters) if args.all else [args.language]
 
     statuses = {}

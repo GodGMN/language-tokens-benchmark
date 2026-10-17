@@ -1,0 +1,11 @@
+{
+  "name": "substr",
+  "input": {
+    "source": "substr(\"hello\", -3, 2)"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": "ll"
+  }
+}

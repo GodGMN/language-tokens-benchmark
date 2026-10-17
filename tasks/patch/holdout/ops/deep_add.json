@@ -1,0 +1,32 @@
+{
+  "name": "deep_add",
+  "input": {
+    "document": {
+      "a": {
+        "b": {
+          "c": []
+        }
+      }
+    },
+    "patch": [
+      {
+        "op": "add",
+        "path": "/a/b/c/-",
+        "value": 7
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {
+      "a": {
+        "b": {
+          "c": [
+            7
+          ]
+        }
+      }
+    }
+  }
+}

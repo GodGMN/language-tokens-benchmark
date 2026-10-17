@@ -1,0 +1,11 @@
+{
+  "name": "join",
+  "input": {
+    "source": "join([\"a\",\"b\"], \"-\")"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": "a-b"
+  }
+}

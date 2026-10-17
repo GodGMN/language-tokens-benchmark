@@ -1,0 +1,24 @@
+{
+  "name": "move_descendant",
+  "input": {
+    "document": {
+      "a": {
+        "b": 1
+      }
+    },
+    "patch": [
+      {
+        "op": "move",
+        "from": "/a",
+        "path": "/a/b"
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "INVALID_MOVE",
+    "index": 0,
+    "message": "move into a descendant"
+  }
+}

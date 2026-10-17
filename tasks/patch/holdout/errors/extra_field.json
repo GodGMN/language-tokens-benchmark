@@ -1,0 +1,22 @@
+{
+  "name": "extra_field",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "remove",
+        "path": "/a",
+        "value": 1
+      }
+    ]
+  },
+  "expected_exit_code": 2,
+  "expected_output": {
+    "status": "error",
+    "code": "INVALID_REQUEST",
+    "index": null,
+    "message": "bad fields for remove"
+  }
+}

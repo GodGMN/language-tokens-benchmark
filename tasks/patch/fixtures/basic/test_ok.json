@@ -1,0 +1,22 @@
+{
+  "name": "test_ok",
+  "input": {
+    "document": {
+      "a": 1
+    },
+    "patch": [
+      {
+        "op": "test",
+        "path": "/a",
+        "value": 1
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {
+      "a": 1
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "eq_null_zero",
+  "input": {
+    "source": "null == 0"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": false
+  }
+}

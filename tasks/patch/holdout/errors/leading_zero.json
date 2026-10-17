@@ -1,0 +1,22 @@
+{
+  "name": "leading_zero",
+  "input": {
+    "document": [
+      1
+    ],
+    "patch": [
+      {
+        "op": "add",
+        "path": "/01",
+        "value": 0
+      }
+    ]
+  },
+  "expected_exit_code": 1,
+  "expected_output": {
+    "status": "error",
+    "code": "INDEX_ERROR",
+    "index": 0,
+    "message": "bad array index '01'"
+  }
+}

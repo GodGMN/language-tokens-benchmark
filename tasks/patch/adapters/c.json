@@ -1,0 +1,19 @@
+{
+  "language": "c",
+  "build": [
+    "make"
+  ],
+  "run": [
+    "./patch",
+    "apply",
+    "{input}"
+  ],
+  "run_stdin": [
+    "./patch",
+    "apply",
+    "-"
+  ],
+  "requires": [
+    "Makefile"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "substr_clamp",
+  "input": {
+    "source": "substr(\"abc\", 1, 99)"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": "bc"
+  }
+}

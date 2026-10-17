@@ -30,3 +30,11 @@ results/**/*.log
 .vscode/
 .idea/
 .DS_Store
+
+# Task binaries
+submissions/**/go/expr
+submissions/**/c/expr
+submissions/**/rust/expr
+submissions/**/go/patch
+submissions/**/c/patch
+submissions/**/rust/patch

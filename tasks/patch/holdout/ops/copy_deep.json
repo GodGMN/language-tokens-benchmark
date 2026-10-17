@@ -1,0 +1,38 @@
+{
+  "name": "copy_deep",
+  "input": {
+    "document": {
+      "x": [
+        1,
+        [
+          2
+        ]
+      ]
+    },
+    "patch": [
+      {
+        "op": "copy",
+        "from": "/x",
+        "path": "/y"
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {
+      "x": [
+        1,
+        [
+          2
+        ]
+      ],
+      "y": [
+        1,
+        [
+          2
+        ]
+      ]
+    }
+  }
+}

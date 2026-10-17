@@ -1,0 +1,11 @@
+{
+  "name": "type_null",
+  "input": {
+    "source": "type(null)"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": "null"
+  }
+}

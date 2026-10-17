@@ -1,0 +1,22 @@
+{
+  "name": "remove_key",
+  "input": {
+    "document": {
+      "a": 1,
+      "b": 2
+    },
+    "patch": [
+      {
+        "op": "remove",
+        "path": "/a"
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {
+      "b": 2
+    }
+  }
+}

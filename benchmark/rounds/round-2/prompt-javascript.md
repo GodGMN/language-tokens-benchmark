@@ -27,7 +27,7 @@ The exact build/run commands the test harness will use for Javascript:
 cd submissions/round-2/javascript
 # (interpreted language — no build step)
 # run
-node workflow.js run myworkflow.json     # or: run -   (stdin)
+node workflow.js run request.json     # or: - for stdin
 ```
 
 Make sure those commands work from this folder (`submissions/round-2/javascript`).
@@ -65,7 +65,7 @@ Create a small `selftest/` subfolder (or similar) inside your folder with 5-10 h
 cd submissions/round-2/javascript
 # (interpreted language — no build step)
 # run
-node workflow.js run myworkflow.json     # or: run -   (stdin)
+node workflow.js run request.json     # or: - for stdin
 ```` working.
 
 Do not stop early: implement **every** operation in SPEC §4, all error codes in SPEC §7, references (§6), conditions (§5) and retries. Completeness is the whole point.

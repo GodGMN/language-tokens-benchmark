@@ -1,0 +1,11 @@
+{
+  "name": "div_neg",
+  "input": {
+    "source": "-7 / 2"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": -3
+  }
+}

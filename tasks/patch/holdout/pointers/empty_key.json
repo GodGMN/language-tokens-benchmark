@@ -1,0 +1,19 @@
+{
+  "name": "empty_key",
+  "input": {
+    "document": {
+      "": 1
+    },
+    "patch": [
+      {
+        "op": "remove",
+        "path": "/"
+      }
+    ]
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "document": {}
+  }
+}

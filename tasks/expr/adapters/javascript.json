@@ -1,0 +1,19 @@
+{
+  "language": "javascript",
+  "build": null,
+  "run": [
+    "node",
+    "expr.js",
+    "eval",
+    "{input}"
+  ],
+  "run_stdin": [
+    "node",
+    "expr.js",
+    "eval",
+    "-"
+  ],
+  "requires": [
+    "expr.js"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "language": "c",
+  "build": [
+    "make"
+  ],
+  "run": [
+    "./expr",
+    "eval",
+    "{input}"
+  ],
+  "run_stdin": [
+    "./expr",
+    "eval",
+    "-"
+  ],
+  "requires": [
+    "Makefile"
+  ]
+}

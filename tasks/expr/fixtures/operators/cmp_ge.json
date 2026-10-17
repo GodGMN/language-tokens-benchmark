@@ -1,0 +1,11 @@
+{
+  "name": "cmp_ge",
+  "input": {
+    "source": "3 >= 3"
+  },
+  "expected_exit_code": 0,
+  "expected_output": {
+    "status": "ok",
+    "value": true
+  }
+}
