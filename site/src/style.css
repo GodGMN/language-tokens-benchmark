@@ -164,6 +164,10 @@ code { font-family: var(--body); color: var(--hot); }
 }
 
 @media (max-width: 900px) {
+  /* The single row runs out of room for the Spanish labels before the content layout does. */
+  .bar { gap: 18px; padding: 12px 16px; font-size: 18px; }
+  .brand { font-size: 21px; }
+  .bar nav { gap: 14px; }
   .cards, .tasks { grid-template-columns: minmax(0, 1fr); }
   .board { grid-template-columns: minmax(0, 1fr); gap: 30px; }
   .play > div { grid-template-columns: minmax(0, 1fr); }
@@ -173,10 +177,47 @@ code { font-family: var(--body); color: var(--hot); }
   .strip-axis-row > span:last-child { display: none; }
 }
 
+@media (max-width: 768px) {
+  /* Two rows: brand and actions on top, the section nav centred underneath. */
+  html { scroll-padding-top: 100px; }
+  .bar { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0 10px; padding: 4px 14px; }
+  .brand { font-size: 19px; }
+  .bar nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    min-height: 40px;
+    margin: 0 -14px;
+    padding: 0 14px;
+    border-top: 1px solid rgba(35, 97, 35, .5);
+    font-size: 19px;
+  }
+  .bar nav a { padding: 10px 2px; line-height: 1.2; }
+  .bar-lang, .bar-gh { display: inline-flex; align-items: center; min-height: 40px; }
+  .bar-lang { grid-column: 2; grid-row: 1; justify-self: end; justify-content: center; min-width: 40px; margin-left: 0; }
+  .bar-gh { grid-column: 3; grid-row: 1; justify-self: end; }
+}
+
+/* Five section labels are wider than the three the CRT header was drawn for, so
+   below this width the row spreads edge to edge and the type scales with it. */
+@media (max-width: 520px) {
+  .bar nav { justify-content: space-between; gap: 0; font-size: clamp(12.5px, 3.9vw, 18px); }
+  .bar nav a { padding: 10px 0; }
+}
+
+/* Narrow phones: the brand and the actions otherwise touch. */
+@media (max-width: 380px) {
+  .bar { padding: 4px 12px; gap: 0 8px; }
+  .brand { font-size: 17px; }
+  .bar nav { margin: 0 -12px; padding: 0 12px; }
+  .bar-lang { min-width: 36px; }
+  .bar-gh { font-size: 17px; }
+}
+
 @media (max-width: 640px) {
   main, .foot { width: calc(100% - 36px); }
-  .bar { gap: 16px; padding: 10px 18px; }
-  .bar nav { display: none; }
   .hero { padding-top: 56px; }
   .course { grid-template-columns: 1fr; }
   .data { font-size: 13px; }
