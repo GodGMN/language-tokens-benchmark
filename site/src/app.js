@@ -63,3 +63,10 @@ for (const seg of document.querySelectorAll('.seg')) {
     });
   }
 }
+
+// Remember an explicit language choice so "/" stops redirecting by browser language.
+for (const link of document.querySelectorAll('.bar-lang')) {
+  link.addEventListener('click', () => {
+    document.cookie = `lang=${link.hreflang}; path=/; max-age=31536000; samesite=lax`;
+  });
+}
