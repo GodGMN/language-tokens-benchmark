@@ -15,3 +15,4 @@ jobs:
       - run: python3 benchmark/runner.py --language oracle --round round-2
       - run: python3 benchmark/runner.py --language oracle --round round-8-expr
       - run: python3 benchmark/runner.py --language oracle --round round-9-patch
+      - run: python3 site/build.py

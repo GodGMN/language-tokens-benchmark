@@ -17,7 +17,7 @@ reasoning according to provider accounting. They do not measure source-code
 length or an inherent property of a programming language.
 
 Per-round leaderboards retain the original ranking by total tokens among
-conforming submissions. README tables order by output tokens. These metrics can
+conforming submissions. The README and site order by output tokens. These metrics can
 give different rankings. Total tokens count repeated context processing and are
 not a price: cached input and generated output have different rates. Use
 recorded dollar costs for the historical financial comparison; they are not a

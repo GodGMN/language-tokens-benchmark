@@ -25,7 +25,8 @@ The expression run puts Rust, JavaScript and Go close together. A single run
 cannot establish that Rust has a stable advantage. Likewise, the workflow
 JavaScript/Python median difference is small relative to the observed spread.
 
-The README's cross-task arithmetic mean places Go just ahead of Python. That
+A cross-task arithmetic mean would place Go (68,380) just ahead of Python
+(69,210). That
 mixes medians with single observations and weights larger-token tasks more
 heavily. We do not claim a meaningful overall winner.
 

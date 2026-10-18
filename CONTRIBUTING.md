@@ -2,6 +2,28 @@
 
 This benchmark is meant to grow by pull request. There are four ways to contribute.
 
+## Repository layout
+
+```text
+SPEC.md                     The workflow task contract (frozen per spec version)
+PRD.md                      Experiment design and rationale
+AGENTS.md                   Rules given to implementing agents
+tasks/<task>/               Spec, prompt, oracle, adapters and suites for other tasks
+
+submissions/<round>/<lang>/ One implementation per round per language
+benchmark/
+  adapters/<lang>.json      How to build/run each language
+  fixtures/<category>/      Public conformance suite
+  holdout/<category>/       Edge-case evaluation suite (scored per spec version)
+  oracle/                   Independent reference implementation (Python)
+  rounds/<round>/           round.json (model, sessions) + agent prompts
+  common.py build.py runner.py collect.py report.py
+results/<round>/            report.md, summary.json, per-language results
+site/                       Token Golf website, generated from results/dataset.json
+scripts/                    Wrappers (test, test-all, benchmark, launch-round)
+docs/                       Methodology, isolation, conclusions
+```
+
 ## 1. Add a task
 
 A *task* is a self-contained programming problem under `tasks/<task>/`:
@@ -115,6 +137,17 @@ Then:
 python3 benchmark/make_prompts.py --round round-2
 ./scripts/launch-round.sh round-2
 ./scripts/benchmark.sh round-2
+```
+
+## Website
+
+[`site/`](site/) builds a static page from `results/dataset.json`. Copy lives
+in `site/src/index.html`; every number is computed by `site/build.py`, so a new
+round only needs an export and a rebuild:
+
+```bash
+python3 benchmark/export.py
+python3 site/build.py          # writes site/dist/, open site/dist/index.html
 ```
 
 ## Development
