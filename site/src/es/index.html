@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Token Golf — ¿cuántos tokens necesita un agente según el lenguaje?</title>
+  <meta name="description" content="Un agente de IA implementa el mismo programa en Python, JavaScript, Go, Rust y C. Tras {{sessions}} sesiones, el orden de los lenguajes depende de la tarea y de la ejecución que te toque." />
+  <meta name="theme-color" content="#111111" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="alternate" hreflang="en" href="https://tokengolf.gimeno.dev/" />
+  <link rel="alternate" hreflang="es" href="https://tokengolf.gimeno.dev/es/" />
+  <link rel="alternate" hreflang="x-default" href="https://tokengolf.gimeno.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:title" content="Token Golf — Language Tokens Benchmark" />
+  <meta property="og:description" content="El mismo programa, cinco lenguajes, un agente de IA. ¿Cuántos tokens hacen falta para pasar los tests?" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@sergiogmn" />
+  <link rel="preload" href="../fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="#top">TOKEN<span>GOLF</span></a>
+    <nav aria-label="Secciones">
+      <a href="#top">Clasificación</a>
+      <a href="#variance">Variación</a>
+      <a href="#meter">Tokens</a>
+      <a href="#how">Método</a>
+      <a href="#play">Contribuir</a>
+    </nav>
+    <a class="bar-lang" href="../" hreflang="en" lang="en" title="Read in English">EN</a>
+    <a class="bar-gh" href="{{repo}}">GitHub ↗</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="kicker">LANGUAGE TOKENS BENCHMARK</p>
+      <h1>Token Golf<span class="cursor" aria-hidden="true"></span></h1>
+      <p class="lede">El mismo programa, escrito en cinco lenguajes por el mismo agente de IA.</p>
+      {{board}}
+      <p class="chart-note">Tokens de salida por sesión, de menos a más. Pasa el ratón o toca un lenguaje para verlo en todas las columnas.</p>
+      <p class="say">Rust es el que más tokens gasta en el motor de workflows y el que menos en el evaluador de expresiones. Python gana en JSON Patch y queda último en expresiones. Ningún lenguaje mantiene su puesto en las tres tareas.</p>
+    </section>
+
+    <section class="block" id="variance">
+      <h2><span>01</span> Mismo prompt, mismo modelo, ejecuciones muy distintas</h2>
+      <p class="say">El motor de workflows se ejecutó seis veces por lenguaje. La ejecución más barata de Python usó {{py_min}} tokens de salida y la más cara {{py_max}}. La diferencia entre ejecuciones de un mismo lenguaje es mayor que la diferencia entre los tres primeros lenguajes.</p>
+      <div class="seg" role="tablist" aria-label="Métrica">
+        <button type="button" role="tab" aria-selected="true" data-show="strip-output">Tokens de salida</button>
+        <button type="button" role="tab" aria-selected="false" data-show="strip-total">Tokens totales</button>
+      </div>
+      <div class="panel" id="strip-output">{{strip_output}}</div>
+      <div class="panel" id="strip-total" hidden>{{strip_total}}
+        <p class="chart-note">En tokens totales, la ejecución más cara de JavaScript usó {{js_total_ratio}}× los de la más barata.</p>
+      </div>
+      <p class="chart-note">Cada punto es una ejecución. La marca ámbar es la mediana.</p>
+      <p class="caveat">Seis ejecuciones por lenguaje no bastan para decir qué lenguaje es el más barato.</p>
+    </section>
+
+    <section class="block" id="meter">
+      <h2><span>02</span> Qué incluye el recuento de tokens</h2>
+      <p class="say">El {{cache_pct}}% de todos los tokens procesados fue contexto en caché: el agente releyendo conversación que ya había visto. Por sesión osciló entre el {{cache_lo}}% y el {{cache_hi}}%. Cuanto más dura una sesión, más relee, así que los tokens totales reflejan sobre todo cuánto tiempo siguió trabajando el agente. Por eso la clasificación cuenta tokens de salida.</p>
+      {{composition}}
+      <ul class="notes">
+        <li>Alrededor del {{reasoning_pct}}% de los tokens de salida fue razonamiento. El resto son llamadas a herramientas, tests, reescrituras y el código final.</li>
+        <li>Los tokens en caché, los de entrada nueva y los de salida tienen precios distintos, así que ordenar por coste puede dar otro resultado. Los costes son los que se pagaron en su momento.</li>
+        <li>Todo esto sale de un único modelo. Otro modelo podría dar un orden distinto.</li>
+      </ul>
+    </section>
+
+    <section class="block" id="how">
+      <h2><span>03</span> El recorrido</h2>
+      <ol class="course">
+        <li><b>Una especificación.</b> Un programa de línea de comandos totalmente especificado: JSON de entrada, JSON de salida, determinista y con un conjunto cerrado de códigos de error.</li>
+        <li><b>Cinco jugadores.</b> Python, JavaScript, Go, Rust y C. Cada uno tiene su propia sesión de agente, con herramientas, una shell y margen para probarse a sí mismo.</li>
+        <li><b>Un árbitro.</b> Una batería de conformidad independiente del lenguaje que solo habla con el binario a través de su CLI. Si no la pasas, tu puntuación no cuenta.</li>
+        <li><b>La puntuación.</b> Tokens de salida de la sesión: todo lo que escribió el agente, incluidos el razonamiento, las llamadas a herramientas y las reescrituras.</li>
+      </ol>
+      <div class="tasks">
+        <div><strong>Motor de workflows</strong><span>ejecución de DAG, $ref, condiciones, reintentos, más de 40 operaciones</span></div>
+        <div><strong>Evaluador de expresiones</strong><span>tokenizador, parser con precedencia, aritmética i64, posiciones de error exactas</span></div>
+        <div><strong>JSON Patch</strong><span>punteros RFC 6901, seis operaciones, atomicidad, taxonomía de errores</span></div>
+      </div>
+      <p class="fine">Modelo: {{model}}, thinking=high, una sesión autónoma por ejecución. Todas las ejecuciones contadas aquí pasan su batería de tests puntuada.</p>
+    </section>
+
+    <section class="block" id="fine-print">
+      <h2><span>04</span> La letra pequeña</h2>
+      <div class="cards">
+        <article><h3>Pasar ≠ ser correcto</h3><p>Todas las entregas pasan los tests puntuados, pero una batería finita no demuestra que el programa sea del todo correcto. Una revisión encontró dos errores en el evaluador, que se corrigieron y se volvió a puntuar. Ningún resultado de aprobado o suspenso cambió.</p></article>
+        <article><h3>No es una evaluación cerrada</h3><p>Algunas especificaciones, tests y oráculos se corrigieron después de examinar las entregas. El historial de Git recoge cada cambio, pero no fue una evaluación prerregistrada.</p></article>
+        <article><h3>Confianza, verificada en parte</h3><p>Los registros completos de las sesiones no se publican, así que ni los totales de uso ni el cumplimiento de las reglas de no copiar se pueden auditar desde el repositorio. El lanzador no es un sandbox del sistema operativo.</p></article>
+      </div>
+    </section>
+
+    <section class="block" id="play">
+      <h2><span>05</span> Contribuir</h2>
+      <p class="say">Todas las entregas y la batería completa de tests están en el repositorio, así que puedes comprobar estas cifras sin ejecutar ningún modelo.</p>
+      <div class="play">
+        <div>
+          <h3>Vuelve a puntuar los resultados</h3>
+          <p>Recompila todas las entregas del repositorio y vuelve a pasar los tests. No hace falta clave de API.</p>
+          <pre><code>git clone {{repo}}
+python3 benchmark/<wbr>rescore.py</code></pre>
+        </div>
+        <div>
+          <h3>Añade un caso de prueba</h3>
+          <p>Un archivo JSON por comportamiento. Tiene que derivarse de la especificación y pasar contra la implementación de referencia.</p>
+          <pre><code>benchmark/<wbr>holdout/<wbr>&lt;category&gt;/<wbr>your_case.json
+python3 benchmark/<wbr>runner.py --language oracle</code></pre>
+        </div>
+        <div>
+          <h3>Añade un modelo o un lenguaje</h3>
+          <p>Una ronda nueva para otro modelo, o un adaptador para Kotlin, Swift, Zig, etc. Usa un id de ronda nuevo y sube también las ejecuciones fallidas.</p>
+          <pre><code>benchmark/<wbr>rounds/<wbr>&lt;round&gt;/<wbr>round.json
+benchmark/<wbr>adapters/<wbr>&lt;lang&gt;.json</code></pre>
+        </div>
+      </div>
+      <p class="cta"><a href="{{repo}}/blob/main/CONTRIBUTING.md">Guía para contribuir ↗</a> <a href="{{repo}}/blob/main/docs/methodology.md">Metodología ↗</a> <a href="{{repo}}/blob/main/docs/conclusions.md">Conclusiones completas ↗</a></p>
+      <p class="fine">La documentación del repositorio está en inglés.</p>
+    </section>
+
+    <section class="block" id="data">
+      <h2><span>06</span> Todas las muestras</h2>
+      <p class="say">Las {{sessions}} sesiones, sin filtrar. Descarga <a href="../dataset.csv">dataset.csv</a> o <a href="../dataset.json">dataset.json</a>.</p>
+      <details class="twin"><summary>Mostrar las {{sessions}} filas</summary>{{samples_table}}</details>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span><a href="https://gimeno.dev/">gimeno.dev</a> · <a href="https://x.com/sergiogmn">@sergiogmn</a></span>
+    <span><a href="{{repo}}">Código y datos</a> · MIT</span>
+  </footer>
+
+  <div class="tip" role="tooltip" hidden></div>
+  <script src="../app.js" defer></script>
+</body>
+</html>

@@ -3,7 +3,8 @@
 
     python3 site/build.py            # writes site/dist/
 
-No dependencies. Copy lives in src/index.html; every number on the page is
+No dependencies. Copy lives in src/index.html (English) and src/es/index.html
+(Spanish); strings generated here live in STRINGS. Every number on the page is
 computed here, so a new round only needs `benchmark/export.py` and a rebuild.
 """
 import html
@@ -20,30 +21,72 @@ DATASET = ROOT / "results" / "dataset.json"
 REPO = "https://github.com/GodGMN/language-tokens-benchmark"
 
 NAMES = {"python": "Python", "javascript": "JavaScript", "go": "Go", "rust": "Rust", "c": "C"}
-TASKS = [
-    ("workflow", "Workflow engine", "Workflow"),
-    ("expr", "Expression evaluator", "Expr"),
-    ("patch", "JSON Patch", "Patch"),
-]
+TASKS = ["workflow", "expr", "patch"]
+
+# Generated text, per locale; the "" locale is English and builds into dist/.
+STRINGS = {
+    "": {
+        "tasks": {"workflow": "Workflow engine", "expr": "Expression evaluator", "patch": "JSON Patch"},
+        "runs": "median of {} runs",
+        "run": "1 run",
+        "output_tokens": "{} output tokens",
+        "sample_tokens": "{} output · {} total",
+        "sample_work": "{} turns · {} tool calls · {}",
+        "median": "median",
+        "spread": "spread",
+        "cache": "Cached context re-read",
+        "output": "Output (code, tool calls, reasoning)",
+        "input": "Fresh input",
+        "composition": "Token composition across all sessions",
+        "tokens": "tokens",
+        "columns": ["Round", "Task", "Language", "Tests", "Output", "Total", "Turns", "Cost"],
+    },
+    "es": {
+        "tasks": {"workflow": "Motor de workflows", "expr": "Evaluador de expresiones", "patch": "JSON Patch"},
+        "runs": "mediana de {} ejecuciones",
+        "run": "1 ejecución",
+        "output_tokens": "{} tokens de salida",
+        "sample_tokens": "{} de salida · {} en total",
+        "sample_work": "{} turnos · {} llamadas a herramientas · {}",
+        "median": "mediana",
+        "spread": "de dispersión",
+        "cache": "Contexto en caché releído",
+        "output": "Salida (código, llamadas a herramientas, razonamiento)",
+        "input": "Entrada nueva",
+        "composition": "Composición de tokens en todas las sesiones",
+        "tokens": "tokens",
+        "columns": ["Ronda", "Tarea", "Lenguaje", "Tests", "Salida", "Total", "Turnos", "Coste"],
+    },
+}
+LOCALE = ""
 
 
 def esc(value):
     return html.escape(str(value), quote=True)
 
 
+def t(key):
+    return STRINGS[LOCALE][key]
+
+
+def num(text):
+    """Swap decimal and thousands separators for Spanish: 4,360.5 -> 4.360,5."""
+    return text.translate(str.maketrans(",.", ".,")) if LOCALE == "es" else text
+
+
 def k(n):
     """Compact token count: 95022 -> 95.0k, 3760000 -> 3.76M."""
     if n >= 1_000_000:
-        return f"{n / 1_000_000:.2f}M"
-    return f"{n / 1_000:.1f}k"
+        return num(f"{n / 1_000_000:.2f}M")
+    return num(f"{n / 1_000:.1f}k")
 
 
 def comma(n):
-    return f"{round(n):,}"
+    return num(f"{round(n):,}")
 
 
 def usd(n):
-    return f"${n:.3f}"
+    return num(f"${n:.3f}")
 
 
 def pct(x, lo, hi):
@@ -74,7 +117,7 @@ def by_lang(rows):
 def task_values(samples):
     """Per task: {lang: (output tokens, n)}; workflow uses the spec-v2 median."""
     result = {}
-    for task, _, _ in TASKS:
+    for task in TASKS:
         rows = workflow_v2(samples) if task == "workflow" else [s for s in samples if s["task"] == task]
         result[task] = {
             lang: (statistics.median(r["output_tokens"] for r in group), len(group))
@@ -99,14 +142,15 @@ def icon(lang):
 def board(values):
     """Leaderboard: one ranked column per task, fewest output tokens first."""
     cols = []
-    for task, title, _ in TASKS:
+    for task in TASKS:
+        title = t("tasks")[task]
         ranked = sorted(values[task], key=lambda lang: values[task][lang][0])
         worst = values[task][ranked[-1]][0]
         n = values[task][ranked[0]][1]
-        basis = f"median of {n} runs" if n > 1 else "1 run"
+        basis = t("runs").format(n) if n > 1 else t("run")
         rows = "".join(
             f'<li><button type="button" class="board-row" data-lang="{lang}" '
-            f'data-tip="{tip(f"{NAMES[lang]} · {title}", f"{comma(values[task][lang][0])} output tokens", basis)}">'
+            f'data-tip="{tip(f"{NAMES[lang]} · {title}", t("output_tokens").format(comma(values[task][lang][0])), basis)}">'
             f'<span class="rank">{i}</span>'
             f'<span class="track"><span class="bar" style="width:calc((100% - 62px) * {values[task][lang][0] / worst:.3f})">'
             f'{icon(lang)}<span class="lang">{NAMES[lang]}</span></span>'
@@ -120,8 +164,8 @@ def board(values):
 def sample_tip(s):
     return tip(
         "{} · {}".format(s["name"], s["round"]),
-        "{} output · {} total".format(comma(s["output_tokens"]), k(s["total_tokens"])),
-        "{} turns · {} tool calls · {}".format(s["turns"], s["tool_calls"], usd(s["cost_usd"])),
+        t("sample_tokens").format(comma(s["output_tokens"]), k(s["total_tokens"])),
+        t("sample_work").format(s["turns"], s["tool_calls"], usd(s["cost_usd"])),
     )
 
 
@@ -146,7 +190,7 @@ def strip(samples, metric, lo, hi, ticks, fmt, tick):
         <span class="strip-median" style="left:{pct(med, lo, hi):.2f}%"></span>
         {dots}
       </div>
-      <div class="strip-sum"><span>{fmt(med)}</span> median · <span>{max(vals) / min(vals):.1f}×</span> spread</div>
+      <div class="strip-sum"><span>{fmt(med)}</span> {t("median")} · <span>{num(format(max(vals) / min(vals), ".1f"))}×</span> {t("spread")}</div>
     </div>""")
     axis = "".join(f'<span style="left:{pct(t, lo, hi):.2f}%">{tick(t)}</span>' for t in ticks)
     return f"""
@@ -158,20 +202,22 @@ def strip(samples, metric, lo, hi, ticks, fmt, tick):
 
 def composition(samples):
     total = sum(s["total_tokens"] for s in samples)
+    share = lambda n: num(f"{n / total * 100:.1f}")  # noqa: E731
     parts = [
-        ("cache", "Cached context re-read", sum(s["cache_read"] for s in samples)),
-        ("output", "Output (code, tool calls, reasoning)", sum(s["output_tokens"] for s in samples)),
-        ("input", "Fresh input", sum(s["input_tokens"] for s in samples)),
+        ("cache", t("cache"), sum(s["cache_read"] for s in samples)),
+        ("output", t("output"), sum(s["output_tokens"] for s in samples)),
+        ("input", t("input"), sum(s["input_tokens"] for s in samples)),
     ]
     bar = "".join(
         f'<span class="comp-seg is-{key}" style="flex-grow:{n}" '
-        f'data-tip="{tip(label, f"{comma(n)} tokens · {n / total * 100:.1f}%")}"></span>'
+        f'data-tip="{tip(label, comma(n) + " " + t("tokens") + " · " + share(n) + "%")}"></span>'
         for key, label, n in parts
     )
     legend = "".join(
-        f'<li><i class="sw is-{key}"></i>{label}<b>{n / total * 100:.1f}%</b></li>' for key, label, n in parts
+        f'<li><i class="sw is-{key}"></i>{label}<b>{share(n)}%</b></li>' for key, label, n in parts
     )
-    return f'<div class="comp-bar" role="img" aria-label="Token composition across all sessions">{bar}</div><ul class="comp-legend">{legend}</ul>'
+    label = t("composition")
+    return f'<div class="comp-bar" role="img" aria-label="{label}">{bar}</div><ul class="comp-legend">{legend}</ul>'
 
 
 def sample_table(samples):
@@ -182,18 +228,15 @@ def sample_table(samples):
         f"<td>{s['turns']}</td><td>{usd(s['cost_usd'])}</td></tr>"
         for s in rows
     )
-    return (
-        '<table class="data"><thead><tr><th>Round</th><th>Task</th><th>Language</th><th>Tests</th>'
-        "<th>Output</th><th>Total</th><th>Turns</th><th>Cost</th></tr></thead>"
-        f"<tbody>{body}</tbody></table>"
-    )
+    head = "".join(f"<th>{c}</th>" for c in t("columns"))
+    return f'<table class="data"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>'
 
 
 # ——— page ———
 
 
-def build():
-    samples = load()
+def render(samples):
+    """Fill the current locale's template; numbers are formatted for LOCALE."""
     values = task_values(samples)
     wf = workflow_v2(samples)
     total = sum(s["total_tokens"] for s in samples)
@@ -211,7 +254,7 @@ def build():
                              lambda v: f"{v // 1_000_000}M" if v else "0"),
         "py_min": k(min(py)),
         "py_max": k(max(py)),
-        "js_total_ratio": f"{max(js_total) / min(js_total):.1f}",
+        "js_total_ratio": num(f"{max(js_total) / min(js_total):.1f}"),
         "cache_pct": f"{sum(s['cache_read'] for s in samples) / total * 100:.0f}",
         "cache_lo": f"{min(cache_shares) * 100:.0f}",
         "cache_hi": f"{max(cache_shares) * 100:.0f}",
@@ -221,19 +264,26 @@ def build():
         "repo": REPO,
     }
 
-    page = (SRC / "index.html").read_text()
+    page = (SRC / LOCALE / "index.html").read_text()
     for key, value in fill.items():
         page = page.replace("{{" + key + "}}", value)
     if "{{" in page:
         raise SystemExit(f"unfilled placeholder near: {page[page.index('{{'):][:40]}")
+    return page
+
+
+def build():
+    global LOCALE
+    samples = load()
 
     if DIST.exists():
         shutil.rmtree(DIST)
     shutil.copytree(SRC, DIST, ignore=shutil.ignore_patterns("index.html", "icons"))
-    (DIST / "index.html").write_text(page)
+    for LOCALE in STRINGS:
+        (DIST / LOCALE / "index.html").write_text(render(samples))
     for name in ("dataset.csv", "dataset.json"):
         shutil.copy(ROOT / "results" / name, DIST / name)
-    print(f"wrote {DIST}/index.html ({len(samples)} samples)")
+    print(f"wrote {DIST} ({', '.join(f'/{l}' for l in STRINGS)}; {len(samples)} samples)")
 
 
 if __name__ == "__main__":
