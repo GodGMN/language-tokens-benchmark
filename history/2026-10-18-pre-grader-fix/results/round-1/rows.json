@@ -1,0 +1,235 @@
+[
+  {
+    "language": "python",
+    "reference": false,
+    "passed": 106,
+    "total": 106,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      74,
+      74
+    ],
+    "future": [
+      2,
+      8
+    ],
+    "input": 45106,
+    "output": 125031,
+    "reasoning": 91213,
+    "cache_read": 6052608,
+    "cache_write": 0,
+    "total_tokens": 6222745,
+    "cost": 0.1999,
+    "turns": 65,
+    "user_messages": 1,
+    "tool_calls": 76,
+    "code": {
+      "source_files": 2,
+      "source_lines": 1688,
+      "source_bytes": 50693
+    },
+    "gen_eff_k": 0.85,
+    "tot_eff_k": 0.02,
+    "rel_cost": 2.1,
+    "rank": 4
+  },
+  {
+    "language": "javascript",
+    "reference": false,
+    "passed": 106,
+    "total": 106,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      74,
+      74
+    ],
+    "future": [
+      2,
+      8
+    ],
+    "input": 26188,
+    "output": 90736,
+    "reasoning": 59475,
+    "cache_read": 2842624,
+    "cache_write": 0,
+    "total_tokens": 2959548,
+    "cost": 0.1338,
+    "turns": 40,
+    "user_messages": 1,
+    "tool_calls": 57,
+    "code": {
+      "source_files": 2,
+      "source_lines": 1987,
+      "source_bytes": 53000
+    },
+    "gen_eff_k": 1.17,
+    "tot_eff_k": 0.04,
+    "rel_cost": 1.0,
+    "rank": 1
+  },
+  {
+    "language": "go",
+    "reference": false,
+    "passed": 106,
+    "total": 106,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      74,
+      74
+    ],
+    "future": [
+      2,
+      8
+    ],
+    "input": 23565,
+    "output": 113306,
+    "reasoning": 78740,
+    "cache_read": 3228544,
+    "cache_write": 0,
+    "total_tokens": 3365415,
+    "cost": 0.1624,
+    "turns": 40,
+    "user_messages": 1,
+    "tool_calls": 46,
+    "code": {
+      "source_files": 6,
+      "source_lines": 2437,
+      "source_bytes": 70449
+    },
+    "gen_eff_k": 0.94,
+    "tot_eff_k": 0.03,
+    "rel_cost": 1.14,
+    "rank": 2
+  },
+  {
+    "language": "rust",
+    "reference": false,
+    "passed": 106,
+    "total": 106,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      74,
+      74
+    ],
+    "future": [
+      3,
+      8
+    ],
+    "input": 41418,
+    "output": 156063,
+    "reasoning": 114295,
+    "cache_read": 9207680,
+    "cache_write": 0,
+    "total_tokens": 9405161,
+    "cost": 0.2549,
+    "turns": 85,
+    "user_messages": 1,
+    "tool_calls": 85,
+    "code": {
+      "source_files": 7,
+      "source_lines": 2281,
+      "source_bytes": 72024
+    },
+    "gen_eff_k": 0.68,
+    "tot_eff_k": 0.01,
+    "rel_cost": 3.18,
+    "rank": 5
+  },
+  {
+    "language": "c",
+    "reference": false,
+    "passed": 106,
+    "total": 106,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      74,
+      74
+    ],
+    "future": [
+      6,
+      8
+    ],
+    "input": 46699,
+    "output": 121998,
+    "reasoning": 63902,
+    "cache_read": 5055360,
+    "cache_write": 0,
+    "total_tokens": 5224057,
+    "cost": 0.1907,
+    "turns": 55,
+    "user_messages": 1,
+    "tool_calls": 68,
+    "code": {
+      "source_files": 3,
+      "source_lines": 3477,
+      "source_bytes": 104814
+    },
+    "gen_eff_k": 0.87,
+    "tot_eff_k": 0.02,
+    "rel_cost": 1.77,
+    "rank": 3
+  },
+  {
+    "language": "oracle",
+    "reference": true,
+    "passed": 106,
+    "total": 106,
+    "pct": 100.0,
+    "conforming": true,
+    "public": [
+      32,
+      32
+    ],
+    "holdout": [
+      74,
+      74
+    ],
+    "future": [
+      8,
+      8
+    ],
+    "input": null,
+    "output": null,
+    "reasoning": null,
+    "cache_read": null,
+    "cache_write": null,
+    "total_tokens": null,
+    "cost": null,
+    "turns": null,
+    "user_messages": null,
+    "tool_calls": null,
+    "code": {
+      "source_files": 1,
+      "source_lines": 904,
+      "source_bytes": 31368
+    },
+    "gen_eff_k": null,
+    "tot_eff_k": null,
+    "rel_cost": null
+  }
+]

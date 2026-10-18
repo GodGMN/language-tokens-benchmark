@@ -27,7 +27,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.058
+      "seconds": 0.081
     },
     {
       "name": "add_index",
@@ -38,7 +38,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.042
+      "seconds": 0.083
     },
     {
       "name": "remove_index",
@@ -49,7 +49,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.05
+      "seconds": 0.112
     },
     {
       "name": "replace_index",
@@ -60,7 +60,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.069
+      "seconds": 0.083
     },
     {
       "name": "add_key",
@@ -71,7 +71,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.049
+      "seconds": 0.108
     },
     {
       "name": "add_nested",
@@ -82,7 +82,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.079
+      "seconds": 0.07
     },
     {
       "name": "remove_key",
@@ -93,7 +93,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.042
+      "seconds": 0.107
     },
     {
       "name": "replace_key",
@@ -104,7 +104,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.078
+      "seconds": 0.049
     },
     {
       "name": "test_ok",
@@ -115,7 +115,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.04
+      "seconds": 0.091
     },
     {
       "name": "bad_pointer",
@@ -126,7 +126,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.047
+      "seconds": 0.078
     },
     {
       "name": "index_oob",
@@ -137,7 +137,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.048
+      "seconds": 0.057
     },
     {
       "name": "remove_missing",
@@ -148,7 +148,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.048
+      "seconds": 0.124
     },
     {
       "name": "test_fail",
@@ -159,7 +159,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.053
+      "seconds": 0.046
     },
     {
       "name": "unknown_op",
@@ -170,7 +170,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.056
+      "seconds": 0.118
     },
     {
       "name": "add_missing_parent",
@@ -181,7 +181,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.079
+      "seconds": 0.06
     },
     {
       "name": "atomic",
@@ -203,7 +203,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 2,
-      "seconds": 0.059
+      "seconds": 0.06
     },
     {
       "name": "leading_zero",
@@ -214,7 +214,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.055
+      "seconds": 0.083
     },
     {
       "name": "move_missing",
@@ -225,7 +225,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.042
+      "seconds": 0.031
     },
     {
       "name": "remove_root",
@@ -236,7 +236,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.095
+      "seconds": 0.029
     },
     {
       "name": "scalar_parent",
@@ -247,7 +247,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.034
+      "seconds": 0.028
     },
     {
       "name": "stdin_case",
@@ -258,7 +258,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.045
+      "seconds": 0.027
     },
     {
       "name": "test_missing",
@@ -269,7 +269,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.067
+      "seconds": 0.026
     },
     {
       "name": "add_insert_mid",
@@ -280,7 +280,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.056
+      "seconds": 0.027
     },
     {
       "name": "add_root",
@@ -291,7 +291,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.075
+      "seconds": 0.026
     },
     {
       "name": "copy_child",
@@ -302,7 +302,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.053
+      "seconds": 0.027
     },
     {
       "name": "copy_deep",
@@ -313,7 +313,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.034
+      "seconds": 0.028
     },
     {
       "name": "deep_add",
@@ -324,7 +324,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.054
+      "seconds": 0.029
     },
     {
       "name": "move_descendant",
@@ -335,7 +335,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.051
+      "seconds": 0.028
     },
     {
       "name": "move_nested",
@@ -346,7 +346,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.043
+      "seconds": 0.028
     },
     {
       "name": "move_self",
@@ -357,7 +357,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.097
+      "seconds": 0.027
     },
     {
       "name": "test_root",
@@ -368,7 +368,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.064
+      "seconds": 0.028
     },
     {
       "name": "bad_escape",
@@ -379,7 +379,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.04
+      "seconds": 0.03
     },
     {
       "name": "empty_key",
@@ -390,7 +390,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.056
+      "seconds": 0.029
     },
     {
       "name": "escape_slash",
@@ -401,7 +401,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.04
+      "seconds": 0.029
     },
     {
       "name": "escape_tilde",
@@ -412,7 +412,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.057
+      "seconds": 0.029
     },
     {
       "name": "nested_array",
@@ -423,7 +423,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.042
+      "seconds": 0.03
     },
     {
       "name": "root_replace",
@@ -434,7 +434,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.061
+      "seconds": 0.03
     }
   ]
 }

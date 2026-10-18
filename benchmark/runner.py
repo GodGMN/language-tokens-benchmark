@@ -104,13 +104,35 @@ def shape_errors(resp):
     return problems
 
 
-def comparable(x):
-    """Recursively drop free-form "message" fields before comparing."""
-    if isinstance(x, dict):
-        return {k: comparable(v) for k, v in x.items() if k != "message"}
-    if isinstance(x, list):
-        return [comparable(v) for v in x]
-    return x
+def comparable(response, envelope="workflow"):
+    """Ignore only the contract's free-form error message."""
+    if not isinstance(response, dict):
+        return response
+    result = dict(response)
+    if envelope == "workflow":
+        error = result.get("error")
+        if isinstance(error, dict):
+            result["error"] = {k: v for k, v in error.items() if k != "message"}
+    elif result.get("status") == "error":
+        result.pop("message", None)
+    return result
+
+
+def json_equal(expected, actual):
+    """Compare JSON values without Python's bool/number coercion."""
+    if isinstance(expected, bool) or isinstance(actual, bool):
+        return type(expected) is type(actual) and expected == actual
+    if isinstance(expected, (int, float)) and isinstance(actual, (int, float)):
+        return expected == actual
+    if type(expected) is not type(actual):
+        return False
+    if isinstance(expected, dict):
+        return expected.keys() == actual.keys() and all(
+            json_equal(value, actual[key]) for key, value in expected.items())
+    if isinstance(expected, list):
+        return len(expected) == len(actual) and all(
+            json_equal(a, b) for a, b in zip(expected, actual))
+    return expected == actual
 
 
 def check(fixture, result, envelope="workflow"):
@@ -126,17 +148,13 @@ def check(fixture, result, envelope="workflow"):
         reasons.extend(shape_errors(actual))
 
     exp = fixture.get("expected_output")
-    if exp is not None and comparable(exp) != comparable(actual):
+    if exp is not None and not json_equal(comparable(exp, envelope), comparable(actual, envelope)):
         reasons.append("output mismatch")
-        for k in RESPONSE_FIELDS:
-            a, b = comparable(exp).get(k, "<missing>"), comparable(actual).get(k, "<missing>")
-            if a != b:
-                reasons.append(f"  field `{k}`: got {json.dumps(b)} want {json.dumps(a)}")
 
     exp_code = fixture.get("expected_error_code")
     if exp_code is not None:
-        src = (actual.get("error") or {}) if envelope == "workflow" else actual
-        got = src.get("code")
+        src = (actual.get("error") or {}) if envelope == "workflow" and isinstance(actual, dict) else actual
+        got = src.get("code") if isinstance(src, dict) else None
         if got != exp_code:
             reasons.append(f"error.code {got!r} != expected {exp_code!r}")
     return reasons
@@ -205,6 +223,7 @@ def main():
         if not project_ready(adapter, project):
             print(f"\n== {n}: SKIP (not implemented yet) ==")
             summary[n] = {"skipped": True}
+            ok_all = False
             continue
         print(f"\n== {n} ({project.relative_to(HERE.parent)}) — {len(fixtures)} fixtures ==")
         passed, total, buckets, results = run_language(

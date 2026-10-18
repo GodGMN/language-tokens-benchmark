@@ -1,0 +1,1058 @@
+{
+  "benchmark": "language-tokens-benchmark",
+  "rounds": [
+    {
+      "round": "round-1",
+      "label": "DeepSeek V4.1 Flash \u2014 one-shot",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 106,
+        "public": 32,
+        "holdout": 74,
+        "future_spec": 8
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "javascript",
+          "passed": 106,
+          "total": 106,
+          "pct": 100.0,
+          "output": 90736,
+          "total_tokens": 2959548,
+          "cost": 0.1338,
+          "tool_calls": 57,
+          "gen_eff_k": 1.17,
+          "tot_eff_k": 0.04,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1987,
+            "source_bytes": 53000
+          }
+        },
+        {
+          "rank": 2,
+          "language": "go",
+          "passed": 106,
+          "total": 106,
+          "pct": 100.0,
+          "output": 113306,
+          "total_tokens": 3365415,
+          "cost": 0.1624,
+          "tool_calls": 46,
+          "gen_eff_k": 0.94,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.14,
+          "code": {
+            "source_files": 6,
+            "source_lines": 2437,
+            "source_bytes": 70449
+          }
+        },
+        {
+          "rank": 3,
+          "language": "c",
+          "passed": 106,
+          "total": 106,
+          "pct": 100.0,
+          "output": 121998,
+          "total_tokens": 5224057,
+          "cost": 0.1907,
+          "tool_calls": 68,
+          "gen_eff_k": 0.87,
+          "tot_eff_k": 0.02,
+          "rel_cost": 1.77,
+          "code": {
+            "source_files": 3,
+            "source_lines": 3477,
+            "source_bytes": 104814
+          }
+        },
+        {
+          "rank": 4,
+          "language": "python",
+          "passed": 106,
+          "total": 106,
+          "pct": 100.0,
+          "output": 125031,
+          "total_tokens": 6222745,
+          "cost": 0.1999,
+          "tool_calls": 76,
+          "gen_eff_k": 0.85,
+          "tot_eff_k": 0.02,
+          "rel_cost": 2.1,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1688,
+            "source_bytes": 50693
+          }
+        },
+        {
+          "rank": 5,
+          "language": "rust",
+          "passed": 106,
+          "total": 106,
+          "pct": 100.0,
+          "output": 156063,
+          "total_tokens": 9405161,
+          "cost": 0.2549,
+          "tool_calls": 85,
+          "gen_eff_k": 0.68,
+          "tot_eff_k": 0.01,
+          "rel_cost": 3.18,
+          "code": {
+            "source_files": 7,
+            "source_lines": 2281,
+            "source_bytes": 72024
+          }
+        }
+      ]
+    },
+    {
+      "round": "round-2",
+      "label": "DeepSeek V4.1 Flash \u2014 one-shot (spec v2)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 112,
+        "public": 32,
+        "holdout": 80,
+        "future_spec": 2
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "python",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 82123,
+          "total_tokens": 3323523,
+          "cost": 0.1278,
+          "tool_calls": 50,
+          "gen_eff_k": 1.36,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1297,
+            "source_bytes": 42204
+          }
+        },
+        {
+          "rank": 2,
+          "language": "go",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 110406,
+          "total_tokens": 3455929,
+          "cost": 0.163,
+          "tool_calls": 38,
+          "gen_eff_k": 1.01,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.04,
+          "code": {
+            "source_files": 6,
+            "source_lines": 2416,
+            "source_bytes": 52222
+          }
+        },
+        {
+          "rank": 3,
+          "language": "rust",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 104408,
+          "total_tokens": 4194694,
+          "cost": 0.1579,
+          "tool_calls": 56,
+          "gen_eff_k": 1.07,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.26,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1792,
+            "source_bytes": 59901
+          }
+        },
+        {
+          "rank": 4,
+          "language": "javascript",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 119392,
+          "total_tokens": 4913756,
+          "cost": 0.1804,
+          "tool_calls": 62,
+          "gen_eff_k": 0.94,
+          "tot_eff_k": 0.02,
+          "rel_cost": 1.48,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1694,
+            "source_bytes": 53082
+          }
+        },
+        {
+          "rank": 5,
+          "language": "c",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 118885,
+          "total_tokens": 6107267,
+          "cost": 0.1916,
+          "tool_calls": 61,
+          "gen_eff_k": 0.94,
+          "tot_eff_k": 0.02,
+          "rel_cost": 1.84,
+          "code": {
+            "source_files": 3,
+            "source_lines": 3286,
+            "source_bytes": 99087
+          }
+        }
+      ]
+    },
+    {
+      "round": "round-3",
+      "label": "DeepSeek V4.1 Flash \u2014 one-shot (spec v2, sample 2)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 112,
+        "public": 32,
+        "holdout": 80,
+        "future_spec": 2
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "javascript",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 67714,
+          "total_tokens": 1351236,
+          "cost": 0.0945,
+          "tool_calls": 28,
+          "gen_eff_k": 1.65,
+          "tot_eff_k": 0.08,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1772,
+            "source_bytes": 52848
+          }
+        },
+        {
+          "rank": 2,
+          "language": "go",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 69835,
+          "total_tokens": 1891864,
+          "cost": 0.1012,
+          "tool_calls": 37,
+          "gen_eff_k": 1.6,
+          "tot_eff_k": 0.06,
+          "rel_cost": 1.4,
+          "code": {
+            "source_files": 6,
+            "source_lines": 2455,
+            "source_bytes": 55809
+          }
+        },
+        {
+          "rank": 3,
+          "language": "rust",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 112031,
+          "total_tokens": 4635085,
+          "cost": 0.1718,
+          "tool_calls": 60,
+          "gen_eff_k": 1.0,
+          "tot_eff_k": 0.02,
+          "rel_cost": 3.43,
+          "code": {
+            "source_files": 8,
+            "source_lines": 2538,
+            "source_bytes": 93565
+          }
+        },
+        {
+          "rank": 4,
+          "language": "python",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 106168,
+          "total_tokens": 5585811,
+          "cost": 0.1709,
+          "tool_calls": 66,
+          "gen_eff_k": 1.05,
+          "tot_eff_k": 0.02,
+          "rel_cost": 4.13,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1620,
+            "source_bytes": 49536
+          }
+        },
+        {
+          "rank": 5,
+          "language": "c",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 142225,
+          "total_tokens": 6068702,
+          "cost": 0.2152,
+          "tool_calls": 60,
+          "gen_eff_k": 0.79,
+          "tot_eff_k": 0.02,
+          "rel_cost": 4.49,
+          "code": {
+            "source_files": 2,
+            "source_lines": 3574,
+            "source_bytes": 108159
+          }
+        }
+      ]
+    },
+    {
+      "round": "round-4",
+      "label": "DeepSeek V4.1 Flash \u2014 one-shot (spec v2, sample 3)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 112,
+        "public": 32,
+        "holdout": 80,
+        "future_spec": 2
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "python",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 78385,
+          "total_tokens": 3121625,
+          "cost": 0.1212,
+          "tool_calls": 63,
+          "gen_eff_k": 1.43,
+          "tot_eff_k": 0.04,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1356,
+            "source_bytes": 42616
+          }
+        },
+        {
+          "rank": 2,
+          "language": "go",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 170119,
+          "total_tokens": 6404923,
+          "cost": 0.2514,
+          "tool_calls": 59,
+          "gen_eff_k": 0.66,
+          "tot_eff_k": 0.02,
+          "rel_cost": 2.05,
+          "code": {
+            "source_files": 5,
+            "source_lines": 2809,
+            "source_bytes": 66506
+          }
+        },
+        {
+          "rank": 3,
+          "language": "c",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 117365,
+          "total_tokens": 6633406,
+          "cost": 0.1984,
+          "tool_calls": 66,
+          "gen_eff_k": 0.95,
+          "tot_eff_k": 0.02,
+          "rel_cost": 2.12,
+          "code": {
+            "source_files": 1,
+            "source_lines": 2529,
+            "source_bytes": 80347
+          }
+        },
+        {
+          "rank": 4,
+          "language": "rust",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 125886,
+          "total_tokens": 8193632,
+          "cost": 0.2108,
+          "tool_calls": 87,
+          "gen_eff_k": 0.89,
+          "tot_eff_k": 0.01,
+          "rel_cost": 2.62,
+          "code": {
+            "source_files": 6,
+            "source_lines": 1889,
+            "source_bytes": 61716
+          }
+        },
+        {
+          "rank": 5,
+          "language": "javascript",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 157602,
+          "total_tokens": 9721332,
+          "cost": 0.2605,
+          "tool_calls": 79,
+          "gen_eff_k": 0.71,
+          "tot_eff_k": 0.01,
+          "rel_cost": 3.11,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1715,
+            "source_bytes": 53163
+          }
+        }
+      ]
+    },
+    {
+      "round": "round-5",
+      "label": "DeepSeek V4.1 Flash \u2014 one-shot (spec v2, sample 4)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 112,
+        "public": 32,
+        "holdout": 80,
+        "future_spec": 2
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "go",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 101824,
+          "total_tokens": 2538895,
+          "cost": 0.1432,
+          "tool_calls": 36,
+          "gen_eff_k": 1.1,
+          "tot_eff_k": 0.04,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 4,
+            "source_lines": 2271,
+            "source_bytes": 52419
+          }
+        },
+        {
+          "rank": 2,
+          "language": "javascript",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 93405,
+          "total_tokens": 2785938,
+          "cost": 0.1373,
+          "tool_calls": 39,
+          "gen_eff_k": 1.2,
+          "tot_eff_k": 0.04,
+          "rel_cost": 1.1,
+          "code": {
+            "source_files": 1,
+            "source_lines": 1603,
+            "source_bytes": 50745
+          }
+        },
+        {
+          "rank": 3,
+          "language": "rust",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 140846,
+          "total_tokens": 6020679,
+          "cost": 0.2184,
+          "tool_calls": 57,
+          "gen_eff_k": 0.8,
+          "tot_eff_k": 0.02,
+          "rel_cost": 2.37,
+          "code": {
+            "source_files": 2,
+            "source_lines": 2933,
+            "source_bytes": 89236
+          }
+        },
+        {
+          "rank": 4,
+          "language": "c",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 121115,
+          "total_tokens": 6223051,
+          "cost": 0.2048,
+          "tool_calls": 58,
+          "gen_eff_k": 0.92,
+          "tot_eff_k": 0.02,
+          "rel_cost": 2.45,
+          "code": {
+            "source_files": 2,
+            "source_lines": 3289,
+            "source_bytes": 115601
+          }
+        },
+        {
+          "rank": 5,
+          "language": "python",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 154250,
+          "total_tokens": 11614289,
+          "cost": 0.2661,
+          "tool_calls": 107,
+          "gen_eff_k": 0.73,
+          "tot_eff_k": 0.01,
+          "rel_cost": 4.57,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1548,
+            "source_bytes": 49466
+          }
+        }
+      ]
+    },
+    {
+      "round": "round-6",
+      "label": "DeepSeek V4.1 Flash \u2014 one-shot (spec v2, sample 5)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 112,
+        "public": 32,
+        "holdout": 80,
+        "future_spec": 2
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "python",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 86096,
+          "total_tokens": 3667690,
+          "cost": 0.1347,
+          "tool_calls": 46,
+          "gen_eff_k": 1.3,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1672,
+            "source_bytes": 47837
+          }
+        },
+        {
+          "rank": 2,
+          "language": "c",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 108581,
+          "total_tokens": 3997438,
+          "cost": 0.1626,
+          "tool_calls": 46,
+          "gen_eff_k": 1.03,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.09,
+          "code": {
+            "source_files": 4,
+            "source_lines": 3112,
+            "source_bytes": 110963
+          }
+        },
+        {
+          "rank": 3,
+          "language": "javascript",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 96639,
+          "total_tokens": 4513010,
+          "cost": 0.1527,
+          "tool_calls": 57,
+          "gen_eff_k": 1.16,
+          "tot_eff_k": 0.02,
+          "rel_cost": 1.23,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1397,
+            "source_bytes": 45913
+          }
+        },
+        {
+          "rank": 4,
+          "language": "go",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 102388,
+          "total_tokens": 4517854,
+          "cost": 0.1588,
+          "tool_calls": 60,
+          "gen_eff_k": 1.09,
+          "tot_eff_k": 0.02,
+          "rel_cost": 1.23,
+          "code": {
+            "source_files": 5,
+            "source_lines": 2063,
+            "source_bytes": 46255
+          }
+        },
+        {
+          "rank": 5,
+          "language": "rust",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 135279,
+          "total_tokens": 8987971,
+          "cost": 0.2302,
+          "tool_calls": 89,
+          "gen_eff_k": 0.83,
+          "tot_eff_k": 0.01,
+          "rel_cost": 2.45,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1967,
+            "source_bytes": 63145
+          }
+        }
+      ]
+    },
+    {
+      "round": "round-7",
+      "label": "DeepSeek V4.1 Flash \u2014 one-shot (spec v2, sample 6)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 112,
+        "public": 32,
+        "holdout": 80,
+        "future_spec": 2
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "javascript",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 87820,
+          "total_tokens": 3007457,
+          "cost": 0.1322,
+          "tool_calls": 41,
+          "gen_eff_k": 1.28,
+          "tot_eff_k": 0.04,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1609,
+            "source_bytes": 49618
+          }
+        },
+        {
+          "rank": 2,
+          "language": "go",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 78537,
+          "total_tokens": 4149141,
+          "cost": 0.1277,
+          "tool_calls": 66,
+          "gen_eff_k": 1.43,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.38,
+          "code": {
+            "source_files": 7,
+            "source_lines": 2385,
+            "source_bytes": 53395
+          }
+        },
+        {
+          "rank": 3,
+          "language": "python",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 123874,
+          "total_tokens": 6737225,
+          "cost": 0.2003,
+          "tool_calls": 78,
+          "gen_eff_k": 0.9,
+          "tot_eff_k": 0.02,
+          "rel_cost": 2.24,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1704,
+            "source_bytes": 52174
+          }
+        },
+        {
+          "rank": 4,
+          "language": "rust",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 131824,
+          "total_tokens": 7532337,
+          "cost": 0.2146,
+          "tool_calls": 86,
+          "gen_eff_k": 0.85,
+          "tot_eff_k": 0.01,
+          "rel_cost": 2.5,
+          "code": {
+            "source_files": 1,
+            "source_lines": 1883,
+            "source_bytes": 60894
+          }
+        },
+        {
+          "rank": 5,
+          "language": "c",
+          "passed": 112,
+          "total": 112,
+          "pct": 100.0,
+          "output": 154778,
+          "total_tokens": 12365110,
+          "cost": 0.2866,
+          "tool_calls": 97,
+          "gen_eff_k": 0.72,
+          "tot_eff_k": 0.01,
+          "rel_cost": 4.11,
+          "code": {
+            "source_files": 1,
+            "source_lines": 3137,
+            "source_bytes": 93284
+          }
+        }
+      ]
+    },
+    {
+      "round": "round-8-expr",
+      "label": "DeepSeek V4.1 Flash \u2014 expression evaluator (spec v1)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 56,
+        "public": 26,
+        "holdout": 30,
+        "future_spec": 0
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "rust",
+          "passed": 56,
+          "total": 56,
+          "pct": 100.0,
+          "output": 59463,
+          "total_tokens": 1067224,
+          "cost": 0.0802,
+          "tool_calls": 23,
+          "gen_eff_k": 0.94,
+          "tot_eff_k": 0.05,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 1,
+            "source_lines": 1748,
+            "source_bytes": 53465
+          }
+        },
+        {
+          "rank": 2,
+          "language": "javascript",
+          "passed": 56,
+          "total": 56,
+          "pct": 100.0,
+          "output": 60022,
+          "total_tokens": 1241698,
+          "cost": 0.0835,
+          "tool_calls": 24,
+          "gen_eff_k": 0.93,
+          "tot_eff_k": 0.05,
+          "rel_cost": 1.16,
+          "code": {
+            "source_files": 3,
+            "source_lines": 1716,
+            "source_bytes": 51532
+          }
+        },
+        {
+          "rank": 3,
+          "language": "go",
+          "passed": 56,
+          "total": 56,
+          "pct": 100.0,
+          "output": 60130,
+          "total_tokens": 1408634,
+          "cost": 0.0861,
+          "tool_calls": 36,
+          "gen_eff_k": 0.93,
+          "tot_eff_k": 0.04,
+          "rel_cost": 1.32,
+          "code": {
+            "source_files": 6,
+            "source_lines": 1506,
+            "source_bytes": 33293
+          }
+        },
+        {
+          "rank": 4,
+          "language": "c",
+          "passed": 56,
+          "total": 56,
+          "pct": 100.0,
+          "output": 71378,
+          "total_tokens": 1887134,
+          "cost": 0.1026,
+          "tool_calls": 34,
+          "gen_eff_k": 0.78,
+          "tot_eff_k": 0.03,
+          "rel_cost": 1.77,
+          "code": {
+            "source_files": 2,
+            "source_lines": 2882,
+            "source_bytes": 79203
+          }
+        },
+        {
+          "rank": 5,
+          "language": "python",
+          "passed": 56,
+          "total": 56,
+          "pct": 100.0,
+          "output": 73983,
+          "total_tokens": 2524500,
+          "cost": 0.1122,
+          "tool_calls": 38,
+          "gen_eff_k": 0.76,
+          "tot_eff_k": 0.02,
+          "rel_cost": 2.37,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1340,
+            "source_bytes": 39693
+          }
+        }
+      ]
+    },
+    {
+      "round": "round-9-patch",
+      "label": "DeepSeek V4.1 Flash \u2014 JSON patch engine (spec v1)",
+      "model": {
+        "name": "deepseek-flash",
+        "provider": "deepseek",
+        "display": "DeepSeek V4.1 Flash",
+        "params": "763B total, ~16B active (8B active during prefill)",
+        "thinking": "high",
+        "date": "2026-10-17",
+        "version": "DeepSeek-V4.1-Flash-1017",
+        "version_source": "operator-reported; the provider exposes no version (model id is just 'deepseek-flash')"
+      },
+      "tests": {
+        "total": 38,
+        "public": 14,
+        "holdout": 24,
+        "future_spec": 0
+      },
+      "leaderboard": [
+        {
+          "rank": 1,
+          "language": "python",
+          "passed": 38,
+          "total": 38,
+          "pct": 100.0,
+          "output": 37514,
+          "total_tokens": 700543,
+          "cost": 0.0539,
+          "tool_calls": 21,
+          "gen_eff_k": 1.01,
+          "tot_eff_k": 0.05,
+          "rel_cost": 1.0,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1029,
+            "source_bytes": 37065
+          }
+        },
+        {
+          "rank": 2,
+          "language": "go",
+          "passed": 38,
+          "total": 38,
+          "pct": 100.0,
+          "output": 42905,
+          "total_tokens": 709941,
+          "cost": 0.059,
+          "tool_calls": 24,
+          "gen_eff_k": 0.89,
+          "tot_eff_k": 0.05,
+          "rel_cost": 1.01,
+          "code": {
+            "source_files": 5,
+            "source_lines": 1023,
+            "source_bytes": 30435
+          }
+        },
+        {
+          "rank": 3,
+          "language": "rust",
+          "passed": 38,
+          "total": 38,
+          "pct": 100.0,
+          "output": 44765,
+          "total_tokens": 925327,
+          "cost": 0.0654,
+          "tool_calls": 36,
+          "gen_eff_k": 0.85,
+          "tot_eff_k": 0.04,
+          "rel_cost": 1.32,
+          "code": {
+            "source_files": 2,
+            "source_lines": 857,
+            "source_bytes": 26562
+          }
+        },
+        {
+          "rank": 4,
+          "language": "javascript",
+          "passed": 38,
+          "total": 38,
+          "pct": 100.0,
+          "output": 66718,
+          "total_tokens": 1562150,
+          "cost": 0.0945,
+          "tool_calls": 31,
+          "gen_eff_k": 0.57,
+          "tot_eff_k": 0.02,
+          "rel_cost": 2.23,
+          "code": {
+            "source_files": 2,
+            "source_lines": 1366,
+            "source_bytes": 38759
+          }
+        },
+        {
+          "rank": 5,
+          "language": "c",
+          "passed": 38,
+          "total": 38,
+          "pct": 100.0,
+          "output": 77186,
+          "total_tokens": 2355515,
+          "cost": 0.1118,
+          "tool_calls": 42,
+          "gen_eff_k": 0.49,
+          "tot_eff_k": 0.02,
+          "rel_cost": 3.36,
+          "code": {
+            "source_files": 4,
+            "source_lines": 2372,
+            "source_bytes": 71208
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Benchmark report — round-4
 
-**DeepSeek V4.1 Flash — one-shot (spec v2, sample 3)**
+**DeepSeek V4.1 Flash — one-shot (spec v2, sample 3)**  ·  task `workflow`
 
 Model: **DeepSeek V4.1 Flash** (`deepseek/deepseek-flash`, DeepSeek-V4.1-Flash-1017) · 763B total, ~16B active (8B active during prefill) · thinking=high
 
@@ -14,6 +14,8 @@ Tests per implementation: 32 public + 80 holdout = 112 scored (+2 future-spec, n
 | rust | ok | 112/112 | 32/32 | 80/80 | 2/2 | 125,886 | 8,193,632 | 0.2108 | 87 | 6 | 1889 | 0.89 | 0.01 | 2.62 |
 | c | ok | 112/112 | 32/32 | 80/80 | 1/2 | 117,365 | 6,633,406 | 0.1984 | 66 | 1 | 2529 | 0.95 | 0.02 | 2.12 |
 | oracle | reference | 112/112 | 32/32 | 80/80 | 2/2 | — | — | — | — | 1 | 904 | — | — | — |
+
+Evaluation: `json-comparison-v2` · 2026-10-18T00:30:31.045435+00:00. Rescored committed submissions using historical usage; no new model calls. See [evaluation notes](../../docs/evaluation-notes.md).
 
 **Metrics** — `output/total tok`: provider-reported usage summed from the pi session. `gen eff (k)` = passed / output_tokens × 1000. `tot eff (k)` = passed / total_tokens × 1000. `rel cost` = total_tokens ÷ best conforming total. `holdout` = edge-case suite scored for this round's spec version. `future-spec` = holdout cases for rules added after this round (informational).
 

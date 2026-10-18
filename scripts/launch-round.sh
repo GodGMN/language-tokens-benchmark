@@ -124,12 +124,12 @@ for lang in "${LANGS_ARR[@]}"; do
   mkdir -p "$logdir"
 
   # Strip the parent session's PI_* markers so the child creates its own session.
-  setsid nohup env \
+  (cd "$ROOT/$dir" && exec setsid nohup env \
     -u PI_SESSION_FILE -u PI_SESSION_ID -u PI_PROVIDER \
     -u PI_MODEL -u PI_REASONING_LEVEL \
     timeout "$TIMEOUT" \
     pi --print "${MODEL_ARGS[@]}" --session-id "$sid" "$(cat "$prompt")" \
-    > "$log" 2>&1 < /dev/null &
+    > "$log" 2>&1 < /dev/null) &
   printf 'launched %-11s pid=%-7s session=%-16s log=%s\n' "$lang" "$!" "$sid" "$log"
 done
 

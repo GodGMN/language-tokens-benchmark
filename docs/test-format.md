@@ -19,7 +19,8 @@ A test is a single JSON file under `benchmark/fixtures/<category>/` or
 ## Comparison rules
 
 - Property order is irrelevant; array order is exact.
-- `error.message` is **never** compared (the SPEC leaves it free-form).
+- Workflow `error.message` is ignored. For expr/patch error responses, only the top-level `message` is ignored. User-data keys named `message` are always compared.
+- Booleans are distinct from numbers, including inside nested objects and arrays. Numbers compare by value.
 - `error.code` and `error.step` are always compared.
 - If `expected_output` is present, all five envelope fields are compared. If
   only `expected_error_code` is present, only the exit code and error code are.

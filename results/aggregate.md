@@ -1,6 +1,6 @@
 # Aggregated results
 
-Samples are grouped by **model group, task and spec version**; rounds that differ in any of them are not pooled.
+Samples are grouped by **model group, reported version, task and spec version**; rounds that differ in any of them are not pooled.
 
 ## expr · deepseek-v4.1-flash-1017 · spec v1
 

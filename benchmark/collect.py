@@ -148,11 +148,13 @@ def main():
         sys.exit(1)
 
     out = {"round": round_id, "model": cfg.get("model"), "languages": {}}
+    missing = []
     for lang, val in sorted(sessions.items()):
         try:
             path = resolve_session(val)
         except FileNotFoundError as e:
             print(f"  {lang}: {e}", file=sys.stderr)
+            missing.append(lang)
             continue
         data = collect_session(path)
         data["source"] = val
@@ -160,6 +162,9 @@ def main():
         print(f"  {lang:12s} in={data['input']:>9d} out={data['output']:>9d} "
               f"total={data['totalTokens']:>10d} turns={data['user_messages']} "
               f"tools={data['tool_results']:>3d} cost=${data['cost']['total']:.4f}  [{path.name}]")
+
+    if missing:
+        sys.exit("Missing sessions; existing metrics were not changed: " + ", ".join(missing))
 
     outdir = RESULTS / round_id
     outdir.mkdir(parents=True, exist_ok=True)

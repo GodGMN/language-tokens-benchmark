@@ -29,7 +29,7 @@ are compared exactly.
 
 Tests are the most valuable contribution. A test is one JSON file.
 
-- **Public suite** (`benchmark/fixtures/<category>/`): visible to implementers, covers the basics.
+- **Public suite** (`benchmark/fixtures/<category>/`): published for reproducibility; generation agents must not read it.
 - **Holdout suite** (`benchmark/holdout/<category>/`): edge cases scored for the leaderboard.
 
 Format (see [`docs/test-format.md`](docs/test-format.md)):
@@ -112,7 +112,7 @@ Create `benchmark/rounds/<round-id>/round.json`:
 Then:
 
 ```bash
-python3 benchmark/rounds/round-2/make_prompts.py
+python3 benchmark/make_prompts.py --round round-2
 ./scripts/launch-round.sh round-2
 ./scripts/benchmark.sh round-2
 ```
@@ -120,9 +120,32 @@ python3 benchmark/rounds/round-2/make_prompts.py
 ## Development
 
 ```bash
+python3 -m unittest discover -s benchmark/tests -v
 python3 -m py_compile benchmark/*.py benchmark/oracle/workflow.py
 python3 benchmark/runner.py --language oracle          # oracle must stay green
 python3 benchmark/runner.py --all --public             # public suite only
 ```
 
 The oracle is the source of truth for the harness. **A PR that changes SPEC.md must update the oracle and add/adjust fixtures in the same PR.**
+
+## Publishing a result
+
+Use a new round id and session ids; do not relaunch a historical round over its
+published submissions. Record the input Git revision and actual isolation
+mechanism. Preserve failures and timeouts. See [methodology](docs/methodology.md)
+and [isolation](docs/isolation.md) before collecting a publishable round.
+
+To rebuild and rescore existing submissions without calling a model:
+
+```bash
+python3 benchmark/rescore.py
+```
+
+This requires Python, Node, Go, Rust/Cargo, a C compiler and Make. It retains
+historical usage metrics and updates derived evaluation artifacts. A nonzero
+exit means a build or scored conformance check failed; inspect the round's
+`rescore.log`. Do not repair historical submissions while reporting their old
+generation usage as the cost of the repaired code.
+
+Project contributions use the [MIT license](LICENSE). Vendored dependencies
+retain their own licenses and notices.

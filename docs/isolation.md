@@ -1,63 +1,40 @@
 # Isolation
 
-The benchmark only means something if each implementation is produced without
-seeing the others, the public suite, or the holdout suite.
+Generation agents must not read other submissions, evaluation fixtures or
+reference implementations. They should receive only the task specification,
+context document, prompt and their own writable submission directory.
 
-## What the agent gets
+## What the launchers do
 
-- Its own directory: `submissions/<round>/<lang>/` (its cwd).
-- Read access to `SPEC.md` and `PRD.md`.
-- A prompt (`benchmark/rounds/<round>/prompt-<lang>.md`) that states the
-  read/write boundary explicitly.
+`scripts/launch-round.sh` runs each agent in its own submission directory inside
+the checkout. It does not hide other repository files. A 2026-10-18 correction
+fixed its previously missing change of working directory.
 
-## What it must not see
+`scripts/launch-sandboxed.sh` creates separate scratch directory trees containing
+only the relevant spec, PRD, prompt and an empty submission directory, then
+copies produced files back. Despite the script's name, this is **working-copy
+separation, not a security sandbox**. A normal process can still access the
+original repository, sibling scratch directories and anything else allowed by
+its OS user. Sparse checkouts and Git worktrees also do not enforce read access.
 
-- Other `submissions/<round>/*` folders.
-- `benchmark/fixtures/` (public suite).
-- `benchmark/holdout/` (scored edge cases).
-- `benchmark/oracle/` (reference implementation — would be cheating).
+Neither launcher alone proves isolation. Historical usage aggregates contain no
+file-access audit, and the raw tool-call sessions are not published here.
 
-The prompt forbids these, but **a prompt is not enforcement**. A pi session with
-normal tools can read any file the OS allows.
+## Future published rounds
 
-## Enforcing it
+Use an actual filesystem boundary, such as an isolated container or restricted
+OS account with only the supplied inputs mounted. Do not mount the evaluation
+checkout, sibling submissions, home directory or provider session archive into
+the generation environment. Provide model credentials through the agent's
+supported mechanism and keep them out of archived tool output.
 
-For any round you intend to publish, run the agents in a worktree that does not
-contain the suite or the sibling submissions:
+Record the agent version, allowed tools, generation environment, model settings,
+input Git revision and isolation mechanism in the round metadata. Preserve a
+sanitized tool-access trace and original usage records if independent auditing
+is a goal. Record any deviations rather than inferring compliance from an
+instruction in the prompt.
 
-```bash
-git worktree add ../wt-go round-base --no-checkout
-cd ../wt-go && git sparse-checkout set submissions/round-2/go SPEC.md PRD.md
-```
-
-Then start the agent there and point `AGENTS` at it. The launcher reads
-`submissions/<round>/<lang>` from `round.json`; if you relocate the worktree,
-override the submission path per language.
-
-A simpler alternative for a private round: copy `submissions/<round>/<lang>/`
-plus `SPEC.md`/`PRD.md` into a scratch directory and run pi there. The session
-id is what `collect.py` follows, so the location does not matter for metrics.
-
-## Why the holdout is committed anyway
-
-The holdout suite is committed so published results are reproducible. It is an
-*evaluation set*, not a secret. The guarantee we make is that implementations
-were produced without seeing it — enforced by the worktree/sandbox above, and
-audited by checking each session's tool calls:
-
-```bash
-python3 - <<'PY'
-import json, glob, os
-for s in glob.glob(os.path.expanduser("~/.pi/agent/sessions/**/*_round2-*.jsonl"), recursive=True):
-    for line in open(s, errors="ignore"):
-        try: e = json.loads(line)
-        except: continue
-        m = e.get("message", {})
-        if m.get("role") == "assistant":
-            for b in (m.get("content") or []):
-                if isinstance(b, dict) and b.get("type") == "toolCall":
-                    blob = json.dumps(b.get("arguments") or {})
-                    if "fixtures" in blob or "holdout" in blob or "oracle" in blob:
-                        print("LEAK?", s.split('/')[-1], blob[:200])
-PY
-```
+Committed holdout cases support reproducible evaluation. They are public
+material, not a permanently secret test set, and future model training may
+include them. New rounds can use fresh, independently reviewed cases before
+publishing their evaluation set.

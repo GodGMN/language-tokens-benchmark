@@ -40,6 +40,8 @@ def main():
                 "label": r.get("label"),
                 "model": r.get("model"),
                 "tests": r.get("tests"),
+                "task": r.get("task"),
+                "evaluation": r.get("evaluation"),
                 "leaderboard": r.get("leaderboard", []),
             }
             for r in rounds

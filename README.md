@@ -2,9 +2,20 @@
 
 How many tokens does a model need to implement the *same* program in different languages?
 
-This repo asks one question: given an identical, fully-specified CLI program, how many tokens does a frontier model spend to implement it correctly in **Python, JavaScript, Go, Rust and C**? Each implementation is produced by an independent one-shot agent session, then judged by a language-agnostic conformance suite that only talks to the binary through its CLI.
+This repo asks one question: given an identical, fully-specified CLI program, how many session tokens does an agent spend to implement it correctly in **Python, JavaScript, Go, Rust and C**? Each implementation is produced by an independent one-shot agent session, then judged by a language-agnostic conformance suite that only talks to the binary through its CLI.
 
-It is a measure of **code-generation efficiency per language**, not a ranking of languages.
+A small, not-too-serious experiment in **agent-session efficiency**. The current
+data covers one model configuration, five languages and three tasks. It does
+not establish a general ranking of programming languages.
+
+**Start here:** [conclusions](docs/conclusions.md) ·
+[methodology](docs/methodology.md) · [evaluation corrections](docs/evaluation-notes.md) ·
+[MIT license](LICENSE)
+
+The original result artifacts are [preserved](history/2026-10-18-pre-grader-fix/).
+Current results use the corrected JSON grader; historical usage totals are
+unchanged. Raw provider sessions are not included, so usage and historical
+isolation cannot be independently audited from this checkout.
 
 ## Tasks
 
@@ -20,8 +31,10 @@ SPEC.
 
 ## Results — DeepSeek V4.1 Flash (1017)
 
-One-shot, `thinking=high`. All implementations conform on every task, so these
-rank token efficiency. **The ranking changes by task.**
+One autonomous session per sample, `thinking=high`. Agents could use tools and
+self-tests. Tables below order by session output tokens; generated per-round
+reports retain their original total-token ordering. These are different metrics.
+Passing the fixture suite is a prerequisite for ranking, not proof of full correctness.
 
 ### workflow — 6 samples (median)
 
@@ -53,7 +66,12 @@ rank token efficiency. **The ranking changes by task.**
 | 4 | JavaScript | 38/38 | 66,718 | 1.56M | 29 |
 | 5 | C | 38/38 | 77,186 | 2.36M | 41 |
 
-### Across tasks — mean output tokens
+### Across tasks — descriptive mean output tokens
+
+This combines workflow medians with single samples for expr and patch. It is
+not a statistically established overall leaderboard; larger-token tasks have
+more influence on this arithmetic mean. The small Go/Python gap does not
+establish a winner.
 
 | lang | workflow | expr | patch | mean |
 |---|---|---|---|---|
@@ -63,20 +81,18 @@ rank token efficiency. **The ranking changes by task.**
 | Rust | 128,855 | 59,463 | 44,765 | 77,694 |
 | C | 120,000 | 71,378 | 77,186 | 89,521 |
 
-### What this shows
+### What this supports
 
-- **Efficiency is task-dependent.** Python is cheapest on `patch` but last on
-  `expr`; JavaScript wins `workflow` but is 4th on `patch`; Rust is 1st on
-  `expr` and last on `workflow`. No language wins every task.
-- **Go and Python are the most consistent** across the three tasks; **C is
-  consistently the most expensive** (2× Python on `patch`).
-- **Correctness is saturated.** Across every round so far, no implementation
-  failed a test that wasn't a defect in my own suite. Frontier models implement
-  parsers, patch engines and workflow engines reliably; the discriminating
-  signal is cost.
-- **Variance dominates single samples.** On `workflow` one language's total
-  tokens ranged 1.35M–9.72M over six identical runs. Treat n=1 rows as
-  indicative; the `workflow` medians are the only multi-sample result so far.
+- **Task-dependent results.** Language order changes between tasks in this
+  dataset. The single-sample expr and patch results need replication.
+- **Substantial run-to-run variation.** Workflow v2 has six samples per
+  language. Read the medians together with their ranges, not as precise rankings.
+- **A limited correctness claim.** Recorded submissions pass the scored suite.
+  The suite is finite and the grader needed corrections; this does not establish
+  that correctness is saturated for these problem domains.
+- **Session usage, not source length.** Output includes reasoning and other
+  agent work according to provider accounting. Total tokens are dominated by
+  repeated cached-context reads and are not equivalent to dollar cost.
 
 Full data: [`results/aggregate.md`](results/aggregate.md),
 [`results/compare.md`](results/compare.md),
@@ -115,15 +131,36 @@ scripts/                    Wrappers (test, test-all, benchmark, launch-round)
 docs/                       Methodology, isolation, contributing
 ```
 
-## Reproducing a round
+## Reproducing the evaluation
+
+No provider account or model calls are needed to evaluate committed submissions.
+Install Python 3, Node, Go, Rust/Cargo, a C compiler and Make, then run:
 
 ```bash
-python3 benchmark/rounds/round-1/make_prompts.py     # render per-language prompts
-./scripts/launch-round.sh round-1                    # 5 agents in parallel
-./scripts/benchmark.sh round-1                       # build + test + collect + report
+python3 -m unittest discover -s benchmark/tests -v
+python3 benchmark/rescore.py
 ```
 
-`collect.py` reads pi's session JSONL and sums **provider-reported** usage (input, output, cache read/write, reasoning, total, cost) per session — no estimates. See [`docs/methodology.md`](docs/methodology.md).
+For one task round:
+
+```bash
+python3 benchmark/rescore.py --round round-9-patch
+```
+
+This builds, tests and regenerates reports using the existing `metrics.json`.
+It does not reproduce the original generation sessions or their token counts.
+Test times reflect the machine doing the rescoring.
+
+For a **new generation round**, create a new round id, session ids and empty
+submission directories. Generate prompts with
+`python3 benchmark/make_prompts.py --round <new-round>`, then launch in an
+actually isolated environment. See [contributing](CONTRIBUTING.md) and
+[isolation](docs/isolation.md). Do not relaunch historical round ids over their
+published submissions.
+
+`collect.py` reads original pi session JSONL and sums provider-reported usage.
+It needs those session files on the collecting machine; a fresh clone only has
+the aggregates. See [methodology](docs/methodology.md).
 
 ## Data for analysis
 
@@ -152,16 +189,27 @@ This is meant to grow by PR. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Methodology, briefly
 
-- **Isolation:** each agent runs in its own submission directory with its own session id, same prompt except the language, no access to other submissions or the holdout suite. See [`docs/isolation.md`](docs/isolation.md).
-- **Spec versioning:** the SPEC can be clarified, but a round is always scored against the version it was run with. Holdout cases tagged `"since": N` only count once a round declares `spec_version >= N`, so nobody is penalised retroactively for a rule that did not exist.
-- **Correctness first:** non-conforming implementations are listed separately with their pass rate; the leaderboard only ranks conforming ones, by total tokens.
-- **Reproducible:** every round commits its model metadata, per-test outcomes and a machine-readable `summary.json`.
+- Shared task specs and language-specific adapters; model/provider/thinking
+  metadata recorded per round. Temperature and seed are not recorded.
+- Prompts forbid reading other solutions and the suite. Working-copy separation
+  is not OS-enforced isolation; historical compliance is not independently
+  auditable here.
+- Holdout `since` tags exclude future-spec cases from older rounds. Future runs
+  should also record the exact input and evaluation Git revisions.
+- Only conforming samples enter token rankings. Success counts remain visible.
+- Submissions, per-test outcomes, usage aggregates and tidy exports are committed.
+  [Evaluation notes](docs/evaluation-notes.md) describe corrections and provenance.
 
 ## Roadmap
 
-- **Enlarge the task.** Correctness is saturated at 40+ operations; a harder
-  benchmark would add surface (nested workflows, richer expressions, streaming
-  output) so conformance itself becomes a discriminator again.
+- **Expand coverage.** Independently reviewed edge cases and harder tasks could add surface (nested workflows, richer expressions, streaming
+  output) to test correctness beyond the current suite.
 - More languages (Java, Kotlin, Swift, TypeScript…).
 - More models per round (the round config already records model + version).
 - A published site generated from `results/index.json`.
+
+## License
+
+Project code, documentation and published data are available under the
+[MIT license](LICENSE). Vendored third-party dependencies retain their own
+licenses and notices.

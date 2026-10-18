@@ -30,8 +30,13 @@ def main():
     lines = ["# Cross-round comparison", ""]
     lines.append("| round | task | spec | language | scored | output tok | total tok | cost $ | conforming |")
     lines.append("|---|---|---|---|---|---|---|---|---|")
-    stability = {l: [] for l in LANGS}
+    stability = {}
     for r in rounds:
+        cfg = common.load_round(r["round"])
+        model = cfg.get("model") or {}
+        group = (cfg.get("group") or model.get("name"), model.get("version"),
+                 cfg.get("task", "workflow"), cfg.get("spec_version", 1))
+        grouped = stability.setdefault(group, {l: [] for l in LANGS})
         by_lang = {row["language"]: row for row in r.get("all", [])}
         for lang in LANGS:
             row = by_lang.get(lang)
@@ -50,22 +55,27 @@ def main():
                 "yes" if conf else "no" if conf is not None else "—",
             ]) + " |")
             if conf and row.get("output"):
-                stability[lang].append((r.get("round"), row["output"]))
+                grouped[lang].append((r.get("round"), row["output"]))
 
     lines += ["", "## Output-token stability across rounds", "",
               "Output tokens are the cleaner measure: they are not inflated by cache reads.",
               ""]
-    lines.append("| language | rounds | output tokens | spread |")
-    lines.append("|---|---|---|---|")
-    for lang in LANGS:
-        vals = stability[lang]
-        if len(vals) < 2:
-            continue
-        nums = [v for _, v in vals]
-        lo, hi = min(nums), max(nums)
-        spread = f"{(hi / lo - 1) * 100:.0f}%"
-        detail = ", ".join(f'{r}:{v:,}' for r, v in vals)
-        lines.append(f"| {lang} | {len(vals)} | {detail} | {spread} |")
+    for (group, version, task, spec), languages in sorted(stability.items()):
+        lines += [f"### {task} · {group} · {version} · spec v{spec}", "",
+                  "| language | rounds | output tokens | spread |",
+                  "|---|---|---|---|"]
+        for lang in LANGS:
+            vals = languages[lang]
+            if len(vals) < 2:
+                continue
+            nums = [v for _, v in vals]
+            lo, hi = min(nums), max(nums)
+            spread = f"{(hi / lo - 1) * 100:.0f}%"
+            detail = ", ".join(f'{r}:{v:,}' for r, v in vals)
+            lines.append(f"| {lang} | {len(vals)} | {detail} | {spread} |")
+        if all(len(vals) < 2 for vals in languages.values()):
+            lines.append("No repeated samples in this group.")
+        lines.append("")
 
     lines += ["", "## Reading this", "",
               "- A single round is one sample. Rankings by **total** tokens move a lot",

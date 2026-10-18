@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 round="${1:-round-1}"
 
 echo "== build =="
-python3 benchmark/build.py --all
+python3 benchmark/build.py --all --round "$round" || exit $?
 
 echo
 echo "== conformance suite =="
@@ -17,11 +17,11 @@ tests_rc=$?
 
 echo
 echo "== pi token metrics =="
-python3 benchmark/collect.py --round "$round"
+python3 benchmark/collect.py --round "$round" || exit $?
 
 echo
 echo "== report =="
-python3 benchmark/report.py --round "$round"
+python3 benchmark/report.py --round "$round" || exit $?
 
 echo
 echo "report: results/$round/report.md"

@@ -165,6 +165,13 @@ def main():
             fmt(r["gen_eff_k"]), fmt(r["tot_eff_k"]), fmt(r.get("rel_cost")),
         ]) + " |")
 
+    evaluation_path = common.RESULTS / round_id / "evaluation.json"
+    if evaluation_path.exists():
+        evaluation = json.loads(evaluation_path.read_text())
+        lines += ["", f"Evaluation: `{evaluation['grader']}` · {evaluation['evaluated_at']}. "
+                  "Rescored committed submissions using historical usage; no new model calls. "
+                  "See [evaluation notes](../../docs/evaluation-notes.md)."]
+
     lines += ["",
               "**Metrics** — `output/total tok`: provider-reported usage summed from the pi session. "
               "`gen eff (k)` = passed / output_tokens × 1000. `tot eff (k)` = passed / total_tokens × 1000. "
@@ -198,6 +205,8 @@ def main():
     # Website-ready compact summary (stable schema).
     summary = {
         "round": round_id,
+        "task": round_cfg.get("task", "workflow"),
+        "evaluation": json.loads((outdir / "evaluation.json").read_text()) if (outdir / "evaluation.json").exists() else None,
         "label": round_cfg.get("label", round_id),
         "spec_version": round_cfg.get("spec_version", 1),
         "model": model,

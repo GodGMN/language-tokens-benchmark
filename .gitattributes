@@ -1,0 +1,3 @@
+*.csv whitespace=cr-at-eol
+# Historical artifacts retain their original whitespace.
+history/** -whitespace

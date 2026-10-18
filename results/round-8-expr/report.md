@@ -15,6 +15,8 @@ Tests per implementation: 26 public + 30 holdout = 56 scored
 | c | ok | 56/56 | 26/26 | 30/30 | — | 71,378 | 1,887,134 | 0.1026 | 34 | 2 | 2882 | 0.78 | 0.03 | 1.77 |
 | oracle | reference | 56/56 | 26/26 | 30/30 | — | — | — | — | — | 1 | 527 | — | — | — |
 
+Evaluation: `json-comparison-v2` · 2026-10-18T00:31:36.887590+00:00. Rescored committed submissions using historical usage; no new model calls. See [evaluation notes](../../docs/evaluation-notes.md).
+
 **Metrics** — `output/total tok`: provider-reported usage summed from the pi session. `gen eff (k)` = passed / output_tokens × 1000. `tot eff (k)` = passed / total_tokens × 1000. `rel cost` = total_tokens ÷ best conforming total. `holdout` = edge-case suite scored for this round's spec version. `future-spec` = holdout cases for rules added after this round (informational).
 
 ## Leaderboard (conforming, by total tokens)

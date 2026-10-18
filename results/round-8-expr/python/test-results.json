@@ -27,7 +27,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.027
+      "seconds": 0.03
     },
     {
       "name": "literal_int",
@@ -38,7 +38,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.027
+      "seconds": 0.031
     },
     {
       "name": "parens",
@@ -49,7 +49,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.029
+      "seconds": 0.036
     },
     {
       "name": "unary_neg",
@@ -60,7 +60,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.028
+      "seconds": 0.034
     },
     {
       "name": "vars",
@@ -71,7 +71,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.027
+      "seconds": 0.036
     },
     {
       "name": "arity",
@@ -82,7 +82,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.028
+      "seconds": 0.029
     },
     {
       "name": "div_zero",
@@ -93,7 +93,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.027
+      "seconds": 0.029
     },
     {
       "name": "empty_array",
@@ -126,7 +126,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.03
+      "seconds": 0.028
     },
     {
       "name": "unknown_fn",
@@ -148,7 +148,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.034
+      "seconds": 0.033
     },
     {
       "name": "join",
@@ -159,7 +159,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.032
+      "seconds": 0.029
     },
     {
       "name": "len_string",
@@ -170,7 +170,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.038
+      "seconds": 0.028
     },
     {
       "name": "substr",
@@ -181,7 +181,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.031
+      "seconds": 0.028
     },
     {
       "name": "sum",
@@ -192,7 +192,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.028
+      "seconds": 0.029
     },
     {
       "name": "trim",
@@ -203,7 +203,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.027
+      "seconds": 0.035
     },
     {
       "name": "type_int",
@@ -214,7 +214,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.031
+      "seconds": 0.029
     },
     {
       "name": "upper",
@@ -225,7 +225,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.032
+      "seconds": 0.029
     },
     {
       "name": "cmp_ge",
@@ -236,7 +236,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.027
+      "seconds": 0.029
     },
     {
       "name": "div_neg",
@@ -247,7 +247,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.029
+      "seconds": 0.032
     },
     {
       "name": "div_trunc",
@@ -258,7 +258,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.028
+      "seconds": 0.031
     },
     {
       "name": "eq_array",
@@ -269,7 +269,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.031
+      "seconds": 0.029
     },
     {
       "name": "eq_mixed",
@@ -280,7 +280,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.031
+      "seconds": 0.034
     },
     {
       "name": "logical",
@@ -291,7 +291,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.029
+      "seconds": 0.03
     },
     {
       "name": "mod_sign",
@@ -302,7 +302,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.027
+      "seconds": 0.031
     },
     {
       "name": "bad_escape",
@@ -313,7 +313,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.033
+      "seconds": 0.034
     },
     {
       "name": "empty_source",
@@ -324,7 +324,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.033
+      "seconds": 0.04
     },
     {
       "name": "neg_min",
@@ -335,7 +335,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.028
+      "seconds": 0.047
     },
     {
       "name": "overflow_add",
@@ -346,7 +346,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.03
+      "seconds": 0.038
     },
     {
       "name": "overflow_literal",
@@ -357,7 +357,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.029
+      "seconds": 0.056
     },
     {
       "name": "short_and",
@@ -368,7 +368,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.03
+      "seconds": 0.038
     },
     {
       "name": "short_or",
@@ -379,7 +379,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.029
+      "seconds": 0.034
     },
     {
       "name": "ternary_short",
@@ -390,7 +390,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.028
+      "seconds": 0.042
     },
     {
       "name": "trailing",
@@ -401,7 +401,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.033
+      "seconds": 0.044
     },
     {
       "name": "unterminated",
@@ -412,7 +412,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.029
+      "seconds": 0.035
     },
     {
       "name": "var_pos",
@@ -423,7 +423,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.03
+      "seconds": 0.032
     },
     {
       "name": "abs_neg",
@@ -445,7 +445,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.036
+      "seconds": 0.029
     },
     {
       "name": "index_none",
@@ -456,7 +456,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.031
+      "seconds": 0.03
     },
     {
       "name": "max",
@@ -467,7 +467,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.032
+      "seconds": 0.03
     },
     {
       "name": "split_empty",
@@ -478,7 +478,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.03
+      "seconds": 0.037
     },
     {
       "name": "substr_clamp",
@@ -489,7 +489,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.032
+      "seconds": 0.029
     },
     {
       "name": "to_string_arr",
@@ -500,7 +500,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.034
+      "seconds": 0.033
     },
     {
       "name": "type_null",
@@ -511,7 +511,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.032
+      "seconds": 0.028
     },
     {
       "name": "chained_cmp",
@@ -522,7 +522,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.031
+      "seconds": 0.03
     },
     {
       "name": "double_neg",
@@ -533,7 +533,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.03
+      "seconds": 0.028
     },
     {
       "name": "mixed_prec",
@@ -544,7 +544,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.029
+      "seconds": 0.033
     },
     {
       "name": "not_eq",
@@ -555,7 +555,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.03
+      "seconds": 0.037
     },
     {
       "name": "ternary_right",
@@ -566,7 +566,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.029
+      "seconds": 0.031
     },
     {
       "name": "array_order",
@@ -577,7 +577,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.031
+      "seconds": 0.035
     },
     {
       "name": "eq_bool_int",
@@ -599,7 +599,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.03
+      "seconds": 0.034
     },
     {
       "name": "not_int",
@@ -610,7 +610,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 1,
-      "seconds": 0.031
+      "seconds": 0.035
     },
     {
       "name": "stdin_case",
@@ -632,7 +632,7 @@
       "passed": true,
       "reasons": [],
       "exit_code": 0,
-      "seconds": 0.028
+      "seconds": 0.035
     }
   ]
 }

@@ -54,13 +54,13 @@ def main():
 
     groups = {}
     for r in rounds:
-        # Group by model group AND spec version: different specs are different tasks.
-        groups.setdefault((r["_group"], r["_task"], r["_spec"]), []).append(r)
+        # Keep different reported model versions, tasks and specs separate.
+        groups.setdefault((r["_group"], r["_task"], r["_spec"], r["_version"]), []).append(r)
 
     lines = ["# Aggregated results", "",
-             "Samples are grouped by **model group, task and spec version**; rounds that "
+             "Samples are grouped by **model group, reported version, task and spec version**; rounds that "
              "differ in any of them are not pooled.", ""]
-    for (group, task, spec), rs in sorted(groups.items()):
+    for (group, task, spec, version), rs in sorted(groups.items()):
         versions = sorted({r["_version"] for r in rs})
         lines += [f"## {task} · {group} · spec v{spec}", "",
                   f"Samples: {len(rs)} round(s) — {', '.join(r['round'] for r in rs)}  ",
