@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Token Golf — how many tokens does an agent need, per language?</title>
+  <meta name="description" content="One AI agent implements the same program in Python, JavaScript, Go, Rust and C. {{sessions}} sessions later: the language order depends on the task, and on which run you got." />
+  <meta name="theme-color" content="#111111" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Token Golf — Language Tokens Benchmark" />
+  <meta property="og:description" content="Same program, five languages, one AI agent. How many tokens to get past the referee?" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@sergiogmn" />
+  <link rel="preload" href="fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="#top">TOKEN<span>GOLF</span></a>
+    <nav aria-label="Sections">
+      <a href="#flips">Results</a>
+      <a href="#variance">Variance</a>
+      <a href="#meter">The meter</a>
+      <a href="#play">Contribute</a>
+    </nav>
+    <a class="bar-gh" href="{{repo}}">GitHub ↗</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="kicker">LANGUAGE TOKENS BENCHMARK · EXHIBITION SEASON</p>
+      <h1>Token Golf<span class="cursor" aria-hidden="true"></span></h1>
+      <p class="lede">The same program, written in five languages by the same AI agent. How many tokens does it spend to get past the referee?</p>
+      <p class="answer"><span>Short answer:</span> it depends on the task, and on which run you got.</p>
+      <dl class="stats">
+        <div><dt>agent sessions</dt><dd>{{sessions}}</dd></div>
+        <div><dt>languages × tasks</dt><dd>{{languages}} × {{tasks}}</dd></div>
+        <div><dt>scored tests passed</dt><dd>{{tests_passed}}</dd></div>
+        <div><dt>tokens processed</dt><dd>{{total_tokens}}</dd></div>
+        <div><dt>total recorded cost</dt><dd>{{total_cost}}</dd></div>
+      </dl>
+      <p class="fine">Model: {{model}}, thinking=high, one autonomous session per sample. Every submission passes its scored suite, so the tokens are what it cost to finish, not to fail.</p>
+    </section>
+
+    <section class="block" id="how">
+      <h2><span>00</span> The course</h2>
+      <ol class="course">
+        <li><b>One spec.</b> A fully specified CLI program: JSON in, JSON out, deterministic, with a closed set of error codes.</li>
+        <li><b>Five players.</b> Python, JavaScript, Go, Rust and C. Each gets an independent agent session with tools, a shell and room to self-test.</li>
+        <li><b>One referee.</b> A language-agnostic conformance suite that only talks to the binary through its CLI. Fail it and your score doesn't count.</li>
+        <li><b>The score.</b> Session output tokens: everything the agent wrote, including reasoning, tool calls and rewrites. Not the size of the final code.</li>
+      </ol>
+      <div class="tasks">
+        <div><strong>Workflow engine</strong><span>DAG execution, $ref, conditions, retries, 40+ ops</span></div>
+        <div><strong>Expression evaluator</strong><span>tokenizer, precedence parser, i64 math, exact error positions</span></div>
+        <div><strong>JSON Patch</strong><span>RFC 6901 pointers, six ops, atomicity, error taxonomy</span></div>
+      </div>
+    </section>
+
+    <section class="block" id="flips">
+      <h2><span>01</span> The leaderboard flips between tasks</h2>
+      <p class="say">Rust uses the most tokens on the workflow engine and the fewest on the expression evaluator. Python wins JSON Patch and comes last on expressions. No language holds its place across all three tasks.</p>
+      {{bump}}
+      <p class="caveat">Don't read too much into a single rank. Expression and patch have one run each, and expression's top three are within {{expr_gap}} tokens of each other. Hover or tap a language to trace it.</p>
+      <details class="twin"><summary>Table view</summary>{{rank_table}}</details>
+    </section>
+
+    <section class="block" id="variance">
+      <h2><span>02</span> Same prompt, same model, very different runs</h2>
+      <p class="say">The workflow engine was run six times per language. Python's cheapest run used {{py_min}} output tokens and its most expensive used {{py_max}}. The gap between runs of the same language is bigger than the gap between the top three languages.</p>
+      <div class="seg" role="tablist" aria-label="Metric">
+        <button type="button" role="tab" aria-selected="true" data-show="strip-output">Output tokens</button>
+        <button type="button" role="tab" aria-selected="false" data-show="strip-total">Total tokens</button>
+      </div>
+      <div class="panel" id="strip-output">{{strip_output}}</div>
+      <div class="panel" id="strip-total" hidden>{{strip_total}}
+        <p class="caveat">On total tokens, JavaScript's most expensive run used {{js_total_ratio}}× as many as its cheapest.</p>
+      </div>
+      <p class="caveat">Each dot is one session. The bar shows the range and the tick shows the median. Six samples show the spread; they don't establish a statistically significant ranking.</p>
+    </section>
+
+    <section class="block" id="meter">
+      <h2><span>03</span> What the meter actually counts</h2>
+      <div class="meter-hero">
+        <p class="big">{{cache_pct}}<span>%</span></p>
+        <p class="say">of all tokens were the agent <b>re-reading context it had already seen</b>. Per session, the share ranged from {{cache_lo}}% to {{cache_hi}}%. A longer session repeats more context, so the total-token count mostly measures how long the agent kept going.</p>
+      </div>
+      {{composition}}
+      <ul class="notes">
+        <li><b>Output isn't code.</b> About {{reasoning_pct}}% of output tokens were reasoning. The rest covers tool calls, test scaffolding and rewrites as well as the final source.</li>
+        <li><b>Tokens aren't dollars.</b> Cached reads, fresh input and output are priced differently, so cost and total-token rankings can disagree. Costs here are historical, not a quote.</li>
+        <li><b>It's one model.</b> Another model, or the same model next month, could reorder everything.</li>
+      </ul>
+    </section>
+
+    <section class="block" id="awards">
+      <h2><span>04</span> Exhibition awards</h2>
+      <p class="say">These are separate awards, not one overall score: a single number would hide failures and let the longest task dominate. Workflow engine only, six runs per language.</p>
+      <div class="awards">{{awards}}</div>
+      <p class="caveat">Most of these margins are well inside the run-to-run noise above. The trophies are for fun.</p>
+    </section>
+
+    <section class="block" id="fine-print">
+      <h2><span>05</span> The fine print</h2>
+      <div class="cards">
+        <article><h3>Passing ≠ correct</h3><p>Every submission passes the scored fixtures, but a finite suite doesn't prove complete correctness. A review found two grader bugs, which have been fixed and rescored. No pass/fail result changed.</p></article>
+        <article><h3>Not a frozen eval</h3><p>Some specs, fixtures and oracles were corrected after submissions were examined. The Git history records every change, but this wasn't a pre-registered evaluation.</p></article>
+        <article><h3>Trust, partially verified</h3><p>The raw session logs aren't published, so usage totals and compliance with the no-peeking rules can't be audited from the repo. The launcher isn't an OS sandbox.</p></article>
+      </div>
+    </section>
+
+    <section class="block" id="play">
+      <h2><span>06</span> Next season needs players</h2>
+      <p class="say">For a real competitive season, the rules would be: freeze the evaluation before generation, use real filesystem isolation, keep sanitized traces, run at least five samples per language and task, and publish every failure. Here's how to help.</p>
+      <div class="cards play">
+        <article>
+          <h3>Rescore it yourself</h3>
+          <p>No API key needed. Rebuilds every committed submission and reruns the referee.</p>
+          <pre><code>git clone {{repo}}
+python3 benchmark/rescore.py</code></pre>
+        </article>
+        <article>
+          <h3>Break the referee</h3>
+          <p>The most valuable contribution: one JSON file, one behaviour, derivable from the spec and verified against the oracle.</p>
+          <pre><code>benchmark/holdout/&lt;category&gt;/your_case.json
+python3 benchmark/runner.py --language oracle</code></pre>
+        </article>
+        <article>
+          <h3>Bring a model or a language</h3>
+          <p>Add a round for a new model, or an adapter for Kotlin, Swift, Zig… Use new round ids and keep every failure.</p>
+          <pre><code>benchmark/rounds/&lt;round&gt;/round.json
+benchmark/adapters/&lt;lang&gt;.json</code></pre>
+        </article>
+      </div>
+      <p class="cta"><a href="{{repo}}/blob/main/CONTRIBUTING.md">Read the contributing guide ↗</a> <a href="{{repo}}/blob/main/docs/methodology.md">Methodology ↗</a> <a href="{{repo}}/blob/main/docs/conclusions.md">Full conclusions ↗</a></p>
+    </section>
+
+    <section class="block" id="data">
+      <h2><span>07</span> Every sample</h2>
+      <p class="say">All {{sessions}} sessions, nothing filtered. Download <a href="dataset.csv">dataset.csv</a> or <a href="dataset.json">dataset.json</a>.</p>
+      <details class="twin"><summary>Show all {{sessions}} rows</summary>{{samples_table}}</details>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Built by <a href="https://gimeno.dev/">Sergio Gimeno</a> · <a href="https://x.com/sergiogmn">@sergiogmn</a></span>
+    <span><a href="{{repo}}">Source &amp; data</a> · MIT</span>
+  </footer>
+
+  <div class="tip" role="tooltip" hidden></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

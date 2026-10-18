@@ -41,3 +41,5 @@ submissions/**/rust/patch
 
 # Runtime markers
 results/**/.done
+
+site/dist/
