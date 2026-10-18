@@ -8,6 +8,7 @@ computed here, so a new round only needs `benchmark/export.py` and a rebuild.
 """
 import html
 import json
+import re
 import shutil
 import statistics
 from pathlib import Path
@@ -89,62 +90,31 @@ def tip(*lines):
     return esc("\n".join(lines))
 
 
-def bump(values):
-    """Rank-per-task chart: lines in an SVG, dots and labels in HTML."""
-    xs = [7, 50, 93]
-    ranks = {
-        task: sorted(values[task], key=lambda lang: values[task][lang][0])
-        for task, _, _ in TASKS
-    }
-    y = lambda r: (r + 0.5) / 5 * 100  # noqa: E731
+def icon(lang):
+    """Inline Simple Icons glyph (CC0), tinted with currentColor."""
+    d = re.search(r'<path d="([^"]+)"', (SRC / "icons" / f"{lang}.svg").read_text()).group(1)
+    return f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{d}"/></svg>'
 
-    lines, dots = [], []
-    for lang in NAMES:
-        pts = [(xs[i], y(ranks[t].index(lang))) for i, (t, _, _) in enumerate(TASKS)]
-        lines.append(
-            f'<polyline data-lang="{lang}" points="{" ".join(f"{a},{b:.2f}" for a, b in pts)}" />'
+
+def board(values):
+    """Leaderboard: one ranked column per task, fewest output tokens first."""
+    cols = []
+    for task, title, _ in TASKS:
+        ranked = sorted(values[task], key=lambda lang: values[task][lang][0])
+        worst = values[task][ranked[-1]][0]
+        n = values[task][ranked[0]][1]
+        basis = f"median of {n} runs" if n > 1 else "1 run"
+        rows = "".join(
+            f'<li><button type="button" class="board-row" data-lang="{lang}" '
+            f'data-tip="{tip(f"{NAMES[lang]} · {title}", f"{comma(values[task][lang][0])} output tokens", basis)}">'
+            f'<span class="rank">{i}</span>'
+            f'<span class="track"><span class="bar" style="width:calc((100% - 62px) * {values[task][lang][0] / worst:.3f})">'
+            f'{icon(lang)}<span class="lang">{NAMES[lang]}</span></span>'
+            f'<span class="val">{k(values[task][lang][0])}</span></span></button></li>'
+            for i, lang in enumerate(ranked, 1)
         )
-        for (x, yy), (task, title, _) in zip(pts, TASKS):
-            tok, n = values[task][lang]
-            rank = ranks[task].index(lang) + 1
-            basis = f"median of {n} runs" if n > 1 else "single run"
-            dots.append(
-                f'<span class="bump-dot{" is-single" if n == 1 else ""}" data-lang="{lang}" '
-                f'style="left:{x}%;top:{yy:.2f}%" '
-                f'data-tip="{tip(f"{NAMES[lang]} · {title}", f"#{rank} · {comma(tok)} output tokens", basis)}"></span>'
-            )
-
-    def side(task, align):
-        rows = []
-        for lang in ranks[task]:
-            tok, _ = values[task][lang]
-            rows.append(
-                f'<button type="button" class="bump-label is-{align}" data-lang="{lang}">'
-                f'<span class="lang">{NAMES[lang]}</span><span class="val">{k(tok)}</span></button>'
-            )
-        return "".join(rows)
-
-    def runs(task):
-        n = values[task]["python"][1]
-        return f"median of {n} runs" if n > 1 else "1 run"
-
-    heads = "".join(
-        f'<div class="bump-col" style="left:{x}%"><strong>{title}</strong><b>{short}</b><span>{runs(t)}</span></div>'
-        for x, (t, title, short) in zip(xs, TASKS)
-    )
-    return f"""
-<div class="bump" data-highlight>
-  <div class="bump-heads"><div></div><div class="bump-heads-plot">{heads}</div><div></div></div>
-  <div class="bump-grid">
-    <div class="bump-side">{side("workflow", "left")}</div>
-    <div class="bump-plot">
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">{"".join(lines)}</svg>
-      {"".join(dots)}
-    </div>
-    <div class="bump-side">{side("patch", "right")}</div>
-  </div>
-  <p class="chart-note">Rank 1 = fewest session output tokens. Hollow dots are a single run. Middle-column values are in the table.</p>
-</div>"""
+        cols.append(f'<div class="board-col"><h3>{title}</h3><p>{basis}</p><ol>{rows}</ol></div>')
+    return f'<div class="board" data-highlight>{"".join(cols)}</div>'
 
 
 def sample_tip(s):
@@ -204,46 +174,6 @@ def composition(samples):
     return f'<div class="comp-bar" role="img" aria-label="Token composition across all sessions">{bar}</div><ul class="comp-legend">{legend}</ul>'
 
 
-def awards(samples):
-    rows = by_lang(workflow_v2(samples))
-
-    def med(lang, key):
-        return statistics.median(s[key] for s in rows[lang])
-
-    def cv(lang):
-        vals = [s["output_tokens"] for s in rows[lang]]
-        return statistics.pstdev(vals) / statistics.mean(vals)
-
-    cats = [
-        ("Fewest tokens", "median session output", lambda l: med(l, "output_tokens"), comma),
-        ("Cheapest", "median recorded cost", lambda l: med(l, "cost_usd"), usd),
-        ("Fewest tool calls", "median per session", lambda l: med(l, "tool_calls"), lambda v: f"{v:g}"),
-        ("Most consistent", "spread of output (CV)", cv, lambda v: f"{v * 100:.0f}%"),
-    ]
-    cards = []
-    for title, sub, score, fmt in cats:
-        best, second = sorted(rows, key=score)[:2]
-        cards.append(f"""
-    <article class="award">
-      <span class="award-cat">{title}</span>
-      <strong class="award-winner">{NAMES[best]}</strong>
-      <span class="award-score">{fmt(score(best))} <em>{sub}</em></span>
-      <span class="award-runner">runner-up {NAMES[second]} · {fmt(score(second))}</span>
-    </article>""")
-    return "".join(cards)
-
-
-def table(samples, values):
-    head = "".join(f"<th>{t}</th>" for _, t, _ in TASKS)
-    body = []
-    for lang in NAMES:
-        cells = "".join(
-            f"<td>{comma(values[t][lang][0])}<small> n={values[t][lang][1]}</small></td>" for t, _, _ in TASKS
-        )
-        body.append(f"<tr><th>{NAMES[lang]}</th>{cells}</tr>")
-    return f'<table class="data"><thead><tr><th>Output tokens</th>{head}</tr></thead><tbody>{"".join(body)}</tbody></table>'
-
-
 def sample_table(samples):
     rows = sorted(samples, key=lambda s: (s["task"], s["spec_version"], s["language"], s["round"]))
     body = "".join(
@@ -270,19 +200,11 @@ def build():
     cache_shares = [s["cache_read"] / s["total_tokens"] for s in samples]
     py = [s["output_tokens"] for s in wf if s["language"] == "python"]
     js_total = [s["total_tokens"] for s in wf if s["language"] == "javascript"]
-    expr = sorted(v[0] for v in values["expr"].values())
 
     fill = {
         "sessions": str(len(samples)),
-        "languages": str(len({s["language"] for s in samples})),
-        "tasks": str(len({s["task"] for s in samples})),
-        "tests_passed": comma(sum(s["passed"] for s in samples)),
-        "total_tokens": f"{total / 1_000_000:.0f}M",
-        "total_cost": f"${sum(s['cost_usd'] for s in samples):.2f}",
         "model": esc(samples[0]["model_version"]),
-        "bump": bump(values),
-        "rank_table": table(samples, values),
-        "expr_gap": comma(expr[2] - expr[0]),
+        "board": board(values),
         "strip_output": strip(samples, "output_tokens", 60_000, 180_000, range(60_000, 180_001, 30_000), k,
                               lambda v: f"{v // 1000}k"),
         "strip_total": strip(samples, "total_tokens", 0, 12_000_000, range(0, 12_000_001, 3_000_000), k,
@@ -295,7 +217,6 @@ def build():
         "cache_hi": f"{max(cache_shares) * 100:.0f}",
         "reasoning_pct": f"{sum(s['reasoning'] for s in samples) / sum(s['output_tokens'] for s in samples) * 100:.0f}",
         "composition": composition(samples),
-        "awards": awards(samples),
         "samples_table": sample_table(samples),
         "repo": REPO,
     }
@@ -308,7 +229,7 @@ def build():
 
     if DIST.exists():
         shutil.rmtree(DIST)
-    shutil.copytree(SRC, DIST, ignore=shutil.ignore_patterns("index.html"))
+    shutil.copytree(SRC, DIST, ignore=shutil.ignore_patterns("index.html", "icons"))
     (DIST / "index.html").write_text(page)
     for name in ("dataset.csv", "dataset.json"):
         shutil.copy(ROOT / "results" / name, DIST / name)
